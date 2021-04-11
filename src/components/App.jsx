@@ -1,16 +1,19 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+
 import Service from './Service';
+import UploadPage from './UploadPage';
 
 function App(){
     return(
         <Router>
-            <div className="App">
-                <h1>Hello World</h1></div>
             <Switch>
                 <Route path= "/service">
                     <Service />
+                </Route>
+                <Route path="/">
+                    <UploadPage />
                 </Route>
             </Switch>
     </Router>
