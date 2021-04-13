@@ -1,16 +1,24 @@
 import React from "react";
+import './service.css';
 
 const Service = () => {
     return (
-        <div className="service">
-            <h2>The Visual Testing platform</h2>
+    <div className='serviceBackground'>
+        <div className='heading'><h1>The Visual Testing platform</h1></div>
+    <div className="textBackground">
+            
                 <h3>Issue Detection</h3>
                 <p>Automatically detect and localise issues allowing for users to easily identify issues that appear in their user interface.</p>
                 <h3>Real time results</h3>
                 <p>Generates and displays results to the user and gives the user an option to email results.</p>
                 <h3>How it works</h3>
                 <p>Add a demo video?</p>
-        </div>
+                <br/>
+                <button className='tryButton'>Try Now</button>
+    </div>
+    
+    </div>
+        
     );
 }
 
