@@ -4,19 +4,24 @@ import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import Service from './Service';
 import UploadPage from './UploadPage';
+import InputBox from './InputBox';
 
 function App(){
     return(
+
         <Router>
             <Switch>
                 <Route path= "/service">
                     <Service />
                 </Route>
+                
                 <Route path="/">
                     <UploadPage />
+                    <InputBox />
                 </Route>
             </Switch>
     </Router>
+    
     );
 }
 
