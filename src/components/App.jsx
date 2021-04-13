@@ -9,11 +9,11 @@ function App(){
     return(
         <Router>
             <Switch>
+                <Route exact path="/">
+                    <UploadPage />
+                </Route>
                 <Route path= "/service">
                     <Service />
-                </Route>
-                <Route path="/">
-                    <UploadPage />
                 </Route>
             </Switch>
     </Router>
