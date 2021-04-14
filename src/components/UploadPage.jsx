@@ -26,20 +26,21 @@ const UploadPage = () => {
 
     return (
         <div style={containerStyle}>
-        <form style={formStyle} onSubmit={handleSubmit}>
-            <input style={textInputStyle} type="email" value={email} onChange={handleChange} placeholder={"Email"} />
-            <UploadBox setFiles={setFiles} />
-            <div>{files.map(f => f.path)}</div>
-            <input type="submit" value="Submit" style={{...itemStyle, ...textInputStyle}} />
-        </form>
-        <h1>{displayText}</h1>
+            <form style={formStyle} onSubmit={handleSubmit}>
+                <input style={textInputStyle} type="email" value={email} onChange={handleChange} placeholder={"Email"} />
+                <UploadBox setFiles={setFiles} />
+                <div>{files.map(f => f.path)}</div>
+                <input type="submit" value="Submit" style={{...itemStyle, ...textInputStyle}} />
+            </form>
+            <h1>{displayText}</h1>
         </div>
     )
 }
 
 const containerStyle = {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    flexDirection: "column"
 }
 
 const formStyle = {
