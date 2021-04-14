@@ -20,7 +20,7 @@ div{
     color: rgb(255, 255, 255);
 }
 
-.textBackground {
+.text-container {
     padding: 20px;
     position: relative;
     max-width: 1000px;
@@ -29,12 +29,12 @@ div{
     box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px, rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px;
     border-radius: 30px;
     top: 3vh;
-    height: 27vh;
+    
     margin: auto;
     color: rgb(195, 197, 203);
 }
 
-.serviceBackground{
+.service-background{
     background-color: rgb(44, 47, 54);
     min-height: 100vh;
     background-position: center;
@@ -44,7 +44,7 @@ div{
 
 }
 
-.tryButton {
+.try-button {
     padding: 18px;
     max-width: 700px;
     width: 70%;
@@ -60,17 +60,15 @@ div{
     -webkit-box-align: center;
     align-items: center;
     cursor: pointer;
-    position: relative;
     z-index: 1;
     background-color: rgba(21, 61, 111, 0.44);
     color: rgb(109, 168, 255);
     font-size: 16px;
     font-weight: 500;
     margin: auto;
-    bottom: 0px;
 }
 
-.tryButton:hover{
+.try-button:hover{
     background-color: rgba(19, 54, 98, 0.44);
 }
 

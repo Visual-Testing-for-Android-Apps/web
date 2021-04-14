@@ -3,9 +3,9 @@ import './service.css';
 
 const Service = () => {
     return (
-    <div className='serviceBackground'>
-        <div className='heading'><h1>The Visual Testing platform</h1></div>
-    <div className="textBackground">
+    <div className='service-background'>
+        <h1 className='heading'>The Visual Testing platform</h1>
+    <div className="text-container">
             
                 <h3>Issue Detection</h3>
                 <p>Automatically detect and localise issues allowing for users to easily identify issues that appear in their user interface.</p>
@@ -14,8 +14,9 @@ const Service = () => {
                 <h3>How it works</h3>
                 <p>Add a demo video?</p>
                 <br/>
-                <button className='tryButton'>Try Now</button>
+                <button className='try-button'>Try Now</button>
     </div>
+    
     
     </div>
         
