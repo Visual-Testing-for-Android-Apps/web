@@ -82,11 +82,11 @@ jobs:
       - name: Install npm dependencies
         run: npm ci --if-present
 
-      - name: Test
-        run: npm test --if-present
-
       - name: Build
         run: npm run build --if-present
+
+      - name: Test
+        run: npm test --if-present
 
 #   deploy:
 #     name: Deploy to heroku
