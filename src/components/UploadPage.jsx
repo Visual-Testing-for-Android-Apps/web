@@ -25,6 +25,7 @@ const UploadPage = () => {
     };
 
     return (
+        <>
         <div style={containerStyle}>
             <form style={formStyle} onSubmit={handleSubmit}>
                 <input style={textInputStyle} type="email" value={email} onChange={handleChange} placeholder={"Email"} />
@@ -32,15 +33,15 @@ const UploadPage = () => {
                 <div>{files.map(f => f.path)}</div>
                 <input type="submit" value="Submit" style={{...itemStyle, ...textInputStyle}} />
             </form>
-            <h1>{displayText}</h1>
         </div>
+        <h1>{displayText}</h1>
+        </>
     )
 }
 
 const containerStyle = {
     display: "flex",
-    justifyContent: "center",
-    flexDirection: "column"
+    justifyContent: "center"
 }
 
 const formStyle = {
