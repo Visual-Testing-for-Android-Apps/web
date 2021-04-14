@@ -11,25 +11,22 @@ div{
     text-align: left;
 }
 
-.heading{
+.heading {
     margin: auto;
     width: 50%;
-    padding: 10px;
+    padding: 3rem;
     text-align: center;
-    top: 100px;
+    top: 100rem;
     color: rgb(255, 255, 255);
 }
 
 .text-container {
-    padding: 20px;
-    position: relative;
-    max-width: 1000px;
+    padding: 2rem;
+    max-width: 60rem;
     width: 80%;
     background: rgb(33, 36, 41);
     box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px, rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px;
-    border-radius: 30px;
-    top: 3vh;
-    
+    border-radius: 2rem;
     margin: auto;
     color: rgb(195, 197, 203);
 }
@@ -41,7 +38,6 @@ div{
     background-repeat: no-repeat;
     background-image: radial-gradient(50% 50% at 50% 50%, rgba(33, 114, 229, 0.1) 0%, rgba(33, 36, 41, 0) 100%);
     background-size: 'cover';
-
 }
 
 .try-button {
@@ -49,12 +45,11 @@ div{
     max-width: 700px;
     width: 70%;
     text-align: center;
-    border-radius: 20px;
+    border-radius: 1rem;
     outline: none;
     border: 1px solid transparent;
     text-decoration: none;
     display: flex;
-    -webkit-box-pack: center;
     justify-content: center;
     flex-wrap: nowrap;
     -webkit-box-align: center;
