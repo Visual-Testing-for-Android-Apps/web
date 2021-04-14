@@ -2,6 +2,8 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+var apiHost = "'http://localhost:3001'";
+
 module.exports = {
   entry: "./src/index.js",
   mode: "development",
@@ -33,5 +35,21 @@ module.exports = {
     hotOnly: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin(),
-            new HtmlWebpackPlugin({template: path.join(__dirname, "src", "public", "index.html")})]
+            new HtmlWebpackPlugin({template: path.join(__dirname, "src", "public", "index.html")}),
+          new webpack.DefinePlugin({
+            __API__: "'https://secure-everglades-60104.herokuapp.com'"
+          })]
 };
+
+// var setupApi = function() {
+//   switch (process.env.NODE_ENV) {
+//     case 'prod':
+//       apiHost = '';
+//       break;
+//     case 'dev':
+//       apiHost = "'http://localhost:3001'";
+//       break;
+//   }
+// };
+
+//setupApi();
