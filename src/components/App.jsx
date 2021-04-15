@@ -9,7 +9,7 @@ import UploadPage from './UploadPage';
 function App(){
     // Created hook to load recaptcha
     useEffect(() => {
-        loadReCaptcha("6LeIkakaAAAAAN7IyMjgyCZphTmLkgQuPC0uEh5K");
+        loadReCaptcha("6Ld8T6oaAAAAAAiXL5GN6HdNsHGHHBXxJ3eVPkUn");
     })
 
     return(

@@ -31,7 +31,7 @@ const UploadPage = () => {
                 <input style={textInputStyle} type="email" value={email} onChange={handleChange} placeholder={"Email"} />
                 <UploadBox setFiles={setFiles} />
                 <div>{files.map(f => f.path)}</div>
-                <input className="g-recaptcha" data-sitekey="6LeIkakaAAAAAN7IyMjgyCZphTmLkgQuPC0uEh5K" data-callback="handleCaptcha" type="submit" value="Submit" style={{ ...itemStyle, ...textInputStyle }} />
+                <input className="g-recaptcha" data-sitekey="6Ld8T6oaAAAAAAiXL5GN6HdNsHGHHBXxJ3eVPkUn" data-callback="handleCaptcha" type="submit" value="Submit" style={{ ...itemStyle, ...textInputStyle }} />
             </form>
         </div>
         <h1>{displayText}</h1>
@@ -42,16 +42,19 @@ const UploadPage = () => {
 // Added global function to fetch CAPTCHA response data (DOES NOT WORK LOCALHOST DUE TO CORS. UNTESTED FOR HEROKU)
 // Ideal scenario is that it will produce in console all the CAPTCHA data, untested because of CORS
 function handleCaptcha(event) {
-    fetch("https://www.google.com/recaptcha/api/siteverify", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            secret: '6LeIkakaAAAAAEVtMRSeU2Zhoba4x5P2E_bPvg8r',
-            response: event
-        }
-        )
-    // Might need to edit this to get the correct log in console
-    }).then(response => response.json()).then(data => console.log(data));
+    // Since secret should be passed by back-end, will comment this out until we can receive it from back end
+    console.log("CAPTCHA check to be done.")
+    console.log("User response token to be sent: " + event.slice(0,10) + "...")
+//     fetch("https://www.google.com/recaptcha/api/siteverify", {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//             secret: "",
+//             response: event
+//         }
+//         )
+//     // Might need to edit this to get the correct log in console
+//     }).then(response => response.json()).then(data => console.log(data));
 }
 window.handleCaptcha = handleCaptcha
 

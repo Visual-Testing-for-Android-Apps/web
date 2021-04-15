@@ -19,7 +19,7 @@ class Captcha extends Component {
 
         <ReCaptcha
             ref={ref => this.recaptcha = ref}
-            sitekey="6LeIkakaAAAAAN7IyMjgyCZphTmLkgQuPC0uEh5K"
+            sitekey="6Ld8T6oaAAAAAAiXL5GN6HdNsHGHHBXxJ3eVPkUn"
             verifyCallback={this.verifyCallback}
         />
 
