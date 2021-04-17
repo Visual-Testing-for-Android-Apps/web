@@ -135,7 +135,7 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+# dist
 
 # Storybook build outputs
 .out
@@ -143,7 +143,7 @@ dist
 storybook-static
 
 # rollup.js default build output
-dist/
+# dist/
 
 # Gatsby files
 .cache/
@@ -235,3 +235,6 @@ $RECYCLE.BIN/
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
+# @dm
+/dist/*
+!dist/.gitkeep
