@@ -50,15 +50,16 @@ jobs:
         uses: github/super-linter@v3.15.5
         env:
           VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
+          DEFAULT_BRANCH: develop
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # VALIDATE_JAVASCRIPT_ES: true
-          # VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_JAVASCRIPT_STANDARD: false
           # VALIDATE_PYTHON_BLACK: true
-          # VALIDATE_PYTHON_FLAKE8: false
-          # VALIDATE_PYTHON_ISORT: false
-          # VALIDATE_PYTHON_MYPY: false
-          # VALIDATE_PYTHON_PYLINT: false
+          VALIDATE_PYTHON_FLAKE8: false
+          VALIDATE_PYTHON_ISORT: false
+          VALIDATE_PYTHON_MYPY: false
+          VALIDATE_PYTHON_PYLINT: false
+          VALIDATE_MARKDOWN: false
           # Flag to have the linter complete with exit code 0 even if errors were detected.
           # DISABLE_ERRORS: true
 
@@ -80,13 +81,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install npm dependencies
-        run: npm run ci --if-present
+        run: npm ci
 
       - name: Build
-        run: npm run build --if-present
+        run: npm run build
 
-      - name: Test
-        run: npm run test --if-present
+      # - name: Test
+      #   run: npm run test --if-present
 
 #   deploy:
 #     name: Deploy to heroku
