@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import UploadBox from "./UploadBox";
+import Repository from "../data/Repository";
 
 const UploadPage = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +13,8 @@ const UploadPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Upload to server
+    // TODO: Move repository into context
+    (new Repository()).uploadFiles(files).then(res => console.log(res));
   };
 
   return (
