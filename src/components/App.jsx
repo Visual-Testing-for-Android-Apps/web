@@ -15,10 +15,6 @@ function App(){
                 <Route path= "/service">
                     <Service />
                 </Route>
-                
-                <Route path="/">
-                    <UploadPage />
-                </Route>
             </Switch>
     </Router>
     );
