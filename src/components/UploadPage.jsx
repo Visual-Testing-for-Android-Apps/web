@@ -1,9 +1,11 @@
 import React from  "react";
 
+import InputBox from './InputBox';
+
 const UploadPage = () => {
     return (
-        <div className="App">
-            <h1>Hello World</h1>
+        <div>
+            <InputBox />
         </div>
     )
 }
