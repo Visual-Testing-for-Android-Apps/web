@@ -1,5 +1,5 @@
+const hostUrl = __API__;
 const routes = {
-    hostUrl: __API__,
     upload: `${hostUrl}/multiFileReceiver`
 };
 

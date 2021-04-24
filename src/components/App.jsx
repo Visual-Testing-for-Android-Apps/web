@@ -7,9 +7,11 @@ import UploadPage from './UploadPage';
 
 function App(){
     return(
-
         <Router>
             <Switch>
+                <Route exact path="/">
+                    <UploadPage />
+                </Route>
                 <Route path= "/service">
                     <Service />
                 </Route>
@@ -19,7 +21,6 @@ function App(){
                 </Route>
             </Switch>
     </Router>
-    
     );
 }
 

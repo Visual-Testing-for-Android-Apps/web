@@ -10,7 +10,7 @@ import routes from './API';
         files.forEach(file => {
             formData.append("userFile", file);
         })
-        return fetch(routes.hostUrl, { method: "POST", body: formData });
+        return fetch(routes.upload, { method: "POST", body: formData });
     }
 }
 
