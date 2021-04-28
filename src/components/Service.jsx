@@ -3,6 +3,7 @@ import './service.css';
 
 const Service = () => {
     useEffect(() => {
+        // Create a script with the onSubmit function within the HTML
         const script = document.createElement('script');
         script.type = 'text/javascript';
         script.async = true;
@@ -11,18 +12,12 @@ const Service = () => {
     })
 
     function onSubmit(token) {
-        console.log(token)
+        // Send request to back-end server
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            // Would somehow need to get the secret key here. 
-            // Using process.env did not work as it wouldn't even send the fetch request
-            // Don't think we're meant to use them anyway for secret keys
-            // from react docs -> WARNING: Do not store any secrets (such as private API keys) in your React app!
-            // Environment variables are embedded into the build, meaning anyone can view them by inspecting your app's files.
-            body: JSON.stringify({ secret: "SECRET KEY", response: token })
+            method: 'GET',
         };
-        fetch('https://www.google.com/recaptcha/api/siteverify', requestOptions)
+        
+        fetch('http://localhost:3001/captcha/get_score?token=' + token, requestOptions)
             .then(response => response.json())
             .then(data => console.log(data));
     }
