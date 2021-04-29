@@ -16,8 +16,8 @@ const Service = () => {
         const requestOptions = {
             method: 'GET',
         };
-        
-        fetch('http://localhost:3001/captcha/get_score?token=' + token, requestOptions)
+
+        fetch('http://localhost:3000/captcha/get_score?token=' + token, requestOptions)
             .then(response => response.json())
             .then(data => console.log(data));
     }
