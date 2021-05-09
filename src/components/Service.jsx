@@ -2,26 +2,6 @@ import React, { useEffect } from "react";
 import './service.css';
 
 const Service = () => {
-    useEffect(() => {
-        // Create a script with the onSubmit function within the HTML
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.async = true;
-        script.innerHTML = onSubmit.toString()
-        document.body.appendChild(script)
-    })
-
-    function onSubmit(token) {
-        // Send request to back-end server
-        const requestOptions = {
-            method: 'GET',
-        };
-        
-        fetch('http://localhost:3001/captcha/get_score?token=' + token, requestOptions)
-            .then(response => response.json())
-            .then(data => console.log(data));
-    }
-
     return (
         <div className='service-background'>
             <h1 className='heading'>The Visual Testing platform</h1>
@@ -34,12 +14,7 @@ const Service = () => {
                 <h3>How it works</h3>
                 <p>Add a demo video?</p>
                 <br />
-                <button className='try-button g-recaptcha'
-                    data-sitekey="6Ld8T6oaAAAAAAiXL5GN6HdNsHGHHBXxJ3eVPkUn"
-                    data-callback='onSubmit'
-                    data-action='submit'>
-                    Try Now
-                </button>
+                <button>Try Now</button>
             </div>
         </div>
     );

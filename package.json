@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && npx webpack serve",
-    "start-server": "npm run build-prod && node server.js | pino-colada",
+    "start-server": "npm run build-prod  && node server.js && npx webpack serve| pino-colada",
     "build": "webpack --mode development",
     "build-prod": "webpack --mode production"
   },
@@ -43,6 +43,7 @@
     "react-dom": "^17.0.2",
     "react-dropzone": "^11.3.2",
     "react-hot-loader": "^4.13.0",
+    "react-recaptcha": "^2.3.10",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "style-loader": "^2.0.0",

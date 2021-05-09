@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import UploadBox from "./UploadBox";
 import Repository from "../data/Repository";
+import Captcha from './Captcha'
 
 const UploadPage = () => {
   const [email, setEmail] = useState("");
@@ -11,15 +12,23 @@ const UploadPage = () => {
     setEmail(event.target.value);
   };
 
+  const runCaptchaCheck = (event) => {
+    grecaptcha.execute()
+  }
+
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(event);
+    // Run captcha check
+    runCaptchaCheck(event);
     // TODO: Move repository into context
-    (new Repository()).uploadFiles(files).then(res => console.log(res));
+    // (new Repository()).uploadFiles(files).then(res => console.log(res));
+
   };
 
   return (
     <div style={containerStyle}>
       <form style={formStyle} onSubmit={handleSubmit}>
+        <Captcha />
         <input
           style={inputItemStyle}
           type="email"
@@ -29,7 +38,10 @@ const UploadPage = () => {
         />
         <UploadBox setFiles={setFiles} />
         <div>{files.map((f) => f.path)}</div>
-        <input type="submit" value="Submit" style={inputItemStyle} />
+        <button
+          style={inputItemStyle}>
+          Submit
+          </button>
       </form>
     </div>
   );
