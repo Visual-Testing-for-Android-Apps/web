@@ -6,7 +6,7 @@ const Captcha = () => {
             grecaptcha.render("recaptcha-container", {
                 "sitekey": "6Lc-qMwaAAAAALR6X4MS9IldpVTnK8H47cAylpqA",
                 "size": "invisible",
-                "callback": "handleCallback"
+                "callback": handleCallback.name
             });
         });
 
