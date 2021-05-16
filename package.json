@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && npx webpack serve",
-    "start-server": "npm run build-prod  && node server.js && npx webpack serve| pino-colada",
+    "start-server-dev": "npm run build && node server.js && npx webpack serve| pino-colada",
+    "start-server": "npm run build-prod  && node server.js",
     "build": "webpack --mode development",
     "build-prod": "webpack --mode production"
   },

@@ -6,7 +6,6 @@ const Service = () => {
         <div className='service-background'>
             <h1 className='heading'>The Visual Testing platform</h1>
             <div className="text-container">
-
                 <h3>Issue Detection</h3>
                 <p>Automatically detect and localise issues allowing for users to easily identify issues that appear in their user interface.</p>
                 <h3>Real time results</h3>
