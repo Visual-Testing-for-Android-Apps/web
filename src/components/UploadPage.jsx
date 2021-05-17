@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import UploadBox from "./UploadBox";
 import Repository from "../data/Repository";
 import Captcha from './Captcha'
+import "./mainpage.css";
 
-const UploadPage = () => {
+const UploadSection = () => {
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
 
@@ -38,6 +39,7 @@ const UploadPage = () => {
   };
 
   return (
+    <div className="section" id="uploadSection">
     <div style={containerStyle}>
       <form style={formStyle} onSubmit={handleSubmit}>
         <Captcha />
@@ -55,6 +57,7 @@ const UploadPage = () => {
           Submit
           </button>
       </form>
+    </div>
     </div>
   );
 };
@@ -78,4 +81,4 @@ const inputItemStyle = {
   fontSize: "1rem",
 };
 
-export default UploadPage;
+export default UploadSection;
