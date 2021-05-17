@@ -7,8 +7,8 @@ require('dotenv').config()
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-var whitelist = ['http://localhost:3000', 'http://afternoon-woodland-24079.herokuapp.com']
-var corsOptions = {
+const whitelist = ['http://localhost:3000', 'http://afternoon-woodland-24079.herokuapp.com']
+const corsOptions = {
     origin: function (origin, callback) {
         if (!origin || whitelist.indexOf(origin) !== -1) {
             callback(null, true)
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(pino);
 
 app.get('/captcha/validate_captcha', (req, res) => {
-    let token = req.query.token
+    const token = req.query.token
     axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.REACT_APP_CAPTCHA_SECRET_KEY}&response=${token}`)
         .then(response => {
             res.send(response.data)

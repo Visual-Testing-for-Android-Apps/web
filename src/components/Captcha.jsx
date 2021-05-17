@@ -14,7 +14,7 @@ const Captcha = () => {
         // Function to handle CAPTCHA callback
         function handleCallback(token) {
             // Send request to back-end server
-            fetch('http://localhost:3000/captcha/validate_captcha?token=' + token, { method: 'GET', })
+            fetch(`${__SERVER__}/captcha/validate_captcha?token=${token}`, { method: 'GET', })
                 .then(response => response.json())
                 .then(data => {
                     // Dispatch CAPTCHA event

@@ -15,7 +15,7 @@ const UploadSection = () => {
 
   const handleSubmit = (event) => {
     // Save the submit event. Use this variable to reference onSubmit event within listener
-    let handleSubmitEvent = event
+    const handleSubmitEvent = event
     event.preventDefault(event);
 
     // Run captcha check

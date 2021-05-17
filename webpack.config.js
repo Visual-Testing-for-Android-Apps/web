@@ -54,6 +54,7 @@ module.exports = {
   plugins: [new webpack.HotModuleReplacementPlugin(),
             new HtmlWebpackPlugin({template: path.join(__dirname, "src", "public", "index.html")}),
           new webpack.DefinePlugin({
-            __API__: `'${process.env.UPLOAD_SERVICE_HOST}'`
+            __API__: `'${process.env.UPLOAD_SERVICE_HOST}'`,
+            __SERVER__:`'${process.env.SERVER_HOSTNAME}'`
           })]
 };
