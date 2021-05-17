@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import UploadBox from "./UploadBox";
 import Repository from "../data/Repository";
