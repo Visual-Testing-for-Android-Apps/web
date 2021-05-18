@@ -3,8 +3,12 @@ import React, { useState } from "react";
 import UploadBox from "./UploadBox";
 import Repository from "../data/Repository";
 import "./mainpage.css";
+import { useHistory } from "react-router-dom";
+
 
 const UploadSection = () => {
+  const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
 
@@ -16,6 +20,10 @@ const UploadSection = () => {
     event.preventDefault();
     // TODO: Move repository into context
     (new Repository()).uploadFiles(files).then(res => console.log(res));
+    history.push("./ReportPage");
+
+
+
   };
 
   return (
