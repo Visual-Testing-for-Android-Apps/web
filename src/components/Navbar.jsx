@@ -8,12 +8,10 @@ const Navbar = () => {
     return (
         <div className="navbar margin">
             <Link to="/"> <img src={VTAA} className="logo" /><img src={ellipse} className="ellipse" /> </Link>
-            <Link to='/service' className="navbar-entry">Service</Link>
-            <Link to='/' className="navbar-entry">Features</Link>
-            <Link to='/' className="navbar-entry">Contact</Link>
-            
+            <Link to='/service' className="navbar-entry"><b>Service</b></Link>
+            <Link to='/' className="navbar-entry"><b>Features</b></Link>
+            <Link to='/' className="navbar-entry"><b>Contact</b></Link>
         </div>
-        
     )
 }
 
