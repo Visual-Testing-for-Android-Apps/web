@@ -8,7 +8,7 @@ import "./navbar.css"
 function App(){
     return(
         <Router>
-            <Navbar></Navbar>
+            <Navbar />
             <Switch>
                 <Route exact path="/">
                     <UploadPage />
