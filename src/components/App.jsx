@@ -3,10 +3,12 @@ import { hot } from "react-hot-loader";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Service from './Service';
 import UploadPage from './UploadPage';
-
+import Navbar from './Navbar'
+import "./navbar.css"
 function App(){
     return(
         <Router>
+            <Navbar></Navbar>
             <Switch>
                 <Route exact path="/">
                     <UploadPage />
