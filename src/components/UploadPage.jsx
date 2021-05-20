@@ -6,6 +6,7 @@ import "./mainpage.css";
 import { useHistory } from "react-router-dom";
 
 
+
 const UploadSection = () => {
   const history = useHistory();
 
@@ -19,8 +20,8 @@ const UploadSection = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // TODO: Move repository into context
-    (new Repository()).uploadFiles(files).then(res => console.log(res));
-    history.push("./ReportPage");
+    //(new Repository()).uploadFiles(files).then(res => console.log(res));
+    history.push("/reportpage");
 
 
 
