@@ -15,7 +15,11 @@ const UploadSection = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // TODO: Move repository into context
-    (new Repository()).uploadFiles(files).then(res => console.log(res));
+    (new Repository()).uploadFiles(files).map(async result => {
+      const image = await result;
+      console.log(image);
+      document.body.append(image);
+    });
   };
 
   return (
