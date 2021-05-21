@@ -25,6 +25,8 @@
     "express-pino-logger": "^6.0.0",
     "nodemon": "^2.0.7",
     "pino-colada": "^2.1.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {

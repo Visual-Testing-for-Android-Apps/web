@@ -1,9 +1,9 @@
-body, 
+body,
 html {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
 }
 
 .grecaptcha-badge {
-    z-index: 1;
+  z-index: 1;
 }
