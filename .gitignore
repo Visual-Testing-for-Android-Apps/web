@@ -237,4 +237,5 @@ $RECYCLE.BIN/
 
 # @dm
 /dist/*
-!dist/.gitkeep
+!/dist/.gitkeep
+.env 
