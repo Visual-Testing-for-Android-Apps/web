@@ -4,8 +4,13 @@ import UploadBox from "./UploadBox";
 import Repository from "../data/Repository";
 import Captcha from './Captcha'
 import "./mainpage.css";
+import { useHistory } from "react-router-dom";
+
+
 
 const UploadSection = () => {
+  const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
 
@@ -27,7 +32,8 @@ const UploadSection = () => {
       if (event.detail["success"]) {
         console.log("CAPTCHA Success");
         // TODO: Move repository into context
-        (new Repository()).uploadFiles(files).then(res => console.log(res));
+        //(new Repository()).uploadFiles(files).then(res => console.log(res));
+        history.push("/reportpage");
 
       // If CAPTCHA failure 
       // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success, 
