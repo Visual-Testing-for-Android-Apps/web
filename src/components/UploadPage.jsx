@@ -4,6 +4,7 @@ import UploadBox from "./UploadBox";
 import Repository from "../data/Repository";
 import Captcha from './Captcha'
 import "./mainpage.css";
+import "./upload.css";
 
 const UploadSection = () => {
   const [email, setEmail] = useState("");
@@ -43,19 +44,17 @@ const UploadSection = () => {
     <div style={containerStyle}>
       <form style={formStyle} onSubmit={handleSubmit}>
         <Captcha />
-        <input
-          style={inputItemStyle}
+        <UploadBox setFiles={setFiles} />
+        <div>{files.map((f) => f.path)}</div>
+        <button className="upload-btn">
+          Upload files
+          </button>
+          <input className ="email-btn"
           type="email"
           value={email}
           onChange={handleChange}
-          placeholder={"Email"}
+          placeholder={"Enter email here"}
         />
-        <UploadBox setFiles={setFiles} />
-        <div>{files.map((f) => f.path)}</div>
-        <button
-          style={inputItemStyle}>
-          Submit
-          </button>
       </form>
     </div>
     </div>
@@ -64,21 +63,16 @@ const UploadSection = () => {
 
 const containerStyle = {
   display: "flex",
-  justifyContent: "center",
-};
+  justifyContent: "center"};
 
 const formStyle = {
   margin: "2rem 1rem",
   width: "clamp(5rem, 30rem, 50rem)",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  justifyContent: "center"
 };
 
-const inputItemStyle = {
-  marginTop: "1rem",
-  height: "2rem",
-  fontSize: "1rem",
-};
+
 
 export default UploadSection;
