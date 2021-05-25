@@ -49,12 +49,12 @@ const UploadSection = () => {
         <button className="upload-btn">
           Upload files
           </button>
-          <input className ="email-btn"
+          {/* <input className ="email-btn"
           type="email"
           value={email}
           onChange={handleChange}
           placeholder={"Enter email here"}
-        />
+        /> */}
       </form>
     </div>
     </div>

@@ -7,28 +7,21 @@
 
 .upload-btn {
   margin: auto;
-  margin-top: 8px;
-  width: 200px;
-  font-size: 15px;
-  padding: 10px 5px;
-  border-radius: 20px;
-  border: 1px solid;
+  margin-top: 1rem;
+  width: 10rem;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border-radius: 2rem;
+  border: 0.2rem solid;
   background-color: black;
   color: white;
   text-align: center;
 }
 
-.email-btn {
-    margin-top: 1rem;
-    height: "2rem";
-    font-size: "1rem";
-    padding: 10px 10px;
-  }
-
 .box {
-    border: 1px dashed black;
+    border: 0.02rem dashed black;
     text-align: center;
     background-color: #efefef;
     margin-top: 1rem;
-    padding: 2rem;
+    padding: 3rem;
 }
