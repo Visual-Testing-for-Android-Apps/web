@@ -1,0 +1,43 @@
+.about-section h2 {
+    font-family: "Signika", sans-serif;
+    font-size: xx-large;
+    margin-top: 2rem;
+  }
+  
+  .about-section p {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.4;
+    margin-bottom: 3rem;
+  }
+  
+  .about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-top-left-radius: 2rem;
+    transform: skewY(-2deg);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: #00c2ff;
+  }
+
+  .about-title {
+    transform: skewY(2deg);
+  }
+  
+  .about-text {
+    transform: skewY(2deg);
+  }
+  
+  .about-image {
+    transform: skewY(2deg);
+  }
+  
+  @media only screen and (min-width: 1024px) {
+    .about-section {
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
+  
