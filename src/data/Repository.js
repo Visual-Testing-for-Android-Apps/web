@@ -6,11 +6,28 @@ import routes from './API';
  class Repository {
 
     uploadFiles(files) {
-        const formData = new FormData();
-        files.forEach(file => {
-            formData.append("userFile", file);
+        return files.map(file => {
+            return this._encodeImage(file)
+            .then(encodedImage => fetch('https://8uxam9kkod.execute-api.ap-southeast-2.amazonaws.com/Prod/owleye/', { method: "POST", body: encodedImage.split(',')[1] }))
+            .then(response => response.json())
+            .then(json => this._decodeImage(json["res_img"]))
+            .catch(error => console.error(error))
         })
-        return fetch(routes.upload, { method: "POST", body: formData });
+    }
+
+    _encodeImage(image) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(image);
+        })
+    }
+
+    _decodeImage(imageAsString) {
+        const image = new Image();
+        image.src = `data:image/png;base64,${imageAsString}`;
+        return image;
     }
 }
 
