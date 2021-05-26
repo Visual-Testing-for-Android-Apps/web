@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import UploadBox from "./UploadBox";
-import Repository from "../data/Repository";
-import Captcha from './Captcha'
+import Captcha from "./Captcha";
 import "./mainpage.css";
 import "./upload.css";
+import { useHistory } from "react-router-dom";
 
 const UploadSection = () => {
+  const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
+  // Use this ref to access files in a callback. Otherewise files may not be up to date.
+  const filesRef = useRef();
+  filesRef.current = files;
 
   const handleChange = (event) => {
     setEmail(event.target.value);
@@ -16,47 +21,54 @@ const UploadSection = () => {
 
   const handleSubmit = (event) => {
     // Save the submit event. Use this variable to reference onSubmit event within listener
-    const handleSubmitEvent = event
+    const handleSubmitEvent = event;
     event.preventDefault(event);
 
     // Run captcha check
-    grecaptcha.execute()
+    grecaptcha.execute();
+  };
 
-    // Listener for CAPTCHA
-    document.getElementById("handleCallbackScript").addEventListener("captchaEvent", (event) => {
+  // useCallback allows removing the event listener
+  // https://dev.to/marcostreng/how-to-really-remove-eventlisteners-in-react-3och
+  const captchaListener = useCallback(
+    (event) => {
       // If CAPTCHA success
       if (event.detail["success"]) {
         console.log("CAPTCHA Success");
-        // TODO: Move repository into context
-        (new Repository()).uploadFiles(files).then(res => console.log(res));
+        history.push("/reportpage", { files: filesRef.current, email: email });
 
-      // If CAPTCHA failure 
-      // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success, 
-      // otherwise it keeps telling the user to try again. I have it here just in case.
+        // If CAPTCHA failure
+        // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
+        // otherwise it keeps telling the user to try again. I have it here just in case.
       } else {
         console.log("CAPTCHA Failure");
       }
-    });
-  };
+    },
+    []
+  );
+
+  useEffect(() => {
+    // Listener for CAPTCHA
+    document
+      .getElementById("handleCallbackScript")
+      .addEventListener("captchaEvent", captchaListener);
+
+      // Cleanup on unmount, prevent duplicate listeners on back navigation
+      return () => document
+      .getElementById("handleCallbackScript")
+      .removeEventListener("captchaEvent", captchaListener);
+  }, []);
 
   return (
     <div className="section" id="uploadSection">
-    <div style={containerStyle}>
-      <form style={formStyle} onSubmit={handleSubmit}>
-        <Captcha />
-        <UploadBox setFiles={setFiles} />
-        <div>{files.map((f) => f.path)}</div>
-        <button className="upload-btn">
-          Upload files
-          </button>
-          {/* <input className ="email-btn"
-          type="email"
-          value={email}
-          onChange={handleChange}
-          placeholder={"Enter email here"}
-        /> */}
-      </form>
-    </div>
+      <div style={containerStyle}>
+        <form style={formStyle} onSubmit={handleSubmit}>
+          <Captcha />
+          <UploadBox setFiles={setFiles} />
+          <div>{files.map((f) => f.path)}</div>
+          <button className="upload-btn">Upload files</button>
+        </form>
+      </div>
     </div>
   );
 };

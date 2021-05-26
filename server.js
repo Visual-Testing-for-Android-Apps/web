@@ -25,7 +25,7 @@ app.use(pino);
 
 app.get('/captcha/validate_captcha', (req, res) => {
     const token = req.query.token
-    axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.REACT_APP_CAPTCHA_SECRET_KEY}&response=${token}`)
+    axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET_KEY}&response=${token}`)
         .then(response => {
             res.send(response.data)
         })

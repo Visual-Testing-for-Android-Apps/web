@@ -54,7 +54,7 @@ module.exports = {
   plugins: [new webpack.HotModuleReplacementPlugin(),
             new HtmlWebpackPlugin({template: path.join(__dirname, "src", "public", "index.html")}),
           new webpack.DefinePlugin({
-            __API__: `'${process.env.UPLOAD_SERVICE_HOST}'`,
-            __SERVER__:`'${process.env.SERVER_HOSTNAME}'`
+            __API__: `'${process.env.UPLOAD_SERVICE_HOST || 'http://localhost:3001'}'`,
+            __SERVER__:`'${process.env.SERVER_HOSTNAME || 'http://localhost:3000'}'`
           })]
 };
