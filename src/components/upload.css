@@ -1,8 +1,8 @@
 @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(../fonts/Inter/Inter-VariableFont_slnt,wght.ttf) format('truetype');
-    font-weight: 100 1000;
-	font-stretch: 25% 151%;
+  font-family: 'Inter';
+  src: local('Inter'), url(../fonts/Inter/Inter-VariableFont_slnt,wght.ttf) format('truetype');
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
   }
 
 .upload-btn {
@@ -19,13 +19,13 @@
 }
 
 .box {
-    border: 0.02rem dashed black;
-    text-align: center;
-    background-color: #efefef;
-    margin-top: 1rem;
-    padding: 3rem;
+  border: 0.02rem dashed black;
+  text-align: center;
+  background-color: #efefef;
+  margin-top: 1rem;
+  padding: 3rem;
 }
 
 .cloud-img {
-    padding-bottom: 0.8rem;
+  padding-bottom: 0.8rem;
 }
