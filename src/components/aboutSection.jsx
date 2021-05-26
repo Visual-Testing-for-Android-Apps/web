@@ -9,7 +9,7 @@ const AboutSection = () => {
     const IMAGE_WIDTH = 400 / 2 * 1.2;
     const IMAGE_HEIGHT = 275 / 2 * 1.2;
     return (
-    <div className="section about-section" id="aboutSection">
+    <div className="section about-section" id="AboutSection">
         <div>
             <h2 className="about-title">ABOUT</h2>
             <p className="about-text">
