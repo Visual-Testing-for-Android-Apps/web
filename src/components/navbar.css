@@ -6,41 +6,79 @@
   }
 
 .navbar {
-    display: flex;
-    justify-content: flex-end;
-    top: 0rem;
-    background-color: #FFCA60;
+    font-size: 18px;
+    background-color: #FFCA60;    
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    min-height: 3rem;
     position: sticky;
-  }
-  
-  .navbar-entry {
-    color: black;
+    top: 0;
+    z-index: 1;
+}
+
+.main-nav {
+  list-style-type: none;
+  display:none;
+}
+
+.main-nav li {
+  text-align: center;
+  margin: 0.8rem auto;
+}
+
+.navbar-entry {
     text-decoration: none;
-    padding:  2rem 5rem;
-    color: white;
+    color: rgba(255, 255, 255);
+}
+.menu-icon {
+  position: absolute;
+  top: 0.8rem;
+  right: 1.2rem;
+  cursor: pointer; 
+  color: rgba(255,255,255);
+  font-size: 24px;
+}
+
+.active {
+  display: block;
+}
+
+.logo {
+  text-decoration: none;
+  color: rgba(255, 255, 255);
+  display: inline-block;
+  font-size: 22px;
+  margin-top: 0.8rem;
+  margin-left: 0.8rem;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 0;
+      height: 4rem;
+      align-items: center;
   }
-
-  .heading {
-    margin: auto;
-    width: 50%;
-    padding: 3rem;
-    text-align: center;
-    top: 100rem;
-    color: rgb(255, 255, 255);
-}
-
-.logo{
-  top: 0.1rem;
-  width: 4rem;
-  height: auto;
-  position: absolute;
-  left: 1rem;
-}
-
-.ellipse{
-  top: 0.1rem;
-  width: 4.85rem;
-  height: auto;
-  position: absolute;
-  left: 0.45rem;
-}
+  .main-nav {
+      display: flex;
+      margin-right: 2rem;
+      flex-direction: row;
+      justify-content: flex-end;
+  }
+  .main-nav li {
+      margin: 0;
+      padding: 1.5rem;;
+  }
+  .nav-links {
+      margin-left: 40px;
+  }
+  .logo {
+      margin-top: 0;
+  }
+ .navbar-toggle {
+     display: none;
+  }
+  .logo:hover,
+  .nav-links:hover {
+      color: rgba(255, 255, 255, 1);
+  }}

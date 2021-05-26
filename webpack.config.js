@@ -18,7 +18,7 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg|png)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: 'file-loader',
@@ -28,6 +28,10 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource'
       }
     ]
   },
@@ -48,5 +52,8 @@ module.exports = {
     hotOnly: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin(),
-            new HtmlWebpackPlugin({template: path.join(__dirname, "src", "public", "index.html")})]
+            new HtmlWebpackPlugin({template: path.join(__dirname, "src", "public", "index.html")}),
+          new webpack.DefinePlugin({
+            __API__: `'${process.env.UPLOAD_SERVICE_HOST}'`
+          })]
 };

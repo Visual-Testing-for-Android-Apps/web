@@ -1,0 +1,65 @@
+.example-section h2 {
+  font-family: "Signika", sans-serif;
+  font-size: xx-large;
+  margin-top: 2rem;
+}
+
+.example-section p {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.4;
+  margin-bottom: 3rem;
+}
+
+.example-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #00c2ff;
+  border-top-left-radius: 2rem;
+  transform: skewY(-2deg);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  color: white;
+}
+
+.example-section::before {
+  content: "";
+  width: 40px;
+  height: 40px;
+  background-color: #00c2ff;
+  position: absolute;
+  top: -39px;
+  right: 0;
+  z-index: -2;
+}
+
+.example-section::after {
+  content: "";
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  position: absolute;
+  top: -80px;
+  right: 0;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.example-title {
+  transform: skewY(2deg);
+}
+
+.example-text {
+  transform: skewY(2deg);
+}
+
+.example-image-result {
+  transform: skewY(2deg);
+}
+
+@media only screen and (min-width: 1024px) {
+  .example-section {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
