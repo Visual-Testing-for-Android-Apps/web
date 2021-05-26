@@ -16,9 +16,11 @@ const AboutSection = () => {
             The visual testing platform is a testing application that will provide Android app  <br /> 
             developers, who aim to improve usability in their application, single-point access to  <br />
             feedback reports on areas that require enhancement in their mobile application.<br />
+                                                                                           <br />
             Specifically, it will be able to determine various issues with the User Interface (UI) <br />
             such as incorrect rendering and animation errors when given a screenshot or video  <br />
             of their application.<br />
+                                                                                            <br />
             The uploaded images and videos are processed by specific AI algorithms, <br />
             OwlEyes and Seenomaly respectively, the first of which returning<br /> 
             a heatmap indicating the likely location of design violations, <br />
