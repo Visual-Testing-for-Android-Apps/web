@@ -3,7 +3,7 @@
   src: local('Inter'), url(../fonts/Inter/Inter-VariableFont_slnt,wght.ttf) format('truetype');
   font-weight: 100 1000;
   font-stretch: 25% 151%;
-  }
+}
 
 .upload-btn {
   margin: auto;
