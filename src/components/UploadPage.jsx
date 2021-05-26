@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import UploadBox from "./UploadBox";
 import Captcha from "./Captcha";
 import "./mainpage.css";
+import "./upload.css";
 import { useHistory } from "react-router-dom";
 
 const UploadSection = () => {
@@ -63,16 +64,9 @@ const UploadSection = () => {
       <div style={containerStyle}>
         <form style={formStyle} onSubmit={handleSubmit}>
           <Captcha />
-          <input
-            style={inputItemStyle}
-            type="email"
-            value={email}
-            onChange={handleChange}
-            placeholder={"Email"}
-          />
           <UploadBox setFiles={setFiles} />
           <div>{files.map((f) => f.path)}</div>
-          <button style={inputItemStyle}>Submit</button>
+          <button className="upload-btn">Upload files</button>
         </form>
       </div>
     </div>
@@ -81,21 +75,16 @@ const UploadSection = () => {
 
 const containerStyle = {
   display: "flex",
-  justifyContent: "center",
-};
+  justifyContent: "center"};
 
 const formStyle = {
   margin: "2rem 1rem",
   width: "clamp(5rem, 30rem, 50rem)",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  justifyContent: "center"
 };
 
-const inputItemStyle = {
-  marginTop: "1rem",
-  height: "2rem",
-  fontSize: "1rem",
-};
+
 
 export default UploadSection;
