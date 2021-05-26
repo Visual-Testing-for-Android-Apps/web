@@ -1,5 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import "./upload.css"
+import cloudImg from "./images/cloud.png";
+
 
 const UploadBox = (props) => {
 
@@ -8,9 +11,12 @@ const UploadBox = (props) => {
       }, []);
 
       const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+      const IMAGE_WIDTH = 110;
+      const IMAGE_HEIGHT = 90;
 
       return (
-        <div style={boxStyle} {...getRootProps()}>
+        <div className= "box" {...getRootProps()}>
+          <img className="cloud-img" src={cloudImg} width={IMAGE_WIDTH} height={IMAGE_HEIGHT}/>
           <input {...getInputProps()} />
           {
             isDragActive ?
@@ -19,14 +25,6 @@ const UploadBox = (props) => {
           }
         </div>
       )
-}
-
-const boxStyle = {
-    border: ".0625rem dotted black",
-    borderRadius: ".2rem",
-    background: "lightgrey",
-    marginTop: "1rem",
-    padding: "2rem",
 }
 
 export default UploadBox;
