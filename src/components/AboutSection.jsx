@@ -3,7 +3,7 @@ import React from "react";
 
 import "./mainpage.css";
 import "./about-section.css";
-import AboutPageImage from "./images/About-Page.png";
+import AboutPageImage from "./images/About-page.png";
 
 
 const AboutSection = () => {
