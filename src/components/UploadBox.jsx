@@ -12,7 +12,7 @@ const UploadBox = (props) => {
 
       const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
       const IMAGE_WIDTH = 110;
-      const IMAGE_HEIGHT = 80;
+      const IMAGE_HEIGHT = 90;
 
       return (
         <div className= "box" {...getRootProps()}>
