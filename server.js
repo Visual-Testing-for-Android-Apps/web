@@ -7,7 +7,7 @@ require('dotenv').config()
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const whitelist = ['http://localhost:3000', 'http://afternoon-woodland-24079.herokuapp.com']
+const whitelist = ['http://localhost:3000', 'https://afternoon-woodland-24079.herokuapp.com']
 const corsOptions = {
     origin: function (origin, callback) {
         if (!origin || whitelist.indexOf(origin) !== -1) {
