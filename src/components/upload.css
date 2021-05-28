@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url(../fonts/Inter/Inter-VariableFont_slnt,wght.ttf) format('truetype');
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+}
+
+.upload-btn {
+  margin: auto;
+  margin-top: 0.8rem;
+  width: 10rem;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border-radius: 2rem;
+  border: 0.2rem solid;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.box {
+  border: 0.02rem dashed black;
+  text-align: center;
+  background-color: #efefef;
+  margin-top: 1rem;
+  padding: 3rem;
+}
+
+.cloud-img {
+  padding-bottom: 0.8rem;
+}
