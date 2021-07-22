@@ -10,7 +10,8 @@
     "watch:client": "webpack --watch --mode development",
     "start-server": "npm run build-prod  && node server.js",
     "build": "webpack --mode development",
-    "build-prod": "webpack --mode production"
+    "build-prod": "webpack --mode production",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -23,8 +24,11 @@
   },
   "homepage": "https://github.com/Visual-Testing-for-Android-Apps/web#readme",
   "devDependencies": {
+    "husky": "^7.0.1",
+    "lint-staged": "^11.0.1",
     "nodemon": "^2.0.7",
     "npm-run-all": "^4.1.5",
+    "prettier": "2.3.2",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0"
   },
@@ -56,5 +60,13 @@
     "assets": [
       "./src/fonts/"
     ]
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown",
+    "*.css": "stylelint --fix",
+    "*.{js,css,md}": "prettier --write"
+  },
+  "prettier": {
+    "printWidth": 100
   }
 }
