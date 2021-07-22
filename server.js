@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require('cors')
 const axios = require('axios')
 require('dotenv').config()
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,6 +31,12 @@ app.get('/captcha/validate_captcha', (req, res) => {
         .catch(error => {
             console.error(error)
         })
+});
+
+// This allows you to refresh the page when you aren't on the root route and not get a GET error.
+// This must remain as the last route, otherwise it will catch all get requests.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/index.html'))
 });
 
 app.listen(PORT, () => {
