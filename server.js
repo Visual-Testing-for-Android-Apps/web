@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require('cors')
-const pino = require('express-pino-logger')();
 const axios = require('axios')
 require('dotenv').config()
 
@@ -21,7 +20,6 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(express.static('dist'));
 app.use(express.urlencoded({ extended: false }));
-app.use(pino);
 
 app.get('/captcha/validate_captcha', (req, res) => {
     const token = req.query.token
