@@ -3,7 +3,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
 
 import "./results-page.css";
-import Repository from "../data/Repository";
+import Repository from "../../data/Repository";
 
 const ReportPage = () => {
   const { files, email } = useLocation().state;

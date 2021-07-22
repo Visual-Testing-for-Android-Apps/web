@@ -2,7 +2,7 @@ import React from "react";
 
 import "./mainpage.css";
 import "./example-section.css";
-import ExampleResultImage from "./images/example-result.png";
+import ExampleResultImage from "../images/example-result.png";
 
 const ExampleSection = () => {
     const IMAGE_WIDTH = 576 / 2 * 1.2;

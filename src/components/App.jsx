@@ -1,10 +1,8 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import MainPage from "./MainPage";
-import ReportPage from "./ReportPage";
-
-import Service from './Service';
+import MainPage from "./mainPage/MainPage";
+import ReportPage from "./reportPage/ReportPage";
 
 function App(){
     return(
@@ -12,9 +10,6 @@ function App(){
             <Switch>
                 <Route exact path="/">
                     <MainPage />
-                </Route>
-                <Route path= "/service">
-                    <Service />
                 </Route>
                 <Route path= "/reportpage">
                     <ReportPage />

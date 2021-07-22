@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import "./upload.css"
-import cloudImg from "./images/cloud.png";
+import cloudImg from "../images/cloud.png";
 
 
 const UploadBox = (props) => {
