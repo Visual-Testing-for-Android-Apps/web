@@ -18,8 +18,7 @@ To start the development server, run the following
 npm start
 ```
 
-Then navigate to `localhost:3000` in a browser  
-Hot reloading is enabled, so changing a JSX file and saving should immediately be reflected without needing to refresh the page
+Then navigate to `localhost:3000` in a browser
 
 ## Environment Variables
 
