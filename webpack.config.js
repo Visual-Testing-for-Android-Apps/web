@@ -1,6 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -11,50 +11,49 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
-        options: { presets: ["@babel/preset-react"] }
+        options: { presets: ["@babel/preset-react"] },
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          }
-        ]
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource'
-      }
-    ]
+        type: "asset/resource",
+      },
+    ],
   },
-  resolve: { extensions: ["*", ".js", ".jsx"],
-  modules: [
-    'node_modules'
-  ]},
+  resolve: { extensions: ["*", ".js", ".jsx"], modules: ["node_modules"] },
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "/",
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   devServer: {
     historyApiFallback: true,
     contentBase: path.join(__dirname, "dist/"),
     port: 3000,
     publicPath: "http://localhost:3000/",
-    hotOnly: true
+    hotOnly: true,
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(),
-            new HtmlWebpackPlugin({template: path.join(__dirname, "src", "public", "index.html")}),
-          new webpack.DefinePlugin({
-            __API__: `'${process.env.UPLOAD_SERVICE_HOST || 'http://localhost:3001'}'`,
-            __SERVER__:`'${process.env.SERVER_HOSTNAME || 'http://localhost:3000'}'`
-          })]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({ template: path.join(__dirname, "src", "public", "index.html") }),
+    new webpack.DefinePlugin({
+      __API__: `'${process.env.UPLOAD_SERVICE_HOST || "http://localhost:3001"}'`,
+      __SERVER__: `'${process.env.SERVER_HOSTNAME || "http://localhost:3000"}'`,
+    }),
+  ],
 };
