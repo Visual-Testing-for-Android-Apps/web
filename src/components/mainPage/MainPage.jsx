@@ -1,6 +1,6 @@
 import React from "react";
 
-import UploadSection from "./UploadPage";
+import UploadSection from "./UploadSection";
 import "./mainpage.css";
 import ExampleSection from "./ExampleSection";
 import AboutSection from "./AboutSection";
