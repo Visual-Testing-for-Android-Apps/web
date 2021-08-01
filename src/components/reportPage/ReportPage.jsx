@@ -3,10 +3,10 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
 
 import "./results-page.css";
-import Repository from "../data/Repository";
+import Repository from "../../data/Repository";
 
 const ReportPage = () => {
-  const { files, email } = useLocation().state;
+  const { files, email } = useLocation().state ?? {};
   const RESULTS_CONTAINER_ID = "resultsContainer";
 
   const [progressValue, setProgressValue] = useState(0);
@@ -27,19 +27,19 @@ const ReportPage = () => {
         setProgressValue((oldValue) => oldValue + 1);
       });
     };
-    fetch();
+    if (files) fetch();
   }, []);
 
   return (
     <>
       <div className="progress-indicator-container">
         <p>
-          {progressValue} / {files.length} files processed
+          {progressValue} / {files?.length ?? 0} files processed
         </p>
         <ProgressBar
           animated
           className="progress"
-          now={(progressValue / files.length) * 100 + 1}
+          now={files ? (progressValue / files.length) * 100 + 1 : 0}
         />
       </div>
       <div id={RESULTS_CONTAINER_ID} className="results-container" />

@@ -30,22 +30,19 @@ const UploadSection = () => {
 
   // useCallback allows removing the event listener
   // https://dev.to/marcostreng/how-to-really-remove-eventlisteners-in-react-3och
-  const captchaListener = useCallback(
-    (event) => {
-      // If CAPTCHA success
-      if (event.detail["success"]) {
-        console.log("CAPTCHA Success");
-        history.push("/reportpage", { files: filesRef.current, email: email });
+  const captchaListener = useCallback((event) => {
+    // If CAPTCHA success
+    if (event.detail["success"]) {
+      console.log("CAPTCHA Success");
+      history.push("/reportpage", { files: filesRef.current, email: email });
 
-        // If CAPTCHA failure
-        // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
-        // otherwise it keeps telling the user to try again. I have it here just in case.
-      } else {
-        console.log("CAPTCHA Failure");
-      }
-    },
-    []
-  );
+      // If CAPTCHA failure
+      // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
+      // otherwise it keeps telling the user to try again. I have it here just in case.
+    } else {
+      console.log("CAPTCHA Failure");
+    }
+  }, []);
 
   useEffect(() => {
     // Listener for CAPTCHA
@@ -53,10 +50,11 @@ const UploadSection = () => {
       .getElementById("handleCallbackScript")
       .addEventListener("captchaEvent", captchaListener);
 
-      // Cleanup on unmount, prevent duplicate listeners on back navigation
-      return () => document
-      .getElementById("handleCallbackScript")
-      .removeEventListener("captchaEvent", captchaListener);
+    // Cleanup on unmount, prevent duplicate listeners on back navigation
+    return () =>
+      document
+        .getElementById("handleCallbackScript")
+        .removeEventListener("captchaEvent", captchaListener);
   }, []);
 
   return (
@@ -75,16 +73,15 @@ const UploadSection = () => {
 
 const containerStyle = {
   display: "flex",
-  justifyContent: "center"};
+  justifyContent: "center",
+};
 
 const formStyle = {
   margin: "2rem 1rem",
   width: "clamp(5rem, 30rem, 50rem)",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center"
+  justifyContent: "center",
 };
-
-
 
 export default UploadSection;

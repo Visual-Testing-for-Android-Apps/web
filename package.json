@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build && npx webpack serve",
-    "start-server-dev": "npm run build && node server.js && npx webpack serve| pino-colada",
+    "start": "npm-run-all -p watch:client watch:server",
+    "watch:server": "nodemon ./server.js",
+    "watch:client": "webpack --watch --mode development",
     "start-server": "npm run build-prod  && node server.js",
     "build": "webpack --mode development",
-    "build-prod": "webpack --mode production"
+    "build-prod": "webpack --mode production",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -22,10 +24,13 @@
   },
   "homepage": "https://github.com/Visual-Testing-for-Android-Apps/web#readme",
   "devDependencies": {
+    "husky": "^7.0.1",
+    "lint-staged": "^11.0.1",
     "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
+    "prettier": "2.3.2",
     "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^22.0.0",
-    "webpack-dev-server": "^3.11.2"
+    "stylelint-config-standard": "^22.0.0"
   },
   "dependencies": {
     "@babel/cli": "^7.13.14",
@@ -39,16 +44,12 @@
     "css-loader": "^5.2.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-pino-logger": "^6.0.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
-    "pino-colada": "^2.1.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
-    "react-circular-progressbar": "^2.0.4",
     "react-dom": "^17.0.2",
     "react-dropzone": "^11.3.2",
-    "react-hot-loader": "^4.13.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "style-loader": "^2.0.0",
@@ -59,5 +60,13 @@
     "assets": [
       "./src/fonts/"
     ]
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown",
+    "*.css": "stylelint --fix",
+    "*.{js,css,md}": "prettier --write"
+  },
+  "prettier": {
+    "printWidth": 100
   }
 }
