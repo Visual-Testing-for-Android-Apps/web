@@ -8,7 +8,7 @@ const UploadBox = (props) => {
     props.setFiles((existingFiles) => [...existingFiles, ...files]);
   }, []);
 
-  const accept = [".jpg"];
+  const accept = [".jpg", ".mp4"];
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept });
   const IMAGE_WIDTH = 110;
   const IMAGE_HEIGHT = 90;

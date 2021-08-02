@@ -4,26 +4,34 @@ import { useLocation } from "react-router";
 
 import "./results-page.css";
 import Repository from "../../data/Repository";
+import VideoResult from "./VideoResult";
 
 const ReportPage = () => {
   const { files, email } = useLocation().state ?? {};
-  const RESULTS_CONTAINER_ID = "resultsContainer";
+  const videos = files.filter((file) => file.type === "video/mp4");
+  const images = files.filter((file) => file.type === "image/jpeg");
 
   const [progressValue, setProgressValue] = useState(0);
 
-  const IMAGE_HEIGHT = 1024 / 2;
-  const IMAGE_WIDTH = 576 / 2;
+  const [videoResults, setVideoResults] = useState([]);
+  const [imageResults, setImageResults] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
-      const heatmaps = new Repository().uploadFiles(files);
+      const repository = new Repository();
+
+      const heatmaps = repository.uploadImages(images);
 
       heatmaps.forEach(async (imagePromise) => {
         const image = await imagePromise;
-        image.className = "image-result";
-        image.height = IMAGE_HEIGHT;
-        image.width = IMAGE_WIDTH;
-        document.getElementById(RESULTS_CONTAINER_ID).appendChild(image);
+        setImageResults((oldResults) => [...oldResults, image]);
+        setProgressValue((oldValue) => oldValue + 1);
+      });
+
+      const videoResults = repository.uploadVideos(videos);
+      videoResults.forEach(async (videoResultPromise, index) => {
+        const videoResult = await videoResultPromise;
+        setVideoResults((oldResults) => [...oldResults, videoResult]);
         setProgressValue((oldValue) => oldValue + 1);
       });
     };
@@ -42,7 +50,14 @@ const ReportPage = () => {
           now={files ? (progressValue / files.length) * 100 + 1 : 0}
         />
       </div>
-      <div id={RESULTS_CONTAINER_ID} className="results-container" />
+      <div className="results-container">
+        {videoResults.map((result, index) => (
+          <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
+        ))}
+        {imageResults.map((result, index) => (
+          <img key={`image-${index}`} className="result" src={result} />
+        ))}
+      </div>
     </>
   );
 };
