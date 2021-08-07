@@ -69,7 +69,7 @@ const UploadSection = () => {
       setBtnOpacity(1);
       setUploadAlertState("hidden");
     }
-  });
+  }, [files.length]);
 
   // prevent button from working if no files are uploaded
   const handleOnClick = (event) => {
