@@ -13,7 +13,7 @@ const UploadSection = () => {
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
   const [btnOpacity, setBtnOpacity] = useState(0.4);
-  const [uploadErrorState, setUploadErrorState] = useState("hidden");
+  const [uploadAlertState, setUploadAlertState] = useState("hidden");
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
@@ -62,22 +62,22 @@ const UploadSection = () => {
 
   // changes the visibility of the button depending on the state of files
   useEffect(() => {
-    if (!files.length) {
+    if (files.length == 0) {
       setBtnOpacity(0.4);
       // console.log(`${files.length} ${btnOpacity}`);
     } else {
       setBtnOpacity(1);
-      setUploadErrorState("hidden");
+      setUploadAlertState("hidden");
     }
   });
 
   // prevent button from working if no files are uploaded
   const handleOnClick = (event) => {
-    if (!files.length) {
+    if (files.length == 0) {
       event.preventDefault(event);
-      setUploadErrorState("visible");
+      setUploadAlertState("visible");
     } else {
-      setUploadErrorState("hidden");
+      setUploadAlertState("hidden");
     }
   };
 
@@ -91,7 +91,7 @@ const UploadSection = () => {
           <button className="upload-btn" style={{ opacity: btnOpacity }} onClick={handleOnClick}>
             Submit files
           </button>
-          <Alert variant="warning" className="UploadError" style={{ visibility: uploadErrorState }}>
+          <Alert variant="warning" className="UploadAlert" style={{ visibility: uploadAlertState }}>
             Please upload a file
           </Alert>
         </form>

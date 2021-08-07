@@ -1,6 +1,6 @@
 import React from "react";
 
-const Cloud = (props) => {
+const CloudIcon = (props) => {
   console.log(props.fill);
   return (
     <svg
@@ -15,4 +15,4 @@ const Cloud = (props) => {
   );
 };
 
-export default Cloud;
+export default CloudIcon;
