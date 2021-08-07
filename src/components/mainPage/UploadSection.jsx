@@ -11,7 +11,7 @@ const UploadSection = () => {
 
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
-  const [btnOpacity, setBtnOpacity] = useState("hidden");
+  const [btnOpacity, setBtnOpacity] = useState(0.4);
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
