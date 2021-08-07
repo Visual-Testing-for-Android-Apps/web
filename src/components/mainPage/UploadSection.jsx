@@ -5,6 +5,7 @@ import Captcha from "./Captcha";
 import "./mainpage.css";
 import "./upload.css";
 import { useHistory } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 
 const UploadSection = () => {
   const history = useHistory();
@@ -12,6 +13,7 @@ const UploadSection = () => {
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
   const [btnOpacity, setBtnOpacity] = useState(0.4);
+  const [uploadErrorState, setUploadErrorState] = useState("hidden");
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
@@ -60,9 +62,24 @@ const UploadSection = () => {
 
   // changes the visibility of the button depending on the state of files
   useEffect(() => {
-    setBtnOpacity(files.length != 0 ? 1 : 0.4);
-    console.log(`${files.length} ${btnOpacity}`);
+    if (!files.length) {
+      setBtnOpacity(0.4);
+      // console.log(`${files.length} ${btnOpacity}`);
+    } else {
+      setBtnOpacity(1);
+      setUploadErrorState("hidden");
+    }
   });
+
+  // prevent button from working if no files are uploaded
+  const handleOnClick = (event) => {
+    if (!files.length) {
+      event.preventDefault(event);
+      setUploadErrorState("visible");
+    } else {
+      setUploadErrorState("hidden");
+    }
+  };
 
   return (
     <div className="section" id="uploadSection">
@@ -71,9 +88,12 @@ const UploadSection = () => {
           <Captcha />
           <UploadBox setFiles={setFiles} />
           <div>{files.map((f) => f.path)}</div>
-          <button className="upload-btn" style={{ opacity: btnOpacity }}>
+          <button className="upload-btn" style={{ opacity: btnOpacity }} onClick={handleOnClick}>
             Submit files
           </button>
+          <Alert variant="warning" className="UploadError" style={{ visibility: uploadErrorState }}>
+            Please upload a file
+          </Alert>
         </form>
       </div>
     </div>

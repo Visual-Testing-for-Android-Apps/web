@@ -30,3 +30,7 @@
 .box:hover {
   border: 0.2rem solid darkblue;
 }
+
+.UploadError {
+  text-align: center;
+}
