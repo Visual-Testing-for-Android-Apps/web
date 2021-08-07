@@ -18,6 +18,16 @@
   text-align: center;
 }
 
+.remove-btn {
+  background-color: rgb(194, 10, 47);
+  border: 0.5rem solid; 
+  border-radius: 1rem;
+  color: white; 
+  padding: 12px 16px; 
+  font-size: 16px; 
+  cursor: pointer; 
+}
+
 .box {
   border: 0.02rem dashed black;
   text-align: center;

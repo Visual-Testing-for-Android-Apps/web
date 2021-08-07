@@ -63,10 +63,13 @@ const UploadSection = () => {
         .removeEventListener("captchaEvent", captchaListener);
   }, []);
 
-  const r = files.map((file) => (
+  // Display uploaded files, plus 'Remove' button to delete file
+  const displayFiles = files.map((file, i) => (
     <li key={file.path}>
-      {files.map((file) => file.path)}
-      <button onClick={() => removeFile(file)}>Remove</button>
+      {file.name}
+      <button className="remove-btn" onClick={() => removeFile(i)}>
+        Remove
+      </button>
     </li>
   ));
 
@@ -76,11 +79,7 @@ const UploadSection = () => {
         <form style={formStyle} onSubmit={handleSubmit}>
           <Captcha />
           <UploadBox setFiles={setFiles} />
-          {/* <div><ul>{files.map((f) => f.path)}</ul></div> */}
-          {/* <div>{files.map((f) => 
-            f.path)}<button onClick={removeFile(f)}>Remove</button>
-    </div> */}
-          <div>{r}</div>
+          <div>{displayFiles}</div>
           <button className="upload-btn">Upload files</button>
         </form>
       </div>
