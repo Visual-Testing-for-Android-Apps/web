@@ -15,11 +15,11 @@ const UploadSection = () => {
   const filesRef = useRef();
   filesRef.current = files;
 
-  const removeFile = (file) => {
+  /* const removeFile = (file) => {
     const newFile = [...files];
     newFile.splice(file, 1);
     setFiles(newFile);
-  };
+  }; */
 
   const handleChange = (event) => {
     setEmail(event.target.value);
@@ -63,7 +63,7 @@ const UploadSection = () => {
         .removeEventListener("captchaEvent", captchaListener);
   }, []);
 
-  // Display uploaded files, plus 'Remove' button to delete file
+/*   // Display uploaded files, plus 'Remove' button to delete file
   const displayFiles = files.map((file, i) => (
     <li key={file.path}>
       {file.name}
@@ -71,7 +71,7 @@ const UploadSection = () => {
         Remove
       </button>
     </li>
-  ));
+  )); */
 
   return (
     <div className="section" id="uploadSection">
@@ -79,7 +79,7 @@ const UploadSection = () => {
         <form style={formStyle} onSubmit={handleSubmit}>
           <Captcha />
           <UploadBox setFiles={setFiles} />
-          <div>{displayFiles}</div>
+          {/* <div>{displayFiles}</div> */}
           <button className="upload-btn">Upload files</button>
         </form>
       </div>
