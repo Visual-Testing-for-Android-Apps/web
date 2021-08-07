@@ -13,19 +13,13 @@
   padding: 0.8rem;
   border-radius: 2rem;
   border: 0.2rem solid;
-  background-color: rgb(62, 163, 84);
+  background-color: green;
   color: white;
   text-align: center;
-  opacity: 1;
-  transition: opacity 0.2s ease-in;
-}
-
-.upload-btn:hover {
-  opacity: 0.8;
 }
 
 .box {
-  border: 0.2rem dashed rgb(211, 95, 41);
+  border: 0.2rem dashed darkblue;
   border-radius: 1rem;
   text-align: center;
   background-color: #efefef;
@@ -34,9 +28,5 @@
 }
 
 .box:hover {
-  border: 0.2rem dotted rgb(211, 95, 41);
-}
-
-.cloud-img {
-  padding-bottom: 0.8rem;
+  border: 0.2rem solid darkblue;
 }

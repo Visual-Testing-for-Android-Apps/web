@@ -11,6 +11,7 @@ const UploadSection = () => {
 
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
+  const [btnOpacity, setBtnOpacity] = useState("hidden");
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
@@ -57,6 +58,12 @@ const UploadSection = () => {
         .removeEventListener("captchaEvent", captchaListener);
   }, []);
 
+  // changes the visibility of the button depending on the state of files
+  useEffect(() => {
+    setBtnOpacity(files.length != 0 ? 1 : 0.4);
+    console.log(`${files.length} ${btnOpacity}`);
+  });
+
   return (
     <div className="section" id="uploadSection">
       <div style={containerStyle}>
@@ -64,7 +71,9 @@ const UploadSection = () => {
           <Captcha />
           <UploadBox setFiles={setFiles} />
           <div>{files.map((f) => f.path)}</div>
-          <button className="upload-btn">Upload files</button>
+          <button className="upload-btn" style={{ opacity: btnOpacity }}>
+            Submit files
+          </button>
         </form>
       </div>
     </div>

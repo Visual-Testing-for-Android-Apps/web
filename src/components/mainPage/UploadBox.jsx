@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import "./upload.css";
-import cloudImg from "../images/cloud.png";
+import Cloud from "./cloud";
 
 const UploadBox = (props) => {
   const onDrop = useCallback((files) => {
@@ -15,7 +15,7 @@ const UploadBox = (props) => {
 
   return (
     <div className="box" {...getRootProps()}>
-      <img className="cloud-img" src={cloudImg} width={IMAGE_WIDTH} height={IMAGE_HEIGHT} />
+      {isDragActive ? <Cloud fill={"green"} /> : <Cloud fill={"blue"} />}
       <input {...getInputProps()} />
       {isDragActive ? (
         <p>Drop the files here ...</p>
