@@ -25,7 +25,7 @@ const UploadSection = () => {
   const handleSubmit = (event) => {
     // Save the submit event. Use this variable to reference onSubmit event within listener
     const handleSubmitEvent = event;
-    event.preventDefault(event);
+    event.preventDefault();
 
     // Run captcha check
     grecaptcha.execute();
@@ -64,7 +64,6 @@ const UploadSection = () => {
   useEffect(() => {
     if (files.length == 0) {
       setBtnOpacity(0.4);
-      // console.log(`${files.length} ${btnOpacity}`);
     } else {
       setBtnOpacity(1);
       setUploadAlertState("hidden");
@@ -74,7 +73,7 @@ const UploadSection = () => {
   // prevent button from working if no files are uploaded
   const handleOnClick = (event) => {
     if (files.length == 0) {
-      event.preventDefault(event);
+      event.preventDefault();
       setUploadAlertState("visible");
     } else {
       setUploadAlertState("hidden");
@@ -91,7 +90,11 @@ const UploadSection = () => {
           <button className="upload-btn" style={{ opacity: btnOpacity }} onClick={handleOnClick}>
             Submit files
           </button>
-          <Alert variant="warning" className="UploadAlert" style={{ visibility: uploadAlertState }}>
+          <Alert
+            variant="warning"
+            className="Upload-alert"
+            style={{ visibility: uploadAlertState }}
+          >
             Please upload a file
           </Alert>
         </form>

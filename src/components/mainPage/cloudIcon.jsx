@@ -1,7 +1,6 @@
 import React from "react";
 
 const CloudIcon = (props) => {
-  console.log(props.fill);
   return (
     <svg
       width="100px"
