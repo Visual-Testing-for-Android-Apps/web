@@ -92,7 +92,7 @@ const UploadSection = () => {
           </button>
           <Alert
             variant="warning"
-            className="Upload-alert"
+            className="upload-alert"
             style={{ visibility: uploadAlertState }}
           >
             Please upload a file
