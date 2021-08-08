@@ -13,19 +13,24 @@
   padding: 0.8rem;
   border-radius: 2rem;
   border: 0.2rem solid;
-  background-color: black;
+  background-color: green;
   color: white;
   text-align: center;
 }
 
 .box {
-  border: 0.02rem dashed black;
+  border: 0.2rem dashed darkblue;
+  border-radius: 1rem;
   text-align: center;
   background-color: #efefef;
   margin-top: 1rem;
   padding: 3rem;
 }
 
-.cloud-img {
-  padding-bottom: 0.8rem;
+.box:hover {
+  border: 0.2rem solid darkblue;
+}
+
+.upload-alert {
+  text-align: center;
 }
