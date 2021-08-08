@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 import UploadBox from "./UploadBox";
 import Captcha from "./Captcha";
@@ -15,11 +16,11 @@ const UploadSection = () => {
   const filesRef = useRef();
   filesRef.current = files;
 
-  /* const removeFile = (file) => {
+  const removeFile = (file) => {
     const newFile = [...files];
     newFile.splice(file, 1);
     setFiles(newFile);
-  }; */
+  };
 
   const handleChange = (event) => {
     setEmail(event.target.value);
@@ -63,15 +64,19 @@ const UploadSection = () => {
         .removeEventListener("captchaEvent", captchaListener);
   }, []);
 
-/*   // Display uploaded files, plus 'Remove' button to delete file
+  // Display uploaded files, plus 'Remove' button to delete file
   const displayFiles = files.map((file, i) => (
-    <li key={file.path}>
-      {file.name}
-      <button className="remove-btn" onClick={() => removeFile(i)}>
-        Remove
-      </button>
-    </li>
-  )); */
+    <Container className="file-container" key={file.path}>
+      <Row>
+        <Col>{file.name}</Col><Col></Col>
+        <Col>
+          <button className="remove-btn" onClick={() => removeFile(i)}>
+            Remove
+          </button>
+        </Col>
+      </Row>
+    </Container>
+  ));
 
   return (
     <div className="section" id="uploadSection">
@@ -79,8 +84,8 @@ const UploadSection = () => {
         <form style={formStyle} onSubmit={handleSubmit}>
           <Captcha />
           <UploadBox setFiles={setFiles} />
-          {/* <div>{displayFiles}</div> */}
           <button className="upload-btn">Upload files</button>
+          <div>{displayFiles}</div>
         </form>
       </div>
     </div>
