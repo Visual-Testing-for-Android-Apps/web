@@ -68,7 +68,8 @@ const UploadSection = () => {
   const displayFiles = files.map((file, i) => (
     <Container className="file-container" key={file.path}>
       <Row>
-        <Col>{file.name}</Col><Col></Col>
+        <Col className="vertical-center">{file.name}</Col>
+        <Col></Col>
         <Col>
           <button className="remove-btn" onClick={() => removeFile(i)}>
             Remove
