@@ -6,12 +6,15 @@ import Captcha from "./Captcha";
 import "./mainpage.css";
 import "./upload.css";
 import { useHistory } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 
 const UploadSection = () => {
   const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
+  const [btnOpacity, setBtnOpacity] = useState(0.4);
+  const [uploadAlertState, setUploadAlertState] = useState("hidden");
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
@@ -29,7 +32,7 @@ const UploadSection = () => {
   const handleSubmit = (event) => {
     // Save the submit event. Use this variable to reference onSubmit event within listener
     const handleSubmitEvent = event;
-    event.preventDefault(event);
+    event.preventDefault();
 
     // Run captcha check
     grecaptcha.execute();
@@ -64,6 +67,26 @@ const UploadSection = () => {
         .removeEventListener("captchaEvent", captchaListener);
   }, []);
 
+  // changes the visibility of the button depending on the state of files
+  useEffect(() => {
+    if (files.length == 0) {
+      setBtnOpacity(0.4);
+    } else {
+      setBtnOpacity(1);
+      setUploadAlertState("hidden");
+    }
+  }, [files.length]);
+
+  // prevent button from working if no files are uploaded
+  const handleOnClick = (event) => {
+    if (files.length == 0) {
+      event.preventDefault();
+      setUploadAlertState("visible");
+    } else {
+      setUploadAlertState("hidden");
+    }
+  };
+  
   // Display uploaded files, plus 'Remove' button to delete file
   const displayFiles = files.map((file, i) => (
     <Container className="file-container" key={file.path}>
@@ -84,7 +107,17 @@ const UploadSection = () => {
         <form style={formStyle} onSubmit={handleSubmit}>
           <Captcha />
           <UploadBox setFiles={setFiles} />
-          <button className="upload-btn">Upload files</button>
+          <div>{files.map((f) => f.path)}</div>
+          <button className="upload-btn" style={{ opacity: btnOpacity }} onClick={handleOnClick}>
+            Submit files
+          </button>
+          <Alert
+            variant="warning"
+            className="upload-alert"
+            style={{ visibility: uploadAlertState }}
+          >
+            Please upload a file
+          </Alert>
           <div className="margin-space" >{displayFiles}</div>
         </form>
       </div>
