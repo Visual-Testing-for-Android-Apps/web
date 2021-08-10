@@ -68,9 +68,8 @@ const UploadSection = () => {
   const displayFiles = files.map((file, i) => (
     <Container className="file-container" key={file.path}>
       <Row>
-        <Col className="vertical-center">{file.name}</Col>
-        <Col></Col>
-        <Col>
+        <Col className="file-column">{file.name}</Col>
+        <Col className="button-column">
           <button className="remove-btn" onClick={() => removeFile(i)}>
             Remove
           </button>
@@ -86,7 +85,7 @@ const UploadSection = () => {
           <Captcha />
           <UploadBox setFiles={setFiles} />
           <button className="upload-btn">Upload files</button>
-          <div>{displayFiles}</div>
+          <div className="margin-space" >{displayFiles}</div>
         </form>
       </div>
     </div>
