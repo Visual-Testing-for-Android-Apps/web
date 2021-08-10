@@ -6,7 +6,8 @@ import CloudIcon from "./cloudIcon";
 const UploadBox = (props) => {
   const onDrop = useCallback((files) => {
     props.setFiles((existingFiles) => [...existingFiles, ...files]);
-  }, []);
+
+      }, []);
 
   const accept = [".jpg", ".mp4"];
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept });
@@ -17,6 +18,7 @@ const UploadBox = (props) => {
     <div className="box" {...getRootProps()}>
       {isDragActive ? <CloudIcon fill={"green"} /> : <CloudIcon fill={"blue"} />}
       <input {...getInputProps()} />
+
       {isDragActive ? (
         <p>Drop the files here ...</p>
       ) : (

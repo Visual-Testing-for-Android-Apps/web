@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 import UploadBox from "./UploadBox";
 import Captcha from "./Captcha";
@@ -17,6 +18,12 @@ const UploadSection = () => {
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
+
+  const removeFile = (file) => {
+    const newFile = [...files];
+    newFile.splice(file, 1);
+    setFiles(newFile);
+  };
 
   const handleChange = (event) => {
     setEmail(event.target.value);
@@ -79,6 +86,20 @@ const UploadSection = () => {
       setUploadAlertState("hidden");
     }
   };
+  
+  // Display uploaded files, plus 'Remove' button to delete file
+  const displayFiles = files.map((file, i) => (
+    <Container className="file-container" key={file.path}>
+      <Row>
+        <Col className="file-column">{file.name}</Col>
+        <Col className="button-column">
+          <button className="remove-btn" onClick={() => removeFile(i)}>
+            Remove
+          </button>
+        </Col>
+      </Row>
+    </Container>
+  ));
 
   return (
     <div className="section" id="uploadSection">
@@ -86,7 +107,6 @@ const UploadSection = () => {
         <form style={formStyle} onSubmit={handleSubmit}>
           <Captcha />
           <UploadBox setFiles={setFiles} />
-          <div>{files.map((f) => f.path)}</div>
           <button className="upload-btn" style={{ opacity: btnOpacity }} onClick={handleOnClick}>
             Submit files
           </button>
@@ -97,6 +117,7 @@ const UploadSection = () => {
           >
             Please upload a file
           </Alert>
+          <div className="margin-space" >{displayFiles}</div>
         </form>
       </div>
     </div>
