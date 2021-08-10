@@ -24,9 +24,8 @@
   border-radius: 0.4rem;
   color: white;
   padding: 0.2rem 0.5rem;
-  font-size: 1.125rem; 
-  cursor: pointer; 
-  
+  font-size: 1.125rem;
+  cursor: pointer;
 }
 
 .box {
@@ -46,9 +45,9 @@
   text-align: center;
 }
 
-.file-container{
+.file-container {
   background-color: #efefef;
-  border: 0.1rem solid black; 
+  border: 0.1rem solid black;
   border-radius: 0.1rem;
   padding: 1rem 1rem;
   text-indent: 1.3rem;
@@ -57,25 +56,25 @@
   max-width: 40rem;
 }
 
-.file-container:hover{
+.file-container:hover {
   background-color: rgb(204, 233, 247);
 }
 
 .file-column {
   position: relative;
   transform: translateY(13%);
-  max-width: 20rem;   /**Max width for the coloumn**/
-  overflow: hidden;   
+  max-width: 20rem;   /**  Max width for the coloumn  **/
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.margin-space{
-  margin-bottom: 5rem;  
+.margin-space {
+  margin-bottom: 5rem;
 }
 
-.button-column{
+.button-column {
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
 }
