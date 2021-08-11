@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import "./mainpage.css";
 import "./job-section.css";
-// import DemoSection from "./DemoSection";
 import JobSelectionSection from "./JobSelectionSection";
 import AboutSection from "./AboutSection";
+import DemoSection from "./DemoSection";
 
 const MainPage = () => {
+  const jobSectionRef = useRef();
   return (
     <div className="section__container">
-      <JobSelectionSection />
+      <DemoSection jobSectionRef={jobSectionRef} />
+      <JobSelectionSection ref={jobSectionRef} />
       <AboutSection />
     </div>
   );

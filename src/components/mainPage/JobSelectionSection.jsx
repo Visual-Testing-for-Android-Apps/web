@@ -1,9 +1,9 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import "./mainpage.css";
 import BatchIcon from "../images/batchIcon.png";
 import LiveIcon from "../images/liveJobIcon.png";
 
-const JobSelectionSection = () => {
+const JobSelectionSection = forwardRef((props, ref) => {
   function renderButton(icon, jobType, description) {
     return (
       <button className="jobBtn">
@@ -16,7 +16,7 @@ const JobSelectionSection = () => {
   }
 
   return (
-    <div className="mainSection">
+    <div className="mainSection" ref={ref}>
       <div className="selection-heading">
         <h1 className="title">What do you want to do?</h1>
       </div>
@@ -39,6 +39,6 @@ const JobSelectionSection = () => {
       {/* </div> */}
     </div>
   );
-};
+});
 
 export default JobSelectionSection;
