@@ -2,59 +2,44 @@
   background-color: #0476d9;
   width: auto;
   padding-top: 5rem;
-  padding-bottom: 5rem;
-
-  /* margin-top: 2rem; */
-  display: flex;
-  flex-direction: column;
+  padding-bottom: 8rem;
 }
 
 .selection-heading {
-  /* position: relative; */
-
-  margin-top: 0;
-  border-color: black;
-  border-width: 10px;
-
-  /* margin-top: 0%; */
-
-  /* margin-bottom: 100px; */
-  border: solid #5b6dcd 10px;
+  /* border: solid #5b6dcd 10px; */
+  margin-bottom: 3rem;
 }
 
 .title {
-  margin-bottom: 2rem;
-
-  /* text-align: center; */
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
+  font-size: xxx-large;
   color: white;
-  border-color: black;
-  border-width: 10px;
   text-align: center;
-  border: solid #7b6dcd 10px;
 }
 
 .jobBtn {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   background-color: white;
   border-radius: 1.8rem;
   color: #0476d9;
-  padding: 4rem 4rem;
+  padding: 2rem 4rem;
   width: 35%;
   height: 20rem;
   text-align: center;
   border: white;
-  box-shadow: 0 8px 15px rgba(54, 54, 54, 0.2);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .jobBtn:hover {
   color: rgb(104, 194, 230);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.598);
 }
 
 .jobType {
   font-family: "Signika", sans-serif;
-  margin-top: 1rem;
 }
 
 .jobDescription {
@@ -62,31 +47,38 @@
   line-height: 1.4;
 }
 
-.liveBtnContainer {
-  margin-right: 10px;
-  position: relative;
-}
-
-.batchBtnContainer {
-  position: relative;
-}
-
 .btnContainer {
   text-align: center;
   align-items: center;
+  justify-content: center;
+  display: flex;
   position: relative;
-
-  /* padding-top: 2%;
-  padding-bottom: 2%; */
   height: 50%;
   width: 100%;
-  background-color: thistle;
 }
 
 .btn-space {
   /* width: 20%; */
-  padding-right: 5%;
-  background-color: white;
+  padding-right: 7%;
+}
+
+.icon-container {
+  /* box-sizing: border-box; */
+  width: 50%;
+  height: 60%;
+  max-height: 4rem;
+  min-width: 3rem;
+  min-height: 3rem;
+
+  /* border: #0476d9 solid 1px; */
+  overflow: hidden;
+  margin-bottom: 0.7rem;
+}
+
+.icon-container img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 /* @media only screen and (min-width: 1024px) {

@@ -7,7 +7,10 @@ const JobSelectionSection = forwardRef((props, ref) => {
   function renderButton(icon, jobType, description) {
     return (
       <button className="jobBtn">
-        <img className="img-size" src={icon} />
+        <div className="icon-container">
+          <img className="img-size" src={icon} />
+        </div>
+
         <h1 className="jobType">{jobType}</h1>
         <p className="jobDescription">{description}</p>
       </button>
