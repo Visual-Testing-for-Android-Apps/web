@@ -13,6 +13,7 @@
   color: white;
   border-color: black;
   border-width: 10px;
+  text-align: center;
 }
 
 .mainSection {
@@ -29,35 +30,50 @@
   background-color: white;
   border-radius: 1.8rem;
   color: #0476d9;
+  padding: 4rem 4rem;
+  width: 35%;
+  height: 35%;
+  text-align: center;
+  border: white;
+  box-shadow: 0 8px 15px rgba(54, 54, 54, 0.2);
+}
+
+.jobBtn:hover {
+  color: rgb(104, 194, 230);
+}
+
+.jobType {
+  font-family: "Signika", sans-serif;
+}
+
+.jobDescription {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.4;
+}
+
+.liveBtnContainer {
+  margin-right: 10px;
+  position: relative;
+}
+
+.batchBtnContainer {
+  position: relative;
 }
 
 .btnContainer {
+  text-align: center;
   align-items: center;
+  position: relative;
 }
 
-.liveBtn {
-  background-color: white;
-  border-radius: 1.8rem;
-  color: #0476d9;
-
-  /* padding: 4rem 4rem; */
-  margin-right: 10%;
-  height: 50%;
-  width: 50%;
+.btn-space {
+  /* width: 20%; */
+  padding-right: 5%;
 }
 
-.liveBtn:hover {
-  color: rgb(104, 194, 230);
-  cursor: pointer;
-}
-
-.batchBtn {
-  background-color: white;
-  border-radius: 1.8rem;
-  color: #0476d9;
-  padding: 4rem 4rem;
-}
-
-.bacthBtn:hover {
-  color: rgb(104, 194, 230);
+@media only screen and (min-width: 1024px) {
+  .img-size {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 }
