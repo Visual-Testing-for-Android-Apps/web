@@ -63,7 +63,7 @@
 .file-column {
   position: relative;
   transform: translateY(13%);
-  max-width: 20rem;   /**  Max width for the coloumn  **/
+  max-width: 20rem; /**  Max width for the coloumn  **/
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

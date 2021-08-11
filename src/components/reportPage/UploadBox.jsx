@@ -6,8 +6,7 @@ import CloudIcon from "./cloudIcon";
 const UploadBox = (props) => {
   const onDrop = useCallback((files) => {
     props.setFiles((existingFiles) => [...existingFiles, ...files]);
-
-      }, []);
+  }, []);
 
   const accept = [".jpg", ".mp4"];
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept });

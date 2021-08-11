@@ -86,7 +86,7 @@ const UploadSection = () => {
       setUploadAlertState("hidden");
     }
   };
-  
+
   // Display uploaded files, plus 'Remove' button to delete file
   const displayFiles = files.map((file, i) => (
     <Container className="file-container" key={file.path}>
@@ -117,7 +117,7 @@ const UploadSection = () => {
           >
             Please upload a file
           </Alert>
-          <div className="margin-space" >{displayFiles}</div>
+          <div className="margin-space">{displayFiles}</div>
         </form>
       </div>
     </div>
