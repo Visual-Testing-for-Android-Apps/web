@@ -8,24 +8,73 @@
 .upload-btn {
   margin: auto;
   margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
   width: 10rem;
   font-size: 1rem;
   padding: 0.8rem;
   border-radius: 2rem;
   border: 0.2rem solid;
-  background-color: black;
+  background-color: green;
   color: white;
   text-align: center;
 }
 
+.remove-btn {
+  background-color: rgb(194, 10, 47);
+  border-radius: 0.4rem;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+}
+
 .box {
-  border: 0.02rem dashed black;
+  border: 0.2rem dashed darkblue;
+  border-radius: 1rem;
   text-align: center;
   background-color: #efefef;
   margin-top: 1rem;
   padding: 3rem;
 }
 
-.cloud-img {
-  padding-bottom: 0.8rem;
+.box:hover {
+  border: 0.2rem solid darkblue;
+}
+
+.upload-alert {
+  text-align: center;
+}
+
+.file-container {
+  background-color: #efefef;
+  border: 0.1rem solid black;
+  border-radius: 0.1rem;
+  padding: 1rem 1rem;
+  text-indent: 1.3rem;
+  font-size: 1rem;
+  font-weight: 550;
+  max-width: 40rem;
+}
+
+.file-container:hover {
+  background-color: rgb(204, 233, 247);
+}
+
+.file-column {
+  position: relative;
+  transform: translateY(13%);
+  max-width: 20rem;   /**  Max width for the coloumn  **/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.margin-space {
+  margin-bottom: 5rem;
+}
+
+.button-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
