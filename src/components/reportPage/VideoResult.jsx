@@ -19,7 +19,7 @@ const VideoResult = ({ videoFile, videoResult }) => {
   return (
     <div>
       <video className="result" src={dataUrl} autoPlay loop controls />
-      <p className="video-result-explanation">{videoResult.explanation}</p>
+      <p className="result-explanation">{videoResult.explanation}</p>
     </div>
   );
 };
