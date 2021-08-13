@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MainPage from "./mainPage/MainPage";
 import ReportPage from "./reportPage/ReportPage";
 import LiveJob from "./reportPage/LiveJob";
+import BatchJob from "./reportPage/BatchJob";
 
 function App() {
   return (
@@ -14,9 +15,13 @@ function App() {
         <Route path="/reportpage">
           <ReportPage />
         </Route>
-        <Route exact path="/livejob">
+        <Route path="/livejob">
           <LiveJob />
-        </Route>
+          </Route>
+
+        <Route path="/batchjob">
+        <BatchJob/>
+      </Route>
       </Switch>
     </Router>
   );

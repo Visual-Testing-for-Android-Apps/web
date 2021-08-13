@@ -15,7 +15,7 @@ const UploadBox = (props) => {
 
   return (
     <div className="box" {...getRootProps()}>
-      {isDragActive ? <CloudIcon fill={"green"} /> : <CloudIcon fill={"blue"} />}
+      {isDragActive ? <CloudIcon fill={"green"} /> : <CloudIcon fill={"#045198"} />}
       <input {...getInputProps()} />
 
       {isDragActive ? (
