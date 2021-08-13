@@ -17,6 +17,23 @@ const JobSelectionSection = forwardRef((props, ref) => {
     );
   }
 
+  function Card(icon, jobType, desc, buttonName) {
+    return (
+      <div className="Card">
+        <div>
+          <div className="image-container">
+            <img src={icon} height="95px" width="84px"></img>
+          </div>
+        </div>
+       <div className="lower-container">
+          <h2>{jobType}</h2>
+          <p>{desc}</p>
+          <button>{buttonName}</button>
+        </div> 
+      </div>
+    );
+  }
+
   return (
     <div className="mainSection" ref={ref}>
       <div className="selection-heading">
