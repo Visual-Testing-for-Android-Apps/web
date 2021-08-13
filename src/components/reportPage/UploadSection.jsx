@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import UploadBox from "./UploadBox";
 import Captcha from "./Captcha";
-import "./mainpage.css";
+import "../mainPage/mainpage.css";
 import "./upload.css";
 import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
