@@ -1,39 +1,41 @@
-.batch-form {
+.body {
+  display: flex;
+  text-align: center;
+}
+
+.form-container {
+  margin: auto;
+  height: 35rem;
   border: none;
-  padding: 5px;
-  padding-top: 50px;
-  border-radius: 10px;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 2rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 50%;
+}
+
+.batch-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  text-align: center;
 }
 
 .batch-form h2 {
   text-align: center;
-  display: inline-block;
 }
 
 .btn-container {
-  display: flex;
-  flex-direction: row;
   width: 500px;
+  text-align: center;
 }
 
-.btn {
+.sbtn {
   margin: auto;
-  margin-top: 0.8rem;
-  margin-bottom: 0.8rem;
-  width: 10rem;
+  width: 8rem;
   font-size: 1rem;
-  padding: 0.8rem;
   border-radius: 2rem;
   border: 0.2rem solid;
   background-color: black;
   color: white;
-  text-align: center;
 }
 
 .submit-btn {

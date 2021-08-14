@@ -32,8 +32,7 @@
   border: none;
   display: inline-block;
   color: white;
-  transition-duration: 0.4s;
-  padding: 0.5rem 0.7rem;
+  padding: 0.7rem 0.8rem;
 }
 
 .demo-section button:hover {

@@ -26,8 +26,8 @@
   border-radius: 1.8rem;
   color: #0476d9;
   padding: 2rem 4rem;
-  width: 35%;
-  height: 20rem;
+  width: 30%;
+  height: 15rem;
   text-align: center;
   border: white;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
@@ -90,7 +90,6 @@
 } */
 
 button {
-  margin: 1rem;
   margin-top: 0;
   color: #00325e;
 
@@ -99,7 +98,6 @@ button {
   background-color: white;
   border: 2px solid #03a64a;
   padding: 0.6rem;
-  border-radius: 6px;
   transition-duration: 0.5s;
   animation: ease-in-out;
 }

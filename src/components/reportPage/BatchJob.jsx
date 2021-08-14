@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import UploadSection from "./UploadSection";
 import StepUpload from "./StepUpload";
 import StepEmail from "./StepEmail";
 import "./batch-job.css";
@@ -7,7 +6,7 @@ import "./batch-job.css";
 const BatchJob = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
-    email: "",  
+    email: "",
   });
   const handleChange = (event) => {
     setFormData({
@@ -23,34 +22,21 @@ const BatchJob = () => {
   };
   switch (currentStep) {
     case 1:
-      return (
-        <StepUpload 
-          data={formData} 
-          handleChange={handleChange} 
-          next={next} 
-        />
-      );
+      return <StepUpload data={formData} handleChange={handleChange} next={next} />;
     case 2:
-      return (
-        <StepEmail
-          data={formData}
-          handleChange={handleChange}
-          next={next}
-          back={back}
-        />
-      );
+      return <StepEmail data={formData} handleChange={handleChange} next={next} back={back} />;
     default:
       return <Submit data={formData} back={back} />;
   }
 };
 
 const Submit = () => {
-    return (
-      <div>
-        <h1>done</h1>
-      </div>
-    );
-  };
+  return (
+    <div>
+      <h1>done</h1>
+    </div>
+  );
+};
 
 /* const BatchJob = () => {
   const [status, setStatus] = useState("Submit");

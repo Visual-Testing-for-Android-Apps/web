@@ -15,7 +15,7 @@ const DemoSection = (props) => {
           <h1 className="demo-title">VISUAL TESTING PLATFORM</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.{" "}
+            incididunt ut labore et dolore magna aliqua.
           </p>
           <button onClick={scrollToJobSelectionSection}>Get Started</button>
         </div>
