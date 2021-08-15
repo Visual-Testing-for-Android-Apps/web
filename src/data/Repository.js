@@ -13,7 +13,7 @@ class Repository {
     return images.map((image) => {
       return encodeFileAsBase64DataUrl(image)
         .then((encodedImage) =>
-          fetch("https://ekh9wzayy6.execute-api.ap-southeast-2.amazonaws.com/Prod/owleye/", {
+          fetch(__OWLEYES_ENDPOINT__, {
             method: "POST",
             body: this._getBase64FromDataUrl(encodedImage),
           })
@@ -47,7 +47,7 @@ class Repository {
     return videos.map((video) => {
       return encodeFileAsBase64DataUrl(video)
         .then((encodedVideo) =>
-          fetch("https://wom3x88xak.execute-api.ap-southeast-2.amazonaws.com/Prod/Seenomaly/", {
+          fetch(__SEENOMALY_ENDPOINT__, {
             method: "POST",
             body: this._getBase64FromDataUrl(encodedVideo),
           })
