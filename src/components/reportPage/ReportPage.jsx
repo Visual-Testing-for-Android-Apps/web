@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import "./results-page.css";
 import Repository from "../../data/Repository";
 import VideoResult from "./VideoResult";
+import ImageResult from "./ImageResult";
 
 const ReportPage = () => {
   const { files, email } = useLocation().state ?? {};
@@ -23,8 +24,8 @@ const ReportPage = () => {
       const heatmaps = repository.uploadImages(images);
 
       heatmaps.forEach(async (imagePromise) => {
-        const image = await imagePromise;
-        setImageResults((oldResults) => [...oldResults, image]);
+        const imageResult = await imagePromise;
+        setImageResults((oldResults) => [...oldResults, imageResult]);
         setProgressValue((oldValue) => oldValue + 1);
       });
 
@@ -55,7 +56,7 @@ const ReportPage = () => {
           <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
         ))}
         {imageResults.map((result, index) => (
-          <img key={`image-${index}`} className="result" src={result} />
+          <ImageResult key={`image-${index}`} imageResult={result} />
         ))}
       </div>
     </>
