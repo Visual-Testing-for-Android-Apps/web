@@ -6,6 +6,7 @@ import "./batch-job.css";
 const BatchJob = () => {
   const FILE_LIMIT = Infinity;
   const [currentStep, setCurrentStep] = useState(1);
+  const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     email: "",
   });
@@ -29,6 +30,8 @@ const BatchJob = () => {
           handleChange={handleChange}
           next={next}
           fileLimit={FILE_LIMIT}
+          setFiles={setFiles}
+          files={files}
         />
       );
     case 2:
