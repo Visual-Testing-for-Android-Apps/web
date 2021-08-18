@@ -10,6 +10,7 @@ const UploadBox = (props) => {
 
   const accept = [".jpg", ".mp4"];
   const maxFiles = props.fileLimit == Infinity ? 0 : props.fileLimit;
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept, maxFiles });
   const IMAGE_WIDTH = 110;
   const IMAGE_HEIGHT = 90;
 
