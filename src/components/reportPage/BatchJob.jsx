@@ -23,7 +23,14 @@ const BatchJob = () => {
   };
   switch (currentStep) {
     case 1:
-      return <StepUpload data={formData} handleChange={handleChange} next={next} />;
+      return (
+        <StepUpload
+          data={formData}
+          handleChange={handleChange}
+          next={next}
+          fileLimit={FILE_LIMIT}
+        />
+      );
     case 2:
       return <StepEmail data={formData} handleChange={handleChange} next={next} back={back} />;
     default:

@@ -11,7 +11,7 @@ const StepUpload = (props) => {
         <button className="sbtn" onClick={next}>
           Next
         </button>
-        <UploadSection />
+        <UploadSection fileLimit={props.fileLimit} />
       </form>
     </div>
   );

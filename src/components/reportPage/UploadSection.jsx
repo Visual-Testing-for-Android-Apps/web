@@ -9,16 +9,22 @@ import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 
 const UploadSection = (props) => {
-  // submit button opacity constant values
-  const LOW_OPACITY = 0.4;
-  const FULL_OPACITY = 1;
-
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
   const [btnOpacity, setBtnOpacity] = useState(LOW_OPACITY);
-  const [uploadAlertState, setUploadAlertState] = useState("hidden");
+
+  // const [uploadAlertState, setUploadAlertState] = useState("hidden");
   const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState();
+
+  // File Upload Alert Messages
+  const FILE_LIMIT_WARNING = "You cannot upload more than " + props.fileLimit + " files.";
+  const FILE_MIN_WARNING = "Please upload a file";
+
+  // submit button opacity values
+  const LOW_OPACITY = 0.4;
+  const FULL_OPACITY = 1;
 
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
@@ -76,36 +82,35 @@ const UploadSection = (props) => {
   useEffect(() => {
     if (files.length == 0) {
       setBtnOpacity(LOW_OPACITY);
+    } else if (props.fileLimit != null && files.length > props.fileLimit) {
+      setShowAlert(true);
+      setAlertMessage(FILE_LIMIT_WARNING);
     } else {
       setBtnOpacity(FULL_OPACITY);
-      setUploadAlertState("hidden");
+      // setUploadAlertState("hidden");
       setShowAlert(false);
     }
   }, [files.length]);
 
-  const FILE_LIMIT_WARNING = "You cannot upload more than " + props.fileLimit + " files.";
-  const FILE_MIN_WARNING = "Please upload a file";
-  const [alertMessage, setAlertMessage] = useState();
-
-  // prevent button from working if no files are uploaded
+  // prevent button from working if no files are uploaded / exceed file limit
   const handleOnClick = (event) => {
     console.log("submit button click");
     let isFileLimit = props.fileLimit != null;
     if (files.length == 0) {
       event.preventDefault();
-      setUploadAlertState("visible");
+      // setUploadAlertState("visible");
       setShowAlert(true);
       setAlertMessage(FILE_MIN_WARNING);
-      console.log("upload alert");
     } else if (isFileLimit) {
       if (files.length > props.fileLimit) {
-        setShowAlert(true);
         event.preventDefault();
+        setShowAlert(true);
         setAlertMessage(FILE_LIMIT_WARNING);
       }
     }
   };
 
+  // returns Alert
   function renderAlert() {
     if (showAlert) {
       return (
@@ -137,18 +142,11 @@ const UploadSection = (props) => {
       <div style={containerStyle}>
         <form style={formStyle} onSubmit={handleSubmit}>
           <Captcha />
-          <UploadBox setFiles={setFiles} />
+          <UploadBox setFiles={setFiles} fileLimit={props.fileLimit} />
           <button className="upload-btn" style={{ opacity: btnOpacity }} onClick={handleOnClick}>
             Submit files
           </button>
           {renderAlert()}
-          {/* <Alert
-            variant="warning"
-            className="upload-alert"
-            style={{ visibility: uploadAlertState }}
-          >
-            Please upload a file
-          </Alert> */}
           <div className="margin-space">{displayFiles}</div>
         </form>
       </div>
