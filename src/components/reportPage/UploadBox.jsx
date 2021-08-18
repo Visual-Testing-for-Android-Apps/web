@@ -9,7 +9,7 @@ const UploadBox = (props) => {
   }, []);
 
   const accept = [".jpg", ".mp4"];
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept });
+  const maxFiles = props.fileLimit == Infinity ? 0 : props.fileLimit;
   const IMAGE_WIDTH = 110;
   const IMAGE_HEIGHT = 90;
 
@@ -23,6 +23,7 @@ const UploadBox = (props) => {
       ) : (
         <p>
           Drag 'n' drop images here, or <b>click</b> to select files
+          {maxFiles != 0 ? <em> (Maximum number of files: {maxFiles}) </em> : null}
         </p>
       )}
     </div>

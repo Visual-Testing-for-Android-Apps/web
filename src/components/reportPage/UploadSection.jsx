@@ -19,7 +19,8 @@ const UploadSection = (props) => {
   const [alertMessage, setAlertMessage] = useState();
 
   // File Upload Alert Messages
-  const FILE_LIMIT_WARNING = "You cannot upload more than " + props.fileLimit + " files.";
+  const FILE_LIMIT_WARNING =
+    "You have exceeded the maximum limit of " + props.fileLimit + " files.";
   const FILE_MIN_WARNING = "Please upload a file";
 
   // submit button opacity values
@@ -45,8 +46,19 @@ const UploadSection = (props) => {
     const handleSubmitEvent = event;
     event.preventDefault();
 
-    // Run captcha check
-    grecaptcha.execute();
+    // merged code from handleOnClick
+    if (files.length == 0) {
+      // prevent submit button from working if no files are uploaded
+      setShowAlert(true);
+      setAlertMessage(FILE_MIN_WARNING);
+    } else if (files.length > props.fileLimit) {
+      // prevent submit if exceed file limit
+      setShowAlert(true);
+      setAlertMessage(FILE_LIMIT_WARNING);
+    } else {
+      // Run captcha check
+      grecaptcha.execute();
+    }
   };
 
   // useCallback allows removing the event listener
@@ -84,6 +96,7 @@ const UploadSection = (props) => {
       setBtnOpacity(LOW_OPACITY);
     } else if (props.fileLimit != null && files.length > props.fileLimit) {
       setShowAlert(true);
+      setBtnOpacity(LOW_OPACITY);
       setAlertMessage(FILE_LIMIT_WARNING);
     } else {
       setBtnOpacity(FULL_OPACITY);
@@ -93,35 +106,29 @@ const UploadSection = (props) => {
   }, [files.length]);
 
   // prevent button from working if no files are uploaded / exceed file limit
-  const handleOnClick = (event) => {
-    console.log("submit button click");
-    let isFileLimit = props.fileLimit != null;
-    if (files.length == 0) {
-      event.preventDefault();
-      // setUploadAlertState("visible");
-      setShowAlert(true);
-      setAlertMessage(FILE_MIN_WARNING);
-    } else if (isFileLimit) {
-      if (files.length > props.fileLimit) {
-        event.preventDefault();
-        setShowAlert(true);
-        setAlertMessage(FILE_LIMIT_WARNING);
-      }
-    }
-  };
+  // const handleOnClick = (event) => {
+  //   if (files.length == 0) {
+  //     event.preventDefault();
+  //     // setUploadAlertState("visible");
+  //     setShowAlert(true);
+  //     setAlertMessage(FILE_MIN_WARNING);
+  //   } else if (files.length > props.fileLimit) {
 
-  // returns Alert
-  function renderAlert() {
-    if (showAlert) {
-      return (
-        <Alert variant="warning" className="upload-alert">
-          {alertMessage}
-        </Alert>
-      );
-    } else {
-      return null;
-    }
-  }
+  //       event.preventDefault();
+  //       setShowAlert(true);
+  //       setAlertMessage(FILE_LIMIT_WARNING);
+  //   }
+
+  // };
+
+  // renders Alert
+  const UploadAlert = () =>
+    // if showAlert = true, return Alert component
+    showAlert ? (
+      <Alert variant="warning" className="upload-alert">
+        {alertMessage}
+      </Alert>
+    ) : null;
 
   // Display uploaded files, plus 'Remove' button to delete file
   const displayFiles = files.map((file, i) => (
@@ -143,10 +150,13 @@ const UploadSection = (props) => {
         <form style={formStyle} onSubmit={handleSubmit}>
           <Captcha />
           <UploadBox setFiles={setFiles} fileLimit={props.fileLimit} />
-          <button className="upload-btn" style={{ opacity: btnOpacity }} onClick={handleOnClick}>
-            Submit files
-          </button>
-          {renderAlert()}
+          <input
+            className="upload-btn"
+            type="submit"
+            value="Submit files"
+            style={{ opacity: btnOpacity }}
+          />
+          <UploadAlert />
           <div className="margin-space">{displayFiles}</div>
         </form>
       </div>

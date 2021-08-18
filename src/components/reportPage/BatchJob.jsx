@@ -4,7 +4,7 @@ import StepEmail from "./StepEmail";
 import "./batch-job.css";
 
 const BatchJob = () => {
-  const FILE_LIMIT = null;
+  const FILE_LIMIT = Infinity;
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     email: "",
