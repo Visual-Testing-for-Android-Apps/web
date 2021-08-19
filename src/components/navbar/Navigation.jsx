@@ -5,7 +5,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 const Navigation = () => {
   return (
     <>
-      <Navbar bg="light" expand="sm" fixed="top">
+      <Navbar className="test" expand="sm">
         <Container>
           <Navbar.Brand
             href="/"
@@ -13,7 +13,6 @@ const Navigation = () => {
               backgroundColor: "#045198",
               width: "4rem",
               color: "white",
-              borderWidth: "thick",
             }}
           >
             VISION
@@ -24,10 +23,10 @@ const Navigation = () => {
               <Nav.Link href="/" style={{ color: "#045198" }}>
                 Home
               </Nav.Link>
-              <Nav.Link href="" style={{ color: "#045198" }}>
+              <Nav.Link href="#AboutSection" style={{ color: "#045198" }}>
                 About
               </Nav.Link>
-              <Nav.Link href="" style={{ color: "#045198" }}>
+              <Nav.Link href="/reportpage" style={{ color: "#045198" }}>
                 Live job
               </Nav.Link>
               <Nav.Link href="" style={{ color: "#045198" }}>

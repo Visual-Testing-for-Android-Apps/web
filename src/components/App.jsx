@@ -7,7 +7,7 @@ import Navigation from "./navbar/Navigation";
 function App() {
   return (
     <Router>
-      <Navigation></Navigation>
+      <Navigation />
       <Switch>
         <Route exact path="/">
           <MainPage />
