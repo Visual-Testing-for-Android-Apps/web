@@ -30,6 +30,7 @@ const UploadSection = (props) => {
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
+  const { fileLimit } = props;
 
   const removeFile = (file) => {
     const newFile = [...files];
@@ -94,7 +95,7 @@ const UploadSection = (props) => {
   useEffect(() => {
     if (files.length == 0) {
       setBtnOpacity(LOW_OPACITY);
-    } else if (props.fileLimit != null && files.length > props.fileLimit) {
+    } else if (fileLimit != null && files.length > fileLimit) {
       setShowAlert(true);
       setBtnOpacity(LOW_OPACITY);
       setAlertMessage(FILE_LIMIT_WARNING);
@@ -144,12 +145,18 @@ const UploadSection = (props) => {
     </Container>
   ));
 
+  // did not want to pass both functions into upload box so made one func instead
+  const setAlert = (alertMessage) => {
+    setShowAlert(true);
+    setAlertMessage(alertMessage);
+    console.log("set alert function");
+  };
   return (
     <div className="section" id="uploadSection">
       <div style={containerStyle}>
         <form style={formStyle} onSubmit={handleSubmit}>
           <Captcha />
-          <UploadBox setFiles={setFiles} fileLimit={props.fileLimit} />
+          <UploadBox setFiles={setFiles} fileLimit={fileLimit} setAlert={setAlert} />
           <input
             className="upload-btn"
             type="submit"
