@@ -46,6 +46,7 @@
 }
 
 .file-container {
+  margin-top: 1rem;
   background-color: #efefef;
   border: 0.1rem solid black;
   border-radius: 0.1rem;

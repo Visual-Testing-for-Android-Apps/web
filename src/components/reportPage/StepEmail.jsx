@@ -15,17 +15,22 @@ const StepEmail = (props) => {
   return (
     <div className="form-container">
       <form className="batch-form" onSubmit={handleSubmit}>
-        <div className="btn-container">
-          <button className="sbtn" onClick={back}>
+        <h2>Step 2: Enter email</h2>
+        <div className="field-btns">
+          <button className="stepbtn" onClick={back}>
             Back
           </button>
-          <h2>Step 2: Enter email</h2>
-          <button className="sbtn" onClick={next}>
+          <button className="stepbtn" onClick={next}>
             Next
           </button>
         </div>
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" onChange={handleChange} required />
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email..."
+          onChange={handleChange}
+          required
+        />
         <button className="submit-btn" type="submit">
           {status}
         </button>

@@ -23,11 +23,11 @@
   text-align: center;
 }
 
-.btn-container {
-  width: 500px;
+.field-btns {
+  padding: 1rem;
 }
 
-.sbtn {
+.stepbtn {
   margin: auto;
   width: 8rem;
   font-size: 1rem;
@@ -49,4 +49,10 @@
   background-color: green;
   color: white;
   text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-container {
+    width: 90%;
+  }
 }

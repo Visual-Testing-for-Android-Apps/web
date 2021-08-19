@@ -43,7 +43,7 @@ const BatchJob = () => {
 
 const Submit = () => {
   return (
-    <div>
+    <div className="form-container">
       <h1>done</h1>
     </div>
   );

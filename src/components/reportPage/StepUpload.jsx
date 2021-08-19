@@ -100,7 +100,7 @@ const StepUpload = (props) => {
       <form className="batch-form">
         <h2>Step 1: Upload files</h2>
         <button
-          className="sbtn"
+          className="stepbtn"
           onClick={files.length > 0 ? next : null}
           style={{ opacity: btnOpacity }}
         >

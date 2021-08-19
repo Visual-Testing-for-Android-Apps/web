@@ -27,6 +27,12 @@
   grid-template-areas: "header head2";
 }
 
+@media only screen and (max-width: 600px) {
+  .container {
+    display: flex;
+  }
+}
+
 .demo-section button {
   background-color: #03a64a;
   border: none;
