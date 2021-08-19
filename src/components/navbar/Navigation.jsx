@@ -5,7 +5,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 const Navigation = () => {
   return (
     <>
-      <Navbar className="test" expand="sm">
+      <Navbar className="navbar" expand="sm">
         <Container>
           <Navbar.Brand
             href="/"
@@ -19,7 +19,7 @@ const Navigation = () => {
           </Navbar.Brand>
           <Navbar.Toggle area-aria-controls="responsive-navbar" />
           <Navbar.Collapse id="responsive-navbar">
-            <Nav className="justify-content-end" style={{ width: "100%" }}>
+            <Nav className="justify-content-end">
               <Nav.Link href="/" style={{ color: "#045198" }}>
                 Home
               </Nav.Link>
