@@ -1,15 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./batch-job.css";
 import { Container, Row, Col } from "react-bootstrap";
-
 import UploadBox from "./UploadBox";
 import "../mainPage/mainpage.css";
 import "./upload.css";
 import Alert from "react-bootstrap/Alert";
 
 const StepUpload = (props) => {
-  const files = props.files;
-
   // File Upload Alert Messages
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState();
@@ -22,11 +19,12 @@ const StepUpload = (props) => {
   const LOW_OPACITY = 0.4;
   const FULL_OPACITY = 1;
 
-  const { next } = props;
+  const { next, files, fileLimit, setFiles } = props;
 
-  const setFiles = (newFiles) => props.setFiles(newFiles);
+  // const setFiles = (newFiles) => props.setFiles(newFiles);
 
-  const removeFile = (file) => {
+  const removeFile = (event, file) => {
+    event.preventDefault();
     const newFile = [...files];
     newFile.splice(file, 1);
     setFiles(newFile);
@@ -36,7 +34,7 @@ const StepUpload = (props) => {
   useEffect(() => {
     if (files.length == 0) {
       setBtnOpacity(LOW_OPACITY);
-    } else if (props.fileLimit != null && files.length > props.fileLimit) {
+    } else if (fileLimit != null && files.length > fileLimit) {
       setShowAlert(true);
       setBtnOpacity(LOW_OPACITY);
       setAlertMessage(FILE_LIMIT_WARNING);
@@ -61,7 +59,7 @@ const StepUpload = (props) => {
       <Row>
         <Col className="file-column">{file.name}</Col>
         <Col className="button-column">
-          <button className="remove-btn" onClick={() => removeFile(i)}>
+          <button className="remove-btn" onClick={(event) => removeFile(event, i)}>
             Remove
           </button>
         </Col>
@@ -82,18 +80,23 @@ const StepUpload = (props) => {
   };
 
   const handleOnClick = (event) => {
-    if (files.length > 0) {
-      return props.next();
+    event.preventDefault();
+    if (files.length == 0) {
+      // prevent submit button from working if no files are uploaded
+      setAlert(FILE_MIN_WARNING);
+    } else if (files.length > fileLimit) {
+      // prevent submit if exceed file limit
+      setAlert(FILE_LIMIT_WARNING);
     } else {
-      setShowAlert(true);
-      setAlertMessage(FILE_MIN_WARNING);
+      return next();
     }
   };
 
-  // const showFileAlertMin = () => {
-  //   setShowAlert(true);
-  //   setAlertMessage(FILE_MIN_WARNING);
-  // }
+  const setAlert = (alertMessage) => {
+    setShowAlert(true);
+    setAlertMessage(alertMessage);
+    console.log("set alert function");
+  };
 
   return (
     <div className="form-container">
@@ -101,7 +104,8 @@ const StepUpload = (props) => {
         <h2>Step 1: Upload files</h2>
         <button
           className="stepbtn"
-          onClick={files.length > 0 ? next : null}
+          onClick={handleOnClick}
+          // onClick={files.length > 0 ? next : null}
           style={{ opacity: btnOpacity }}
         >
           Next
@@ -110,7 +114,7 @@ const StepUpload = (props) => {
         <div className="section" id="uploadSection">
           <div style={containerStyle}>
             <div style={formStyle}>
-              <UploadBox setFiles={setFiles} fileLimit={props.fileLimit} />
+              <UploadBox setFiles={setFiles} fileLimit={props.fileLimit} setAlert={setAlert} />
 
               <div className="margin-space">{displayFiles}</div>
             </div>

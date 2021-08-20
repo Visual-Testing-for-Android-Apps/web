@@ -19,8 +19,7 @@ const UploadSection = (props) => {
   const [alertMessage, setAlertMessage] = useState();
 
   // File Upload Alert Messages
-  const FILE_LIMIT_WARNING =
-    "You have exceeded the maximum limit of " + props.fileLimit + " files.";
+  const FILE_LIMIT_WARNING = "You have exceeded the maximum limit of " + fileLimit + " files.";
   const FILE_MIN_WARNING = "Please upload a file";
 
   // submit button opacity values
@@ -50,12 +49,14 @@ const UploadSection = (props) => {
     // merged code from handleOnClick
     if (files.length == 0) {
       // prevent submit button from working if no files are uploaded
-      setShowAlert(true);
-      setAlertMessage(FILE_MIN_WARNING);
-    } else if (files.length > props.fileLimit) {
+      setAlert(FILE_MIN_WARNING);
+      // setShowAlert(true);
+      // setAlertMessage(FILE_MIN_WARNING);
+    } else if (files.length > fileLimit) {
       // prevent submit if exceed file limit
-      setShowAlert(true);
-      setAlertMessage(FILE_LIMIT_WARNING);
+      setAlert(FILE_LIMIT_WARNING);
+      // setShowAlert(true);
+      // setAlertMessage(FILE_LIMIT_WARNING);
     } else {
       // Run captcha check
       grecaptcha.execute();
@@ -96,9 +97,8 @@ const UploadSection = (props) => {
     if (files.length == 0) {
       setBtnOpacity(LOW_OPACITY);
     } else if (fileLimit != null && files.length > fileLimit) {
-      setShowAlert(true);
+      setAlert(FILE_LIMIT_WARNING);
       setBtnOpacity(LOW_OPACITY);
-      setAlertMessage(FILE_LIMIT_WARNING);
     } else {
       setBtnOpacity(FULL_OPACITY);
       // setUploadAlertState("hidden");
