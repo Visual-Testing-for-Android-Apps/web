@@ -1,5 +1,7 @@
 :root {
   --result-width: 18rem;
+  --result-height: 32rem;
+  --result-margin: 1rem;
 }
 
 .results-container {
@@ -9,15 +11,37 @@
 }
 
 .result {
-  margin: 1rem;
+  margin: var(--result-margin);
 
   /* 16:9 ratio */
-  height: 32rem;
+  height: var(--result-height);
   width: var(--result-width);
 }
 
-.video-result-explanation {
+.original-image {
+  /* 16:9 ratio */
+  height: var(--result-height);
+  width: var(--result-width);
+}
+
+.image-heatmap {
+  position: relative;
+
+  /* 16:9 ratio */
+  height: var(--result-height);
+  width: var(--result-width);
+
+  /* No idea why this extra .35rem is necessary */
+  bottom: calc(var(--result-height) + 0.35rem);
+}
+
+.image-heatmap:hover {
+  opacity: 0;
+}
+
+.result-explanation {
   text-align: center;
+  margin-left: var(--result-margin);
 
   /* Makes long explanations wrap */
   width: var(--result-width);
@@ -33,6 +57,11 @@
 
 .progress {
   width: 100%;
+}
+
+.image-result-container {
+  margin: 1rem;
+  width: var(--result-width);
 }
 
 @media only screen and (min-width: 1024px) {
