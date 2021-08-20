@@ -7,8 +7,9 @@ import Repository from "../../data/Repository";
 import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
 
-const ReportPage = () => {
-  const { files, email } = useLocation().state ?? {};
+const ReportPage = (props) => {
+  const { files } = props;
+  //const { files, email } = useLocation().state ?? {};
   const videos = files.filter((file) => file.type === "video/mp4");
   const images = files.filter((file) => file.type === "image/jpeg");
 
