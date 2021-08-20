@@ -83,7 +83,7 @@ const StepEmail = (props) => {
             className="stepbtn"
             onClick={handleSubmitJob}
             disabled={disableSubmit}
-            style={{ opacity: nextBtnOpacity }}
+            style={{ opacity: nextbtnopacity }}
           >
             Submit Job
           </button>

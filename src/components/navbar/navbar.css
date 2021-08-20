@@ -9,8 +9,7 @@
   font-weight: 400;
 }
 
-.justify-content-end :hover{
-  background-color:#000000;
+.justify-content-end :hover {
+  background-color: #000;
   text-decoration-color: black;
 }
-

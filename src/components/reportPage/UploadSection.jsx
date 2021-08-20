@@ -164,7 +164,7 @@ const UploadSection = (props) => {
             className="upload-btn"
             type="submit"
             value="Submit files"
-            style={{ opacity: btnOpacity }}
+            style={{ opacity: btnopacity }}
           />
           <UploadAlert />
           <div className="margin-space">{displayFiles}</div>

@@ -106,7 +106,7 @@ const StepUpload = (props) => {
           className="stepbtn"
           onClick={handleOnClick}
           // onClick={files.length > 0 ? next : null}
-          style={{ opacity: btnOpacity }}
+          style={{ opacity: btnopacity }}
         >
           Next
         </button>

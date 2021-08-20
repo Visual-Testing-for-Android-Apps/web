@@ -20,16 +20,16 @@ const Navigation = () => {
           <Navbar.Toggle area-aria-controls="responsive-navbar" />
           <Navbar.Collapse id="responsive-navbar">
             <Nav className="justify-content-end">
-              <Nav.Link href="/" style={{ color: "#FFFFFF" }}>
+              <Nav.Link href="/" style={{ color: "#fff" }}>
                 Home
               </Nav.Link>
-              <Nav.Link href="#AboutSection" style={{ color: "#FFFFFF" }}>
+              <Nav.Link href="#AboutSection" style={{ color: "#fff" }}>
                 About
               </Nav.Link>
-              <Nav.Link href="/livejob"  style={{ color: "#FFFFFF" }} >
+              <Nav.Link href="/livejob"  style={{ color: "#fff" }} >
                 Live Job
               </Nav.Link>
-              <Nav.Link href="/batchjob"   style={{ color: "#FFFFFF" }}>
+              <Nav.Link href="/batchjob"   style={{ color: "#fff" }}>
                 Batch Job
               </Nav.Link>
             </Nav>
