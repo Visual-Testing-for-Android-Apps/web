@@ -1,6 +1,7 @@
 import React, { useEffect, useState, forwardRef } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
+import { useHistory } from "react-router";
 
 import "./results-page.css";
 import Repository from "../../data/Repository";
@@ -17,6 +18,8 @@ const ReportPage = (props) => {
   const [videoResults, setVideoResults] = useState([]);
   const [imageResults, setImageResults] = useState([]);
 
+  // Use history for the bacl button (to live job)
+  const history = useHistory()
   useEffect(() => {
     const fetch = async () => {
       const repository = new Repository();
@@ -41,6 +44,7 @@ const ReportPage = (props) => {
 
   return (
     <>
+    <button className="back-btn" onClick={() => history.goBack()}>&laquo; Go Back</button>
       <div className="progress-indicator-container">
         <p>
           {progressValue} / {files?.length ?? 0} files processed

@@ -64,9 +64,23 @@
   width: var(--result-width);
 }
 
+.back-btn{
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  margin: auto;
+  width: 8rem;
+  font-size: 1rem;
+  border-radius: 2rem;
+  border: 0.2rem solid;
+  background-color: black;
+  color: white;
+}
+
 @media only screen and (min-width: 1024px) {
   .results-container {
     flex-direction: row;
     flex-wrap: wrap;
   }
 }
+
