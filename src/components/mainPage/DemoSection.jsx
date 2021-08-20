@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from "react";
+import React from "react";
 
 import "./mainpage.css";
 import "./demo-section.css";
@@ -14,8 +14,8 @@ const DemoSection = (props) => {
         <div className="item a">
           <h1 className="demo-title">VISUAL TESTING PLATFORM</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
+            Improve your user experience today! With the VISION reliable testing platform we'll
+            curate accurate design decisions for your application.
           </p>
           <button onClick={scrollToJobSelectionSection}>Get Started</button>
         </div>

@@ -76,6 +76,7 @@ const UploadSection = (props) => {
       // Check state to see if
       setCheck((prevCheck) => !prevCheck);
       console.log(check);
+      scrollToResults();
 
       // If CAPTCHA failure
       // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
@@ -137,7 +138,11 @@ const UploadSection = (props) => {
       </Alert>
     ) : null;
 
-  const checkCaptha = () => (check ? <ReportPage files={filesRef.current}></ReportPage> : null);
+  const myRef = useRef(null);
+  const scrollToResults = () => myRef.current.scrollIntoView();
+
+  const checkCaptha = () =>
+    check ? <ReportPage files={filesRef.current} ref={myRef}></ReportPage> : null;
 
   // Display uploaded files, plus 'Remove' button to delete file
   const displayFiles = files.map((file, i) => (
@@ -159,6 +164,7 @@ const UploadSection = (props) => {
     setAlertMessage(alertMessage);
     console.log("set alert function");
   };
+
   return (
     <div className="section" id="uploadSection">
       <div style={containerStyle}>
@@ -175,7 +181,7 @@ const UploadSection = (props) => {
           <div className="margin-space">{displayFiles}</div>
         </form>
       </div>
-      <div>{checkCaptha()}</div>
+      <div ref={myRef}>{checkCaptha()}</div>
     </div>
   );
 };
