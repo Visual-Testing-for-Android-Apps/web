@@ -4,6 +4,7 @@ import MainPage from "./mainPage/MainPage";
 import LiveJob from "./reportPage/LiveJob";
 import BatchJob from "./reportPage/BatchJob";
 import Navigation from "./navbar/Navigation";
+import ReportPage from "./reportPage/ReportPage";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path="/batchjob">
           <BatchJob />
+        </Route>
+        <Route path="/reportpage">
+          <ReportPage />
         </Route>
       </Switch>
     </Router>

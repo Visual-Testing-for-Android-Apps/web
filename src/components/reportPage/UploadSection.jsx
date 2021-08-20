@@ -10,10 +10,9 @@ import Alert from "react-bootstrap/Alert";
 import ReportPage from "./ReportPage";
 
 const UploadSection = (props) => {
-  // const history = useHistory();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
-  const [check, setCheck] = useState(false);
   const [btnOpacity, setBtnOpacity] = useState(LOW_OPACITY);
 
   // const [uploadAlertState, setUploadAlertState] = useState("hidden");
@@ -71,12 +70,8 @@ const UploadSection = (props) => {
     // If CAPTCHA success
     if (event.detail["success"]) {
       console.log("CAPTCHA Success");
-      //history.push("/reportpage", { files: filesRef.current, email: email });
+      history.push("/reportpage", { files: filesRef.current, email: email });
 
-      // Check state to see if
-      setCheck((prevCheck) => !prevCheck);
-      console.log(check);
-      scrollToResults();
 
       // If CAPTCHA failure
       // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
@@ -138,12 +133,6 @@ const UploadSection = (props) => {
       </Alert>
     ) : null;
 
-  const myRef = useRef(null);
-  const scrollToResults = () => myRef.current.scrollIntoView();
-
-  const checkCaptha = () =>
-    check ? <ReportPage files={filesRef.current} ref={myRef}></ReportPage> : null;
-
   // Display uploaded files, plus 'Remove' button to delete file
   const displayFiles = files.map((file, i) => (
     <Container className="file-container" key={file.path}>
@@ -181,7 +170,6 @@ const UploadSection = (props) => {
           <div className="margin-space">{displayFiles}</div>
         </form>
       </div>
-      <div ref={myRef}>{checkCaptha()}</div>
     </div>
   );
 };

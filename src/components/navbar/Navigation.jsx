@@ -27,10 +27,10 @@ const Navigation = () => {
                 About
               </Nav.Link>
               <Nav.Link href="/livejob"  style={{ color: "#FFFFFF" }} >
-                Live job
+                Live Job
               </Nav.Link>
               <Nav.Link href="/batchjob"   style={{ color: "#FFFFFF" }}>
-                Batch
+                Batch Job
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

@@ -8,8 +8,7 @@ import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
 
 const ReportPage = (props) => {
-  const { files } = props;
-  //const { files, email } = useLocation().state ?? {};
+  const { files, email } = useLocation().state ?? {};
   const videos = files.filter((file) => file.type === "video/mp4");
   const images = files.filter((file) => file.type === "image/jpeg");
 
