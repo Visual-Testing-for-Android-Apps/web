@@ -2,6 +2,7 @@ import React from "react";
 
 import "./mainpage.css";
 import "./demo-section.css";
+import DemoVideo from "./DemoVideo";
 
 const DemoSection = (props) => {
   const scrollToJobSelectionSection = () => {
@@ -18,6 +19,9 @@ const DemoSection = (props) => {
             curate accurate design decisions for your application.
           </p>
           <button onClick={scrollToJobSelectionSection}>Get Started</button>
+        </div>
+        <div className="item b">
+          <DemoVideo embedId="Fr4C4O5rD-8" />
         </div>
       </div>
     </div>

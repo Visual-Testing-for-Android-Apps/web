@@ -11,11 +11,11 @@ const Navigation = () => {
             href="/"
             style={{
               backgroundColor: "#0476d9",
-              width: "4rem",
+              width: "8rem",
               color: "white",
             }}
           >
-            VISION
+            <h1>VISION</h1>
           </Navbar.Brand>
           <Navbar.Toggle area-aria-controls="responsive-navbar" />
           <Navbar.Collapse id="responsive-navbar">
@@ -26,10 +26,10 @@ const Navigation = () => {
               <Nav.Link href="#AboutSection" style={{ color: "#fff" }}>
                 About
               </Nav.Link>
-              <Nav.Link href="/livejob"  style={{ color: "#fff" }} >
+              <Nav.Link href="/livejob" style={{ color: "#fff" }}>
                 Live Job
               </Nav.Link>
-              <Nav.Link href="/batchjob"   style={{ color: "#fff" }}>
+              <Nav.Link href="/batchjob" style={{ color: "#fff" }}>
                 Batch Job
               </Nav.Link>
             </Nav>
