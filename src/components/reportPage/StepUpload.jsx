@@ -20,8 +20,6 @@ const StepUpload = (props) => {
 
   const { next, files, fileLimit, setFiles } = props;
 
-  // const setFiles = (newFiles) => props.setFiles(newFiles);
-
   const removeFile = (event, file) => {
     event.preventDefault();
     const newFile = [...files];
@@ -46,11 +44,11 @@ const StepUpload = (props) => {
   // renders Alert
   const UploadAlert = () =>
     // if showAlert = true, return Alert component
-    showAlert ? (
+    showAlert && (
       <Alert variant="warning" className="upload-alert">
         {alertMessage}
       </Alert>
-    ) : null;
+    );
 
   // Display uploaded files, plus 'Remove' button to delete file
   const displayFiles = files.map((file, i) => (
@@ -101,12 +99,7 @@ const StepUpload = (props) => {
     <div className="form-container">
       <form className="batch-form">
         <h2>Step 1: Upload files</h2>
-        <button
-          className="stepbtn"
-          onClick={handleOnClick}
-          // onClick={files.length > 0 ? next : null}
-          style={{ opacity: btnOpacity }}
-        >
+        <button className="stepbtn" onClick={handleOnClick} style={{ opacity: btnOpacity }}>
           Next
         </button>
         <UploadAlert />

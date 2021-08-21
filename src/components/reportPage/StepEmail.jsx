@@ -37,7 +37,6 @@ const StepEmail = (props) => {
     event.preventDefault();
     // Run captcha check
     grecaptcha.execute();
-    // next();
   };
 
   // useCallback allows removing the event listener
@@ -48,7 +47,6 @@ const StepEmail = (props) => {
       console.log("CAPTCHA Success");
       // do something
       next(); // next page
-      //history.push("/reportpage", { files: filesRef.current, email: email });
 
       // If CAPTCHA failure
       // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
@@ -89,7 +87,6 @@ const StepEmail = (props) => {
           </button>
         </div>
         <Captcha />
-        {/* <EmailInput/>  */}
         <input
           type="email"
           id="email"

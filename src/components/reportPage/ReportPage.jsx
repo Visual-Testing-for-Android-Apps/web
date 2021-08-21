@@ -18,8 +18,7 @@ const ReportPage = (props) => {
   const [videoResults, setVideoResults] = useState([]);
   const [imageResults, setImageResults] = useState([]);
 
-  // Use history for the bacl button (to live job)
-  const history = useHistory()
+  const history = useHistory();
   useEffect(() => {
     const fetch = async () => {
       const repository = new Repository();
@@ -44,7 +43,9 @@ const ReportPage = (props) => {
 
   return (
     <>
-    <button className="back-btn" onClick={() => history.goBack()}>&laquo; Go Back</button>
+      <button className="back-btn" onClick={() => history.goBack()}>
+        &laquo; Go Back
+      </button>
       <div className="progress-indicator-container">
         <p>
           {progressValue} / {files?.length ?? 0} files processed

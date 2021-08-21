@@ -105,11 +105,11 @@ const UploadSection = (props) => {
   // renders Alert
   const UploadAlert = () =>
     // if showAlert = true, return Alert component
-    showAlert ? (
+    showAlert && (
       <Alert variant="warning" className="upload-alert">
         {alertMessage}
       </Alert>
-    ) : null;
+    );
 
   // Display uploaded files, plus 'Remove' button to delete file
   const displayFiles = files.map((file, i) => (
