@@ -158,7 +158,7 @@ const containerStyle = {
 };
 
 const formStyle = {
-  margin: "2rem 1rem",
+  margin: "1rem 1rem",
   width: "clamp(5rem, 30rem, 50rem)",
   display: "flex",
   flexDirection: "column",
