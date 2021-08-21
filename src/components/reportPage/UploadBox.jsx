@@ -7,7 +7,7 @@ const UploadBox = (props) => {
     props.setFiles((existingFiles) => [...existingFiles, ...files]);
   }, []);
   const { setAlert, fileLimit } = props;
-  const MAX_FILE_ALERT = "Please upload only up to " + fileLimit + " valid files.";
+  const MAX_FILE_ALERT = `Please upload only up to ${fileLimit} valid files.`;
   const INVALID_FILETYPE = "You are trying to upload invalid file types.";
   const onDropRejected = (fileRejections) => {
     const rejectFiles = fileRejections.length;
@@ -16,7 +16,6 @@ const UploadBox = (props) => {
         setAlert(MAX_FILE_ALERT);
       } else {
         setAlert(INVALID_FILETYPE);
-        console.log("invalid");
       }
     }
   };

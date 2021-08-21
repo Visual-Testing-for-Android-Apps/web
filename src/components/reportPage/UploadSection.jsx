@@ -20,7 +20,7 @@ const UploadSection = (props) => {
   const [alertMessage, setAlertMessage] = useState();
 
   // File Upload Alert Messages
-  const FILE_LIMIT_WARNING = "You have exceeded the maximum limit of " + fileLimit + " files.";
+  const FILE_LIMIT_WARNING = `You have exceeded the maximum limit of ${fileLimit} files.`;
   const FILE_MIN_WARNING = "Please upload a file";
 
   // submit button opacity values
@@ -51,13 +51,9 @@ const UploadSection = (props) => {
     if (files.length == 0) {
       // prevent submit button from working if no files are uploaded
       setAlert(FILE_MIN_WARNING);
-      // setShowAlert(true);
-      // setAlertMessage(FILE_MIN_WARNING);
     } else if (files.length > fileLimit) {
       // prevent submit if exceed file limit
       setAlert(FILE_LIMIT_WARNING);
-      // setShowAlert(true);
-      // setAlertMessage(FILE_LIMIT_WARNING);
     } else {
       // Run captcha check
       grecaptcha.execute();
@@ -71,7 +67,6 @@ const UploadSection = (props) => {
     if (event.detail["success"]) {
       console.log("CAPTCHA Success");
       history.push("/reportpage", { files: filesRef.current, email: email });
-
 
       // If CAPTCHA failure
       // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
@@ -103,26 +98,9 @@ const UploadSection = (props) => {
       setBtnOpacity(LOW_OPACITY);
     } else {
       setBtnOpacity(FULL_OPACITY);
-      // setUploadAlertState("hidden");
       setShowAlert(false);
     }
   }, [files.length]);
-
-  // prevent button from working if no files are uploaded / exceed file limit
-  // const handleOnClick = (event) => {
-  //   if (files.length == 0) {
-  //     event.preventDefault();
-  //     // setUploadAlertState("visible");
-  //     setShowAlert(true);
-  //     setAlertMessage(FILE_MIN_WARNING);
-  //   } else if (files.length > props.fileLimit) {
-
-  //       event.preventDefault();
-  //       setShowAlert(true);
-  //       setAlertMessage(FILE_LIMIT_WARNING);
-  //   }
-
-  // };
 
   // renders Alert
   const UploadAlert = () =>

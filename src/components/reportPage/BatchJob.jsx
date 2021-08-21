@@ -82,27 +82,4 @@ const Submit = () => {
   );
 };
 
-/* const BatchJob = () => {
-  const [status, setStatus] = useState("Submit");
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Sending...");
-    const { email } = e.target.elements;
-    setStatus("Submit");
-    console.log(email.value);
-  };
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" required />
-        </div>
-        <button type="submit">{status}</button>
-      </form>
-      <UploadSection />
-    </div>
-  );
-}; */
-
 export default BatchJob;

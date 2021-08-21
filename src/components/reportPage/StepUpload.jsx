@@ -10,8 +10,7 @@ const StepUpload = (props) => {
   // File Upload Alert Messages
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState();
-  const FILE_LIMIT_WARNING =
-    "You have exceeded the maximum limit of " + props.fileLimit + " files.";
+  const FILE_LIMIT_WARNING = `You have exceeded the maximum limit of ${fileLimit} files.`;
   const FILE_MIN_WARNING = "Please upload a file";
 
   // submit button opacity values

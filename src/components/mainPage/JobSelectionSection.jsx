@@ -7,23 +7,22 @@ import { useHistory } from "react-router-dom";
 const JobSelectionSection = forwardRef((props, ref) => {
   const history = useHistory();
   const handleLiveJob = () => {
-    console.log('pls');
     history.push("/livejob");
   };
 
   const handleBatchJob = () => {
     history.push("/batchjob");
-  } 
+  };
 
-  function renderButton(icon, jobType, description, someFunction) {
+  function JobButton(props) {
     return (
-      <button className="jobBtn" onClick={someFunction}>
+      <button className="jobBtn" onClick={props.clickHandler}>
         <div className="icon-container">
-          <img className="img-size" src={icon} />
+          <img className="img-size" src={props.icon} />
         </div>
 
-        <h1 className="jobType">{jobType}</h1>
-        <p className="jobDescription">{description}</p>
+        <h1 className="jobType">{props.jobType}</h1>
+        <p className="jobDescription">{props.description}</p>
       </button>
     );
   }
@@ -34,19 +33,19 @@ const JobSelectionSection = forwardRef((props, ref) => {
         <h1 className="title">What do you want to do?</h1>
       </div>
       <div className="btnContainer">
-        {renderButton(
-          LiveIcon,
-          "LIVE JOB",
-          "See results in real time. Up to 10 images and videos",
-         () => handleLiveJob()
-        )}
+        <JobButton
+          icon={LiveIcon}
+          jobType="LIVE JOB"
+          description="See results in real time. Up to 10 images and videos"
+          clickHandler={() => handleLiveJob()}
+        />
         <span className="btn-space"></span>
-        {renderButton(
-          BatchIcon,
-          "BATCH JOB",
-          "Submit up to 100 images and videos. Get an email report",
-          () => handleBatchJob()
-        )}
+        <JobButton
+          icon={BatchIcon}
+          jobType="BATCH JOB"
+          description="Submit up to 100 images and videos. Get an email report"
+          clickHandler={() => handleBatchJob()}
+        />
       </div>
     </div>
   );
