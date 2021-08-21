@@ -22,7 +22,9 @@ const JobSelectionSection = forwardRef((props, ref) => {
         </div>
 
         <h1 className="jobType">{props.jobType}</h1>
-        <p className="jobDescription">{props.description}</p>
+        <div className="description">
+          <p className="jobDescription">{props.description}</p>
+        </div>
       </button>
     );
   }
