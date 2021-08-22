@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import { createImageDataUrlFromBase64 } from "../../util/FileUtil";
-import { inferno256 } from "./gradients256";
 import "./results-page.css";
 
 /**
@@ -9,7 +8,7 @@ import "./results-page.css";
  * @param {{ original_img: String, res_img: String, bug_type: Array<String> }} imageResult
  * @returns
  */
-const ImageResult = ({ imageResult }) => {
+const ImageResult = ({ imageResult, colourScheme }) => {
   const HEATMAP_ALPHA = 130;
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
@@ -66,7 +65,7 @@ const ImageResult = ({ imageResult }) => {
       // Raw heatmap is black and white, colour the pixels by using the value as an index for a colour scheme array.
       const numPixels = data.width * data.height;
       for (let i = 0; i < numPixels * 4; i += 4) {
-        const [red, green, blue] = inferno256[data.data[i]];
+        const [red, green, blue] = colourScheme[data.data[i]];
         data.data[i] = red;
         data.data[i + 1] = green;
         data.data[i + 2] = blue;
@@ -76,7 +75,7 @@ const ImageResult = ({ imageResult }) => {
       resultImageCanvasContext.putImageData(data, 0, 0);
     };
     resultImage.src = resultImageDataUrl;
-  }, [resultImageDataUrl]);
+  }, [resultImageDataUrl, colourScheme]);
 
   return (
     <div>

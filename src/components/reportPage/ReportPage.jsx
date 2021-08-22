@@ -6,16 +6,20 @@ import "./results-page.css";
 import Repository from "../../data/Repository";
 import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
+import { inferno256 } from "./gradients256";
+import ColourSchemeSelector from "./ColourSchemeSelector";
 
 const ReportPage = () => {
   const { files, email } = useLocation().state ?? {};
-  const videos = files.filter((file) => file.type === "video/mp4");
-  const images = files.filter((file) => file.type === "image/jpeg");
+  const videos = files?.filter((file) => file.type === "video/mp4");
+  const images = files?.filter((file) => file.type === "image/jpeg");
 
   const [progressValue, setProgressValue] = useState(0);
 
   const [videoResults, setVideoResults] = useState([]);
   const [imageResults, setImageResults] = useState([]);
+
+  const [colourScheme, setColourScheme] = useState(inferno256);
 
   useEffect(() => {
     const fetch = async () => {
@@ -51,12 +55,13 @@ const ReportPage = () => {
           now={files ? (progressValue / files.length) * 100 + 1 : 0}
         />
       </div>
+      <ColourSchemeSelector setColourScheme={setColourScheme} />
       <div className="results-container">
         {videoResults.map((result, index) => (
           <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
         ))}
         {imageResults.map((result, index) => (
-          <ImageResult key={`image-${index}`} imageResult={result} />
+          <ImageResult key={`image-${index}`} imageResult={result} colourScheme={colourScheme} />
         ))}
       </div>
     </>

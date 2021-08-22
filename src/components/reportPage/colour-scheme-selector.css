@@ -1,0 +1,27 @@
+.colour-scheme-label {
+  color: white;
+  margin: 0.2rem;
+  text-shadow: 0.01rem 0.01rem 0.05rem black;
+}
+
+.colour-scheme-container {
+  border-radius: 1rem;
+  text-align: center;
+  background-repeat: repeat-y;
+  margin: 0.5rem;
+  border: none;
+  background-size: contain;
+  min-width: 8rem;
+}
+
+.colour-scheme-container:hover {
+  filter: saturate(0.5);
+}
+
+.colour-scheme-container:active {
+  transform: translateY(0.1rem);
+}
+
+.colour-scheme-selector-container {
+  margin: 1rem;
+}
