@@ -46,7 +46,7 @@ const ReportPage = () => {
           {progressValue} / {files?.length ?? 0} files processed
         </p>
         <ProgressBar
-          animated
+          animated={progressValue != files?.length}
           className="progress"
           now={files ? (progressValue / files.length) * 100 + 1 : 0}
         />
