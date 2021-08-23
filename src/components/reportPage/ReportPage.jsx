@@ -11,7 +11,7 @@ import ImageResult from "./ImageResult";
 const ReportPage = (props) => {
   const { files, email } = useLocation().state ?? {};
   const videos = files.filter((file) => file.type === "video/mp4");
-  const images = files.filter((file) => file.type === "image/jpeg");
+  const images = files.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
 
   const [progressValue, setProgressValue] = useState(0);
 

@@ -19,7 +19,7 @@ const UploadBox = (props) => {
       }
     }
   };
-  const acceptedFileTypes = [".jpg", ".mp4", ".gif"];
+  const acceptedFileTypes = ["image/jpeg", "image/png", "video/mp4"];
   const maxFiles = props.fileLimit == Infinity ? 0 : props.fileLimit;
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -43,7 +43,8 @@ const UploadBox = (props) => {
             {maxFiles != 0 ? <em> (Maximum number of files: {maxFiles}) </em> : null}
           </p>
           <p className="accepted-file-formats-text">
-            Accepted file formats: {acceptedFileTypes.join(", ")}
+            Accepted file formats:{" "}
+            {acceptedFileTypes.map((format) => format.split("/")[1]).join(", ")}
           </p>
         </>
       )}
