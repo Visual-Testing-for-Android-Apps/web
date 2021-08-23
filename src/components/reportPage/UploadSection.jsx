@@ -128,7 +128,6 @@ const UploadSection = (props) => {
   const setAlert = (alertMessage) => {
     setShowAlert(true);
     setAlertMessage(alertMessage);
-    console.log("set alert function");
   };
 
   return (

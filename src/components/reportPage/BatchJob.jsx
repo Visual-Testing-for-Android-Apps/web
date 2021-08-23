@@ -28,14 +28,10 @@ const BatchJob = () => {
     // Set email
     setEmail(email.value);
     setEmailVerified(true);
-    console.log(emailVerified);
-    console.log(email.value);
   };
 
   const next = () => {
-    console.log(currentStep);
     setCurrentStep(currentStep + 1);
-    console.log(currentStep);
   };
   const back = () => {
     setCurrentStep(currentStep - 1);
