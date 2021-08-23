@@ -27,8 +27,6 @@ const UploadBox = (props) => {
     maxFiles,
     onDropRejected,
   });
-  const IMAGE_WIDTH = 110;
-  const IMAGE_HEIGHT = 90;
 
   return (
     <div className="box" {...getRootProps()}>
