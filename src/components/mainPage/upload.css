@@ -29,6 +29,7 @@
 }
 
 .box {
+  position: relative;
   border: 0.2rem dashed darkblue;
   border-radius: 1rem;
   text-align: center;
@@ -63,7 +64,7 @@
 .file-column {
   position: relative;
   transform: translateY(13%);
-  max-width: 20rem;   /**  Max width for the coloumn  **/
+  max-width: 20rem; /**  Max width for the coloumn  **/
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -77,4 +78,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.accepted-file-formats-text {
+  position: absolute;
+  font-size: smaller;
+  user-select: none;
+  bottom: 0;
+  right: 0.5rem;
+  color: grey;
 }
