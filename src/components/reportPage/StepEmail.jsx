@@ -98,7 +98,6 @@ const StepEmail = (props) => {
         <button className="submit-btn" type="submit">
           {status}
         </button>
-        <p>{email}</p>
       </form>
     </div>
   );

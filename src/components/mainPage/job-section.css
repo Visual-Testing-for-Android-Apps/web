@@ -45,6 +45,7 @@
 
 .jobType {
   font-family: "Signika", sans-serif;
+  margin-top: 0.6rem;
 }
 
 .jobDescription {
@@ -73,7 +74,8 @@
   min-width: 3rem;
   min-height: 4rem;
   overflow: hidden;
-  margin-bottom: 0.7rem;
+
+  /* margin-bottom: 0rem; */
 }
 
 .icon-container img {
@@ -104,10 +106,17 @@ button {
   .mainSection {
     width: 100%;
     background-color: #0476d9;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-top: 2.2rem;
+    padding-bottom: 4rem;
   }
 
   .selection-heading {
     padding: 1rem;
+    margin-bottom: 0.6rem;
   }
 
   .jobBtn {
@@ -119,5 +128,16 @@ button {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
+  }
+
+  .btnContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .btn-space {
+    padding-block: 1rem;
   }
 }

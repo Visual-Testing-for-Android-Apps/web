@@ -9,7 +9,7 @@ import DemoSection from "./DemoSection";
 const MainPage = () => {
   const jobSectionRef = useRef();
   return (
-    <div className="section__container">
+    <div className="main_section__container">
       <DemoSection jobSectionRef={jobSectionRef} />
       <JobSelectionSection ref={jobSectionRef} />
       <AboutSection />

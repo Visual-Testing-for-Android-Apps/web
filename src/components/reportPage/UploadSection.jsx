@@ -7,7 +7,6 @@ import "../mainPage/mainpage.css";
 import "./upload.css";
 import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
-import ReportPage from "./ReportPage";
 
 const UploadSection = (props) => {
   const history = useHistory();
