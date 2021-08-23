@@ -17,6 +17,7 @@ const ColourSchemeSelector = ({ setColourScheme }) => {
 
   return (
     <div className="colour-scheme-selector-container">
+      <p>Select colour scheme:</p>
       {colourSchemes.map((scheme, i) => (
         <button
           key={`scheme-${i}`}

@@ -8,7 +8,8 @@
   border-radius: 1rem;
   text-align: center;
   background-repeat: repeat-y;
-  margin: 0.5rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
   border: none;
   background-size: contain;
   min-width: 8rem;
@@ -23,5 +24,5 @@
 }
 
 .colour-scheme-selector-container {
-  margin: 1rem;
+  margin: 1rem 2rem 0 2rem;
 }
