@@ -8,8 +8,11 @@ const UploadBox = (props) => {
     props.setFiles((existingFiles) => [...existingFiles, ...files]);
   }, []);
 
-  const accept = [".jpg", ".mp4"];
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept });
+  const acceptedFileTypes = [".jpg", ".mp4"];
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: acceptedFileTypes,
+  });
   const IMAGE_WIDTH = 110;
   const IMAGE_HEIGHT = 90;
 
@@ -25,7 +28,9 @@ const UploadBox = (props) => {
           Drag 'n' drop images here, or <b>click</b> to select files
         </p>
       )}
-      <p className="accepted-file-formats-text">Accepted file formats: {accept.join(", ")}</p>
+      <p className="accepted-file-formats-text">
+        Accepted file formats: {acceptedFileTypes.join(", ")}
+      </p>
     </div>
   );
 };
