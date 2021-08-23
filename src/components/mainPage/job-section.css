@@ -1,0 +1,143 @@
+.mainSection {
+  background-color: #0476d9;
+  width: auto;
+  padding-top: 5rem;
+  padding-bottom: 8rem;
+}
+
+.selection-heading {
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-family: "Signika", sans-serif;
+  font-size: xxx-large;
+  color: white;
+  text-align: center;
+}
+
+.jobBtn {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 1.8rem;
+  color: #0476d9;
+  padding-block: 2rem;
+  width: 30%;
+  height: 15rem;
+  min-width: 12rem;
+  border: white;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.jobBtn:hover {
+  color: rgb(104, 194, 230);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.598);
+}
+
+.description {
+  width: 52%;
+  min-width: 10rem;
+}
+
+.jobType {
+  font-family: "Signika", sans-serif;
+  margin-top: 0.6rem;
+}
+
+.jobDescription {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.4;
+}
+
+.btnContainer {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  position: relative;
+  height: 50%;
+  width: 100%;
+}
+
+.btn-space {
+  padding-right: 7%;
+}
+
+.icon-container {
+  width: 50%;
+  height: 60%;
+  max-height: 4rem;
+  min-width: 3rem;
+  min-height: 4rem;
+  overflow: hidden;
+
+  /* margin-bottom: 0rem; */
+}
+
+.icon-container img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+button {
+  margin-top: 0;
+  color: #00325e;
+  font: bold;
+  background-color: white;
+  border: 2px solid #03a64a;
+  padding: 0.6rem;
+  transition-duration: 0.5s;
+  animation: ease-in-out;
+}
+
+.btnContainer button:hover {
+  background-image: linear-gradient(to left, #03a64a, #00325e);
+  transform: scale(1.3);
+  border: none;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .mainSection {
+    width: 100%;
+    background-color: #0476d9;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-top: 2.2rem;
+    padding-bottom: 4rem;
+  }
+
+  .selection-heading {
+    padding: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .jobBtn {
+    width: 40%;
+    padding: 0.5rem;
+  }
+
+  .jobDescription {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .btnContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .btn-space {
+    padding-block: 1rem;
+  }
+}
