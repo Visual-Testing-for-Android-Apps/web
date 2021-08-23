@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, forwardRef } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
+import { useHistory } from "react-router";
 
 import "./results-page.css";
 import Repository from "../../data/Repository";
 import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
 
-const ReportPage = () => {
+const ReportPage = (props) => {
   const { files, email } = useLocation().state ?? {};
   const videos = files.filter((file) => file.type === "video/mp4");
   const images = files.filter((file) => file.type === "image/jpeg");
@@ -17,6 +18,7 @@ const ReportPage = () => {
   const [videoResults, setVideoResults] = useState([]);
   const [imageResults, setImageResults] = useState([]);
 
+  const history = useHistory();
   useEffect(() => {
     const fetch = async () => {
       const repository = new Repository();
@@ -41,12 +43,15 @@ const ReportPage = () => {
 
   return (
     <>
+      <button className="back-btn" onClick={() => history.goBack()}>
+        &laquo; Go Back
+      </button>
       <div className="progress-indicator-container">
         <p>
           {progressValue} / {files?.length ?? 0} files processed
         </p>
         <ProgressBar
-          animated
+          animated={progressValue != files.length}
           className="progress"
           now={files ? (progressValue / files.length) * 100 + 1 : 0}
         />

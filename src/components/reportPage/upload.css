@@ -5,6 +5,10 @@
   font-stretch: 25% 151%;
 }
 
+.section__container h1 {
+  margin-top: 1.8rem;
+}
+
 .upload-btn {
   margin: auto;
   margin-top: 0.8rem;
@@ -30,7 +34,7 @@
 
 .box {
   position: relative;
-  border: 0.2rem dashed darkblue;
+  border: 0.2rem dashed #045198;
   border-radius: 1rem;
   text-align: center;
   background-color: #efefef;
@@ -39,7 +43,8 @@
 }
 
 .box:hover {
-  border: 0.2rem solid darkblue;
+  border: 0.2rem solid #045198;
+  cursor: pointer;
 }
 
 .upload-alert {
@@ -47,6 +52,7 @@
 }
 
 .file-container {
+  margin-top: 1rem;
   background-color: #efefef;
   border: 0.1rem solid black;
   border-radius: 0.1rem;
