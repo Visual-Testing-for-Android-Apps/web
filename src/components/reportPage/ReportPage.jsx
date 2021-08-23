@@ -55,7 +55,7 @@ const ReportPage = () => {
           now={files ? (progressValue / files.length) * 100 + 1 : 0}
         />
       </div>
-      <ColourSchemeSelector setColourScheme={setColourScheme} />
+      {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
       <div className="results-container">
         {videoResults.map((result, index) => (
           <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
