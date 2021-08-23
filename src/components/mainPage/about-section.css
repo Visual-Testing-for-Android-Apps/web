@@ -2,6 +2,7 @@
   font-family: "Signika", sans-serif;
   font-size: xx-large;
   margin-top: 2rem;
+  color: #045198;
 }
 
 .about-section p {
@@ -14,9 +15,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 4rem;
+  padding-top: 2rem;
   padding-bottom: 2rem;
-  color: #00c2ff;
+  color: black;
 }
 
 @media only screen and (min-width: 1024px) {

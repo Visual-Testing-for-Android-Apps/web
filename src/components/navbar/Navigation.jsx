@@ -10,27 +10,27 @@ const Navigation = () => {
           <Navbar.Brand
             href="/"
             style={{
-              backgroundColor: "#045198",
-              width: "4rem",
+              backgroundColor: "#0476d9",
+              width: "8rem",
               color: "white",
             }}
           >
-            VISION
+            <h1>VISION</h1>
           </Navbar.Brand>
           <Navbar.Toggle area-aria-controls="responsive-navbar" />
           <Navbar.Collapse id="responsive-navbar">
             <Nav className="justify-content-end">
-              <Nav.Link href="/" style={{ color: "#045198" }}>
+              <Nav.Link href="/" style={{ color: "#fff" }}>
                 Home
               </Nav.Link>
-              <Nav.Link href="/#AboutSection" style={{ color: "#045198" }}>
+              <Nav.Link href="/#AboutSection" style={{ color: "#fff" }}>
                 About
               </Nav.Link>
-              <Nav.Link href="/reportpage" style={{ color: "#045198" }}>
-                Live job
+              <Nav.Link href="/livejob" style={{ color: "#fff" }}>
+                Live Job
               </Nav.Link>
-              <Nav.Link href="" style={{ color: "#045198" }}>
-                Batch
+              <Nav.Link href="/batchjob" style={{ color: "#fff" }}>
+                Batch Job
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
