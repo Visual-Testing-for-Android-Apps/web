@@ -23,7 +23,7 @@ const Navigation = () => {
               <Nav.Link href="/" style={{ color: "#fff" }}>
                 Home
               </Nav.Link>
-              <Nav.Link href="#AboutSection" style={{ color: "#fff" }}>
+              <Nav.Link href="/#AboutSection" style={{ color: "#fff" }}>
                 About
               </Nav.Link>
               <Nav.Link href="/livejob" style={{ color: "#fff" }}>
