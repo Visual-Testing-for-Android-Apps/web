@@ -65,6 +65,16 @@
   width: var(--result-width);
 }
 
+.video-result-explanation {
+  margin: 0 1rem;
+}
+
+.video-result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .back-btn {
   text-decoration: none;
   display: inline-block;
@@ -82,5 +92,18 @@
   .results-container {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .video-result-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .video-result-explanation {
+    margin: 0 4rem;
+    border: 0.06rem solid grey;
+    padding: 3rem;
+    max-width: 30rem;
   }
 }
