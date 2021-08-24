@@ -16,19 +16,21 @@ const ColourSchemeSelector = ({ setColourScheme }) => {
   ];
 
   return (
-    <div className="colour-scheme-selector-container">
-      <p>Select colour scheme:</p>
-      {colourSchemes.map((scheme, i) => (
-        <button
-          key={`scheme-${i}`}
-          className="colour-scheme-container"
-          style={{ backgroundImage: `url(${scheme.previewImage})` }}
-          onClick={() => setColourScheme(scheme.gradient)}
-        >
-          <p className="colour-scheme-label">{scheme.name}</p>
-        </button>
-      ))}
-    </div>
+    <>
+      <p className="color-scheme-explantation">Select colour scheme:</p>
+      <div className="colour-scheme-selector-container">
+        {colourSchemes.map((scheme, i) => (
+          <button
+            key={`scheme-${i}`}
+            className="colour-scheme-container"
+            style={{ backgroundImage: `url(${scheme.previewImage})` }}
+            onClick={() => setColourScheme(scheme.gradient)}
+          >
+            <p className="colour-scheme-label">{scheme.name}</p>
+          </button>
+        ))}
+      </div>
+    </>
   );
 };
 

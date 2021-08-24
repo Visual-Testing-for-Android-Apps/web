@@ -4,10 +4,15 @@
   --result-margin: 1rem;
 }
 
+.results {
+  padding: 1rem;
+}
+
 .results-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .result {
@@ -16,6 +21,11 @@
   /* 16:9 ratio */
   height: var(--result-height);
   width: var(--result-width);
+}
+
+.result-container {
+  border: black solid 0.1rem;
+  margin: 0.5rem;
 }
 
 .original-image {
@@ -60,11 +70,6 @@
   width: 100%;
 }
 
-.image-result-container {
-  margin: 1rem;
-  width: var(--result-width);
-}
-
 .back-btn {
   text-decoration: none;
   display: inline-block;
@@ -82,5 +87,9 @@
   .results-container {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .results {
+    padding: 1rem 10rem 10rem 10rem;
   }
 }

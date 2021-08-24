@@ -78,15 +78,15 @@ const ImageResult = ({ imageResult, colourScheme }) => {
   }, [resultImageDataUrl, colourScheme]);
 
   return (
-    <div>
+    <div className="result-container">
       <div className="result">
         <canvas ref={originalImageCanvasRef} className="original-image" />
         <canvas ref={resultImageCanvasRef} className="image-heatmap" />
       </div>
       <p className="result-explanation">
         {imageResult["bug_type"].length == 0
-          ? "No defect found"
-          : imageResult["bug_type"].join(", ")}
+          ? "No defects found"
+          : "Defects: ".concat(imageResult["bug_type"].join(", "))}
       </p>
     </div>
   );

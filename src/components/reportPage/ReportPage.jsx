@@ -47,27 +47,29 @@ const ReportPage = (props) => {
 
   return (
     <>
-      <button className="back-btn" onClick={() => history.goBack()}>
-        &laquo; Go Back
-      </button>
-      <div className="progress-indicator-container">
-        <p>
-          {progressValue} / {files?.length ?? 0} files processed
-        </p>
-        <ProgressBar
-          animated={progressValue != files.length}
-          className="progress"
-          now={files ? (progressValue / files.length) * 100 + 1 : 0}
-        />
-      </div>
-      {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
-      <div className="results-container">
-        {videoResults.map((result, index) => (
-          <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
-        ))}
-        {imageResults.map((result, index) => (
-          <ImageResult key={`image-${index}`} imageResult={result} colourScheme={colourScheme} />
-        ))}
+      <div className="results">
+        <button className="back-btn" onClick={() => history.goBack()}>
+          &laquo; Go Back
+        </button>
+        <div className="progress-indicator-container">
+          <p>
+            {progressValue} / {files?.length ?? 0} files processed
+          </p>
+          <ProgressBar
+            animated={progressValue != files.length}
+            className="progress"
+            now={files ? (progressValue / files.length) * 100 + 1 : 0}
+          />
+        </div>
+        {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
+        <div className="results-container">
+          {videoResults.map((result, index) => (
+            <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
+          ))}
+          {imageResults.map((result, index) => (
+            <ImageResult key={`image-${index}`} imageResult={result} colourScheme={colourScheme} />
+          ))}
+        </div>
       </div>
     </>
   );
