@@ -33,6 +33,7 @@
 }
 
 .box {
+  position: relative;
   border: 0.2rem dashed #045198;
   border-radius: 1rem;
   text-align: center;
@@ -83,4 +84,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.accepted-file-formats-text {
+  position: absolute;
+  font-size: smaller;
+  user-select: none;
+  bottom: 0;
+  right: 0.5rem;
+  color: grey;
 }
