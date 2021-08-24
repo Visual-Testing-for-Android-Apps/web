@@ -83,6 +83,14 @@
   color: white;
 }
 
+.filename {
+  text-align: center;
+  margin-left: var(--result-margin);
+
+  /* Makes long explanations wrap */
+  width: var(--result-width);
+}
+
 @media only screen and (min-width: 1024px) {
   .results-container {
     flex-direction: row;

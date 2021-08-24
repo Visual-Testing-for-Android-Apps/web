@@ -67,7 +67,12 @@ const ReportPage = (props) => {
             <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
           ))}
           {imageResults.map((result, index) => (
-            <ImageResult key={`image-${index}`} imageResult={result} colourScheme={colourScheme} />
+            <ImageResult
+              key={`image-${index}`}
+              imageFile={images[index]}
+              imageResult={result}
+              colourScheme={colourScheme}
+            />
           ))}
         </div>
       </div>

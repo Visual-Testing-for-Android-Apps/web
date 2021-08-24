@@ -18,6 +18,7 @@ const VideoResult = ({ videoFile, videoResult }) => {
 
   return (
     <div className="result-container">
+      <p className="filename">{videoFile.name}</p>
       <video className="result" src={dataUrl} autoPlay loop controls />
       <p className="result-explanation">{"Defect: ".concat(videoResult.explanation)}</p>
     </div>

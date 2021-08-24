@@ -29,12 +29,22 @@
 
 .colour-scheme-selector-container {
   position: sticky;
-  top: 0;
+  z-index: 1;
+  top: -1px; /* ➜ the trick */
   display: flex;
+
+  /* padding: 1em; */
+
+  /* padding-top: calc(1em + 1px);    ➜ compensate for the trick */
   justify-content: center;
   background-color: white;
 
   /* border-bottom: royalblue solid; */
+}
+
+/* styles for when the color scheme container is in sticky mode */
+.colour-scheme-selector-container.isSticky {
+  background-color: #0476d9;
 }
 
 .color-scheme-explantation {

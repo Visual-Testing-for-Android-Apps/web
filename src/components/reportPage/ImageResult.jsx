@@ -8,7 +8,7 @@ import "./results-page.css";
  * @param {{ original_img: String, res_img: String, bug_type: Array<String> }} imageResult
  * @returns
  */
-const ImageResult = ({ imageResult, colourScheme }) => {
+const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
   const HEATMAP_ALPHA = 130;
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
@@ -79,6 +79,7 @@ const ImageResult = ({ imageResult, colourScheme }) => {
 
   return (
     <div className="result-container">
+      <p className="filename">{imageFile.name}</p>
       <div className="result">
         <canvas ref={originalImageCanvasRef} className="original-image" />
         <canvas ref={resultImageCanvasRef} className="image-heatmap" />
