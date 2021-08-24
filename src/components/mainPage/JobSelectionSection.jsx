@@ -20,10 +20,11 @@ const JobSelectionSection = forwardRef((props, ref) => {
         <div className="icon-container">
           <img className="img-size" src={props.icon} />
         </div>
-
-        <h1 className="jobType">{props.jobType}</h1>
-        <div className="description">
-          <p className="jobDescription">{props.description}</p>
+        <div className="text-container">
+          <h1 className="jobType">{props.jobType}</h1>
+          <div className="description">
+            <p className="jobDescription">{props.description}</p>
+          </div>
         </div>
       </button>
     );
