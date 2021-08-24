@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { saveAs } from "file-saver";
 import { encodeFileAsBase64DataUrl } from "../../util/FileUtil";
 import "./results-page.css";
 
@@ -16,11 +16,18 @@ const VideoResult = ({ videoFile, videoResult }) => {
     setDataUrl(await encodeFileAsBase64DataUrl(videoFile));
   }, []);
 
+  const downloadFile = () => {
+    saveAs(dataUrl, videoFile.name); // Put your image url here.
+  };
+
   return (
     <div className="result-container">
       <p className="filename">{videoFile.name}</p>
       <video className="result" src={dataUrl} autoPlay loop controls />
       <p className="result-explanation">{"Defect: ".concat(videoResult.explanation)}</p>
+      <button className="download-btn" onClick={downloadFile}>
+        Download
+      </button>
     </div>
   );
 };

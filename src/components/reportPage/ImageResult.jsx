@@ -77,6 +77,10 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
     resultImage.src = resultImageDataUrl;
   }, [resultImageDataUrl, colourScheme]);
 
+  const downloadFile = () => {
+    saveAs(originalImageDataUrl, imageFile.name); // Put your image url here.
+  };
+
   return (
     <div className="result-container">
       <p className="filename">{imageFile.name}</p>
@@ -89,6 +93,9 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
           ? "No defects found"
           : "Defects: ".concat(imageResult["bug_type"].join(", "))}
       </p>
+      <button className="download-btn" onClick={downloadFile}>
+        Download
+      </button>
     </div>
   );
 };
