@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forwardRef } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router";
@@ -21,6 +21,7 @@ const ReportPage = (props) => {
   const [imageResults, setImageResults] = useState([]);
 
   const [colourScheme, setColourScheme] = useState(inferno256);
+  const [searchTerm, setSearchString] = useState("");
 
   const history = useHistory();
   useEffect(() => {
@@ -45,12 +46,27 @@ const ReportPage = (props) => {
     if (files) fetch();
   }, []);
 
+  const handleSearching = (e) => {
+    setSearchString(e.target.value);
+  };
+
   return (
     <>
       <div className="results">
         <button className="back-btn" onClick={() => history.goBack()}>
           &laquo; Go Back
         </button>
+        <div className="search-area">
+          <input
+            type="text"
+            name="search"
+            placeholder="Type name of file here"
+            className="file-search"
+            value={searchTerm}
+            onChange={handleSearching}
+          />
+          <button type="submit">Useless button</button>
+        </div>
         <div className="progress-indicator-container">
           <p>
             {progressValue} / {files?.length ?? 0} files processed
@@ -63,17 +79,29 @@ const ReportPage = (props) => {
         </div>
         {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
         <div className="results-container">
-          {videoResults.map((result, index) => (
-            <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
-          ))}
-          {imageResults.map((result, index) => (
-            <ImageResult
-              key={`image-${index}`}
-              imageFile={images[index]}
-              imageResult={result}
-              colourScheme={colourScheme}
-            />
-          ))}
+          {videoResults
+            .map((result, index) => (
+              <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
+            ))
+            .filter((_, index) => {
+              return searchTerm.length > 0
+                ? videos[index].name.substring(0, searchTerm.length) === searchTerm
+                : () => true;
+            })}
+          {imageResults
+            .map((result, index) => (
+              <ImageResult
+                key={`image-${index}`}
+                imageFile={images[index]}
+                imageResult={result}
+                colourScheme={colourScheme}
+              />
+            ))
+            .filter((_, index) => {
+              return searchTerm.length > 0
+                ? images[index].name.substring(0, searchTerm.length) === searchTerm
+                : () => true;
+            })}
         </div>
       </div>
     </>
