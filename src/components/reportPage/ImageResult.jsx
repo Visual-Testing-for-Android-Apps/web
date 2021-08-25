@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import mergeImages from "merge-images";
 
 import { createImageDataUrlFromBase64 } from "../../util/FileUtil";
 import "./results-page.css";
@@ -78,7 +79,17 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
   }, [resultImageDataUrl, colourScheme]);
 
   const downloadFile = () => {
-    saveAs(originalImageDataUrl, imageFile.name); // Put your image url here.
+    // heatmapedImage = originalImage
+    console.log(originalImageCanvasRef.current);
+    console.log(resultImageCanvasRef.current);
+    const height = originalImageCanvasRef.current.height;
+    const width = originalImageCanvasRef.current.width;
+    mergeImages([{ src: originalImageDataUrl }, { src: resultImageDataUrl, opacity: 0.5 }], {
+      height: height,
+      width: width,
+    }).then((heatmapedImageDataUrl) =>
+      saveAs(heatmapedImageDataUrl, "heatmaped_".concat(imageFile.name))
+    );
   };
 
   return (
