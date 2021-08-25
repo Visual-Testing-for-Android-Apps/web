@@ -1,6 +1,5 @@
-import React, { useState, useCallback, useEffect } from "react";
-import StepUpload from "./StepUpload";
-import StepEmail from "./StepEmail";
+import React, { useState } from "react";
+import UploadSection from "./UploadSection";
 import "./batch-job.css";
 
 const BatchJob = () => {
@@ -13,12 +12,6 @@ const BatchJob = () => {
     email: "",
     emailVerified: false,
   });
-  const handleChange = (event) => {
-    // setFormData({
-    //   ...formData,
-    //   [event.target.name]: event.target.value,
-    // });
-  };
 
   const handleEmail = async (e) => {
     const { email } = e.target.elements;
@@ -30,43 +23,18 @@ const BatchJob = () => {
     setEmailVerified(true);
   };
 
-  const next = () => {
-    setCurrentStep(currentStep + 1);
-  };
-  const back = () => {
-    setCurrentStep(currentStep - 1);
-  };
-
-  switch (currentStep) {
-    case 1:
-      return <StepUpload next={next} fileLimit={FILE_LIMIT} setFiles={setFiles} files={files} />;
-    case 2:
-      return (
-        <StepEmail
-          emailVerified={emailVerified}
-          email={email}
-          setEmailVerified={setEmailVerified}
-          handleEmail={handleEmail}
-          next={next}
-          back={back}
-        />
-      );
-    default:
-      return (
-        <Submit
-        // data={formData}
-        // back={back}
-        />
-      );
-  }
-};
-
-const Submit = () => {
   return (
-    <div className="form-container">
-      <h1>Batch Job submitted succesfully!</h1>
+    <div className="section_container">
+      <h1 style={{ textAlign: "center" }}>
+        <b>Upload Files</b>
+      </h1>
+      <div className="email_container">
+      <input type="email" id="email" placeholder="Enter your email..." />
+      </div>
+      
+      <UploadSection fileLimit={FILE_LIMIT} setFiles={setFiles} files={files} />;
     </div>
   );
-};
 
+};
 export default BatchJob;
