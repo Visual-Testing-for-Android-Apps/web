@@ -6,7 +6,8 @@
 }
 
 .selection-heading {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  margin-inline: 0.6rem;
 }
 
 .title {
@@ -20,12 +21,13 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   box-sizing: border-box;
   background-color: white;
   border-radius: 1.8rem;
   color: #0476d9;
-  padding-block: 2rem;
+  margin: 1rem 4%;
   width: 30%;
   height: 15rem;
   min-width: 12rem;
@@ -58,13 +60,11 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   position: relative;
   height: 50%;
   width: 100%;
-}
-
-.btn-space {
-  padding-right: 7%;
 }
 
 .icon-container {
@@ -95,85 +95,40 @@ button {
 
 .btnContainer button:hover {
   background-image: linear-gradient(to left, #03a64a, #00325e);
-  transform: scale(1.3);
+  transform: scale(1.2);
   border: none;
   color: white;
 }
 
-.text-container {
-  display: none;
-}
+@media only screen and (max-width: 800px) {
+  .title {
+    font-size: 48px;
+  }
 
-@media only screen and (max-width: 600px) {
+  .btnContainer button:hover {
+    transform: scale(1.1);
+  }
+
   .mainSection {
-    width: 100%;
-    background-color: #0476d9;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding-top: 2.2rem;
-    padding-bottom: 4rem;
-  }
-
-  .selection-heading {
-    padding: 1rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .jobBtn {
-    width: 40%;
-    padding: 0.5rem;
-  }
-
-  .jobDescription {
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-
-  .btnContainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-
-  .btn-space {
-    padding-block: 1rem;
+    padding-bottom: 6rem;
   }
 }
 
 @media only screen and (max-width: 400px) {
+  .mainSection {
+    padding-top: 3.5rem;
+    padding-bottom: 4.5rem;
+  }
+
   .title {
-    font-size: 32px;
+    font-size: 40px;
   }
 
-  .jobBtn {
-    width: 80%;
-    height: 10rem;
-    padding: 0.5rem;
-    flex-direction: row;
-    flex-wrap: wrap;
+  .selection-heading {
+    margin-bottom: 1rem;
   }
 
-  .text-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    align-content: center;
-    width: 75%;
-  }
-
-  .icon-container {
-    margin-left: 10;
-    width: 25%;
-    align-items: center;
-    align-content: center;
-  }
-
-  .jobDescription {
-    text-align: start;
+  .btnContainer button:hover {
+    transform: scale(1.1);
   }
 }
