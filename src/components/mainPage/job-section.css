@@ -36,7 +36,7 @@
 }
 
 .jobBtn:hover {
-  color: rgb(104, 194, 230);
+  color: rgb(169, 172, 173);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.598);
 }
 
@@ -82,22 +82,17 @@
   object-fit: contain;
 }
 
-button {
-  margin-top: 0;
-  color: #00325e;
-  font: bold;
-  background-color: white;
-  border: 2px solid #03a64a;
-  padding: 0.6rem;
-  transition-duration: 0.5s;
-  animation: ease-in-out;
-}
-
 .btnContainer button:hover {
   background-image: linear-gradient(to left, #03a64a, #00325e);
   transform: scale(1.2);
   border: none;
   color: white;
+  transition-duration: 0.5s;
+  animation: ease-in-out;
+}
+
+.btnContainer button:active {
+  transform: scale(1.1);
 }
 
 @media only screen and (max-width: 800px) {
