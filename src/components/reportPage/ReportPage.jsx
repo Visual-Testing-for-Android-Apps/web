@@ -56,17 +56,6 @@ const ReportPage = (props) => {
         <button className="back-btn" onClick={() => history.goBack()}>
           &laquo; Go Back
         </button>
-        <div className="search-area">
-          <input
-            type="text"
-            name="search"
-            placeholder="Type name of file here"
-            className="file-search"
-            value={searchTerm}
-            onChange={handleSearching}
-          />
-          <button type="submit">Useless button</button>
-        </div>
         <div className="progress-indicator-container">
           <p>
             {progressValue} / {files?.length ?? 0} files processed
@@ -77,31 +66,55 @@ const ReportPage = (props) => {
             now={files ? (progressValue / files.length) * 100 + 1 : 0}
           />
         </div>
+        <div className="search-area">
+          <input
+            type="text"
+            name="search"
+            placeholder="Type name of file here..."
+            className="file-search"
+            value={searchTerm}
+            onChange={handleSearching}
+          />
+        </div>
         {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
         <div className="results-container">
-          {videoResults
-            .map((result, index) => (
-              <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
-            ))
-            .filter((_, index) => {
-              return searchTerm.length > 0
-                ? videos[index].name.substring(0, searchTerm.length) === searchTerm
-                : () => true;
-            })}
-          {imageResults
-            .map((result, index) => (
-              <ImageResult
-                key={`image-${index}`}
-                imageFile={images[index]}
-                imageResult={result}
-                colourScheme={colourScheme}
-              />
-            ))
-            .filter((_, index) => {
-              return searchTerm.length > 0
-                ? images[index].name.substring(0, searchTerm.length) === searchTerm
-                : () => true;
-            })}
+          {videoResults.reduce((previousResult, currentResult, index) => {
+            if (
+              searchTerm.length === 0 ||
+              videos[index].name.substring(0, searchTerm.length).toLowerCase() ===
+                searchTerm.toLowerCase()
+            ) {
+              return [
+                ...previousResult,
+                <VideoResult
+                  key={`video-${index}`}
+                  videoFile={videos[index]}
+                  videoResult={currentResult}
+                />,
+              ];
+            } else {
+              return [...previousResult];
+            }
+          }, [])}
+          {imageResults.reduce((previousResult, currentResult, index) => {
+            if (
+              searchTerm.length === 0 ||
+              images[index].name.substring(0, searchTerm.length).toLowerCase() ===
+                searchTerm.toLowerCase()
+            ) {
+              return [
+                ...previousResult,
+                <ImageResult
+                  key={`image-${index}`}
+                  imageFile={images[index]}
+                  imageResult={currentResult}
+                  colourScheme={colourScheme}
+                />,
+              ];
+            } else {
+              return [...previousResult];
+            }
+          }, [])}
         </div>
       </div>
     </>

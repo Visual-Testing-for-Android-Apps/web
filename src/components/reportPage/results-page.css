@@ -91,6 +91,10 @@
   width: var(--result-width);
 }
 
+.file-search {
+  width: 100%;
+}
+
 @media only screen and (min-width: 1024px) {
   .results-container {
     flex-direction: row;
