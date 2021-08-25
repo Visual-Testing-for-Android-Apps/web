@@ -12,8 +12,9 @@ import ColourSchemeSelector from "./ColourSchemeSelector";
 
 const ReportPage = (props) => {
   const { files, email } = useLocation().state ?? {};
+
   const videos = files?.filter((file) => file.type === "video/mp4");
-  const images = files?.filter((file) => file.type === "image/jpeg");
+  const images = files?.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
 
   const [progressValue, setProgressValue] = useState(0);
 
@@ -55,7 +56,7 @@ const ReportPage = (props) => {
           {progressValue} / {files?.length ?? 0} files processed
         </p>
         <ProgressBar
-          animated={progressValue != files.length}
+          animated={progressValue != files?.length}
           className="progress"
           now={files ? (progressValue / files.length) * 100 + 1 : 0}
         />

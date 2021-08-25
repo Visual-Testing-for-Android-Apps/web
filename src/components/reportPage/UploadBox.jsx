@@ -19,11 +19,11 @@ const UploadBox = (props) => {
       }
     }
   };
-  const accept = [".jpg", ".mp4", ".gif"];
+  const acceptedFileTypes = ["image/jpeg", "image/png", "video/mp4"];
   const maxFiles = props.fileLimit == Infinity ? 0 : props.fileLimit;
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept,
+    accept: acceptedFileTypes,
     maxFiles,
     onDropRejected,
   });
@@ -36,11 +36,17 @@ const UploadBox = (props) => {
       {isDragActive ? (
         <p>Drop the files here ...</p>
       ) : (
-        <p>
-          Drag 'n' drop images &amp; videos here, or <b>click</b> to select files
-          <br></br>
-          {maxFiles != 0 ? <em> (Maximum number of files: {maxFiles}) </em> : null}
-        </p>
+        <>
+          <p>
+            Drag 'n' drop images &amp; videos here, or <b>click</b> to select files
+            <br></br>
+            {maxFiles != 0 ? <em> (Maximum number of files: {maxFiles}) </em> : null}
+          </p>
+          <p className="accepted-file-formats-text">
+            Accepted file formats:{" "}
+            {acceptedFileTypes.map((format) => format.split("/")[1]).join(", ")}
+          </p>
+        </>
       )}
     </div>
   );
