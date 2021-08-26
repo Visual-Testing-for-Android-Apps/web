@@ -4,6 +4,7 @@ import "./upload.css";
 import CloudIcon from "./cloudIcon";
 const UploadBox = (props) => {
   const [droppedFiles, setDropFiles] = useState([]);
+  const [duplicate, setDuplicate] = useState(false);
   const onDrop = useCallback((files) => {
     props.setFiles((existingFiles) => [...existingFiles, ...files]);
     setDropFiles((existingFiles) => [...existingFiles, ...files]);
@@ -11,12 +12,17 @@ const UploadBox = (props) => {
   const { setAlert, fileLimit } = props;
   const MAX_FILE_ALERT = `Please upload only up to ${fileLimit} valid files.`;
   const INVALID_FILETYPE = "You are trying to upload invalid file types.";
+  const DUPLICATE_FILE_ALERT = 'You cannot upload uplicate files';
   const onDropRejected = (fileRejections) => {
     const rejectFiles = fileRejections.length;
     if (rejectFiles) {
       if (rejectFiles > fileLimit) {
         setAlert(MAX_FILE_ALERT);
-      } else {
+      } 
+      else if(duplicate){
+        setAlert(DUPLICATE_FILE_ALERT)
+      }
+      else {
         setAlert(INVALID_FILETYPE);
       }
     }
@@ -34,8 +40,13 @@ const UploadBox = (props) => {
       console.log("dropFiles exist");
       if (checkDuplicate(file)) {
         console.log("dup file");
+        setDuplicate(true);
+      }
+      return {
+        code: "duplicate file"
       }
     }
+    return null;
   };
   const acceptedFileTypes = ["image/jpeg", "image/png", "video/mp4"];
   const maxFiles = props.fileLimit == Infinity ? 0 : props.fileLimit;
