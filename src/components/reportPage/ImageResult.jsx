@@ -15,6 +15,8 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
   const [resultImageDataUrl, setResultImageDataUrl] = useState(null);
 
+  const isError = imageResult == null;
+
   // Decode results.
   useEffect(async () => {
     setOriginalImageDataUrl(await createImageDataUrlFromBase64(imageResult["original_img"]));
@@ -93,20 +95,28 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
   };
 
   return (
-    <div className="result-container">
-      <p className="filename">{imageFile.name}</p>
-      <div className="result">
-        <canvas ref={originalImageCanvasRef} className="original-image" />
-        <canvas ref={resultImageCanvasRef} className="image-heatmap" />
-      </div>
-      <p className="result-explanation">
-        {imageResult["bug_type"].length == 0
-          ? "No defects found"
-          : "Defects: ".concat(imageResult["bug_type"].join(", "))}
-      </p>
-      <button className="download-btn" onClick={downloadFile}>
-        Download
-      </button>
+    <div className="image-result-container">
+      {isError ? (
+        <div className="result">
+          <p>Error analysing image</p>
+        </div>
+      ) : (
+        <>
+          <div className="result">
+            <canvas ref={originalImageCanvasRef} className="original-image" />
+            <canvas ref={resultImageCanvasRef} className="image-heatmap" />
+          </div>
+          <p className="result-filename">{imageFile.name}</p>
+          <button className="download-btn" onClick={downloadFile}>
+            Download
+          </button>
+          <p className="result-explanation">
+            {imageResult["bug_type"]?.length == 0
+              ? "No defect found"
+              : imageResult?.["bug_type"]?.join(", ")}
+          </p>
+        </>
+      )}
     </div>
   );
 };

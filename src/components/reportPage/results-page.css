@@ -4,15 +4,18 @@
   --result-margin: 1rem;
 }
 
-.results {
-  padding: 1rem;
+.results-title {
+  font-family: "Signika", sans-serif;
+  font-size: xx-large;
+  text-align: center;
 }
 
 .results-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .result {
@@ -20,7 +23,7 @@
 
   /* 16:9 ratio */
   height: var(--result-height);
-  width: var(--result-width);
+  width: ;
 }
 
 .result-container {
@@ -70,6 +73,29 @@
   width: 100%;
 }
 
+.image-result-container {
+  margin: 1rem;
+  width: var(--result-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.video-result-explanation {
+  margin: 0 3rem;
+  max-width: 40rem;
+}
+
+.video-result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 .back-btn {
   text-decoration: none;
   display: inline-block;
@@ -95,10 +121,52 @@
   width: 100%;
 }
 
-@media only screen and (min-width: 1024px) {
+.download-btn {
+  margin: auto;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  width: var(--result-width);
+  font-size: 1rem;
+
+  /* padding: 0.8rem; */
+  border: 0.2rem solid;
+  background-color: green;
+  color: white;
+  text-align: center;
+}
+
+/* @media only screen and (min-width: 1024px) { */
+.result-filename {
+  color: grey;
+  font-size: 0.7rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: absolute;
+  top: calc(var(--result-height) + 1.1rem);
+  white-space: nowrap;
+  width: var(--result-width);
+  text-align: right;
+}
+
+/* } */
+
+@media only screen and (min-width: 900px) {
   .results-container {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .video-result-container {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .video-result-explanation {
+    margin: 0 4rem;
+    border: 0.06rem solid grey;
+    padding: 3rem;
+    width: 30rem;
   }
 
   .results {

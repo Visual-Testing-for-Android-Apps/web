@@ -12,8 +12,9 @@ import ColourSchemeSelector from "./ColourSchemeSelector";
 
 const ReportPage = (props) => {
   const { files, email } = useLocation().state ?? {};
+
   const videos = files?.filter((file) => file.type === "video/mp4");
-  const images = files?.filter((file) => file.type === "image/jpeg");
+  const images = files?.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
 
   const [progressValue, setProgressValue] = useState(0);
 
@@ -61,7 +62,7 @@ const ReportPage = (props) => {
             {progressValue} / {files?.length ?? 0} files processed
           </p>
           <ProgressBar
-            animated={progressValue != files.length}
+            animated={progressValue != files?.length}
             className="progress"
             now={files ? (progressValue / files.length) * 100 + 1 : 0}
           />
@@ -77,25 +78,8 @@ const ReportPage = (props) => {
           />
         </div>
         {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
+        {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
         <div className="results-container">
-          {videoResults.reduce((previousResult, currentResult, index) => {
-            if (
-              searchTerm.length === 0 ||
-              videos[index].name.substring(0, searchTerm.length).toLowerCase() ===
-                searchTerm.toLowerCase()
-            ) {
-              return [
-                ...previousResult,
-                <VideoResult
-                  key={`video-${index}`}
-                  videoFile={videos[index]}
-                  videoResult={currentResult}
-                />,
-              ];
-            } else {
-              return [...previousResult];
-            }
-          }, [])}
           {imageResults.reduce((previousResult, currentResult, index) => {
             if (
               searchTerm.length === 0 ||
@@ -109,6 +93,27 @@ const ReportPage = (props) => {
                   imageFile={images[index]}
                   imageResult={currentResult}
                   colourScheme={colourScheme}
+                />,
+              ];
+            } else {
+              return [...previousResult];
+            }
+          }, [])}
+        </div>
+        {videoResults.length > 0 && <h1 className="results-title">Video Results</h1>}
+        <div className="results-container">
+          {videoResults.reduce((previousResult, currentResult, index) => {
+            if (
+              searchTerm.length === 0 ||
+              videos[index].name.substring(0, searchTerm.length).toLowerCase() ===
+                searchTerm.toLowerCase()
+            ) {
+              return [
+                ...previousResult,
+                <VideoResult
+                  key={`video-${index}`}
+                  videoFile={videos[index]}
+                  videoResult={currentResult}
                 />,
               ];
             } else {

@@ -36,7 +36,7 @@ const ColourSchemeSelector = ({ setColourScheme }) => {
 
   return (
     <>
-      <p className="color-scheme-explantation">Select colour scheme:</p>
+      <p className="color-scheme-explantation">Select heatmap colour scheme:</p>
       <div
         className={"colour-scheme-selector-container" + (isSticky ? " isSticky" : "")}
         ref={stickyRef}
