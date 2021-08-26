@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import "./upload.css";
 import CloudIcon from "./cloudIcon";
 const UploadBox = (props) => {
+  const [droppedFiles, setDropFiles] = useState([]);
   const onDrop = useCallback((files) => {
     props.setFiles((existingFiles) => [...existingFiles, ...files]);
+    setDropFiles((existingFiles) => [...existingFiles, ...files]);
   }, []);
   const { setAlert, fileLimit } = props;
   const MAX_FILE_ALERT = `Please upload only up to ${fileLimit} valid files.`;
@@ -19,6 +21,22 @@ const UploadBox = (props) => {
       }
     }
   };
+
+  const checkDuplicate = (file) => {
+    var i;
+    for (i = 0; i < droppedFiles.length; i++) {
+      if (droppedFiles[i].name === file.name) return true;
+    }
+  };
+
+  const validateFiles = (file) => {
+    if (droppedFiles.length) {
+      console.log("dropFiles exist");
+      if (checkDuplicate(file)) {
+        console.log("dup file");
+      }
+    }
+  };
   const acceptedFileTypes = ["image/jpeg", "image/png", "video/mp4"];
   const maxFiles = props.fileLimit == Infinity ? 0 : props.fileLimit;
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -26,6 +44,7 @@ const UploadBox = (props) => {
     accept: acceptedFileTypes,
     maxFiles,
     onDropRejected,
+    validator: validateFiles,
   });
 
   return (
