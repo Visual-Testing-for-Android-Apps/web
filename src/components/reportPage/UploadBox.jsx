@@ -9,10 +9,10 @@ const UploadBox = (props) => {
     props.setFiles((existingFiles) => [...existingFiles, ...files]);
     setDropFiles((existingFiles) => [...existingFiles, ...files]);
   }, []);
-  const { setAlert, fileLimit } = props;
+  const { setAlert, fileLimit, currFiles } = props;
   const MAX_FILE_ALERT = `Please upload only up to ${fileLimit} valid files.`;
   const INVALID_FILETYPE = "You are trying to upload invalid file types.";
-  const DUPLICATE_FILE_ALERT = 'You cannot upload uplicate files';
+  const DUPLICATE_FILE_ALERT = 'You cannot upload duplicate files';
   const onDropRejected = (fileRejections) => {
     const rejectFiles = fileRejections.length;
     if (rejectFiles) {
@@ -21,6 +21,7 @@ const UploadBox = (props) => {
       } 
       else if(duplicate){
         setAlert(DUPLICATE_FILE_ALERT)
+        setDuplicate(false)
       }
       else {
         setAlert(INVALID_FILETYPE);
@@ -30,13 +31,13 @@ const UploadBox = (props) => {
 
   const checkDuplicate = (file) => {
     var i;
-    for (i = 0; i < droppedFiles.length; i++) {
-      if (droppedFiles[i].name === file.name) return true;
+    for (i = 0; i < props.currFiles.length; i++) {
+      if (props.currFiles[i].name === file.name) return true;
     }
   };
 
   const validateFiles = (file) => {
-    if (droppedFiles.length) {
+    if (props.currFiles.length) {
       console.log("dropFiles exist");
       if (checkDuplicate(file)) {
         console.log("dup file");
