@@ -62,13 +62,17 @@ const ReportPage = (props) => {
         />
       </div>
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
-      <div className="results-container">
-        {imageResults.map((result, index) => (
-          <ImageResult key={`image-${index}`} imageResult={result} colourScheme={colourScheme} />
-        ))}
-        {videoResults.map((result, index) => (
-          <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
-        ))}
+      <div>
+        <div className="results-container">
+          {imageResults.map((result, index) => (
+            <ImageResult key={`image-${index}`} imageResult={result} colourScheme={colourScheme} />
+          ))}
+        </div>
+        <div className="results-container">
+          {videoResults.map((result, index) => (
+            <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
+          ))}
+        </div>
       </div>
     </>
   );

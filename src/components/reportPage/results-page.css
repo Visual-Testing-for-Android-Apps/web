@@ -66,7 +66,8 @@
 }
 
 .video-result-explanation {
-  margin: 0 1rem;
+  margin: 0 3rem;
+  max-width: 30rem;
 }
 
 .video-result-container {
@@ -104,6 +105,6 @@
     margin: 0 4rem;
     border: 0.06rem solid grey;
     padding: 3rem;
-    max-width: 30rem;
+    width: 30rem;
   }
 }
