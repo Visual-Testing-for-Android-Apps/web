@@ -120,7 +120,10 @@ const VideoResult = ({ videoFile, videoResult }) => {
 
   return (
     <div className="video-result-container">
-      <video className="result" src={dataUrl} autoPlay loop controls />
+      <div style={{ position: "relative" }}>
+        <video className="result" src={dataUrl} autoPlay loop controls />
+        <p className="video-result-filename">{videoFile.name}</p>
+      </div>
       {mapVideoIssueToExplanation(videoResult?.classification)}
     </div>
   );
