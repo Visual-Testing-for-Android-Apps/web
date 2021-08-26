@@ -3,9 +3,9 @@ import React from "react";
 const CloudIcon = (props) => {
   return (
     <svg
-      width="100px"
+      width="7rem"
       fill={props.fill}
-      height="100px"
+      height="7rem"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >

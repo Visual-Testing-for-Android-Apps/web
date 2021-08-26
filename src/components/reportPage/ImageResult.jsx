@@ -3,6 +3,7 @@ import mergeImages from "merge-images";
 
 import { createImageDataUrlFromBase64 } from "../../util/FileUtil";
 import "./results-page.css";
+import DownloadIcon from "./downloadIcon";
 
 /**
  * An image result consists of the orignal image, a heatmap, and a description of the bug type. There may be no bug type.
@@ -102,14 +103,15 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
         </div>
       ) : (
         <>
-          <div className="result">
-            <canvas ref={originalImageCanvasRef} className="original-image" />
-            <canvas ref={resultImageCanvasRef} className="image-heatmap" />
+          <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
+            <div className="result">
+              <canvas ref={originalImageCanvasRef} className="original-image" />
+              <canvas ref={resultImageCanvasRef} className="image-heatmap" />
+            </div>
+            <a className="result-filename" onClick={downloadFile}>
+              {imageFile.name} <DownloadIcon />
+            </a>
           </div>
-          <p className="result-filename">{imageFile.name}</p>
-          <button className="download-btn" onClick={downloadFile}>
-            Download
-          </button>
           <p className="result-explanation">
             {imageResult["bug_type"]?.length == 0
               ? "No defect found"

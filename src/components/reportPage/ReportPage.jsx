@@ -77,8 +77,8 @@ const ReportPage = (props) => {
             onChange={handleSearching}
           />
         </div>
-        {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
         {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
+        {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {
             if (

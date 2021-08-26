@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { saveAs } from "file-saver";
 import { encodeFileAsBase64DataUrl } from "../../util/FileUtil";
 import "./results-page.css";
+import DownloadIcon from "./downloadIcon";
 
 /**
  * A video result consists of the original video and an explanation of the detected design violation.
@@ -125,10 +126,9 @@ const VideoResult = ({ videoFile, videoResult }) => {
     <div className="video-result-container">
       <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
         <video className="result" src={dataUrl} autoPlay loop controls />
-        <p className="result-filename">{videoFile.name}</p>
-        <button className="download-btn" onClick={downloadFile}>
-          Download
-        </button>
+        <a className="result-filename" onClick={downloadFile}>
+          {videoFile.name} <DownloadIcon />
+        </a>
       </div>
       {mapVideoIssueToExplanation(videoResult?.classification)}
     </div>

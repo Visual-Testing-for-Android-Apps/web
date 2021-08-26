@@ -23,7 +23,7 @@
 
   /* 16:9 ratio */
   height: var(--result-height);
-  width: ;
+  width: var(--result-width);
 }
 
 .result-container {
