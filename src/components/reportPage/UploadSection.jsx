@@ -1,20 +1,26 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import UploadBox from "./UploadBox";
 import Captcha from "./Captcha";
 import "../mainPage/mainpage.css";
 import "./upload.css";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 
 const UploadSection = (props) => {
-  const history = useHistory();
-  const [email, setEmail] = useState("");
+  // const history = useHistory();
+  // const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
   const [btnOpacity, setBtnOpacity] = useState(LOW_OPACITY);
 
-  // const [uploadAlertState, setUploadAlertState] = useState("hidden");
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState();
 
@@ -29,16 +35,12 @@ const UploadSection = (props) => {
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
-  const { fileLimit } = props;
+  const { fileLimit, formId, btnLabel, handleJob } = props;
 
   const removeFile = (file) => {
     const newFile = [...files];
     newFile.splice(file, 1);
     setFiles(newFile);
-  };
-
-  const handleChange = (event) => {
-    setEmail(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -65,7 +67,8 @@ const UploadSection = (props) => {
     // If CAPTCHA success
     if (event.detail["success"]) {
       console.log("CAPTCHA Success");
-      history.push("/reportpage", { files: filesRef.current, email: email });
+      handleJob(filesRef.current);
+      // history.push("/reportpage", { files: filesRef.current, email: email });
 
       // If CAPTCHA failure
       // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
@@ -133,13 +136,13 @@ const UploadSection = (props) => {
   return (
     <div className="section" id="uploadSection">
       <div style={containerStyle}>
-        <form style={formStyle} onSubmit={handleSubmit}>
+        <form style={formStyle} onSubmit={handleSubmit} id={formId}>
           <Captcha />
           <UploadBox setFiles={setFiles} fileLimit={fileLimit} setAlert={setAlert} />
           <input
             className="upload-btn"
             type="submit"
-            value="Submit files"
+            value={btnLabel}
             style={{ opacity: btnOpacity }}
           />
           <UploadAlert />
@@ -161,6 +164,11 @@ const formStyle = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+};
+
+UploadSection.defaultProps = {
+  formId: "upload",
+  btnLabel: "Submit Files",
 };
 
 export default UploadSection;
