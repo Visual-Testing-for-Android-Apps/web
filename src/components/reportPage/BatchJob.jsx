@@ -4,23 +4,19 @@ import "./batch-job.css";
 
 const BatchJob = () => {
   const FILE_LIMIT = 100;
-  const [currentStep, setCurrentStep] = useState(1);
   const [files, setFiles] = useState([]);
   const [email, setEmail] = useState();
-  const [emailVerified, setEmailVerified] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-    emailVerified: false,
-  });
+  const [disableSubmit, setDisableSubmit] = useState(true);
 
   const handleEmail = async (e) => {
     const { email } = e.target.elements;
-
-    // Do some email verification
-
-    // Set email
     setEmail(email.value);
-    setEmailVerified(true);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    handleEmail(e);
+    console.log(email)
   };
 
   return (
@@ -28,13 +24,12 @@ const BatchJob = () => {
       <h1 style={{ textAlign: "center" }}>
         <b>Upload Files</b>
       </h1>
-      <div className="email_container">
-      <input type="email" id="email" placeholder="Enter your email..." />
-      </div>
-      
+      <form className="form-container">
+        <input type="email" id="email" placeholder="Enter your email..." />
+        <button onClick={() => handleEmail}>Submit</button>
+      </form>
       <UploadSection fileLimit={FILE_LIMIT} setFiles={setFiles} files={files} />;
     </div>
   );
-
 };
 export default BatchJob;

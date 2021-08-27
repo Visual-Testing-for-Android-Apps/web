@@ -1,14 +1,25 @@
-.section_container h1 {
-  margin-top: 1.8rem;
-  
-}
-
-.email_container{
+.form-container {
   margin-top: 1.8rem;
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  justify-content: center;
+  margin: 1rem 1rem;
 }
+
+.section_container h1 {
+  margin-top: 1.8rem;
+  margin-bottom: 2.5rem;
+}
+
+input{
+  width:19.5rem;
+}
+
+button{
+  background-color: green;
+  color: white;
+  border-color: green;
+}
+
 
 @media only screen and (max-width: 600px) {
   .form-container {
