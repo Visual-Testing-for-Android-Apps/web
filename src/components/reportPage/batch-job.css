@@ -1,8 +1,29 @@
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), url(../../fonts/Inter/Inter-VariableFont_slnt_wght.ttf) format("truetype");
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+}
+
 .form-container {
-  margin-top: 1.8rem;
+  /* margin-top: 1.8rem; */
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin: 1rem 1rem;
+}
+
+.form-container label {
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding-inline: 0.5rem;
+  margin-block: 0.5rem;
+}
+
+.form-container input {
+  padding-inline: 0.5rem;
+  margin: 0.5rem;
+  width: 19.5rem;
 }
 
 .section_container h1 {
@@ -10,16 +31,11 @@
   margin-bottom: 2.5rem;
 }
 
-input{
-  width:19.5rem;
-}
-
-button{
+/* button {
   background-color: green;
   color: white;
   border-color: green;
-}
-
+} */
 
 @media only screen and (max-width: 600px) {
   .form-container {

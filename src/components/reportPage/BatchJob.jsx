@@ -1,59 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import UploadSection from "./UploadSection";
 import "./batch-job.css";
 
 const BatchJob = () => {
   const FILE_LIMIT = 100;
-  const [files, setFiles] = useState([]);
   const [email, setEmail] = useState();
-  const [disableSubmit, setDisableSubmit] = useState(true);
-  const [emailVerified, setEmailVerified] = useState(false);
-  const [status, setStatus] = useState("Submit");
+  const formId = "batchForm";
 
-  const handleEmail = async (e) => {
-    const { email } = e.target.elements;
-    setEmail(email.value);
+  const handleChange = (event) => {
+    setEmail(event.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (status != "Submit") {
-      setStatus("Submit");
-      setEmailVerified(false);
-      setDisableSubmit(true);
-    } else {
-      handleEmail(e);
-      setStatus("Change");
-    }
+  const handleBatchJob = (files) => {
+    // Do something
   };
-
-  useEffect(() => {
-    if (emailVerified) {
-      setStatus("Change");
-      setDisableSubmit(false);
-    } else {
-      setDisableSubmit(true);
-    }
-  }, [emailVerified]);
 
   return (
     <div className="section_container">
       <h1 style={{ textAlign: "center" }}>
-        <b>Upload Files</b>
+        <b>Batch Job Request</b>
       </h1>
-      <form className="form-container" onSubmit={handleSubmit}>
+      <div className="form-container">
+        <label>Email: </label>
         <input
           type="email"
           id="email"
           placeholder="Enter your email..."
-          disabled={!disableSubmit}
           required
           defaultValue={email}
+          form={formId}
+          onChange={handleChange}
         />
-        <button type="submit">{status}</button>
-      </form>
-      <UploadSection fileLimit={FILE_LIMIT} setFiles={setFiles} files={files} />;
+      </div>
+      <UploadSection
+        fileLimit={FILE_LIMIT}
+        handleJob={handleBatchJob}
+        formId={formId}
+        btnLabel="Submit Job"
+      />
+      ;
     </div>
   );
 };
+
 export default BatchJob;
