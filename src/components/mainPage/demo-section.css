@@ -27,17 +27,6 @@
   grid-template-areas: "header head2";
 }
 
-@media only screen and (max-width: 600px) {
-  .container {
-    display: flex;
-  }
-
-  .item-b {
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
-}
-
 .demo-section button {
   background-color: #03a64a;
   border: none;
@@ -56,4 +45,10 @@
   flex-direction: column;
   align-items: center;
   margin-top: 5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    display: flex;
+  }
 }
