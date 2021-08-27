@@ -10,7 +10,7 @@ const UploadBox = (props) => {
   const { setAlert, fileLimit, currFiles } = props;
   const MAX_FILE_ALERT = `Please upload only up to ${fileLimit} valid files.`;
   const INVALID_FILETYPE = "You are trying to upload invalid file types.";
-  const DUPLICATE_FILE_ALERT = "You cannot upload duplicate files";
+
   const onDropRejected = (fileRejections) => {
     const rejectFiles = fileRejections.length;
     if (rejectFiles) {
@@ -18,7 +18,9 @@ const UploadBox = (props) => {
       if (rejectFiles > fileLimit) {
         setAlert(MAX_FILE_ALERT);
       } else if (rejectFiles < fileLimit) {
-        setAlert(DUPLICATE_FILE_ALERT);
+        // To display the duplicated files uploaded
+        const DUPLICATE_FILE_ALERT = fileRejections.map((f) => ' ' + f.file.name )
+        setAlert('You have already uploaded:' + DUPLICATE_FILE_ALERT);
       } else {
         setAlert(INVALID_FILETYPE);
       }
