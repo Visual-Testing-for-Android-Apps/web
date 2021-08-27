@@ -3,32 +3,29 @@ import { useDropzone } from "react-dropzone";
 import "./upload.css";
 import CloudIcon from "./cloudIcon";
 const UploadBox = (props) => {
-  const [droppedFiles, setDropFiles] = useState([]);
-  const [duplicate, setDuplicate] = useState(false);
   const onDrop = useCallback((files) => {
     props.setFiles((existingFiles) => [...existingFiles, ...files]);
-    setDropFiles((existingFiles) => [...existingFiles, ...files]);
   }, []);
+
   const { setAlert, fileLimit, currFiles } = props;
   const MAX_FILE_ALERT = `Please upload only up to ${fileLimit} valid files.`;
   const INVALID_FILETYPE = "You are trying to upload invalid file types.";
-  const DUPLICATE_FILE_ALERT = 'You cannot upload duplicate files';
+  const DUPLICATE_FILE_ALERT = "You cannot upload duplicate files";
   const onDropRejected = (fileRejections) => {
     const rejectFiles = fileRejections.length;
     if (rejectFiles) {
+      console.log(rejectFiles);
       if (rejectFiles > fileLimit) {
         setAlert(MAX_FILE_ALERT);
-      } 
-      else if(duplicate){
-        setAlert(DUPLICATE_FILE_ALERT)
-        setDuplicate(false)
-      }
-      else {
+      } else if (rejectFiles < fileLimit) {
+        setAlert(DUPLICATE_FILE_ALERT);
+      } else {
         setAlert(INVALID_FILETYPE);
       }
     }
   };
 
+  // Checks if the new uploaded file is duplicate
   const checkDuplicate = (file) => {
     var i;
     for (i = 0; i < props.currFiles.length; i++) {
@@ -36,17 +33,17 @@ const UploadBox = (props) => {
     }
   };
 
+  // Cusomter file validation function
   const validateFiles = (file) => {
     if (props.currFiles.length) {
       console.log("dropFiles exist");
       if (checkDuplicate(file)) {
-        console.log("dup file");
-        setDuplicate(true);
-      }
-      return {
-        code: "duplicate file"
+        console.log("Duplicate file exists");
+        // Returning other than 'null' means files are rejected. 
+        return {};
       }
     }
+    // Returns null if files should be accepeted
     return null;
   };
   const acceptedFileTypes = ["image/jpeg", "image/png", "video/mp4"];
