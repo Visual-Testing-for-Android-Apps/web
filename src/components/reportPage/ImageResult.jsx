@@ -34,6 +34,8 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
     const originalImage = new Image();
     originalImage.onload = function () {
+      originalImageCanvas.width = this.naturalWidth;
+      originalImageCanvas.height = this.naturalHeight;
       originalImageContext.drawImage(
         originalImage,
         0,
@@ -52,6 +54,9 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
     const resultImage = new Image();
     resultImage.onload = function () {
+      // setting the images to their natural size to maintain their quality
+      resultImageCanvas.width = this.naturalWidth;
+      resultImageCanvas.height = this.naturalHeight;
       // Draw the image and then read it from the canvas so we can edit the pixel data.
       resultImageCanvasContext.drawImage(
         resultImage,
@@ -82,9 +87,6 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
   }, [resultImageDataUrl, colourScheme]);
 
   const downloadFile = () => {
-    // heatmapedImage = originalImage
-    console.log(originalImageCanvasRef.current);
-    console.log(resultImageCanvasRef.current);
     const height = originalImageCanvasRef.current.height;
     const width = originalImageCanvasRef.current.width;
     mergeImages([{ src: originalImageDataUrl }, { src: resultImageDataUrl, opacity: 0.5 }], {
