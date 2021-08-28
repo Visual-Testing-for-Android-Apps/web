@@ -19,31 +19,18 @@ const UploadBox = (props) => {
         setAlert(MAX_FILE_ALERT);
       } else if (rejectFiles < fileLimit) {
         // To display the duplicated files uploaded
-        const DUPLICATE_FILE_ALERT = fileRejections.map((f) => ' ' + f.file.name )
-        setAlert('You have already uploaded:' + DUPLICATE_FILE_ALERT);
+        const duplicate_file_alert = fileRejections.map((f) => ' ' + f.file.name )
+        setAlert('You have already uploaded:' + duplicate_file_alert);
       } else {
         setAlert(INVALID_FILETYPE);
       }
     }
   };
 
-  // Checks if the new uploaded file is duplicate
-  const checkDuplicate = (file) => {
-    var i;
-    for (i = 0; i < props.currFiles.length; i++) {
-      if (props.currFiles[i].name === file.name) return true;
-    }
-  };
-
   // Cusomter file validation function
   const validateFiles = (file) => {
-    if (props.currFiles.length) {
-      console.log("dropFiles exist");
-      if (checkDuplicate(file)) {
-        console.log("Duplicate file exists");
-        // Returning other than 'null' means files are rejected. 
-        return {};
-      }
+    if(!props.currFiles.every(currFile => currFile.name != file.name)){
+      return {};
     }
     // Returns null if files should be accepeted
     return null;
