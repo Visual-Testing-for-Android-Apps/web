@@ -7,16 +7,21 @@ import "./results-page.css";
 import Repository from "../../data/Repository";
 import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
+import { inferno256 } from "./gradients256";
+import ColourSchemeSelector from "./ColourSchemeSelector";
 
 const ReportPage = (props) => {
   const { files, email } = useLocation().state ?? {};
-  const videos = files.filter((file) => file.type === "video/mp4");
-  const images = files.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
+
+  const videos = files?.filter((file) => file.type === "video/mp4");
+  const images = files?.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
 
   const [progressValue, setProgressValue] = useState(0);
 
   const [videoResults, setVideoResults] = useState([]);
   const [imageResults, setImageResults] = useState([]);
+
+  const [colourScheme, setColourScheme] = useState(inferno256);
 
   const history = useHistory();
   useEffect(() => {
@@ -56,13 +61,20 @@ const ReportPage = (props) => {
           now={files ? (progressValue / files.length) * 100 + 1 : 0}
         />
       </div>
-      <div className="results-container">
-        {videoResults.map((result, index) => (
-          <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
-        ))}
-        {imageResults.map((result, index) => (
-          <ImageResult key={`image-${index}`} imageResult={result} />
-        ))}
+      {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
+      <div>
+        {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
+        <div className="results-container">
+          {imageResults.map((result, index) => (
+            <ImageResult key={`image-${index}`} imageResult={result} colourScheme={colourScheme} />
+          ))}
+        </div>
+        {videoResults.length > 0 && <h1 className="results-title">Video Results</h1>}
+        <div className="results-container">
+          {videoResults.map((result, index) => (
+            <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
+          ))}
+        </div>
       </div>
     </>
   );
