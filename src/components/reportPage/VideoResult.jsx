@@ -17,9 +17,6 @@ const VideoResult = ({ videoFile, videoResult }) => {
     setDataUrl(await encodeFileAsBase64DataUrl(videoFile));
   }, []);
 
-  const downloadFile = () => {
-    saveAs(dataUrl, videoFile.name); // Put your image url here.
-  };
   const mapVideoIssueToExplanation = (issueClassification) => {
     if (issueClassification == null)
       return <p className="video-result-explanation">Error analysing video</p>;
@@ -126,9 +123,6 @@ const VideoResult = ({ videoFile, videoResult }) => {
     <div className="video-result-container">
       <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
         <video className="result" src={dataUrl} autoPlay loop controls />
-        <a className="result-filename" onClick={downloadFile}>
-          {videoFile.name} <DownloadIcon />
-        </a>
       </div>
       {mapVideoIssueToExplanation(videoResult?.classification)}
     </div>
