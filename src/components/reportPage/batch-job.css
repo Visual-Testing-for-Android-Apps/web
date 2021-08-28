@@ -31,12 +31,6 @@
   margin-bottom: 2.5rem;
 }
 
-/* button {
-  background-color: green;
-  color: white;
-  border-color: green;
-} */
-
 @media only screen and (max-width: 600px) {
   .form-container {
     width: 90%;

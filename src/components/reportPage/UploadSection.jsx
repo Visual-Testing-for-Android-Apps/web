@@ -120,7 +120,7 @@ const UploadSection = (props) => {
         <Col className="file-column">{file.name}</Col>
         <Col className="button-column">
           <button className="remove-btn" onClick={() => removeFile(i)}>
-            x
+            X
           </button>
         </Col>
       </Row>

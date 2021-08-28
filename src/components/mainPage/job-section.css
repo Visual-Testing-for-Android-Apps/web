@@ -96,7 +96,7 @@ button {
 }
 
 .btnContainer button:hover {
-  background-image: linear-gradient(to left, #03a64a, #00325e);
+  background-image: linear-gradient(to left, #03a64a, #014581);
   transform: scale(1.3);
   border: none;
   color: white;
