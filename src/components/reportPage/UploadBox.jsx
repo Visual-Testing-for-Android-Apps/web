@@ -14,13 +14,12 @@ const UploadBox = (props) => {
   const onDropRejected = (fileRejections) => {
     const rejectFiles = fileRejections.length;
     if (rejectFiles) {
-      console.log(rejectFiles);
       if (rejectFiles > fileLimit) {
         setAlert(MAX_FILE_ALERT);
       } else if (rejectFiles < fileLimit) {
-        // To display the duplicated files uploaded
-        const duplicate_file_alert = fileRejections.map((f) => ' ' + f.file.name )
-        setAlert('You have already uploaded:' + duplicate_file_alert);
+        // To display the duplicate files uploaded
+        const duplicateFileAlert = fileRejections.map((f) => ' ' + f.file.name )
+        setAlert('You have already uploaded:' + duplicateFileAlert);
       } else {
         setAlert(INVALID_FILETYPE);
       }
