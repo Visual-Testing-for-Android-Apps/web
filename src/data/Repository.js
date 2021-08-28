@@ -58,6 +58,24 @@ class Repository {
   }
 
   /**
+   * Submits a batch job.
+   * @param {String} email
+   * @param {Array<File>} files
+   */
+  uploadBatchJob(email, files) {
+    const formData = new FormData();
+    formData.append("email", email);
+    files.forEach((file) => {
+      formData.append("files", file, file.name);
+    });
+
+    fetch(__BATCH_JOB_ENDPOINT__, {
+      method: "POST",
+      body: formData,
+    }).catch((error) => console.log(error));
+  }
+
+  /**
    * Extracts the base64 portion of a data url.
    * @param {String} dataUrl
    * @returns {String} The base64 portion of the data url

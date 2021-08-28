@@ -56,6 +56,7 @@ module.exports = {
       __SERVER__: `'${process.env.SERVER_HOSTNAME || "http://localhost:3000"}'`,
       __OWLEYES_ENDPOINT__: `'${process.env.OWLEYES_ENDPOINT}'`,
       __SEENOMALY_ENDPOINT__: `'${process.env.SEENOMALY_ENDPOINT}'`,
+      __BATCH_JOB_ENDPOINT__: `'${process.env.BATCH_JOB_ENDPOINT}'`,
     }),
   ],
 };
