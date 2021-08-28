@@ -14,6 +14,8 @@ const ImageResult = ({ imageResult, colourScheme }) => {
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
   const [resultImageDataUrl, setResultImageDataUrl] = useState(null);
 
+  const isError = imageResult == null;
+
   // Decode results.
   useEffect(async () => {
     setOriginalImageDataUrl(await createImageDataUrlFromBase64(imageResult["original_img"]));
@@ -78,16 +80,24 @@ const ImageResult = ({ imageResult, colourScheme }) => {
   }, [resultImageDataUrl, colourScheme]);
 
   return (
-    <div>
-      <div className="result">
-        <canvas ref={originalImageCanvasRef} className="original-image" />
-        <canvas ref={resultImageCanvasRef} className="image-heatmap" />
-      </div>
-      <p className="result-explanation">
-        {imageResult["bug_type"].length == 0
-          ? "No defect found"
-          : imageResult["bug_type"].join(", ")}
-      </p>
+    <div className="image-result-container">
+      {isError ? (
+        <div className="result">
+          <p>Error analysing image</p>
+        </div>
+      ) : (
+        <>
+          <div className="result">
+            <canvas ref={originalImageCanvasRef} className="original-image" />
+            <canvas ref={resultImageCanvasRef} className="image-heatmap" />
+          </div>
+          <p className="result-explanation">
+            {imageResult["bug_type"]?.length == 0
+              ? "No defect found"
+              : imageResult?.["bug_type"]?.join(", ")}
+          </p>
+        </>
+      )}
     </div>
   );
 };
