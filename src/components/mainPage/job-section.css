@@ -88,7 +88,7 @@
   border: none;
   color: white;
   transition-duration: 0.5s;
-  animation: ease-in-out;
+  animation: ease-in;
 }
 
 .btnContainer button:active {

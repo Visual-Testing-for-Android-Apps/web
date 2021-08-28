@@ -27,7 +27,7 @@
 .remove-btn {
   position: absolute;
   padding: 0.1rem 0.5rem 0.2rem;
-  top: 2px;
+  top: 0.125rem;
   right: 0.1rem;
   background-color: rgb(194, 10, 47);
   border-color: rgb(194, 10, 47);
@@ -67,12 +67,6 @@
   max-width: 40rem;
 }
 
-@media only screen and (max-width: 600px) {
-  .file-container {
-    text-indent: 0;
-  }
-}
-
 .file-container:hover {
   background-color: rgb(204, 233, 247);
 }
@@ -80,7 +74,7 @@
 .file-column {
   position: relative;
   transform: translateY(-13%);
-  max-width: 25rem; /**  Max width for the coloumn  **/
+  max-width: 25rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -91,7 +85,7 @@
 }
 
 .button-column {
-  max-width: 2rem;
+  max-width: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,11 +101,14 @@
 }
 
 @media only screen and (max-width: 668px) {
-  /* For mobile phones: */
+  .file-container {
+    text-indent: 0;
+  }
+
   .file-column {
     position: relative;
     transform: translateY(-13%);
-    max-width: 15rem; /**  Max width for the column  **/
+    max-width: 15rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

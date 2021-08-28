@@ -1,23 +1,13 @@
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import UploadBox from "./UploadBox";
 import Captcha from "./Captcha";
 import "../mainPage/mainpage.css";
 import "./upload.css";
-// import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 
 const UploadSection = (props) => {
-  // const history = useHistory();
-  // const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
   const [btnOpacity, setBtnOpacity] = useState(LOW_OPACITY);
 
@@ -68,7 +58,6 @@ const UploadSection = (props) => {
     if (event.detail["success"]) {
       console.log("CAPTCHA Success");
       handleJob(filesRef.current);
-      // history.push("/reportpage", { files: filesRef.current, email: email });
 
       // If CAPTCHA failure
       // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
@@ -91,7 +80,7 @@ const UploadSection = (props) => {
         .removeEventListener("captchaEvent", captchaListener);
   }, []);
 
-  // changes the visibility of the button depending on the state of files
+  // Changes the visibility of the button depending on the state of files
   useEffect(() => {
     if (files.length == 0) {
       setBtnOpacity(LOW_OPACITY);
@@ -104,9 +93,7 @@ const UploadSection = (props) => {
     }
   }, [files.length]);
 
-  // renders Alert
   const UploadAlert = () =>
-    // if showAlert = true, return Alert component
     showAlert && (
       <Alert variant="warning" className="upload-alert">
         {alertMessage}
@@ -127,7 +114,6 @@ const UploadSection = (props) => {
     </Container>
   ));
 
-  // did not want to pass both functions into upload box so made one func instead
   const setAlert = (alertMessage) => {
     setShowAlert(true);
     setAlertMessage(alertMessage);
@@ -143,7 +129,7 @@ const UploadSection = (props) => {
             className="upload-btn"
             type="submit"
             value={btnLabel}
-            style={{ opacity: btnOpacity }}
+            style={{ opacity: btnopacity }}
           />
           <UploadAlert />
           <div className="margin-space">{displayFiles}</div>
