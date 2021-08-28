@@ -33,8 +33,6 @@
   top: -1px; /* ➜ the trick */
   display: flex;
 
-  /* padding: 1em; */
-
   /* padding-top: calc(1em + 1px);    ➜ compensate for the trick */
   justify-content: center;
   background-color: white;
