@@ -25,8 +25,7 @@ const VideoResult = ({ videoFile, videoResult }) => {
           [
             <>Looks good! No design violations found.</>,
             <>
-              Material passing through other material.
-              <br />
+              <h2>Material passing through other material.</h2>
               Material cannot pass through other Material.
               <br />
               Learn more{" "}
