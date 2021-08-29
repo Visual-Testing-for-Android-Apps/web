@@ -85,8 +85,7 @@ const ReportPage = (props) => {
           {imageResults.reduce((previousResult, currentResult, index) => {
             if (
               searchTerm.length === 0 ||
-              images[index].name.substring(0, searchTerm.length).toLowerCase() ===
-                searchTerm.toLowerCase()
+              images[index].name.toLowerCase().includes(searchTerm.toLowerCase())
             ) {
               return [
                 ...previousResult,
@@ -105,10 +104,10 @@ const ReportPage = (props) => {
         {videoResults.length > 0 && <h1 className="results-title">Video Results</h1>}
         <div className="results-container">
           {videoResults.reduce((previousResult, currentResult, index) => {
+            console.log(videos[index].name.toLowerCase().includes(searchTerm.toLowerCase()));
             if (
               searchTerm.length === 0 ||
-              videos[index].name.substring(0, searchTerm.length).toLowerCase() ===
-                searchTerm.toLowerCase()
+              videos[index].name.toLowerCase().includes(searchTerm.toLowerCase())
             ) {
               return [
                 ...previousResult,
