@@ -54,9 +54,6 @@ const ReportPage = (props) => {
   return (
     <>
       <div className="results">
-        <button className="back-btn" onClick={() => history.goBack()}>
-          &laquo; Go Back
-        </button>
         <div className="progress-indicator-container">
           <p>
             {progressValue} / {files?.length ?? 0} files processed
@@ -71,7 +68,7 @@ const ReportPage = (props) => {
           <input
             type="text"
             name="search"
-            placeholder="Type name of file here..."
+            placeholder="Search for files..."
             className="file-search"
             value={searchTerm}
             onChange={handleSearching}
@@ -104,7 +101,6 @@ const ReportPage = (props) => {
         {videoResults.length > 0 && <h1 className="results-title">Video Results</h1>}
         <div className="results-container">
           {videoResults.reduce((previousResult, currentResult, index) => {
-            console.log(videos[index].name.toLowerCase().includes(searchTerm.toLowerCase()));
             if (
               searchTerm.length === 0 ||
               videos[index].name.toLowerCase().includes(searchTerm.toLowerCase())

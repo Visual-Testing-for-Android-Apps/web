@@ -8,6 +8,7 @@
   font-family: "Signika", sans-serif;
   font-size: xx-large;
   text-align: center;
+  margin-top: 2rem;
 }
 
 .results-container {
@@ -96,19 +97,6 @@
   margin-bottom: 1rem;
 }
 
-.back-btn {
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
-  margin: auto;
-  width: 8rem;
-  font-size: 1rem;
-  border-radius: 2rem;
-  border: 0.2rem solid;
-  background-color: black;
-  color: white;
-}
-
 .filename {
   text-align: center;
   margin-left: var(--result-margin);
@@ -138,7 +126,7 @@
 /* @media only screen and (min-width: 1024px) { */
 .result-filename {
   color: grey;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-overflow: ellipsis;
   overflow: hidden;
   position: absolute;
@@ -171,5 +159,11 @@
 
   .results {
     padding: 1rem 10rem 1rem 10rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .results {
+    padding: 1rem 2rem 1rem 2rem;
   }
 }
