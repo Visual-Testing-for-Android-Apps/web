@@ -148,6 +148,12 @@
   .video-result-container {
     flex-direction: row;
     justify-content: center;
+
+    /**
+    This prevents the link from being overlapped by the image result heatmap and not being clickable
+    see https://github.com/Visual-Testing-for-Android-Apps/web/pull/45
+    **/
+    z-index: 1;
   }
 
   .video-result-explanation {
