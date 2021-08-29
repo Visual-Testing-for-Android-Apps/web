@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { saveAs } from "file-saver";
 import { encodeFileAsBase64DataUrl } from "../../util/FileUtil";
 import "./results-page.css";
-import DownloadIcon from "./downloadIcon";
 
 /**
  * A video result consists of the original video and an explanation of the detected design violation.
