@@ -36,17 +36,16 @@
   /* padding-top: calc(1em + 1px);    ➜ compensate for the trick */
   justify-content: center;
   background-color: white;
+  padding: 0 2rem 0 2rem;
 }
 
 /* styles for when the color scheme container is in sticky mode */
 .colour-scheme-selector-container.isSticky {
   background-color: white;
-  box-shadow:
-    0 0.15rem 0.3rem 0 rgba(0, 0, 0, 0.2),
-    0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 0.15rem 0.3rem 0 rgba(0, 0, 0, 0.2), 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.19);
 }
 
-.color-scheme-explantation {
+.color-scheme-label {
   margin: 1rem;
   display: flex;
   justify-content: center;
