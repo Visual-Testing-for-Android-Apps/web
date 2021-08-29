@@ -124,7 +124,7 @@ const UploadSection = (props) => {
       <div style={containerStyle}>
         <form style={formStyle} onSubmit={handleSubmit} id={formId}>
           <Captcha />
-          <UploadBox setFiles={setFiles} fileLimit={fileLimit} setAlert={setAlert} />
+          <UploadBox setFiles={setFiles} fileLimit={fileLimit} setAlert={setAlert} currFiles={files}/>
           <input
             className="upload-btn"
             type="submit"
