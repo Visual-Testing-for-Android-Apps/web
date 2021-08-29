@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import UploadSection from "./UploadSection";
 import "./batch-job.css";
+import { useHistory } from "react-router-dom";
 
 const BatchJob = () => {
   const FILE_LIMIT = 100;
   const [email, setEmail] = useState();
   const formId = "batchForm";
+  const history = useHistory();
 
-  const handleChange = (event) => {
+  const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
   const handleBatchJob = (files) => {
-    // Do something
+    history.push("/batchsubmitpage");
   };
 
   return (
@@ -29,7 +31,7 @@ const BatchJob = () => {
           required
           defaultValue={email}
           form={formId}
-          onChange={handleChange}
+          onChange={handleEmailChange}
         />
       </div>
       <UploadSection
@@ -38,7 +40,6 @@ const BatchJob = () => {
         formId={formId}
         btnLabel="Submit Job"
       />
-      ;
     </div>
   );
 };
