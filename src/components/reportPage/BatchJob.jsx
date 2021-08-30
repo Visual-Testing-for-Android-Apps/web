@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef} from "react";
 import UploadSection from "./UploadSection";
 import "./batch-job.css";
 import { useHistory } from "react-router-dom";
@@ -9,12 +9,15 @@ const BatchJob = () => {
   const formId = "batchForm";
   const history = useHistory();
 
+  const emailRef = useRef();
+  emailRef.current = email;
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
   const handleBatchJob = (files) => {
-    history.push("/batchsubmitpage");
+    history.push("/batchsubmitpage", {email: emailRef.current});
   };
 
   return (

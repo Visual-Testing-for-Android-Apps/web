@@ -31,6 +31,23 @@
   margin-bottom: 2.5rem;
 }
 
+.email-form-container{
+  margin-top: 1.8rem;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 1rem;
+}
+
+.email-form-container input{
+  width: 19.5rem;
+}
+
+.email-form-container button{
+  background-color: green;
+  color: white;
+  border-color: green;
+}
+
 @media only screen and (max-width: 600px) {
   .form-container {
     width: 90%;
