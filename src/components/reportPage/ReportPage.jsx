@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forwardRef } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router";
@@ -22,6 +22,7 @@ const ReportPage = (props) => {
   const [imageResults, setImageResults] = useState([]);
 
   const [colourScheme, setColourScheme] = useState(inferno256);
+  const [searchTerm, setSearchString] = useState("");
 
   const history = useHistory();
   useEffect(() => {
@@ -46,34 +47,76 @@ const ReportPage = (props) => {
     if (files) fetch();
   }, []);
 
+  const handleSearching = (e) => {
+    setSearchString(e.target.value);
+  };
+
   return (
     <>
-      <button className="back-btn" onClick={() => history.goBack()}>
-        &laquo; Go Back
-      </button>
-      <div className="progress-indicator-container">
-        <p>
-          {progressValue} / {files?.length ?? 0} files processed
-        </p>
-        <ProgressBar
-          animated={progressValue != files?.length}
-          className="progress"
-          now={files ? (progressValue / files.length) * 100 + 1 : 0}
-        />
+      <div className="results">
+        <div className="progress-indicator-container">
+          <p>
+            {progressValue} / {files?.length ?? 0} files processed
+          </p>
+          <ProgressBar
+            animated={progressValue != files?.length}
+            className="progress"
+            now={files ? (progressValue / files.length) * 100 + 1 : 0}
+          />
+        </div>
+        <div className="search-area">
+          <input
+            type="text"
+            name="search"
+            placeholder="Search for files..."
+            className="file-search"
+            value={searchTerm}
+            onChange={handleSearching}
+          />
+        </div>
       </div>
+      {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
-      <div>
-        {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
+      <div className="results">
         <div className="results-container">
-          {imageResults.map((result, index) => (
-            <ImageResult key={`image-${index}`} imageResult={result} colourScheme={colourScheme} />
-          ))}
+          {imageResults.reduce((previousResult, currentResult, index) => {
+            if (
+              searchTerm.length === 0 ||
+              images[index].name.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return [
+                ...previousResult,
+                <ImageResult
+                  key={`image-${index}`}
+                  imageFile={images[index]}
+                  imageResult={currentResult}
+                  colourScheme={colourScheme}
+                />,
+              ];
+            } else {
+              return [...previousResult];
+            }
+          }, [])}
         </div>
         {videoResults.length > 0 && <h1 className="results-title">Video Results</h1>}
         <div className="results-container">
-          {videoResults.map((result, index) => (
-            <VideoResult key={`video-${index}`} videoFile={videos[index]} videoResult={result} />
-          ))}
+          {videoResults.reduce((previousResult, currentResult, index) => {
+            if (
+              searchTerm.length === 0 ||
+              videos[index].name.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return [
+                ...previousResult,
+                <VideoResult
+                  key={`video-${index}`}
+                  videoFile={videos[index]}
+                  videoResult={currentResult}
+                />,
+              ];
+            } else {
+              return [...previousResult];
+            }
+          }, [])}
         </div>
       </div>
     </>

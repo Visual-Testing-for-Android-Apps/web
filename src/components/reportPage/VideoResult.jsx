@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { saveAs } from "file-saver";
 import { encodeFileAsBase64DataUrl } from "../../util/FileUtil";
 import "./results-page.css";
 
@@ -25,8 +25,7 @@ const VideoResult = ({ videoFile, videoResult }) => {
           [
             <>Looks good! No design violations found.</>,
             <>
-              Material passing through other material.
-              <br />
+              <h2>Material passing through other material.</h2>
               Material cannot pass through other Material.
               <br />
               Learn more{" "}
@@ -120,9 +119,9 @@ const VideoResult = ({ videoFile, videoResult }) => {
 
   return (
     <div className="video-result-container">
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
         <video className="result" src={dataUrl} autoPlay loop controls />
-        <p className="video-result-filename">{videoFile.name}</p>
+        <p className="result-filename">{videoFile.name}</p>
       </div>
       {mapVideoIssueToExplanation(videoResult?.classification)}
     </div>

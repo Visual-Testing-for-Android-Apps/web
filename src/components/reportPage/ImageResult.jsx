@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import mergeImages from "merge-images";
 
 import { createImageDataUrlFromBase64 } from "../../util/FileUtil";
 import "./results-page.css";
@@ -8,7 +9,7 @@ import "./results-page.css";
  * @param {{ original_img: String, res_img: String, bug_type: Array<String> }} imageResult
  * @returns
  */
-const ImageResult = ({ imageResult, colourScheme }) => {
+const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
   const HEATMAP_ALPHA = 130;
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
@@ -32,6 +33,8 @@ const ImageResult = ({ imageResult, colourScheme }) => {
 
     const originalImage = new Image();
     originalImage.onload = function () {
+      originalImageCanvas.width = this.naturalWidth;
+      originalImageCanvas.height = this.naturalHeight;
       originalImageContext.drawImage(
         originalImage,
         0,
@@ -50,6 +53,9 @@ const ImageResult = ({ imageResult, colourScheme }) => {
 
     const resultImage = new Image();
     resultImage.onload = function () {
+      // setting the images to their natural size to maintain their quality
+      resultImageCanvas.width = this.naturalWidth;
+      resultImageCanvas.height = this.naturalHeight;
       // Draw the image and then read it from the canvas so we can edit the pixel data.
       resultImageCanvasContext.drawImage(
         resultImage,
@@ -87,9 +93,12 @@ const ImageResult = ({ imageResult, colourScheme }) => {
         </div>
       ) : (
         <>
-          <div className="result">
-            <canvas ref={originalImageCanvasRef} className="original-image" />
-            <canvas ref={resultImageCanvasRef} className="image-heatmap" />
+          <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
+            <div className="result">
+              <canvas ref={originalImageCanvasRef} className="original-image" />
+              <canvas ref={resultImageCanvasRef} className="image-heatmap" />
+            </div>
+            <p className="result-filename">{imageFile.name}</p>
           </div>
           <p className="result-explanation">
             {imageResult["bug_type"]?.length == 0
