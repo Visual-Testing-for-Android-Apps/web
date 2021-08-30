@@ -31,18 +31,18 @@
   margin-bottom: 2.5rem;
 }
 
-.email-form-container{
+.email-form-container {
+  margin: 1rem 1rem;
   margin-top: 1.8rem;
   display: flex;
   justify-content: center;
-  margin: 1rem 1rem;
 }
 
-.email-form-container input{
+.email-form-container input {
   width: 19.5rem;
 }
 
-.email-form-container button{
+.email-form-container button {
   background-color: green;
   color: white;
   border-color: green;
