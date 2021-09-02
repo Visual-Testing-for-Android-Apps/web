@@ -106,7 +106,11 @@
 }
 
 .file-search {
-  width: 100%;
+  width: 80%;
+}
+
+.custom-select {
+  padding: 0.15rem;
 }
 
 .download-btn {
