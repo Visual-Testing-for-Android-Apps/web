@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router";
@@ -23,6 +23,11 @@ const ReportPage = (props) => {
 
   const [colourScheme, setColourScheme] = useState(inferno256);
   const [searchTerm, setSearchString] = useState("");
+
+  const [filterType, setFilterType] = useState("All");
+
+  const filterRef = useRef();
+  filterRef.current = filterType;
 
   const history = useHistory();
   useEffect(() => {
@@ -51,6 +56,22 @@ const ReportPage = (props) => {
     setSearchString(e.target.value);
   };
 
+  // const filterImages = (currFilterType) => {
+  //   console.log(currFilterType)
+  //   return imageResults.filter((imageResult) => {
+  //     console.log(imageResult["bug_type"][0])
+  //     if (imageResult["bug_type"][0] === currFilterType){
+  //       console.log("Inside the if statement")
+  //       console.log(imageResult["bug_type"])
+  //       return (
+  //         <ImageResult
+  //                 imageResult={imageResult}
+  //         />
+  //       )
+  //     }
+  //   })
+  // }
+
   return (
     <>
       <div className="results">
@@ -73,6 +94,22 @@ const ReportPage = (props) => {
             value={searchTerm}
             onChange={handleSearching}
           />
+          <div>
+            <select
+            onChange={(e) => {
+              setFilterType(e.target.value)
+              // filterImages(e.target.value);
+            }}
+            className="custom-select"
+       aria-label="Filter Countries By Region">
+        <option value="All">Show All Results</option>
+        <option value="Null value">Null value</option>
+        <option value="Component occlusion">Component occlusion</option>
+        <option value="Missing image">Missing image</option>
+        <option value="No defect found">No defect found</option>
+        </select>
+        <span className="focus"></span>
+          </div>
         </div>
       </div>
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
@@ -80,9 +117,11 @@ const ReportPage = (props) => {
       <div className="results">
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {
+            //console.log(currentResult["bug_type"])
+            const bugTypes = currentResult["bug_type"].filter(bugType => bugType === filterType)
+            console.log(bugTypes)
             if (
-              searchTerm.length === 0 ||
-              images[index].name.toLowerCase().includes(searchTerm.toLowerCase())
+              (filterType === "All" ||  (filterType === "No defect found" && currentResult["bug_type"].length === 0) ||  bugTypes[0] === filterType )
             ) {
               return [
                 ...previousResult,
