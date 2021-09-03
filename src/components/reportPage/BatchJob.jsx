@@ -19,9 +19,9 @@ const BatchJob = () => {
     setEmail(event.target.value);
   };
 
-  const handleBatchJob = async (files, email) => {
+  const handleBatchJob = async (files) => {
     setIsLoading(true);
-    await new Repository().uploadBatchJob(email, files);
+    await new Repository().uploadBatchJob(emailRef.current, files);
     setIsLoading(false);
     history.push("/batchsubmitpage", { email: emailRef.current });
   };

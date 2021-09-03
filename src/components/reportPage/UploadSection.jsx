@@ -57,13 +57,7 @@ const UploadSection = (props) => {
     // If CAPTCHA success
     if (event.detail["success"]) {
       console.log("CAPTCHA Success");
-      // For batch job.
-      if (emailRef?.current) {
-        handleJob(filesRef.current, emailRef.current);
-      } else {
-        // For live job.
-        handleJob(filesRef.current);
-      }
+      handleJob(filesRef.current);
 
       // If CAPTCHA failure
       // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
