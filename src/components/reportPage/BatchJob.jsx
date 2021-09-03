@@ -1,11 +1,14 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import UploadSection from "./UploadSection";
 import "./batch-job.css";
 import { useHistory } from "react-router-dom";
+import Repository from "../../data/Repository";
+import Spinner from "react-bootstrap/Spinner";
 
 const BatchJob = () => {
   const FILE_LIMIT = 100;
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const formId = "batchForm";
   const history = useHistory();
 
@@ -16,8 +19,11 @@ const BatchJob = () => {
     setEmail(event.target.value);
   };
 
-  const handleBatchJob = (files) => {
-    history.push("/batchsubmitpage", {email: emailRef.current});
+  const handleBatchJob = async (files, email) => {
+    setIsLoading(true);
+    await new Repository().uploadBatchJob(email, files);
+    setIsLoading(false);
+    history.push("/batchsubmitpage", { email: emailRef.current });
   };
 
   return (
@@ -32,7 +38,6 @@ const BatchJob = () => {
           id="email"
           placeholder="Enter your email..."
           required
-          defaultValue={email}
           form={formId}
           onChange={handleEmailChange}
         />
@@ -42,7 +47,15 @@ const BatchJob = () => {
         handleJob={handleBatchJob}
         formId={formId}
         btnLabel="Submit Job"
+        emailRef={emailRef}
       />
+
+      {isLoading && (
+        <div className="scrim">
+          <h2>Uploading files...</h2>
+          <Spinner animation="border" role="status" variant="primary" />
+        </div>
+      )}
     </div>
   );
 };
