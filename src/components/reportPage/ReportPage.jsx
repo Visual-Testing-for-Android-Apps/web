@@ -56,21 +56,18 @@ const ReportPage = (props) => {
     setSearchString(e.target.value);
   };
 
-  // const filterImages = (currFilterType) => {
-  //   console.log(currFilterType)
-  //   return imageResults.filter((imageResult) => {
-  //     console.log(imageResult["bug_type"][0])
-  //     if (imageResult["bug_type"][0] === currFilterType){
-  //       console.log("Inside the if statement")
-  //       console.log(imageResult["bug_type"])
-  //       return (
-  //         <ImageResult
-  //                 imageResult={imageResult}
-  //         />
-  //       )
-  //     }
-  //   })
-  // }
+  const checkImageFilterType = (imageResult) => {
+    const bugTypes = imageResult["bug_type"].filter((bugType) => bugType === filterType);
+    if (
+      filterType === "All" ||
+      (filterType === "No defect found" && imageResult["bug_type"].length === 0) ||
+      bugTypes[0] === filterType
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   return (
     <>
@@ -115,12 +112,7 @@ const ReportPage = (props) => {
       <div className="results">
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {
-            const bugTypes = currentResult["bug_type"].filter((bugType) => bugType === filterType);
-            if (
-              filterType === "All" ||
-              (filterType === "No defect found" && currentResult["bug_type"].length === 0) ||
-              bugTypes[0] === filterType
-            ) {
+            if (checkImageFilterType(currentResult) === true) {
               return [
                 ...previousResult,
                 <ImageResult
@@ -138,6 +130,7 @@ const ReportPage = (props) => {
         {videoResults.length > 0 && <h1 className="results-title">Video Results</h1>}
         <div className="results-container">
           {videoResults.reduce((previousResult, currentResult, index) => {
+            console.log(currentResult)
             if (
               searchTerm.length === 0 ||
               videos[index].name.toLowerCase().includes(searchTerm.toLowerCase())
