@@ -9,6 +9,7 @@ import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
 import { inferno256 } from "./gradients256";
 import ColourSchemeSelector from "./ColourSchemeSelector";
+import { alignPropType } from "react-bootstrap/esm/DropdownMenu";
 
 const ReportPage = (props) => {
   const { files, email } = useLocation().state ?? {};
@@ -25,9 +26,13 @@ const ReportPage = (props) => {
   const [searchTerm, setSearchString] = useState("");
 
   const [filterType, setFilterType] = useState("All");
+  const [videoFilterType, setVideoFilterType] = useState("0");
 
   const filterRef = useRef();
   filterRef.current = filterType;
+
+  const vidFilterRef = useRef();
+  vidFilterRef.current = videoFilterType;
 
   const history = useHistory();
   useEffect(() => {
@@ -66,6 +71,15 @@ const ReportPage = (props) => {
       return true;
     } else {
       return false;
+    }
+  };
+
+  const checkVideoFilterType = (videoResult) => {
+    if(videoFilterType === "0" || videoResult["classification"] === videoFilterType){
+      return true
+    }
+    else{
+      return false
     }
   };
 
@@ -128,13 +142,30 @@ const ReportPage = (props) => {
           }, [])}
         </div>
         {videoResults.length > 0 && <h1 className="results-title">Video Results</h1>}
+        <div className="video-filter">
+        <select
+            onChange={(e) => {
+              setVideoFilterType(e.target.value);
+            }}
+            className="custom-select"
+            aria-label="Filter Countries By Region"
+          >
+            <option value="0">Show All Results</option>
+            <option value="1">No defect</option>
+            <option value="2">Missing scrim</option>
+            <option value="3">Snackbar blocking bottom navigation</option>
+            <option value="4">Stacking multiple banners</option>
+            <option value="5">Card flipping</option>
+            <option value="6">Moving cards behind other cards</option>
+            <option value="7">Stacking multiple snackbars</option>
+            <option value="8">Missing elevation</option>
+            <option value="9">Modal sheet missing scrim</option>
+          </select>
+          </div>
         <div className="results-container">
           {videoResults.reduce((previousResult, currentResult, index) => {
-            console.log(currentResult)
-            if (
-              searchTerm.length === 0 ||
-              videos[index].name.toLowerCase().includes(searchTerm.toLowerCase())
-            ) {
+            console.log(videoFilterType)
+            if (checkVideoFilterType(currentResult) === true) {
               return [
                 ...previousResult,
                 <VideoResult

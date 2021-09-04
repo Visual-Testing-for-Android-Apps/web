@@ -97,6 +97,11 @@
   margin-bottom: 1rem;
 }
 
+.video-filter{
+  align-items: center;
+  text-align: center;
+}
+
 .filename {
   text-align: center;
   margin-left: var(--result-margin);
