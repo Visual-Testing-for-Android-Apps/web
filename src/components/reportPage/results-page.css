@@ -1,0 +1,175 @@
+:root {
+  --result-width: 18rem;
+  --result-height: 32rem;
+  --result-margin: 1rem;
+}
+
+.results-title {
+  font-family: "Signika", sans-serif;
+  font-size: xx-large;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.result {
+  margin: var(--result-margin);
+
+  /* 16:9 ratio */
+  height: var(--result-height);
+  width: var(--result-width);
+}
+
+.result-container {
+  border: black solid 0.1rem;
+  margin: 0.5rem;
+}
+
+.original-image {
+  /* 16:9 ratio */
+  height: var(--result-height);
+  width: var(--result-width);
+}
+
+.image-heatmap {
+  position: relative;
+
+  /* 16:9 ratio */
+  height: var(--result-height);
+  width: var(--result-width);
+
+  /* No idea why this extra .35rem is necessary */
+  bottom: calc(var(--result-height) + 0.35rem);
+}
+
+.image-heatmap:hover {
+  opacity: 0;
+}
+
+.result-explanation {
+  text-align: center;
+  margin-left: var(--result-margin);
+
+  /* Makes long explanations wrap */
+  width: var(--result-width);
+}
+
+.progress-indicator-container {
+  padding: 0;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.progress {
+  width: 100%;
+}
+
+.image-result-container {
+  margin: 1rem;
+  width: var(--result-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.video-result-explanation {
+  margin: 0 3rem;
+  max-width: 40rem;
+}
+
+.video-result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.filename {
+  text-align: center;
+  margin-left: var(--result-margin);
+
+  /* Makes long explanations wrap */
+  width: var(--result-width);
+}
+
+.file-search {
+  width: 100%;
+}
+
+.download-btn {
+  margin: auto;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  width: var(--result-width);
+  font-size: 1rem;
+
+  /* padding: 0.8rem; */
+  border: 0.2rem solid;
+  background-color: green;
+  color: white;
+  text-align: center;
+}
+
+/* @media only screen and (min-width: 1024px) { */
+.result-filename {
+  color: grey;
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: absolute;
+  top: calc(var(--result-height) + 1.1rem);
+  white-space: nowrap;
+  width: var(--result-width);
+  text-align: right;
+}
+
+/* } */
+
+@media only screen and (min-width: 900px) {
+  .results-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .video-result-container {
+    flex-direction: row;
+    justify-content: center;
+
+    /**
+    This prevents the link from being overlapped by the image result heatmap and not being clickable
+    see https://github.com/Visual-Testing-for-Android-Apps/web/pull/45
+    **/
+    z-index: 1;
+  }
+
+  .video-result-explanation {
+    margin: 0 4rem;
+    border: 0.06rem solid grey;
+    padding: 3rem;
+    width: 30rem;
+  }
+
+  .results {
+    padding: 1rem 10rem 1rem 10rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .results {
+    padding: 1rem 2rem 1rem 2rem;
+  }
+}

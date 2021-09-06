@@ -1,0 +1,129 @@
+.mainSection {
+  background-color: #0476d9;
+  width: auto;
+  padding-top: 5rem;
+  padding-bottom: 8rem;
+}
+
+.selection-heading {
+  margin-bottom: 2rem;
+  margin-inline: 0.6rem;
+}
+
+.title {
+  font-family: "Signika", sans-serif;
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+}
+
+.jobBtn {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 1.8rem;
+  color: #0476d9;
+  margin: 1rem 4%;
+  width: 30%;
+  height: 15rem;
+  min-width: 12rem;
+  border: white;
+  box-shadow: 0 0.5rem 0.938rem rgba(0, 0, 0, 0.2);
+}
+
+.jobBtn:hover {
+  color: rgb(169, 172, 173);
+  box-shadow: 0 0.5rem 0.938rem rgba(0, 0, 0, 0.598);
+}
+
+.description {
+  width: 52%;
+  min-width: 10rem;
+}
+
+.jobType {
+  font-family: "Signika", sans-serif;
+  margin-top: 0.6rem;
+}
+
+.jobDescription {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.4;
+}
+
+.btnContainer {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  height: 50%;
+  width: 100%;
+}
+
+.icon-container {
+  width: 50%;
+  height: 60%;
+  max-height: 4rem;
+  min-width: 3rem;
+  min-height: 4rem;
+  overflow: hidden;
+}
+
+.icon-container img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.btnContainer button:hover {
+  background-image: linear-gradient(to left, #03a64a, #00325e);
+  transform: scale(1.2);
+  border: none;
+  color: white;
+  transition-duration: 0.5s;
+  animation: ease-in;
+}
+
+.btnContainer button:active {
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 800px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .btnContainer button:hover {
+    transform: scale(1.1);
+  }
+
+  .mainSection {
+    padding-bottom: 6rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .mainSection {
+    padding-top: 3.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .selection-heading {
+    margin-bottom: 1rem;
+  }
+
+  .btnContainer button:hover {
+    transform: scale(1.1);
+  }
+}

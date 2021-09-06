@@ -1,15 +1,14 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
+title: ""
 labels: bug
-assignees: ''
-
+assignees: ""
 ---
 
-* [ ] **I have checked that this bug has not yet been reported by someone else**
-* [ ] **I have specified the branch** : master?
-* [ ] **I have specified my browser** : Chrome? Firefox? Firefox-Android? Safari?
+- [ ] **I have checked that this bug has not yet been reported by someone else**
+- [ ] **I have specified the branch** : master?
+- [ ] **I have specified my browser** : Chrome? Firefox? Firefox-Android? Safari?
 
 ### Screenshots (if any)
 
