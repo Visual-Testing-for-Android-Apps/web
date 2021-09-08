@@ -1,0 +1,11 @@
+.report-example-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.report-description-container {
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
