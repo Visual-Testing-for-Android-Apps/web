@@ -1,15 +1,16 @@
 import React from "react";
-
 import "./mainpage.css";
 import "./report-example-section.css";
-import ReportExampleVideo from "../images/reportExample.png";
+import ReportExampleImg from "../images/reportExample.png";
+import ReportExampleVideo from "../images/example-report.mp4";
 
 const ReportExampleSection = () => {
   return (
     <div className="section example-section report-example-section">
       <h2>Detailed issues report</h2>
       <div className="report-example-container">
-        <img src={ReportExampleVideo} />
+        {/* <img src={ReportExampleImg} /> */}
+        <video className="report-example-video" src={ReportExampleVideo} autoPlay loop controls />
         <div className="report-description-container">
           <p>
             Interactive report <br />
@@ -17,7 +18,7 @@ const ReportExampleSection = () => {
             Filter by issue type
             <br />
             <br />
-            Downloadn results for reporting
+            Download results for reporting
             <br />
             <br />
             In real time or delivered to your email

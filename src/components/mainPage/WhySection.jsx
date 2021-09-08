@@ -7,6 +7,7 @@ const WhySection = () => {
   return (
     <div className="section example-section">
       <h2>Why VISION?</h2>
+      <div className="why-header-body-space"></div>
       <h3>Improve your design</h3>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
