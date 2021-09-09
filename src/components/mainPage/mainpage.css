@@ -1,11 +1,6 @@
 .section {
-  /* min-height: 70vh; */
-
+  min-height: 70vh;
   padding: 5rem 0;
-
-  /* margin-block: 5rem; */
-
-  /* margin-bottom: ; */
 }
 
 .section h2 {
@@ -21,6 +16,12 @@
   color: rgba(0, 0, 0, 0.72);
   font-size: 2rem;
   font-weight: bold;
+}
+
+.section h4 {
+  font-family: "Signika", sans-serif;
+  color: rgba(0, 0, 0, 0.72);
+  font-size: 1.2rem;
 }
 
 .section p {

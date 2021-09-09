@@ -7,22 +7,19 @@ const WhySection = () => {
   return (
     <div className="section example-section">
       <h2>Why VISION?</h2>
-      <div className="why-header-body-space"></div>
+      <div className="why-header-body-space" />
       <h3>Improve your design</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua.{" "}
+        Catch issues before they reach your users. Based on common GUI defects and Material Design
+        violations.
       </p>
       <h3>Automate testing</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua.{" "}
+        Integrate VISION into your CI/CD pipeline. Submit batch jobs through our web interface with
+        up to 100 images and videos, or host it yourself. Source code is freely available on Github.
       </p>
-      <h3>Stream results in realtime</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua.
-      </p>
+      <h3>Stream results in real-time</h3>
+      <p>See your results as soon as they are ready by submitting a live job.</p>
     </div>
   );
 };

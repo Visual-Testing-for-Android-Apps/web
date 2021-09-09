@@ -19,7 +19,7 @@ const VideoResult = ({ videoFile, videoResult }) => {
   return (
     <div className="video-result-container">
       <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
-        <video className="result" src={dataUrl} autoPlay loop controls />
+        <video className="result" src={dataUrl} autoPlay loop controls muted />
         <p className="result-filename">{videoFile.name}</p>
       </div>
       <VideoResultExplanation issueClassification={videoResult?.classification} />

@@ -19,6 +19,9 @@ const VideoResultExampleSection = () => {
         <div className="video-defects-list-container">
           <ul className="video-defects-list">
             <li>
+              <h4>Violations</h4>
+            </li>
+            <li>
               <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Passing through other material
             </li>
             <li>

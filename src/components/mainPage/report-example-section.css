@@ -8,7 +8,7 @@
 }
 
 .report-example-video {
-  width: 70%;
+  width: 50%;
   object-fit: contain;
   border: none;
   box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.2);
@@ -18,9 +18,20 @@
 
 .report-description-container {
   background-color: #f8f9fa;
-  padding: 1rem;
+  padding: 2rem 2rem;
+  line-height: 2rem;
 }
 
 .why-header-body-space {
   height: 1.5rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .report-example-video {
+    width: 100%;
+  }
+
+  .report-description-container {
+    width: 100%;
+  }
 }
