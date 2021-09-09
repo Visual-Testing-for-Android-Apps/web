@@ -3,7 +3,9 @@ import React from "react";
 import "./mainpage.css";
 import "./example-section.css";
 import "./image-example-section.css";
-import ExampleResultImage from "../images/example-result.png";
+import OcclussionExampleImage from "../images/occlusionExample.png";
+import MissingImageExampleImage from "../images/missingImageExample.png";
+import NullValueExampleImage from "../images/nullValueExample.png";
 
 const ImageResultExampleSection = () => {
   const IMAGE_WIDTH = (576 / 2) * 1;
@@ -32,9 +34,12 @@ const ImageResultExampleSection = () => {
           </p>
         </div>
         <div className="example-image-results-container">
-          <ExampleImageResult exampleResultImage={ExampleResultImage} label="Component Occlusion" />
-          <ExampleImageResult exampleResultImage={ExampleResultImage} label="Missing Image" />
-          <ExampleImageResult exampleResultImage={ExampleResultImage} label="Null Value" />
+          <ExampleImageResult
+            exampleResultImage={OcclussionExampleImage}
+            label="Component Occlusion"
+          />
+          <ExampleImageResult exampleResultImage={MissingImageExampleImage} label="Missing Image" />
+          <ExampleImageResult exampleResultImage={NullValueExampleImage} label="Null Value" />
         </div>
       </div>
     </div>

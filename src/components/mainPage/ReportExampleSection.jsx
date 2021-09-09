@@ -1,7 +1,6 @@
 import React from "react";
 import "./mainpage.css";
 import "./report-example-section.css";
-import ReportExampleImg from "../images/reportExample.png";
 import ReportExampleVideo from "../images/example-report.mp4";
 
 const ReportExampleSection = () => {
@@ -9,7 +8,6 @@ const ReportExampleSection = () => {
     <div className="section example-section report-example-section">
       <h2>Detailed issues report</h2>
       <div className="report-example-container">
-        {/* <img src={ReportExampleImg} /> */}
         <video className="report-example-video" src={ReportExampleVideo} autoPlay loop controls />
         <div className="report-description-container">
           <p>
