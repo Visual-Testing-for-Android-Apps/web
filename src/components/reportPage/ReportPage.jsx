@@ -135,8 +135,13 @@ const ReportPage = (props) => {
             onChange={handleSearching}
           />{" "}
         </div>{" "}
-        <div className="image-filter">
+      </div>
+      {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
+      {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
+      {imageResults.length > 0 && (
+        <div>
           <Select
+            className="image-filter"
             isMulti
             closeMenuOnSelect={false}
             components={animatedComponents}
@@ -144,9 +149,8 @@ const ReportPage = (props) => {
             onChange={handleMenuChange}
           ></Select>
         </div>
-      </div>
-      {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
-      {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
+      )}
+
       <div className="results">
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {
