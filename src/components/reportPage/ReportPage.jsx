@@ -30,11 +30,9 @@ const ReportPage = (props) => {
   const [filterType, setFilterType] = useState("All");
   const [videoFilterType, setVideoFilterType] = useState("0");
 
-  // State for the selected defect types in the filter menu
   const [displayValue, getValue] = useState([]);
   const animatedComponents = makeAnimated();
 
-  // All the possible defect types for images & videos
   const options = [
     { value: "5", label: "Card flipping" },
     { value: "Component occlusion", label: "Component Occlusion" },
@@ -84,12 +82,10 @@ const ReportPage = (props) => {
   };
 
   const handleMenuChange = (e) => {
-    // Store the selected values in the "displayValue" array
     getValue(Array.isArray(e) ? e.map((x) => x.value) : []);
   };
 
   const checkImageFilterType = (imageResult) => {
-    //  SOME: tests whether at least one element in the array passes the includes test
     const found = displayValue.some((value) => imageResult["bug_type"].includes(value));
 
     if (
@@ -139,10 +135,10 @@ const ReportPage = (props) => {
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
       {imageResults.length > 0 && (
-        <div>
+        <div className="results">
           <Select
-            className="image-filter"
             isMulti
+            placeholder="Filter by defect type..."
             closeMenuOnSelect={false}
             components={animatedComponents}
             options={options}
