@@ -75,11 +75,10 @@ const ReportPage = (props) => {
   };
 
   const checkVideoFilterType = (videoResult) => {
-    if(videoFilterType === "0" || videoResult["classification"] === videoFilterType){
-      return true
-    }
-    else{
-      return false
+    if (videoFilterType === "0" || videoResult["classification"] === videoFilterType) {
+      return true;
+    } else {
+      return false;
     }
   };
 
@@ -105,12 +104,19 @@ const ReportPage = (props) => {
             value={searchTerm}
             onChange={handleSearching}
           />{" "}
+        </div>
+        <div></div>
+      </div>
+      {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
+      {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
+      {imageResults.length > 0 && (
+        <div className="image-filter">
           <select
+            id="image-results"
+            name="image-results"
             onChange={(e) => {
               setFilterType(e.target.value);
             }}
-            className="custom-select"
-            aria-label="Filter Countries By Region"
           >
             <option value="All">Show All Results</option>
             <option value="Null value">Null value</option>
@@ -119,13 +125,12 @@ const ReportPage = (props) => {
             <option value="No defect found">No defect found</option>
           </select>
         </div>
-        <div></div>
-      </div>
-      {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
-      {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
+      )}
       <div className="results">
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {
+            /* searchTerm.length === 0 ||
+            images[index].name.toLowerCase().includes(searchTerm.toLowerCase()) */
             if (checkImageFilterType(currentResult) === true) {
               return [
                 ...previousResult,
@@ -142,29 +147,30 @@ const ReportPage = (props) => {
           }, [])}
         </div>
         {videoResults.length > 0 && <h1 className="results-title">Video Results</h1>}
-        <div className="video-filter">
-        <select
-            onChange={(e) => {
-              setVideoFilterType(e.target.value);
-            }}
-            className="custom-select"
-            aria-label="Filter Countries By Region"
-          >
-            <option value="0">Show All Results</option>
-            <option value="1">No defect</option>
-            <option value="2">Missing scrim</option>
-            <option value="3">Snackbar blocking bottom navigation</option>
-            <option value="4">Stacking multiple banners</option>
-            <option value="5">Card flipping</option>
-            <option value="6">Moving cards behind other cards</option>
-            <option value="7">Stacking multiple snackbars</option>
-            <option value="8">Missing elevation</option>
-            <option value="9">Modal sheet missing scrim</option>
-          </select>
-          </div>
+        {videoResults.length > 0 && (
+            <select
+              id="video-results"
+              name="video-results"
+              onChange={(e) => {
+                setVideoFilterType(e.target.value);
+              }}
+            >
+              <option value="0">Show All Results</option>
+              <option value="1">No defect</option>
+              <option value="2">Missing scrim</option>
+              <option value="3">Snackbar blocking bottom navigation</option>
+              <option value="4">Stacking multiple banners</option>
+              <option value="5">Card flipping</option>
+              <option value="6">Moving cards behind other cards</option>
+              <option value="7">Stacking multiple snackbars</option>
+              <option value="8">Missing elevation</option>
+              <option value="9">Modal sheet missing scrim</option>
+            </select>
+        )}
+
         <div className="results-container">
           {videoResults.reduce((previousResult, currentResult, index) => {
-            console.log(videoFilterType)
+            console.log(videoFilterType);
             if (checkVideoFilterType(currentResult) === true) {
               return [
                 ...previousResult,

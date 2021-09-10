@@ -74,6 +74,11 @@
   width: 100%;
 }
 
+.image-filter{
+  align-items: center;
+  text-align: center;
+}
+
 .image-result-container {
   margin: 1rem;
   width: var(--result-width);
@@ -111,7 +116,7 @@
 }
 
 .file-search {
-  width: 80%;
+  width: 100%;
 }
 
 .custom-select {
