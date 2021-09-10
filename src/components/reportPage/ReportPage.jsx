@@ -3,6 +3,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router";
 import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 import "./results-page.css";
 import Repository from "../../data/Repository";
@@ -31,6 +32,7 @@ const ReportPage = (props) => {
 
   // State for the selected defect types in the filter menu
   const [displayValue, getValue] = useState([]);
+  const animatedComponents = makeAnimated();
 
   // All the possible defect types for images & videos
   const options = [
@@ -131,9 +133,16 @@ const ReportPage = (props) => {
             className="file-search"
             value={searchTerm}
             onChange={handleSearching}
-          />{" "}    
-        </div> <div className="image-filter">
-          <Select isMulti options={options} onChange={handleMenuChange}></Select>
+          />{" "}
+        </div>{" "}
+        <div className="image-filter">
+          <Select
+            isMulti
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            options={options}
+            onChange={handleMenuChange}
+          ></Select>
         </div>
       </div>
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
