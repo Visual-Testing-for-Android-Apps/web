@@ -76,7 +76,8 @@
 
 .image-filter{
   align-items: center;
-  text-align: center;
+  width: 50%;
+  height: 50px;
 }
 
 .image-result-container {
@@ -116,7 +117,7 @@
 }
 
 .file-search {
-  width: 100%;
+  width: 50%;
 }
 
 .custom-select {

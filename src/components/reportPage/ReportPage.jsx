@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router";
+import Select from "react-select";
 
 import "./results-page.css";
 import Repository from "../../data/Repository";
@@ -27,6 +28,25 @@ const ReportPage = (props) => {
 
   const [filterType, setFilterType] = useState("All");
   const [videoFilterType, setVideoFilterType] = useState("0");
+
+  // State for the selected defect types in the filter menu
+  const [displayValue, getValue] = useState([]);
+
+  // All the possible defect types for images & videos
+  const options = [
+    { value: "5", label: "Card flipping" },
+    { value: "Component occlusion", label: "Component Occlusion" },
+    { value: "Missing image", label: "Missing Image" },
+    { value: "8", label: "Missing elevation" },
+    { value: "2", label: "Missing scrim" },
+    { value: "9", label: "Modal sheet missing scrim" },
+    { value: "6", label: "Moving cards behind other cards" },
+    { value: "1", label: "No defect" },
+    { value: "Null value", label: "Null Value" },
+    { value: "3", label: "Snackbar blocking bottom navigation" },
+    { value: "4", label: "Stacking multiple banners" },
+    { value: "7", label: "Stacking multiple snackbars" },
+  ];
 
   const filterRef = useRef();
   filterRef.current = filterType;
@@ -61,12 +81,19 @@ const ReportPage = (props) => {
     setSearchString(e.target.value);
   };
 
+  const handleMenuChange = (e) => {
+    // Store the selected values in the "displayValue" array
+    getValue(Array.isArray(e) ? e.map((x) => x.value) : []);
+  };
+
   const checkImageFilterType = (imageResult) => {
-    const bugTypes = imageResult["bug_type"].filter((bugType) => bugType === filterType);
+    //  SOME: tests whether at least one element in the array passes the includes test
+    const found = displayValue.some((value) => imageResult["bug_type"].includes(value));
+
     if (
-      filterType === "All" ||
-      (filterType === "No defect found" && imageResult["bug_type"].length === 0) ||
-      bugTypes[0] === filterType
+      displayValue.length === 0 ||
+      (displayValue.includes("1") && imageResult["bug_type"].length === 0) ||
+      found
     ) {
       return true;
     } else {
@@ -75,7 +102,8 @@ const ReportPage = (props) => {
   };
 
   const checkVideoFilterType = (videoResult) => {
-    if (videoFilterType === "0" || videoResult["classification"] === videoFilterType) {
+    const found = displayValue.includes(videoResult["classification"]);
+    if (displayValue.length === 0 || found) {
       return true;
     } else {
       return false;
@@ -103,35 +131,21 @@ const ReportPage = (props) => {
             className="file-search"
             value={searchTerm}
             onChange={handleSearching}
-          />{" "}
+          />{" "}    
+        </div> <div className="image-filter">
+          <Select isMulti options={options} onChange={handleMenuChange}></Select>
         </div>
-        <div></div>
       </div>
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
-      {imageResults.length > 0 && (
-        <div className="image-filter">
-          <select
-            id="image-results"
-            name="image-results"
-            onChange={(e) => {
-              setFilterType(e.target.value);
-            }}
-          >
-            <option value="All">Show All Results</option>
-            <option value="Null value">Null value</option>
-            <option value="Component occlusion">Component occlusion</option>
-            <option value="Missing image">Missing image</option>
-            <option value="No defect found">No defect found</option>
-          </select>
-        </div>
-      )}
       <div className="results">
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {
-            /* searchTerm.length === 0 ||
-            images[index].name.toLowerCase().includes(searchTerm.toLowerCase()) */
-            if (checkImageFilterType(currentResult) === true) {
+            if (
+              (searchTerm.length === 0 ||
+                images[index].name.toLowerCase().includes(searchTerm.toLowerCase())) &&
+              checkImageFilterType(currentResult) === true
+            ) {
               return [
                 ...previousResult,
                 <ImageResult
@@ -147,31 +161,13 @@ const ReportPage = (props) => {
           }, [])}
         </div>
         {videoResults.length > 0 && <h1 className="results-title">Video Results</h1>}
-        {videoResults.length > 0 && (
-            <select
-              id="video-results"
-              name="video-results"
-              onChange={(e) => {
-                setVideoFilterType(e.target.value);
-              }}
-            >
-              <option value="0">Show All Results</option>
-              <option value="1">No defect</option>
-              <option value="2">Missing scrim</option>
-              <option value="3">Snackbar blocking bottom navigation</option>
-              <option value="4">Stacking multiple banners</option>
-              <option value="5">Card flipping</option>
-              <option value="6">Moving cards behind other cards</option>
-              <option value="7">Stacking multiple snackbars</option>
-              <option value="8">Missing elevation</option>
-              <option value="9">Modal sheet missing scrim</option>
-            </select>
-        )}
-
         <div className="results-container">
           {videoResults.reduce((previousResult, currentResult, index) => {
-            console.log(videoFilterType);
-            if (checkVideoFilterType(currentResult) === true) {
+            if (
+              (searchTerm.length === 0 ||
+                videos[index].name.toLowerCase().includes(searchTerm.toLowerCase())) &&
+              checkVideoFilterType(currentResult) === true
+            ) {
               return [
                 ...previousResult,
                 <VideoResult
