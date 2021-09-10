@@ -75,6 +75,7 @@
 }
 
 .image-filter {
+  padding-top: 0.5rem;
   margin-left: 20rem;
   display: auto;
   justify-content: center;
@@ -187,5 +188,9 @@
 @media only screen and (max-width: 900px) {
   .results {
     padding: 1rem 2rem 1rem 2rem;
+  }
+
+  .image-filter {
+    margin-left: 6rem;
   }
 }
