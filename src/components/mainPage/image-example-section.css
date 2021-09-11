@@ -11,10 +11,6 @@
   color: white;
 }
 
-/* .example-section-header {
-  margin-bottom: 1rem;
-} */
-
 .example-image-results-container {
   display: flex;
   flex-direction: column;
@@ -42,8 +38,6 @@
   color: black;
   text-align: center;
   font-family: "Helvetica Neue", sans-serif;
-
-  /* font-family: Open Sans; */
   font-weight: 450;
   font-size: 1.2rem;
 }

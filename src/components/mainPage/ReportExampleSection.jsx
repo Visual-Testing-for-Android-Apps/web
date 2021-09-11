@@ -20,8 +20,14 @@ const ReportExampleSection = () => {
               interactive report
             </li>
             <li>
-              <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Filter your results by issue
-              type
+              <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Select between four heatmap
+              colour schemes
+            </li>
+            <li>
+              <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Search for files
+            </li>
+            <li>
+              <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Filter results by issue type
             </li>
             <li>
               <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Download your results for
@@ -34,13 +40,6 @@ const ReportExampleSection = () => {
             <li>
               <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Save waiting and get notified
               via email with batch job
-            </li>
-            <li>
-              <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Select between four heatmap
-              colour schemes
-            </li>
-            <li>
-              <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Search for files
             </li>
           </ul>
         </div>
