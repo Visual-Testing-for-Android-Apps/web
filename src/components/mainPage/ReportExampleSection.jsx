@@ -1,14 +1,18 @@
 import React from "react";
 import "./mainpage.css";
 import "./report-example-section.css";
-import ReportExampleVideo from "../images/report-example.mp4";
+import ReportExampleVideoMp4 from "../images/report-example.mp4";
+import ReportExampleVideoWebm from "../images/report-example.webm";
 
 const ReportExampleSection = () => {
   return (
     <div className="section example-section report-example-section">
       <h2>Detailed issues report</h2>
       <div className="report-example-container">
-        <video className="report-example-video" src={ReportExampleVideo} autoPlay loop muted />
+        <video className="report-example-video" autoPlay loop muted>
+          <source src={ReportExampleVideoMp4} />
+          <source src={ReportExampleVideoWebm} />
+        </video>
         <div className="report-description-container">
           <ul className="video-defects-list">
             <li>
