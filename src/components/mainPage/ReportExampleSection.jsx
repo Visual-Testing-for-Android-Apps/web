@@ -8,13 +8,13 @@ const ReportExampleSection = () => {
   return (
     <div className="section  report-example-section" id="exampleReportSection">
       <div className="example-section">
-        <h2>Detailed issues report</h2>
         <div className="report-example-container">
           <video className="report-example-video" autoPlay loop muted>
             <source src={ReportExampleVideoMp4} />
             <source src={ReportExampleVideoWebm} />
           </video>
           <div className="report-description-container">
+            <h3>Detailed issues report</h3>
             <ul className="video-defects-list">
               <li>
                 <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Receive your results as an

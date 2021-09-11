@@ -5,6 +5,10 @@
   font-stretch: 25% 151%;
 }
 
+.example-video-section {
+  padding-bottom: 0;
+}
+
 .video-explanation-container > .video-result-explanation {
   margin: 0 0;
   padding: 2rem 2rem 2rem 3rem;
@@ -52,9 +56,16 @@
 }
 
 .video-defects-list-container {
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
   padding: 2rem 2rem;
   line-height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.video-defects-list-container > p {
+  margin-bottom: 2rem;
 }
 
 .video-result-example-container {
@@ -62,6 +73,10 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+.video-result-example-container > img {
+  max-width: 30rem;
 }
 
 .video-defects-list {
@@ -72,4 +87,10 @@
 
 .checkmark {
   font-family: "Signika", sans-serif;
+}
+
+@media only screen and (max-width: 1024px) {
+  .video-result-example-container > img {
+    max-width: 100%;
+  }
 }
