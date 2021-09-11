@@ -25,7 +25,7 @@ const UploadSection = (props) => {
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
-  const { fileLimit, formId, btnLabel, handleJob } = props;
+  const { fileLimit, formId, btnLabel, handleJob, emailRef } = props;
 
   const removeFile = (file) => {
     const newFile = [...files];
@@ -124,7 +124,12 @@ const UploadSection = (props) => {
       <div style={containerStyle}>
         <form style={formStyle} onSubmit={handleSubmit} id={formId}>
           <Captcha />
-          <UploadBox setFiles={setFiles} fileLimit={fileLimit} setAlert={setAlert} currFiles={files}/>
+          <UploadBox
+            setFiles={setFiles}
+            fileLimit={fileLimit}
+            setAlert={setAlert}
+            currFiles={files}
+          />
           <input
             className="upload-btn"
             type="submit"
