@@ -50,4 +50,14 @@
     justify-content: space-between;
     gap: 2rem;
   }
+
+  #exampleImageSection,
+  #exampleVideoSection,
+  #exampleReportSection,
+  #exampleWhySection,
+  .mainSection {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
 }
