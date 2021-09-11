@@ -53,7 +53,6 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
     const resultImage = new Image();
     resultImage.onload = function () {
-      console.log(imageResult);
       // setting the images to their natural size to maintain their quality
       resultImageCanvas.width = this.naturalWidth;
       resultImageCanvas.height = this.naturalHeight;
