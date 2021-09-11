@@ -18,8 +18,8 @@ const UploadBox = (props) => {
         setAlert(MAX_FILE_ALERT);
       } else if (rejectFiles < fileLimit) {
         // To display the duplicate files uploaded
-        const duplicateFileAlert = fileRejections.map((f) => ' ' + f.file.name )
-        setAlert('You have already uploaded:' + duplicateFileAlert);
+        const duplicateFileAlert = fileRejections.map((f) => " " + f.file.name);
+        setAlert("You have already uploaded:" + duplicateFileAlert);
       } else {
         setAlert(INVALID_FILETYPE);
       }
@@ -28,7 +28,7 @@ const UploadBox = (props) => {
 
   // Cusomter file validation function
   const validateFiles = (file) => {
-    if(!props.currFiles.every(currFile => currFile.name != file.name)){
+    if (!props.currFiles.every((currFile) => currFile.name != file.name)) {
       return {};
     }
     // Returns null if files should be accepeted
@@ -59,10 +59,10 @@ const UploadBox = (props) => {
             <br></br>
             {maxFiles != 0 ? <em> (Maximum number of files: {maxFiles}) </em> : null}
           </p>
-          <p className="accepted-file-formats-text">
+          <sub className="accepted-file-formats-text">
             Accepted file formats:{" "}
             {acceptedFileTypes.map((format) => format.split("/")[1]).join(", ")}
-          </p>
+          </sub>
         </>
       )}
     </div>
