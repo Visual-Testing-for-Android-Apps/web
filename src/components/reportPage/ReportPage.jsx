@@ -38,7 +38,7 @@ const ReportPage = (props) => {
   ];
 
   const videoOptions = [
-    { value: "0", label: "Cannot Place image in Space" },
+    { value: "0", label: "No defect" },
     { value: "1", label: "Pass through other material" },
     { value: "2", label: "Missing scrim" },
     { value: "3", label: "Snackbar blocking bottom navigation" },
