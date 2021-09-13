@@ -74,6 +74,14 @@
   width: 100%;
 }
 
+.image-filter {
+  padding-top: 0.5rem;
+  margin-left: 20rem;
+  display: auto;
+  justify-content: center;
+  width: 50%;
+}
+
 .image-result-container {
   margin: 1rem;
   width: var(--result-width);
@@ -97,6 +105,11 @@
   margin-bottom: 1rem;
 }
 
+.video-filter {
+  align-items: center;
+  text-align: center;
+}
+
 .filename {
   text-align: center;
   margin-left: var(--result-margin);
@@ -107,6 +120,10 @@
 
 .file-search {
   width: 100%;
+}
+
+.custom-select {
+  padding: 0.15rem;
 }
 
 .download-btn {
@@ -136,8 +153,6 @@
   text-align: right;
 }
 
-/* } */
-
 @media only screen and (min-width: 900px) {
   .results-container {
     flex-direction: row;
@@ -153,7 +168,7 @@
     This prevents the link from being overlapped by the image result heatmap and not being clickable
     see https://github.com/Visual-Testing-for-Android-Apps/web/pull/45
     **/
-    z-index: 1;
+    z-index: 0;
   }
 
   .video-result-explanation {
@@ -165,11 +180,17 @@
 
   .results {
     padding: 1rem 10rem 1rem 10rem;
+    z-index: 1;
   }
 }
 
 @media only screen and (max-width: 900px) {
   .results {
     padding: 1rem 2rem 1rem 2rem;
+    z-index: 1;
+  }
+
+  .image-filter {
+    margin-left: 6rem;
   }
 }
