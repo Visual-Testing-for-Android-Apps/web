@@ -27,7 +27,7 @@ const ReportPage = (props) => {
   const [searchTerm, setSearchString] = useState("");
 
   const [selectedImageDefects, setImageDefects] = useState([]);
-  const [selectedVideoDefects, setVideoFefects] = useState([]);
+  const [selectedVideoDefects, setVideoDefects] = useState([]);
   const animatedComponents = makeAnimated();
 
   const imageOptions = [
@@ -83,7 +83,7 @@ const ReportPage = (props) => {
   };
 
   const handleVideoFilterChange = (e) => {
-    setVideoFefects(Array.isArray(e) ? e.map((x) => x.value) : []);
+    setVideoDefects(Array.isArray(e) ? e.map((x) => x.value) : []);
   };
 
   const checkImageFilterType = (imageResult) => {
