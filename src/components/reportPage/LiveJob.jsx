@@ -1,14 +1,20 @@
 import React from "react";
 import UploadSection from "./UploadSection";
+import { useHistory } from "react-router-dom";
 
 const LiveJob = () => {
   const FILE_LIMIT = 10;
+  const history = useHistory();
+  const handleJob = (files) => {
+    history.push("/reportpage", { files: files });
+  };
+
   return (
     <div className="section__container">
       <h1 style={{ textAlign: "center" }}>
-        <b>Upload Files</b>
+        <b>Live Job Request</b>
       </h1>
-      <UploadSection fileLimit={FILE_LIMIT} />
+      <UploadSection fileLimit={FILE_LIMIT} handleJob={handleJob} />
     </div>
   );
 };

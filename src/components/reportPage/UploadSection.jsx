@@ -5,16 +5,12 @@ import UploadBox from "./UploadBox";
 import Captcha from "./Captcha";
 import "../mainPage/mainpage.css";
 import "./upload.css";
-import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 
 const UploadSection = (props) => {
-  const history = useHistory();
-  const [email, setEmail] = useState("");
   const [files, setFiles] = useState([]);
   const [btnOpacity, setBtnOpacity] = useState(LOW_OPACITY);
 
-  // const [uploadAlertState, setUploadAlertState] = useState("hidden");
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState();
 
@@ -29,16 +25,12 @@ const UploadSection = (props) => {
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
-  const { fileLimit } = props;
+  const { fileLimit, formId, btnLabel, handleJob, emailRef } = props;
 
   const removeFile = (file) => {
     const newFile = [...files];
     newFile.splice(file, 1);
     setFiles(newFile);
-  };
-
-  const handleChange = (event) => {
-    setEmail(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -65,7 +57,7 @@ const UploadSection = (props) => {
     // If CAPTCHA success
     if (event.detail["success"]) {
       console.log("CAPTCHA Success");
-      history.push("/reportpage", { files: filesRef.current, email: email });
+      handleJob(filesRef.current);
 
       // If CAPTCHA failure
       // At the moment, this should never fire as reCAPTCHA does not trigger the callback function unless there is a success,
@@ -88,7 +80,7 @@ const UploadSection = (props) => {
         .removeEventListener("captchaEvent", captchaListener);
   }, []);
 
-  // changes the visibility of the button depending on the state of files
+  // Changes the visibility of the button depending on the state of files
   useEffect(() => {
     if (files.length == 0) {
       setBtnOpacity(LOW_OPACITY);
@@ -101,9 +93,7 @@ const UploadSection = (props) => {
     }
   }, [files.length]);
 
-  // renders Alert
   const UploadAlert = () =>
-    // if showAlert = true, return Alert component
     showAlert && (
       <Alert variant="warning" className="upload-alert">
         {alertMessage}
@@ -117,14 +107,13 @@ const UploadSection = (props) => {
         <Col className="file-column">{file.name}</Col>
         <Col className="button-column">
           <button className="remove-btn" onClick={() => removeFile(i)}>
-            Remove
+            X
           </button>
         </Col>
       </Row>
     </Container>
   ));
 
-  // did not want to pass both functions into upload box so made one func instead
   const setAlert = (alertMessage) => {
     setShowAlert(true);
     setAlertMessage(alertMessage);
@@ -133,13 +122,18 @@ const UploadSection = (props) => {
   return (
     <div className="section" id="uploadSection">
       <div style={containerStyle}>
-        <form style={formStyle} onSubmit={handleSubmit}>
+        <form style={formStyle} onSubmit={handleSubmit} id={formId}>
           <Captcha />
-          <UploadBox setFiles={setFiles} fileLimit={fileLimit} setAlert={setAlert} currFiles={files}/>
+          <UploadBox
+            setFiles={setFiles}
+            fileLimit={fileLimit}
+            setAlert={setAlert}
+            currFiles={files}
+          />
           <input
             className="upload-btn"
             type="submit"
-            value="Submit files"
+            value={btnLabel}
             style={{ opacity: btnOpacity }}
           />
           <UploadAlert />
@@ -161,6 +155,11 @@ const formStyle = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+};
+
+UploadSection.defaultProps = {
+  formId: "upload",
+  btnLabel: "Submit Files",
 };
 
 export default UploadSection;

@@ -25,8 +25,7 @@ const VideoResult = ({ videoFile, videoResult }) => {
           [
             <>Looks good! No design violations found.</>,
             <>
-              Material passing through other material.
-              <br />
+              <h2>Material passing through other material.</h2>
               Material cannot pass through other Material.
               <br />
               Learn more{" "}
@@ -122,6 +121,7 @@ const VideoResult = ({ videoFile, videoResult }) => {
     <div className="video-result-container">
       <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
         <video className="result" src={dataUrl} autoPlay loop controls />
+        <p className="result-filename">{videoFile.name}</p>
       </div>
       {mapVideoIssueToExplanation(videoResult?.classification)}
     </div>

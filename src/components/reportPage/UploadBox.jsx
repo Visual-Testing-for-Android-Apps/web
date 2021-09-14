@@ -18,8 +18,8 @@ const UploadBox = (props) => {
         setAlert(MAX_FILE_ALERT);
       } else if (rejectFiles < fileLimit) {
         // To display the duplicate files uploaded
-        const duplicateFileAlert = fileRejections.map((f) => ' ' + f.file.name )
-        setAlert('You have already uploaded:' + duplicateFileAlert);
+        const duplicateFileAlert = fileRejections.map((f) => " " + f.file.name);
+        setAlert("You have already uploaded:" + duplicateFileAlert);
       } else {
         setAlert(INVALID_FILETYPE);
       }
@@ -28,7 +28,7 @@ const UploadBox = (props) => {
 
   // Cusomter file validation function
   const validateFiles = (file) => {
-    if(!props.currFiles.every(currFile => currFile.name != file.name)){
+    if (!props.currFiles.every((currFile) => currFile.name != file.name)) {
       return {};
     }
     // Returns null if files should be accepeted
@@ -46,6 +46,7 @@ const UploadBox = (props) => {
 
   return (
     <div className="box" {...getRootProps()}>
+      <h3>Upload Files</h3>
       {isDragActive ? <CloudIcon fill={"green"} /> : <CloudIcon fill={"#045198"} />}
       <input {...getInputProps()} />
 

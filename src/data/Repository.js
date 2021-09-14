@@ -62,17 +62,44 @@ class Repository {
    * @param {String} email
    * @param {Array<File>} files
    */
-  uploadBatchJob(email, files) {
-    const formData = new FormData();
-    formData.append("email", email);
-    files.forEach((file) => {
-      formData.append("files", file, file.name);
-    });
+  async uploadBatchJob(email, files) {
+    try {
+      // Get upload urls.
+      const { jobID, uploadUrls } = await (
+        await fetch(__BATCH_JOB_ENDPOINT__, {
+          method: "POST",
+          body: JSON.stringify({ email, fileNames: files.map((file) => file.name) }),
+        })
+      ).json();
 
-    fetch(__BATCH_JOB_ENDPOINT__, {
-      method: "POST",
-      body: formData,
-    }).catch((error) => console.log(error));
+      // Upload files.
+      for (const [fileName, uploadUrl] of Object.entries(uploadUrls)) {
+        const file = files.find((file) => file.name === fileName);
+        const fileDataUrl = await encodeFileAsBase64DataUrl(file);
+
+        const binary = atob(this._getBase64FromDataUrl(fileDataUrl));
+        const array = [];
+        for (var i = 0; i < binary.length; i++) {
+          array.push(binary.charCodeAt(i));
+        }
+        const blobData = new Blob([new Uint8Array(array)], { type: file.type });
+        await fetch(uploadUrl, {
+          method: "PUT",
+          body: blobData,
+        });
+      }
+
+      // Send done signal.
+      await fetch(__BATCH_JOB_ENDPOINT__, {
+        method: "POST",
+        body: JSON.stringify({
+          uploadDone: "true",
+          jobID,
+        }),
+      });
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   /**

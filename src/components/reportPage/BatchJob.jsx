@@ -1,70 +1,61 @@
-import React, { useState, useCallback, useEffect } from "react";
-import StepUpload from "./StepUpload";
-import StepEmail from "./StepEmail";
+import React, { useState, useRef } from "react";
+import UploadSection from "./UploadSection";
 import "./batch-job.css";
+import { useHistory } from "react-router-dom";
+import Repository from "../../data/Repository";
+import Spinner from "react-bootstrap/Spinner";
 
 const BatchJob = () => {
   const FILE_LIMIT = 100;
-  const [currentStep, setCurrentStep] = useState(1);
-  const [files, setFiles] = useState([]);
-  const [email, setEmail] = useState();
-  const [emailVerified, setEmailVerified] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-    emailVerified: false,
-  });
-  const handleChange = (event) => {
-    // setFormData({
-    //   ...formData,
-    //   [event.target.name]: event.target.value,
-    // });
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const formId = "batchForm";
+  const history = useHistory();
+
+  const emailRef = useRef();
+  emailRef.current = email;
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
-  const handleEmail = async (e) => {
-    const { email } = e.target.elements;
-
-    // Do some email verification
-
-    // Set email
-    setEmail(email.value);
-    setEmailVerified(true);
+  const handleBatchJob = async (files) => {
+    setIsLoading(true);
+    await new Repository().uploadBatchJob(emailRef.current, files);
+    setIsLoading(false);
+    history.push("/batchsubmitpage", { email: emailRef.current });
   };
 
-  const next = () => {
-    setCurrentStep(currentStep + 1);
-  };
-  const back = () => {
-    setCurrentStep(currentStep - 1);
-  };
-
-  switch (currentStep) {
-    case 1:
-      return <StepUpload next={next} fileLimit={FILE_LIMIT} setFiles={setFiles} files={files} />;
-    case 2:
-      return (
-        <StepEmail
-          emailVerified={emailVerified}
-          email={email}
-          setEmailVerified={setEmailVerified}
-          handleEmail={handleEmail}
-          next={next}
-          back={back}
-        />
-      );
-    default:
-      return (
-        <Submit
-        // data={formData}
-        // back={back}
-        />
-      );
-  }
-};
-
-const Submit = () => {
   return (
-    <div className="form-container">
-      <h1>Batch Job submitted succesfully!</h1>
+    <div className="section_container">
+      <h1 style={{ textAlign: "center" }}>
+        <b>Batch Job Request</b>
+      </h1>
+      <div className="form-container">
+        <label>Email: </label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email..."
+          required
+          form={formId}
+          onChange={handleEmailChange}
+        />
+      </div>
+      <UploadSection
+        fileLimit={FILE_LIMIT}
+        handleJob={handleBatchJob}
+        formId={formId}
+        btnLabel="Submit Job"
+        emailRef={emailRef}
+      />
+
+      {isLoading && (
+        <div className="scrim">
+          <h2>Uploading files...</h2>
+          <Spinner animation="border" role="status" variant="primary" />
+        </div>
+      )}
     </div>
   );
 };
