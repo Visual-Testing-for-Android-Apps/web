@@ -3,7 +3,6 @@ import UploadSection from "./UploadSection";
 import "./batch-job.css";
 import { useHistory } from "react-router-dom";
 import Repository from "../../data/Repository";
-import Spinner from "react-bootstrap/Spinner";
 
 const BatchJob = () => {
   const FILE_LIMIT = 100;
@@ -51,9 +50,9 @@ const BatchJob = () => {
       />
 
       {isLoading && (
-        <div className="scrim">
+        <div class="loading style-2">
+          <div class="loading-wheel"></div>
           <h2>Uploading files...</h2>
-          <Spinner animation="border" role="status" variant="primary" />
         </div>
       )}
     </div>
