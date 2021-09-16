@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import mergeImages from "merge-images";
 
-import { createImageDataUrlFromBase64 } from "../../util/FileUtil";
+import { createImageDataUrlFromBase64, encodeFileAsBase64DataUrl } from "../../util/FileUtil";
 import "./results-page.css";
 
+import DownloadIcon from "./downloadIcon";
+import Resizer from "react-image-file-resizer";
 /**
  * An image result consists of the orignal image, a heatmap, and a description of the bug type. There may be no bug type.
  * @param {{ original_img: String, res_img: String, bug_type: Array<String> }} imageResult
@@ -84,6 +86,39 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
     };
     resultImage.src = resultImageDataUrl;
   }, [resultImageDataUrl, colourScheme]);
+
+  const resizeFile = (file, width, height) =>
+    Resizer.imageFileResizer(
+      file,
+      width,
+      height,
+      "JPEG",
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+
+  const downloadFile = () => {
+    const height = originalImageCanvasRef.current.height;
+    const width = originalImageCanvasRef.current.width;
+    console.log(originalImageDataUrl);
+    console.log(resultImageDataUrl);
+    mergeImages(
+      [
+        { src: resizeFile(encodeFileAsBase64DataUrl(originalImageDataUrl), width, height) },
+        { src: resultImageDataUrl, opacity: 0.5 },
+      ],
+      {
+        height: height,
+        width: width,
+      }
+    ).then((heatmapedImageDataUrl) =>
+      saveAs(heatmapedImageDataUrl, "heatmaped_".concat(imageFile.name))
+    );
+  };
 
   return (
     <div className="image-result-container">

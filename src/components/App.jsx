@@ -6,6 +6,7 @@ import BatchJob from "./reportPage/BatchJob";
 import Navigation from "./navbar/Navigation";
 import ReportPage from "./reportPage/ReportPage";
 import BatchSubmitPage from "./reportPage/BatchSubmitPage";
+import BatchReportPage from "./reportPage/BatchReportPage";
 
 function App() {
   return (
@@ -24,8 +25,11 @@ function App() {
         <Route path="/reportpage">
           <ReportPage />
         </Route>
+        <Route path="/batchreportpage">
+          <BatchReportPage />
+        </Route>
         <Route path="/batchsubmitpage">
-          <BatchSubmitPage/>
+          <BatchSubmitPage />
         </Route>
       </Switch>
     </Router>

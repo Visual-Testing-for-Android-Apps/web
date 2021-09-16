@@ -102,6 +102,18 @@ class Repository {
     }
   }
 
+  async requestBatchJob(url) {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        body: url,
+      });
+      return await response.json();
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
   /**
    * Extracts the base64 portion of a data url.
    * @param {String} dataUrl
