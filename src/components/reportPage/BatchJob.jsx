@@ -50,8 +50,8 @@ const BatchJob = () => {
       />
 
       {isLoading && (
-        <div class="loading style-2">
-          <div class="loading-wheel"></div>
+        <div className="loading style">
+          <div className="loading-wheel"></div>
           <h2>Uploading files...</h2>
         </div>
       )}

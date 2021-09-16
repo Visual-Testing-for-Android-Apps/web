@@ -77,18 +77,18 @@
   animation: spin 1s linear infinite;
 }
 
-.style-2 .loading-wheel {
+.style .loading-wheel {
   border-style: solid;
   border-color: #ccc transparent;
 }
 
 @keyframes spin {
   0% {
-    -webkit-transform: rotate(0);
+    transform: rotate(0);
   }
 
   100% {
-    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }
 
