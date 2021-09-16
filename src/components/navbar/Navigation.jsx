@@ -32,6 +32,9 @@ const Navigation = () => {
               <Nav.Link href="/batchjob" style={{ color: "#fff" }}>
                 Batch Job
               </Nav.Link>
+              <Nav.Link href="/privacypolicypage" style={{ color: "#fff" }}>
+                Privacy Policy
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
