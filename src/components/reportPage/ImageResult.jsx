@@ -136,7 +136,7 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
               <canvas ref={originalImageCanvasRef} className="original-image" />
               <canvas ref={resultImageCanvasRef} className="image-heatmap" />
             </div>
-            <a className="result-filename" onClick={downloadFile}>
+            <a className="result-filename image-download-btn" onClick={downloadFile}>
               {imageFile.name} <DownloadIcon />
             </a>
           </div>
