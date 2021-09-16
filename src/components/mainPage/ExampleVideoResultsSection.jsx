@@ -6,11 +6,9 @@ import VideoExample from "../images/videoExample.jpg";
 import VideoResultExplanation from "../common/VideoResultExplanation";
 
 const VideoResultExampleSection = () => {
-  const IMAGE_WIDTH = (576 / 2) * 1.65;
   return (
     <div className="section  example-video-section" id="exampleVideoSection">
       <div className="example-section">
-        <div className="video-result-example-header-container"></div>
         <div className="video-example-body">
           <div className="video-defects-list-container">
             <h2>Find design violations</h2>

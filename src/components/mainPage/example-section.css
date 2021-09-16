@@ -3,13 +3,6 @@
   margin-right: 10%;
 }
 
-.example-section2 {
-  margin-left: 10%;
-  margin-right: 10%;
-  max-width: 80.625rem;
-  width: inherit;
-}
-
 @media only screen and (min-width: 1024px) {
   .example-section {
     max-width: 80.625rem;
