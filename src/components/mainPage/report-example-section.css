@@ -24,10 +24,10 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-
-  /* background-color: #f8f9fa; */
-  padding: 2rem 2rem;
+  background-color: #f4f4f4;
+  padding: 6rem 6rem;
   line-height: 2rem;
+  width: calc(100% - 55% - 2rem);
 }
 
 .why-header-body-space {

@@ -13,7 +13,7 @@ const VideoResultExampleSection = () => {
         <div className="video-result-example-header-container"></div>
         <div className="video-example-body">
           <div className="video-defects-list-container">
-            <h3>Find design violations</h3>
+            <h2>Find design violations</h2>
             <p>An AI model will scan for Material Design Guidlines violations.</p>
             <ul className="video-defects-list">
               <li>

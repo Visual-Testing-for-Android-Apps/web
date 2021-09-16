@@ -14,7 +14,7 @@ const ReportExampleSection = () => {
             <source src={ReportExampleVideoWebm} />
           </video>
           <div className="report-description-container">
-            <h3>Detailed issues report</h3>
+            <h2>Detailed issues report</h2>
             <ul className="video-defects-list">
               <li>
                 <span className="checkmark">✓</span>&nbsp;&nbsp;&nbsp;Receive your results as an
