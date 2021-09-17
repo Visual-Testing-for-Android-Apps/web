@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { saveAs } from "file-saver";
 import { encodeFileAsBase64DataUrl } from "../../util/FileUtil";
 import "./results-page.css";
 
