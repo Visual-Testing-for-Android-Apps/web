@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import mergeImages from "merge-images";
+import { saveAs } from "file-saver";
 
 import { createImageDataUrlFromBase64 } from "../../util/FileUtil";
 import "./results-page.css";
+import DownloadIcon from "./downloadIcon";
 
 /**
  * An image result consists of the orignal image, a heatmap, and a description of the bug type. There may be no bug type.
@@ -85,6 +87,42 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
     resultImage.src = resultImageDataUrl;
   }, [resultImageDataUrl, colourScheme]);
 
+  const downloadFile = () => {
+    const height = originalImageCanvasRef.current.height;
+    const width = originalImageCanvasRef.current.width;
+    const tempCanvas = document.createElement("canvas");
+    const ctx = tempCanvas.getContext("2d");
+    tempCanvas.width = width;
+    tempCanvas.height = height;
+
+    // Draw heatmap to new canvas with dimensions matching the original image. Then merge and save.
+    const image = new Image();
+    image.onload = function () {
+      ctx.drawImage(image, 0, 0, width, height);
+
+      mergeImages(
+        [
+          { src: originalImageCanvasRef.current.toDataURL() },
+          { src: tempCanvas.toDataURL(), opacity: 1.0 },
+        ],
+        {
+          height: height,
+          width: width,
+        }
+      ).then((heatmapedImageDataUrl) =>
+        saveAs(
+          heatmapedImageDataUrl,
+          `heatmap_${
+            imageResult?.["bug_type"]?.length > 0
+              ? imageResult?.["bug_type"]?.join("-")?.replace(" ", "")
+              : "no-defect"
+          }_${imageFile.name}`
+        )
+      );
+    };
+    image.src = resultImageCanvasRef.current.toDataURL();
+  };
+
   return (
     <div className="image-result-container">
       {isError ? (
@@ -98,7 +136,9 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
               <canvas ref={originalImageCanvasRef} className="original-image" />
               <canvas ref={resultImageCanvasRef} className="image-heatmap" />
             </div>
-            <p className="result-filename">{imageFile.name}</p>
+            <a className="result-filename image-download-btn" onClick={downloadFile}>
+              {imageFile.name} <DownloadIcon />
+            </a>
           </div>
           <p className="result-explanation">
             {imageResult["bug_type"]?.length == 0
