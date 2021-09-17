@@ -1,0 +1,11 @@
+footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #0476d9;
+  display: grid;
+  place-items: center;
+  padding: 3rem 0 4rem 0;
+  z-index: 1;
+}

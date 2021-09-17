@@ -6,6 +6,7 @@ import BatchJob from "./reportPage/BatchJob";
 import Navigation from "./navbar/Navigation";
 import ReportPage from "./reportPage/ReportPage";
 import BatchSubmitPage from "./reportPage/BatchSubmitPage";
+import Footer from "./footer/Footer";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <BatchSubmitPage />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }
