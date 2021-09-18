@@ -25,7 +25,7 @@ function App() {
           <ReportPage />
         </Route>
         <Route path="/batchsubmitpage">
-          <BatchSubmitPage/>
+          <BatchSubmitPage />
         </Route>
       </Switch>
     </Router>
