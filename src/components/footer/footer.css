@@ -4,8 +4,17 @@ footer {
   left: 0;
   width: 100%;
   background: #0476d9;
-  display: grid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   place-items: center;
   padding: 3rem 0 4rem 0;
   z-index: 1;
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: white;
 }
