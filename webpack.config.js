@@ -9,6 +9,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
@@ -31,7 +35,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(mp4|webm|png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
       },
     ],
