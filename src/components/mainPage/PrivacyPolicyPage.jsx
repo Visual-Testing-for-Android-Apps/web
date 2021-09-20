@@ -323,9 +323,6 @@ const PrivacyPolicyPage = () => {
           <br />
           <span class="c2">vision-report-response@gmail.com </span>
         </p>
-        <p class="c13">
-          <span class="c2"></span>
-        </p>
       </div>
     </div>
   );
