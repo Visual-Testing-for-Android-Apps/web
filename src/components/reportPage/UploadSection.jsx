@@ -120,26 +120,24 @@ const UploadSection = (props) => {
   };
 
   return (
-    <div className="section" id="uploadSection">
-      <div style={containerStyle}>
-        <form style={formStyle} onSubmit={handleSubmit} id={formId}>
-          <Captcha />
-          <UploadBox
-            setFiles={setFiles}
-            fileLimit={fileLimit}
-            setAlert={setAlert}
-            currFiles={files}
-          />
-          <input
-            className="upload-btn"
-            type="submit"
-            value={btnLabel}
-            style={{ opacity: btnOpacity }}
-          />
-          <UploadAlert />
-          <div className="margin-space">{displayFiles}</div>
-        </form>
-      </div>
+    <div style={containerStyle} className="sliding-footer">
+      <form style={formStyle} onSubmit={handleSubmit} id={formId}>
+        <Captcha />
+        <UploadBox
+          setFiles={setFiles}
+          fileLimit={fileLimit}
+          setAlert={setAlert}
+          currFiles={files}
+        />
+        <input
+          className="upload-btn"
+          type="submit"
+          value={btnLabel}
+          style={{ opacity: btnOpacity }}
+        />
+        <UploadAlert />
+        <div className="margin-space">{displayFiles}</div>
+      </form>
     </div>
   );
 };
@@ -147,6 +145,7 @@ const UploadSection = (props) => {
 const containerStyle = {
   display: "flex",
   justifyContent: "center",
+  background: "white",
 };
 
 const formStyle = {
