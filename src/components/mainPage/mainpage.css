@@ -1,11 +1,12 @@
 .section {
   min-height: 70vh;
+  padding: 5rem 0;
+}
 
+.sliding-footer {
   /* sliding footer */
-  background: white;
   position: relative;
   z-index: 2;
-  padding: 5rem 0;
 }
 
 .section h2 {
@@ -48,6 +49,7 @@
 .main_section__container {
   flex-direction: row;
   justify-content: space-evenly;
+  background: white;
 }
 
 @media only screen and (min-width: 1024px) {

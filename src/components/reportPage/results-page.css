@@ -27,9 +27,19 @@
   width: var(--result-width);
 }
 
+.results {
+  background: white;
+}
+
 .result-container {
   border: black solid 0.1rem;
   margin: 0.5rem;
+}
+
+.sliding-footer {
+  /* sliding footer */
+  position: relative;
+  z-index: 2;
 }
 
 .original-image {
@@ -186,14 +196,12 @@
 
   .results {
     padding: 1rem 10rem 1rem 10rem;
-    z-index: 1;
   }
 }
 
 @media only screen and (max-width: 900px) {
   .results {
     padding: 1rem 2rem 1rem 2rem;
-    z-index: 1;
   }
 
   .image-filter {

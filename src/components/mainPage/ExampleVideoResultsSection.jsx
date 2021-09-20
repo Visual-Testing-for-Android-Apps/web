@@ -7,7 +7,7 @@ import VideoResultExplanation from "../common/VideoResultExplanation";
 
 const VideoResultExampleSection = () => {
   return (
-    <div className="section  example-video-section" id="exampleVideoSection">
+    <div className="section sliding-footer  example-video-section" id="exampleVideoSection">
       <div className="example-section">
         <div className="video-example-body">
           <div className="video-defects-list-container">
