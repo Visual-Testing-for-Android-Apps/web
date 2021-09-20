@@ -16,5 +16,14 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+a {
+  color: inherit;
+  color: rgb(227, 225, 221);
+  text-decoration: none;
+}
+
+a:hover {
   color: white;
 }
