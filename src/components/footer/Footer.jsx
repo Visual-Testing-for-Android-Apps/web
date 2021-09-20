@@ -5,8 +5,12 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-text">
-        <span>Contact us</span>
-        <span>Privacy Policy</span>
+        <span>
+          <a href="">Contact us</a>
+        </span>
+        <span>
+          <a href="">Privacy Policy</a>
+        </span>
       </div>
       <svg x="0px" y="0px" width="100" height="100" viewBox="0 0 511.38 511.38">
         <g>
