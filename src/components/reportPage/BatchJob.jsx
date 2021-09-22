@@ -3,6 +3,7 @@ import UploadSection from "./UploadSection";
 import "./batch-job.css";
 import { useHistory } from "react-router-dom";
 import Repository from "../../data/Repository";
+import VideoInstructions from "./VideoInstructions";
 
 const BatchJob = () => {
   const FILE_LIMIT = 100;
@@ -27,6 +28,7 @@ const BatchJob = () => {
 
   return (
     <div className="section_container">
+      <VideoInstructions />
       <h1 style={{ textAlign: "center" }}>
         <b>Batch Job Request</b>
       </h1>
