@@ -3,9 +3,31 @@ import { useDropzone } from "react-dropzone";
 import "./upload.css";
 import CloudIcon from "./cloudIcon";
 const UploadBox = (props) => {
-  const onDrop = useCallback((files) => {
-    props.setFiles((existingFiles) => [...existingFiles, ...files]);
+  const onDrop = useCallback((files, fileLimit, currFiles) => {
+    // props.setFiles((existingFiles) => [...existingFiles, ...files]);
+    console.log(files.length, currFiles.length);
+    if (files.length + currFiles.length <= fileLimit || !currFiles) {
+      props.setFiles((existingFiles) => [...existingFiles, ...files]);
+    } else {
+      setAlert(MAX_FILE_ALERT);
+    }
   }, []);
+
+  // (files) => {
+  //   console.log(files.length, currFiles.length, files.length + currFiles.length <= fileLimit);
+  //   if (files.length + currFiles.length <= fileLimit){
+
+  //       props.setFiles((existingFiles) => [...existingFiles, ...files]);
+  //     useCallback((files) => {
+  //       props.setFiles((existingFiles) => [...existingFiles, ...files]);
+
+  //     }, []);
+
+  //   }
+  //   else{
+  //     setAlert(MAX_FILE_ALERT);
+  //   }
+  // }
 
   const { setAlert, fileLimit, currFiles } = props;
   const MAX_FILE_ALERT = `Please upload only up to ${fileLimit} valid files.`;
@@ -16,13 +38,14 @@ const UploadBox = (props) => {
     if (rejectFiles) {
       if (rejectFiles > fileLimit) {
         setAlert(MAX_FILE_ALERT);
-      } else if (rejectFiles < fileLimit) {
-        // To display the duplicate files uploaded
-        const duplicateFileAlert = fileRejections.map((f) => " " + f.file.name);
-        setAlert("You have already uploaded:" + duplicateFileAlert);
-      } else {
-        setAlert(INVALID_FILETYPE);
       }
+      // else if (rejectFiles < fileLimit) {
+      //   // To display the duplicate files uploaded
+      //   const duplicateFileAlert = fileRejections.map((f) => " " + f.file.name);
+      //   setAlert("You have already uploaded:" + duplicateFileAlert);
+      // } else {
+      //   setAlert(INVALID_FILETYPE);
+      // }
     }
   };
 
@@ -36,10 +59,12 @@ const UploadBox = (props) => {
   };
   const acceptedFileTypes = ["image/jpeg", "image/png", "video/mp4"];
   const maxFiles = props.fileLimit == Infinity ? 0 : props.fileLimit;
+  const maxSize = 6291456;
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: acceptedFileTypes,
     maxFiles,
+    maxSize,
     onDropRejected,
     validator: validateFiles,
   });
@@ -60,6 +85,7 @@ const UploadBox = (props) => {
             {maxFiles != 0 ? <em> (Maximum number of files: {maxFiles}) </em> : null}
           </p>
           <sub className="accepted-file-formats-text">
+            Max file size: {maxSize}
             Accepted file formats:{" "}
             {acceptedFileTypes.map((format) => format.split("/")[1]).join(", ")}
           </sub>

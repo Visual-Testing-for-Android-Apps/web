@@ -127,7 +127,7 @@ const UploadSection = (props) => {
           setFiles={setFiles}
           fileLimit={fileLimit}
           setAlert={setAlert}
-          currFiles={files}
+          currFiles={filesRef.current}
         />
         <input
           className="upload-btn"
