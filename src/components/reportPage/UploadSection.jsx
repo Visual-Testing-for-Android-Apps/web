@@ -119,6 +119,16 @@ const UploadSection = (props) => {
     setAlertMessage(alertMessage);
   };
 
+  const filePreviews = files.map((file, i) => (
+    <div className="preview-column" key={file.path}>
+      {file.type == "video/mp4" && <video className="image-preview" src={URL.createObjectURL(file)} controls />}
+      {(file.type == "image/jpeg" || file.type == "image/png") &&
+          <img className="image-preview" src={URL.createObjectURL(file)}></img>}
+      <p>{file.name}</p>
+      <button onClick={() => removeFile(i)}>X</button>
+    </div>
+  ));
+
   return (
     <div style={containerStyle}>
       <form style={formStyle} onSubmit={handleSubmit} id={formId}>
@@ -136,7 +146,7 @@ const UploadSection = (props) => {
           style={{ opacity: btnOpacity }}
         />
         <UploadAlert />
-        <div className="margin-space">{displayFiles}</div>
+        <div className="margin-space">{filePreviews}</div>
       </form>
     </div>
   );

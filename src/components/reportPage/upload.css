@@ -99,6 +99,17 @@
   color: grey;
 }
 
+.image-preview{
+  width: 150px;
+  height: 300px;
+}
+
+.preview-column{
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
 @media only screen and (max-width: 668px) {
   .file-container {
     text-indent: 0;
