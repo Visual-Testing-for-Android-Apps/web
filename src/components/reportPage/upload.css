@@ -110,6 +110,16 @@
   padding: 5px;
 }
 
+.cross-button{
+  position: relative;
+  left: 8rem;
+  bottom: 22rem;
+  color: white;
+  background: red;
+  border-radius: 0.3rem;
+  
+}
+
 @media only screen and (max-width: 668px) {
   .file-container {
     text-indent: 0;

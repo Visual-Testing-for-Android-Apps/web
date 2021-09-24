@@ -27,6 +27,11 @@ const UploadSection = (props) => {
   filesRef.current = files;
   const { fileLimit, formId, btnLabel, handleJob, emailRef } = props;
 
+  // Pagination variables
+  const filesPerPage = 24;
+  const [pageNumber, setPageNumber] = useState(0);
+  const pagesVisited = pageNumber * filesPerPage;
+
   const removeFile = (file) => {
     const newFile = [...files];
     newFile.splice(file, 1);
@@ -121,11 +126,11 @@ const UploadSection = (props) => {
 
   const filePreviews = files.map((file, i) => (
     <div className="preview-column" key={file.path}>
-      {file.type == "video/mp4" && <video className="image-preview" src={URL.createObjectURL(file)} controls />}
+      {file.type == "video/mp4" && <video className="image-preview" src={URL.createObjectURL(file)} autoPlay loop controls muted />}
       {(file.type == "image/jpeg" || file.type == "image/png") &&
           <img className="image-preview" src={URL.createObjectURL(file)}></img>}
       <p>{file.name}</p>
-      <button onClick={() => removeFile(i)}>X</button>
+      <button className="cross-button" onClick={() => removeFile(i)}>X</button>
     </div>
   ));
 
@@ -146,8 +151,9 @@ const UploadSection = (props) => {
           style={{ opacity: btnOpacity }}
         />
         <UploadAlert />
-        <div className="margin-space">{filePreviews}</div>
+        
       </form>
+      <div className="margin-space">{filePreviews}</div>
     </div>
   );
 };
