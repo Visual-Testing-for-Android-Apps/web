@@ -106,9 +106,19 @@ class Repository {
     try {
       const response = await fetch(url, {
         method: "GET",
-        body: url,
       });
       return await response.json();
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
+  async getFile(url) {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+      });
+      return response.url;
     } catch (error) {
       return console.log(error);
     }

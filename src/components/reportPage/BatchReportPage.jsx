@@ -13,10 +13,15 @@ import { inferno256 } from "./gradients256";
 import ColourSchemeSelector from "./ColourSchemeSelector";
 
 const ReportPage = (props) => {
-  const url = useLocation().pathname;
+  // const JobEndpointBase = "https://develop-srcbucket-1uiwrmfelfgyd.s3.ap-southeast-2.amazonaws.com/";
+  // const url = useLocation().pathname;
+  // const jobID = url.split("/").slice(3,4);
+  // const JobEndpoint = JobEndpointBase.concat(jobID)
+  const JobEndpoint = "https://develop-srcbucket-1uiwrmfelfgyd.s3.ap-southeast-2.amazonaws.com/";
+  const files = [];
 
-  const videos = files?.filter((file) => file.type === "video/mp4");
-  const images = files?.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
+  // const videos = files?.filter((file) => file.type === "video/mp4");
+  // const images = files?.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
 
   const [progressValue, setProgressValue] = useState(0);
 
@@ -56,19 +61,27 @@ const ReportPage = (props) => {
     const fetch = async () => {
       const repository = new Repository();
 
-      const content = repository.requestBatchJob(url);
-      const imageResults = content.images;
+      const content = await repository.requestBatchJob(JobEndpoint.concat("1/report.json"));
+      console.log(content);
 
-      heatmaps.forEach(async (imagePromise) => {
-        const imageResult = await imagePromise;
-        setImageResults((oldResults) => [...oldResults, imageResult]);
+      content.images.forEach(async (image) => {
+        image.name = image.orig_image.toString().split("/")[1];
+        // .subString(0,-1) is temporary, becuase the json response is wrong
+        console.log(image.orig_image.substring(0, image.orig_image.length - 1));
+        image.orig_image = await repository.getFile(
+          JobEndpoint.concat(image.orig_image.substring(0, image.orig_image.length - 1))
+        );
+        image.heatmap_image = await repository.getFile(JobEndpoint.concat(image.heatmap_image));
+        // console.log(imageResult)
+        setImageResults((oldResults) => [...oldResults, image]);
         setProgressValue((oldValue) => oldValue + 1);
       });
 
-      const videoResults = content.videos;
-      videoResults.forEach(async (videoResultPromise, index) => {
-        const videoResult = await videoResultPromise;
-        setVideoResults((oldResults) => [...oldResults, videoResult]);
+      content.videos.forEach(async (video) => {
+        video.name = video.video.toString().split("/")[1];
+        video.video = await repository.getFile(JobEndpoint.concat(video.video));
+        video.classification = video.desc;
+        setVideoResults((oldResults) => [...oldResults, video]);
         setProgressValue((oldValue) => oldValue + 1);
       });
     };
@@ -145,14 +158,14 @@ const ReportPage = (props) => {
           {imageResults.reduce((previousResult, currentResult, index) => {
             if (
               (searchTerm.length === 0 ||
-                images[index].name.toLowerCase().includes(searchTerm.toLowerCase())) &&
+                imageResults[index].name.toLowerCase().includes(searchTerm.toLowerCase())) &&
               checkImageFilterType(currentResult) === true
             ) {
               return [
                 ...previousResult,
                 <ImageResult
                   key={`image-${index}`}
-                  imageFile={images[index]}
+                  imageFile={currentResult.orig_image}
                   imageResult={currentResult}
                   colourScheme={colourScheme}
                 />,
@@ -180,16 +193,17 @@ const ReportPage = (props) => {
           {videoResults.reduce((previousResult, currentResult, index) => {
             if (
               (searchTerm.length === 0 ||
-                videos[index].name.toLowerCase().includes(searchTerm.toLowerCase())) &&
+                videoResults[index].name.toLowerCase().includes(searchTerm.toLowerCase())) &&
               checkVideoFilterType(currentResult) === true
             ) {
               return [
                 ...previousResult,
                 <VideoResult
                   key={`video-${index}`}
-                  videoFile={videos[index]}
+                  videoFile={currentResult.video}
                   videoResult={currentResult}
                 />,
+                ,
               ];
             } else {
               return [...previousResult];

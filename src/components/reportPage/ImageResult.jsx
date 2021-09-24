@@ -2,12 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import mergeImages from "merge-images";
 import { saveAs } from "file-saver";
 
-import { createImageDataUrlFromBase64, encodeFileAsBase64DataUrl } from "../../util/FileUtil";
+import { createImageDataUrlFromBase64 } from "../../util/FileUtil";
 import "./results-page.css";
 import DownloadIcon from "./downloadIcon";
 
-import DownloadIcon from "./downloadIcon";
-import Resizer from "react-image-file-resizer";
 /**
  * An image result consists of the orignal image, a heatmap, and a description of the bug type. There may be no bug type.
  * @param {{ original_img: String, res_img: String, bug_type: Array<String> }} imageResult
@@ -18,13 +16,20 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
   const [resultImageDataUrl, setResultImageDataUrl] = useState(null);
+  const [imageName, setImageName] = useState(imageFile.name);
 
   const isError = imageResult == null;
 
   // Decode results.
   useEffect(async () => {
-    setOriginalImageDataUrl(await createImageDataUrlFromBase64(imageResult["original_img"]));
-    setResultImageDataUrl(await createImageDataUrlFromBase64(imageResult["res_img"]));
+    if (typeof videoFile !== "string") {
+      setOriginalImageDataUrl(await createImageDataUrlFromBase64(imageResult["original_img"]));
+      setResultImageDataUrl(await createImageDataUrlFromBase64(imageResult["res_img"]));
+    } else {
+      setOriginalImageDataUrl(imageResult.orig_image);
+      setResultImageDataUrl(resultImage.heatmap_image);
+      setImageName(imageResult.name);
+    }
   }, []);
 
   const originalImageCanvasRef = useRef(null);
@@ -118,7 +123,7 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
             imageResult?.["bug_type"]?.length > 0
               ? imageResult?.["bug_type"]?.join("-")?.replace(" ", "")
               : "no-defect"
-          }_${imageFile.name}`
+          }_${imageName}`
         )
       );
     };
@@ -139,7 +144,7 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
               <canvas ref={resultImageCanvasRef} className="image-heatmap" />
             </div>
             <a className="result-filename image-download-btn" onClick={downloadFile}>
-              {imageFile.name} <DownloadIcon />
+              {imageName} <DownloadIcon />
             </a>
           </div>
           <p className="result-explanation">
