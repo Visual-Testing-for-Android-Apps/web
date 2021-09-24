@@ -93,10 +93,9 @@
 
 .accepted-file-formats-text {
   position: absolute;
-  font-size: smaller;
   user-select: none;
-  bottom: 0;
   right: 0.5rem;
+  bottom: 0.8rem;
   color: grey;
 }
 

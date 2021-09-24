@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import mergeImages from "merge-images";
+import { saveAs } from "file-saver";
 
 import { createImageDataUrlFromBase64, encodeFileAsBase64DataUrl } from "../../util/FileUtil";
 import "./results-page.css";
+import DownloadIcon from "./downloadIcon";
 
 import DownloadIcon from "./downloadIcon";
 import Resizer from "react-image-file-resizer";
@@ -87,37 +89,40 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
     resultImage.src = resultImageDataUrl;
   }, [resultImageDataUrl, colourScheme]);
 
-  const resizeFile = (file, width, height) =>
-    Resizer.imageFileResizer(
-      file,
-      width,
-      height,
-      "JPEG",
-      100,
-      0,
-      (uri) => {
-        resolve(uri);
-      },
-      "base64"
-    );
-
   const downloadFile = () => {
     const height = originalImageCanvasRef.current.height;
     const width = originalImageCanvasRef.current.width;
-    console.log(originalImageDataUrl);
-    console.log(resultImageDataUrl);
-    mergeImages(
-      [
-        { src: resizeFile(encodeFileAsBase64DataUrl(originalImageDataUrl), width, height) },
-        { src: resultImageDataUrl, opacity: 0.5 },
-      ],
-      {
-        height: height,
-        width: width,
-      }
-    ).then((heatmapedImageDataUrl) =>
-      saveAs(heatmapedImageDataUrl, "heatmaped_".concat(imageFile.name))
-    );
+    const tempCanvas = document.createElement("canvas");
+    const ctx = tempCanvas.getContext("2d");
+    tempCanvas.width = width;
+    tempCanvas.height = height;
+
+    // Draw heatmap to new canvas with dimensions matching the original image. Then merge and save.
+    const image = new Image();
+    image.onload = function () {
+      ctx.drawImage(image, 0, 0, width, height);
+
+      mergeImages(
+        [
+          { src: originalImageCanvasRef.current.toDataURL() },
+          { src: tempCanvas.toDataURL(), opacity: 1.0 },
+        ],
+        {
+          height: height,
+          width: width,
+        }
+      ).then((heatmapedImageDataUrl) =>
+        saveAs(
+          heatmapedImageDataUrl,
+          `heatmap_${
+            imageResult?.["bug_type"]?.length > 0
+              ? imageResult?.["bug_type"]?.join("-")?.replace(" ", "")
+              : "no-defect"
+          }_${imageFile.name}`
+        )
+      );
+    };
+    image.src = resultImageCanvasRef.current.toDataURL();
   };
 
   return (
@@ -133,7 +138,9 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
               <canvas ref={originalImageCanvasRef} className="original-image" />
               <canvas ref={resultImageCanvasRef} className="image-heatmap" />
             </div>
-            <p className="result-filename">{imageFile.name}</p>
+            <a className="result-filename image-download-btn" onClick={downloadFile}>
+              {imageFile.name} <DownloadIcon />
+            </a>
           </div>
           <p className="result-explanation">
             {imageResult["bug_type"]?.length == 0
