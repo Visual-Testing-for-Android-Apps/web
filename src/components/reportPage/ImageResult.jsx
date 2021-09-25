@@ -139,11 +139,15 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
         </a>
       </div>
       <p className="result-explanation">
-        {imageResult != null
-          ? imageResult?.["bug_type"]?.length == 0
-            ? "No defect found"
-            : imageResult?.["bug_type"]?.join(", ")
-          : "Error analysing image"}
+        {imageResult != null ? (
+          imageResult?.["bug_type"]?.length == 0 ? (
+            "No defect found"
+          ) : (
+            imageResult?.["bug_type"]?.join(", ")
+          )
+        ) : (
+          <span style={{ color: "red" }}>Error analysing image</span>
+        )}
       </p>
     </div>
   );
