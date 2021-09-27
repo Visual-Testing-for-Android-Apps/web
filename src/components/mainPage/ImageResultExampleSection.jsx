@@ -24,7 +24,7 @@ const ImageResultExampleSection = () => {
     );
   };
   return (
-    <div className="section example-image-section" id="exampleImageSection">
+    <div className="section sliding-footer example-image-section" id="exampleImageSection">
       <div className="example-section">
         <div className="example-section-header">
           <h2>Analyse Android app screenshots for issues</h2>

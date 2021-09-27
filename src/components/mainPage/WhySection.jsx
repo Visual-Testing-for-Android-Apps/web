@@ -5,7 +5,7 @@ import "./report-example-section.css";
 
 const WhySection = () => {
   return (
-    <div className="section " id="exampleWhySection">
+    <div className="section sliding-footer " id="exampleWhySection">
       <div className="example-section">
         <h2>Why VISION?</h2>
         <div className="why-header-body-space" />
