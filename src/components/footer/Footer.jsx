@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.css";
+import PrivacyPolicyPage from "../mainPage/PrivacyPolicyPage";
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
           <a href="">Contact us</a>
         </span>
         <span>
-          <a href="">Privacy Policy</a>
+          <a href="/privacypolicypage">Privacy Policy</a>
         </span>
       </div>
       <svg x="0px" y="0px" width="100" height="100" viewBox="0 0 511.38 511.38">
