@@ -102,7 +102,7 @@ const ReportPage = (props) => {
 
   return (
     <>
-      <div className="results">
+      <div className="results sliding-footer">
         <div className="progress-indicator-container">
           <p>
             {progressValue} / {files?.length ?? 0} files processed
@@ -127,7 +127,7 @@ const ReportPage = (props) => {
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
       {imageResults.length > 0 && (
-        <div className="results">
+        <div className="results sliding-footer">
           <Select
             isMulti
             placeholder="Filter by defect type..."
@@ -139,7 +139,7 @@ const ReportPage = (props) => {
         </div>
       )}
 
-      <div className="results">
+      <div className="results sliding-footer">
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {
             if (
@@ -163,7 +163,7 @@ const ReportPage = (props) => {
         </div>
         {videoResults.length > 0 && <h1 className="results-title">Video Results</h1>}
         {videoResults.length > 0 && (
-          <div className="results">
+          <div className="results sliding-footer">
             <Select
               isMulti
               placeholder="Filter by defect type..."

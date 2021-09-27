@@ -13,7 +13,7 @@ import WhySection from "./WhySection";
 const MainPage = () => {
   const jobSectionRef = useRef();
   return (
-    <div className="main_section__container">
+    <div className="sliding-footer main_section__container">
       <DemoSection jobSectionRef={jobSectionRef} />
       <ImageResultExampleSection />
       <VideoResultExampleSection />
