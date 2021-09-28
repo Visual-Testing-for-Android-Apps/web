@@ -47,7 +47,7 @@
 }
 
 .box:hover {
-  border: 0.2rem solid #045198;
+  border: 0.2rem solid #e4f0fc;
   cursor: pointer;
 }
 
@@ -82,6 +82,7 @@
 
 .margin-space {
   margin-bottom: 5rem;
+  background-color: #efefef;
 }
 
 .button-column {
@@ -118,6 +119,33 @@
   background: red;
   border-radius: 0.3rem;
   
+}
+/**************************PAGINATION*****************************/
+.paginationBttns{
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBttns a{
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #045198;
+  color: black;
+  cursor: pointer;
+}
+
+.paginationBttns a:hover{
+  color: white;
+  background-color: #acf0c9;
+}
+
+.paginationActive a{
+  color: white;
+  background-color: #acf0c9;
 }
 
 @media only screen and (max-width: 668px) {

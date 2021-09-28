@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Paginate from "react-paginate";
 
 import UploadBox from "./UploadBox";
 import Captcha from "./Captcha";
@@ -28,9 +29,10 @@ const UploadSection = (props) => {
   const { fileLimit, formId, btnLabel, handleJob, emailRef } = props;
 
   // Pagination variables
-  const filesPerPage = 24;
   const [pageNumber, setPageNumber] = useState(0);
-  const pagesVisited = pageNumber * filesPerPage;
+  const FILES_PER_PAGE = 24;
+  const pagesVisited = pageNumber * FILES_PER_PAGE;
+  const pageCount = Math.ceil(files.length / FILES_PER_PAGE); //determines how many pages from each pagination.
 
   const removeFile = (file) => {
     const newFile = [...files];
@@ -126,13 +128,53 @@ const UploadSection = (props) => {
 
   const filePreviews = files.map((file, i) => (
     <div className="preview-column" key={file.path}>
-      {file.type == "video/mp4" && <video className="image-preview" src={URL.createObjectURL(file)} autoPlay loop controls muted />}
-      {(file.type == "image/jpeg" || file.type == "image/png") &&
-          <img className="image-preview" src={URL.createObjectURL(file)}></img>}
+      {file.type == "video/mp4" && (
+        <video
+          className="image-preview"
+          src={URL.createObjectURL(file)}
+          autoPlay
+          loop
+          controls
+          muted
+        />
+      )}
+      {(file.type == "image/jpeg" || file.type == "image/png") && (
+        <img className="image-preview" src={URL.createObjectURL(file)}></img>
+      )}
       <p>{file.name}</p>
-      <button className="cross-button" onClick={() => removeFile(i)}>X</button>
+      <button className="cross-button" onClick={() => removeFile(i)}>
+        X
+      </button>
     </div>
   ));
+
+  const displayFilePreviews = files
+    .slice(pagesVisited, pagesVisited + FILES_PER_PAGE)
+    .map((file, i) => {
+      return (
+        <div className="preview-column" key={file.path}>
+          {file.type == "video/mp4" && (
+            <video
+              className="image-preview"
+              src={URL.createObjectURL(file)}
+              loop
+              muted
+            />
+          )}
+          {(file.type == "image/jpeg" || file.type == "image/png") && (
+            <img className="image-preview" src={URL.createObjectURL(file)}></img>
+          )}
+          <p>{file.name}</p>
+          <button className="cross-button" onClick={() => removeFile(i)}>
+            X
+          </button>
+        </div>
+      );
+    });
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   return (
     <div style={containerStyle}>
@@ -151,9 +193,19 @@ const UploadSection = (props) => {
           style={{ opacity: btnOpacity }}
         />
         <UploadAlert />
-        
+        <Paginate
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={"paginationBttns"}
+          previousLinkClassName={"previousBttn"}
+          nextLinkClassName={"nextBttn"}
+          disabledClassName={"paginationDisabled"}
+          activeClassName={"paginationActive"}
+        />
+        <div className="margin-space">{displayFilePreviews}</div>
       </form>
-      <div className="margin-space">{filePreviews}</div>
     </div>
   );
 };
