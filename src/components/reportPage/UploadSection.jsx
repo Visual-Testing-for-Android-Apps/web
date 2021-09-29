@@ -154,12 +154,7 @@ const UploadSection = (props) => {
       return (
         <div className="preview-column" key={file.path}>
           {file.type == "video/mp4" && (
-            <video
-              className="image-preview"
-              src={URL.createObjectURL(file)}
-              loop
-              muted
-            />
+            <video className="image-preview" src={URL.createObjectURL(file)} loop muted />
           )}
           {(file.type == "image/jpeg" || file.type == "image/png") && (
             <img className="image-preview" src={URL.createObjectURL(file)}></img>
@@ -177,25 +172,29 @@ const UploadSection = (props) => {
   };
 
   return (
-    <div style={containerStyle}>
-      <form style={formStyle} onSubmit={handleSubmit} id={formId}>
-        <Captcha />
-        <UploadBox
-          setFiles={setFiles}
-          fileLimit={fileLimit}
-          setAlert={setAlert}
-          currFiles={files}
-        />
-        <input
-          className="upload-btn"
-          type="submit"
-          value={btnLabel}
-          style={{ opacity: btnOpacity }}
-        />
-        <UploadAlert />
+    <div>
+      <div style={containerStyle}>
+        <form style={formStyle} onSubmit={handleSubmit} id={formId}>
+          <Captcha />
+          <UploadBox
+            setFiles={setFiles}
+            fileLimit={fileLimit}
+            setAlert={setAlert}
+            currFiles={files}
+          />
+          <input
+            className="upload-btn"
+            type="submit"
+            value={btnLabel}
+            style={{ opacity: btnOpacity }}
+          />
+          <UploadAlert />
+        </form>
+      </div>
+      <div className="pagination-section">
         <Paginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
+          previousLabel={"<"}
+          nextLabel={">"}
           pageCount={pageCount}
           onPageChange={changePage}
           containerClassName={"paginationBttns"}
@@ -205,7 +204,7 @@ const UploadSection = (props) => {
           activeClassName={"paginationActive"}
         />
         <div className="margin-space">{displayFilePreviews}</div>
-      </form>
+      </div>
     </div>
   );
 };
