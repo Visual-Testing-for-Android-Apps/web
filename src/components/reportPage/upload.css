@@ -52,7 +52,7 @@
 }
 
 .upload-alert {
-  text-align: center;
+  text-align: left;
 }
 
 .file-container {
@@ -97,6 +97,7 @@
   right: 0.5rem;
   bottom: 0.8rem;
   color: grey;
+  margin-left: ;
 }
 
 @media only screen and (max-width: 668px) {

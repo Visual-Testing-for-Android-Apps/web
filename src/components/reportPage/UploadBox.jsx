@@ -76,7 +76,7 @@ const UploadBox = (props) => {
     const errors = errorTypes.map((type) =>
       errorFiles[type].length ? (
         <>
-          {errorMsgs[type]}{" "}
+          <p style={{ marginBottom: "0.2rem" }}>{errorMsgs[type]}</p>{" "}
           <ul>
             {" "}
             {errorFiles[type].map((file) => (
@@ -86,11 +86,16 @@ const UploadBox = (props) => {
         </>
       ) : null
     );
+    const errorStyle = { marginLeft: "1rem", marginRight: "1.5rem", overflowWrap: "break-word" };
+    const errorHeadingStyle = { marginBottom: "0.5rem" };
     let msg = (
-      <div style={{ textAlign: "left" }}>
-        <div style={{ marginBottom: "1rem" }}>Rejected Files:</div>
-        <div style={{ marginLeft: "1rem" }}>{errors}</div>
-      </div>
+      <>
+        <p style={errorHeadingStyle}>
+          {" "}
+          <b> Rejected Files: </b>{" "}
+        </p>
+        <div style={errorStyle}>{errors}</div>
+      </>
     );
     return msg;
   };
@@ -139,7 +144,7 @@ const UploadBox = (props) => {
             {maxFiles != 0 ? <em> (Maximum number of files: {maxFiles}) </em> : null}
           </p>
           <sub className="accepted-file-formats-text">
-            Max file size: {maxFileSize} MB Accepted file formats:{" "}
+            Max file size: {maxFileSize} MB | Accepted file formats:{" "}
             {acceptedFileTypes.map((format) => format.split("/")[1]).join(", ")}
           </sub>
         </>
