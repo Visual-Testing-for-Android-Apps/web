@@ -144,7 +144,7 @@ const UploadBox = (props) => {
             {maxFiles != 0 ? <em> (Maximum number of files: {maxFiles}) </em> : null}
           </p>
           <sub className="accepted-file-formats-text">
-            Max file size: {maxFileSize} MB | Accepted file formats:{" "}
+            {maxFileSize && `Max file size: ${maxFileSize} MB |`} Accepted file formats:{" "}
             {acceptedFileTypes.map((format) => format.split("/")[1]).join(", ")}
           </sub>
         </>
