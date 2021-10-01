@@ -176,6 +176,10 @@ const UploadSection = (props) => {
     setPageNumber(selected);
   };
 
+  const removeAll = () => {
+    setFiles([]);
+  };
+
   return (
     <div>
       <div style={containerStyle}>
@@ -194,30 +198,35 @@ const UploadSection = (props) => {
             style={{ opacity: btnOpacity }}
           />
           <UploadAlert />
-          <input
-            type="text"
-            name="search"
-            placeholder="Search for files..."
-            className="file-search"
-            value={searchTerm}
-            onChange={(event) => {
-              setSearchString(event.target.value);
-            }}
-          />
+          {files.length > 0 && (
+            <input
+              type="text"
+              name="search"
+              placeholder="Search for files..."
+              className="file-search"
+              value={searchTerm}
+              onChange={(event) => {
+                setSearchString(event.target.value);
+              }}
+            />
+          )}
+          {files.length > 0 && <button onClick={removeAll}>Remove All</button>}
         </form>
       </div>
       <div className="pagination-section">
-        <Paginate
-          previousLabel={"<"}
-          nextLabel={">"}
-          pageCount={pageCount}
-          onPageChange={changePage}
-          containerClassName={"paginationBttns"}
-          previousLinkClassName={"previousBttn"}
-          nextLinkClassName={"nextBttn"}
-          disabledClassName={"paginationDisabled"}
-          activeClassName={"paginationActive"}
-        />
+        {files.length > 10 && (
+          <Paginate
+            previousLabel={"<"}
+            nextLabel={">"}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={"paginationBttns"}
+            previousLinkClassName={"previousBttn"}
+            nextLinkClassName={"nextBttn"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
+          />
+        )}
         <div className="margin-space">{displayFilePreviews}</div>
       </div>
     </div>
