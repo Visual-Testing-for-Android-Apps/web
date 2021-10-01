@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./batch-job.css";
 import helpIcon from "../images/helpIcon.png";
 import closeIcon from "../images/closeIcon.png";
+import videoInstructions from "../images/videoInstructions.png";
 
 const VideoInstructions = () => {
   const [openHelp, setOpenHelp] = useState(false);
@@ -32,7 +33,8 @@ const VideoInstructions = () => {
             </div>
             Your uploaded videos should each show a single GUI animation in your app. Videos are
             processed by splitting them into 8 frames. For best results, make your videos are short
-            as possible.
+            as possible. <br />
+            <img className="video-example" src={videoInstructions} />
             <div></div>
           </div>
         </div>
