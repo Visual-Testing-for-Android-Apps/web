@@ -34,6 +34,9 @@ const UploadSection = (props) => {
   const pagesVisited = pageNumber * FILES_PER_PAGE;
   const pageCount = Math.ceil(files.length / FILES_PER_PAGE); //determines how many pages from each pagination.
 
+  // Search files
+  const [searchTerm, setSearchString] = useState("");
+
   const removeFile = (file) => {
     const newFile = [...files];
     newFile.splice(file, 1);
@@ -151,20 +154,22 @@ const UploadSection = (props) => {
   const displayFilePreviews = files
     .slice(pagesVisited, pagesVisited + FILES_PER_PAGE)
     .map((file, i) => {
-      return (
-        <div className="preview-column" key={file.path}>
-          {file.type == "video/mp4" && (
-            <video className="image-preview" src={URL.createObjectURL(file)} loop muted />
-          )}
-          {(file.type == "image/jpeg" || file.type == "image/png") && (
-            <img className="image-preview" src={URL.createObjectURL(file)}></img>
-          )}
-          <p>{file.name}</p>
-          <button className="cross-button" onClick={() => removeFile(i)}>
-            X
-          </button>
-        </div>
-      );
+      if (searchTerm.length === 0 || file.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return (
+          <div className="preview-column" key={file.path}>
+            {file.type == "video/mp4" && (
+              <video className="image-preview" src={URL.createObjectURL(file)} loop muted />
+            )}
+            {(file.type == "image/jpeg" || file.type == "image/png") && (
+              <img className="image-preview" src={URL.createObjectURL(file)}></img>
+            )}
+            <p>{file.name}</p>
+            <button className="cross-button" onClick={() => removeFile(i)}>
+              X
+            </button>
+          </div>
+        );
+      }
     });
 
   const changePage = ({ selected }) => {
@@ -189,6 +194,16 @@ const UploadSection = (props) => {
             style={{ opacity: btnOpacity }}
           />
           <UploadAlert />
+          <input
+            type="text"
+            name="search"
+            placeholder="Search for files..."
+            className="file-search"
+            value={searchTerm}
+            onChange={(event) => {
+              setSearchString(event.target.value);
+            }}
+          />
         </form>
       </div>
       <div className="pagination-section">
