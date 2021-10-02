@@ -25,15 +25,21 @@
 }
 
 .remove-btn {
-  position: absolute;
-  padding: 0.1rem 0.5rem 0.2rem;
-  top: 0.125rem;
-  right: 0.1rem;
+  position: relative;
+  flex-direction: row;
   background-color: rgb(194, 10, 47);
   border-color: rgb(194, 10, 47);
   color: white;
   cursor: pointer;
-  font-size: small;
+  width: 30%;
+}
+
+.search-remove{
+  display: flex;
+  flex-direction: row;
+  width: clamp(10rem, 30rem, 50rem);
+  justify-content: center;
+  margin: 1rem 1rem;
 }
 
 .box {
@@ -104,45 +110,102 @@
   color: grey;
 }
 
-.image-preview{
+.image-preview {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 9.375rem;
-  height: 18.75rem;
+  height: 150px;
+  width: 150px;
 }
 
-.preview-column{
+.image-preview2 {
+  height: 300px;
+  width: 150px;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+}
+
+video {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+}
+
+.preview-column {
   margin: 1rem;
   width: 9.375rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  
 }
 
-.cross-button{
+.cross-button {
   position: relative;
   left: 1rem;
-  bottom: 20rem;
+  bottom: 10.5rem;
   color: white;
   background: red;
   border-radius: 0.3rem;
 }
+
+.file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/**************************MODAL*****************************/
+.modal, .overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49,49,49,0.8);
+}
+
+.modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
+
 /**************************PAGINATION*****************************/
-.pagination-section{
+.pagination-section {
   padding: 1rem 10rem 1rem 10rem;
 }
 
-.paginationBttns{
+.paginationBttns {
   height: 40px;
   list-style: none;
   display: flex;
   justify-content: center;
 }
 
-.paginationBttns a{
+.paginationBttns a {
   padding: 10px;
   margin: 8px;
   border: 1px solid #c9c9c9;
@@ -152,21 +215,21 @@
   text-decoration: none;
 }
 
-.paginationBttns a:hover{
+.paginationBttns a:hover {
   color: black;
   border: 1px solid #ebebeb;
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
 }
 
-.paginationActive a{
+.paginationActive a {
   color: white;
-  border: 1px solid #03A64A;
-  background-color: #03A64A;
+  border: 1px solid #03a64a;
+  background-color: #03a64a;
 }
-a:active{
+a:active {
   color: white;
-  border: 1px solid #03A64A;
-  background-color: #03A64A;
+  border: 1px solid #03a64a;
+  background-color: #03a64a;
 }
 
 @media only screen and (max-width: 668px) {

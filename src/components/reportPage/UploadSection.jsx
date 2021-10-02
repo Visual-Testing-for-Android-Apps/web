@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Modal } from "react-bootstrap";
 import Paginate from "react-paginate";
 
 import UploadBox from "./UploadBox";
@@ -7,6 +7,7 @@ import Captcha from "./Captcha";
 import "../mainPage/mainpage.css";
 import "./upload.css";
 import Alert from "react-bootstrap/Alert";
+import Collapsible from "react-collapsible";
 
 const UploadSection = (props) => {
   const [files, setFiles] = useState([]);
@@ -36,6 +37,9 @@ const UploadSection = (props) => {
 
   // Search files
   const [searchTerm, setSearchString] = useState("");
+
+  // Modal popup
+  const [modal, setModal] = useState(false);
 
   const removeFile = (file) => {
     const newFile = [...files];
@@ -111,7 +115,7 @@ const UploadSection = (props) => {
     );
 
   // Display uploaded files, plus 'Remove' button to delete file
-  const displayFiles = files.map((file, i) => (
+  /* const displayFiles = files.map((file, i) => (
     <Container className="file-container" key={file.path}>
       <Row>
         <Col className="file-column">{file.name}</Col>
@@ -122,14 +126,14 @@ const UploadSection = (props) => {
         </Col>
       </Row>
     </Container>
-  ));
+  )); */
 
   const setAlert = (alertMessage) => {
     setShowAlert(true);
     setAlertMessage(alertMessage);
   };
 
-  const filePreviews = files.map((file, i) => (
+  /*  const filePreviews = files.map((file, i) => (
     <div className="preview-column" key={file.path}>
       {file.type == "video/mp4" && (
         <video
@@ -150,6 +154,17 @@ const UploadSection = (props) => {
       </button>
     </div>
   ));
+ */
+
+  const imageClick = () => {
+    console.log("Click");
+  };
+
+  const toggleModal = () => {
+    console.log("Click");
+    setModal(!modal);
+    console.log(modal);
+  };
 
   const displayFilePreviews = files
     .slice(pagesVisited, pagesVisited + FILES_PER_PAGE)
@@ -161,9 +176,26 @@ const UploadSection = (props) => {
               <video className="image-preview" src={URL.createObjectURL(file)} loop muted />
             )}
             {(file.type == "image/jpeg" || file.type == "image/png") && (
-              <img className="image-preview" src={URL.createObjectURL(file)}></img>
+              <img
+                className="image-preview"
+                src={URL.createObjectURL(file)}
+                onClick={toggleModal}
+              ></img>
             )}
-            <p>{file.name}</p>
+            {/*             {modal && (
+              <div className="modal">
+                <div onClick={toggleModal} className="overlay"></div>
+                <div className="modal-content">
+                  <img src={URL.createObjectURL(file)} onClick={() => toggleModal}></img>
+                  <button className="close-modal" onClick={toggleModal}>
+                    CLOSE
+                  </button>
+                </div>
+              </div>
+            )} */}
+            <div className="file-name">
+              <p>{file.name}</p>
+            </div>
             <button className="cross-button" onClick={() => removeFile(i)}>
               X
             </button>
@@ -198,6 +230,10 @@ const UploadSection = (props) => {
             style={{ opacity: btnOpacity }}
           />
           <UploadAlert />
+        </form>
+      </div>
+      <div style={containerStyle}>
+        <div className="search-remove">
           {files.length > 0 && (
             <input
               type="text"
@@ -210,8 +246,12 @@ const UploadSection = (props) => {
               }}
             />
           )}
-          {files.length > 0 && <button onClick={removeAll}>Remove All</button>}
-        </form>
+          {files.length > 0 && (
+            <button className="remove-btn" onClick={removeAll}>
+              Delete Files
+            </button>
+          )}
+        </div>
       </div>
       <div className="pagination-section">
         {files.length > 10 && (
