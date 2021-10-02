@@ -34,7 +34,7 @@
   width: 30%;
 }
 
-.search-remove{
+.search-remove {
   display: flex;
   flex-direction: row;
   width: clamp(10rem, 30rem, 50rem);
@@ -116,15 +116,10 @@
   flex-direction: column;
   height: 9.375rem;
   width: 9.375rem;
-}
-
-img {
-  height: 9.375rem;
-  width: 9.375rem;
   object-fit: cover;
 }
 
-video {
+.image-preview video{
   height: 9.375rem;
   width: 9.375rem;
   object-fit: cover;
@@ -137,6 +132,7 @@ video {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .cross-button {
@@ -149,8 +145,8 @@ video {
 }
 
 .file-name {
-  overflow: hidden;
-  text-overflow: ellipsis;
+ overflow: hidden;
+ text-overflow: ellipsis;
 }
 
 /**************************PAGINATION*****************************/
@@ -158,7 +154,7 @@ video {
   padding: 1rem 10rem 1rem 10rem;
 }
 
-.pagination-margin{
+.pagination-margin {
   margin-right: 2rem;
 }
 
@@ -196,6 +192,63 @@ a:active {
   background-color: #03a64a;
 }
 
+/**************************MODAL*****************************/
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  width: 500px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.modalContainer .title {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modalContainer .body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.modalBody img,video{
+  width: 200px;
+  height: 400px;
+}
+
+.image-holder{
+  transition: all 350ms ease;
+  cursor: pointer;
+}
+
+.image-holder:hover{
+  filter: opacity(.8);
+}
+/**************************MODAL-END*****************************/
+
 @media only screen and (max-width: 668px) {
   .file-container {
     text-indent: 0;
@@ -224,13 +277,13 @@ a:active {
     height: 4.688rem;
     width: 4.688rem;
   }
-  
+
   img {
     height: 4.688rem;
     width: 4.688rem;
     object-fit: cover;
   }
-  
+
   video {
     height: 4.688rem;
     width: 4.688rem;

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Container, Row, Col, Modal } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Paginate from "react-paginate";
 
 import UploadBox from "./UploadBox";
@@ -7,7 +7,6 @@ import Captcha from "./Captcha";
 import "../mainPage/mainpage.css";
 import "./upload.css";
 import Alert from "react-bootstrap/Alert";
-import Collapsible from "react-collapsible";
 
 const UploadSection = (props) => {
   const [files, setFiles] = useState([]);
@@ -40,6 +39,7 @@ const UploadSection = (props) => {
 
   // Modal popup
   const [modal, setModal] = useState(false);
+  const [fileSrc, setFileSrc] = useState();
 
   const removeFile = (file) => {
     const newFile = [...files];
@@ -133,14 +133,9 @@ const UploadSection = (props) => {
     setAlertMessage(alertMessage);
   };
 
-  const imageClick = () => {
-    console.log("Click");
-  };
-
-  const toggleModal = () => {
-    console.log("Click");
+  const toggleModal = (file) => {
+    setFileSrc(file);
     setModal(!modal);
-    console.log(modal);
   };
 
   const displayFilePreviews = files
@@ -149,30 +144,15 @@ const UploadSection = (props) => {
       if (searchTerm.length === 0 || file.name.toLowerCase().includes(searchTerm.toLowerCase())) {
         return (
           <div className="preview-column" key={file.path}>
-            {file.type == "video/mp4" && (
-              <video className="image-preview" src={URL.createObjectURL(file)} loop muted />
-            )}
-            {(file.type == "image/jpeg" || file.type == "image/png") && (
-              <img
-                className="image-preview"
-                src={URL.createObjectURL(file)}
-                onClick={toggleModal}
-              ></img>
-            )}
-            {/*             {modal && (
-              <div className="modal">
-                <div onClick={toggleModal} className="overlay"></div>
-                <div className="modal-content">
-                  <img src={URL.createObjectURL(file)} onClick={() => toggleModal}></img>
-                  <button className="close-modal" onClick={toggleModal}>
-                    CLOSE
-                  </button>
-                </div>
-              </div>
-            )} */}
-            <div className="file-name">
-              <p>{file.name}</p>
+            <div className="image-holder" onClick={() => toggleModal(file)}>
+              {file.type == "video/mp4" && (
+                <video className="image-preview" src={URL.createObjectURL(file)} loop muted />
+              )}
+              {(file.type == "image/jpeg" || file.type == "image/png") && (
+                <img className="image-preview" src={URL.createObjectURL(file)}></img>
+              )}
             </div>
+            <p className="file-name">{file.name}</p>
             {/* <button className="cross-button" onClick={() => removeFile(i)}>
               X
             </button> */}
@@ -225,28 +205,56 @@ const UploadSection = (props) => {
           )}
           {files.length > 0 && (
             <button className="remove-btn" onClick={removeAll}>
-              Delete Files
+              Remove All
             </button>
           )}
         </div>
       </div>
-      <div className="pagination-section">
-        {files.length > 10 && (
-          <div className="pagination-margin">
-            <Paginate
-              previousLabel={"<"}
-              nextLabel={">"}
-              pageCount={pageCount}
-              onPageChange={changePage}
-              containerClassName={"paginationBttns"}
-              previousLinkClassName={"previousBttn"}
-              nextLinkClassName={"nextBttn"}
-              disabledClassName={"paginationDisabled"}
-              activeClassName={"paginationActive"}
-            />
-          </div>
-        )}
-        <div className="margin-space">{displayFilePreviews}</div>
+      <div style={containerStyle}>
+        <div className="pagination-section">
+          {files.length > 10 && (
+            <div className="pagination-margin">
+              <Paginate
+                previousLabel={"<"}
+                nextLabel={">"}
+                pageCount={pageCount}
+                onPageChange={changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+              />
+            </div>
+          )}
+          {modal && (
+            <div onClick={toggleModal} className="modalBackgound">
+              <div className="modalContainer">
+                <div className="titleCloseBtn">
+                  <button onClick={toggleModal}>X</button>
+                </div>
+                <div className="modalTitle"></div>
+                <h4>{fileSrc.name}</h4>
+                <div className="modalBody">
+                  {fileSrc.type == "video/mp4" && (
+                    <video
+                      className="modal-preview"
+                      src={URL.createObjectURL(fileSrc)}
+                      autoplay
+                      controls
+                      loop
+                      muted
+                    />
+                  )}
+                  {(fileSrc.type == "image/jpeg" || fileSrc.type == "image/png") && (
+                    <img className="modal-preview" src={URL.createObjectURL(fileSrc)}></img>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+          <div className="margin-space">{displayFilePreviews}</div>
+        </div>
       </div>
     </div>
   );
