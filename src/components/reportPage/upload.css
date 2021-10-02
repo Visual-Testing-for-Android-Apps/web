@@ -114,24 +114,19 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 150px;
-  width: 150px;
-}
-
-.image-preview2 {
-  height: 300px;
-  width: 150px;
+  height: 9.375rem;
+  width: 9.375rem;
 }
 
 img {
-  height: 150px;
-  width: 150px;
+  height: 9.375rem;
+  width: 9.375rem;
   object-fit: cover;
 }
 
 video {
-  height: 150px;
-  width: 150px;
+  height: 9.375rem;
+  width: 9.375rem;
   object-fit: cover;
 }
 
@@ -158,56 +153,25 @@ video {
   text-overflow: ellipsis;
 }
 
-/**************************MODAL*****************************/
-.modal, .overlay {
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: fixed;
-}
-
-.overlay {
-  background: rgba(49,49,49,0.8);
-}
-
-.modal-content {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  line-height: 1.4;
-  background: #f1f1f1;
-  padding: 14px 28px;
-  border-radius: 3px;
-  max-width: 600px;
-  min-width: 300px;
-}
-
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 7px;
-}
-
 /**************************PAGINATION*****************************/
 .pagination-section {
   padding: 1rem 10rem 1rem 10rem;
 }
 
+.pagination-margin{
+  margin-right: 2rem;
+}
+
 .paginationBttns {
-  height: 40px;
+  height: 2.5rem;
   list-style: none;
   display: flex;
   justify-content: center;
 }
 
 .paginationBttns a {
-  padding: 10px;
-  margin: 8px;
+  padding: 0.625rem;
+  margin: 0.5rem;
   border: 1px solid #c9c9c9;
   background-color: #c9c9c9;
   color: black;
@@ -251,5 +215,35 @@ a:active {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .image-preview {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 4.688rem;
+    width: 4.688rem;
+  }
+  
+  img {
+    height: 4.688rem;
+    width: 4.688rem;
+    object-fit: cover;
+  }
+  
+  video {
+    height: 4.688rem;
+    width: 4.688rem;
+    object-fit: cover;
+  }
+
+  .pagination-section {
+    padding: 0%;
+  }
+
+  .file-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
   }
 }

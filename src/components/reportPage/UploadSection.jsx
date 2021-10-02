@@ -133,29 +133,6 @@ const UploadSection = (props) => {
     setAlertMessage(alertMessage);
   };
 
-  /*  const filePreviews = files.map((file, i) => (
-    <div className="preview-column" key={file.path}>
-      {file.type == "video/mp4" && (
-        <video
-          className="image-preview"
-          src={URL.createObjectURL(file)}
-          autoPlay
-          loop
-          controls
-          muted
-        />
-      )}
-      {(file.type == "image/jpeg" || file.type == "image/png") && (
-        <img className="image-preview" src={URL.createObjectURL(file)}></img>
-      )}
-      <p>{file.name}</p>
-      <button className="cross-button" onClick={() => removeFile(i)}>
-        X
-      </button>
-    </div>
-  ));
- */
-
   const imageClick = () => {
     console.log("Click");
   };
@@ -196,9 +173,9 @@ const UploadSection = (props) => {
             <div className="file-name">
               <p>{file.name}</p>
             </div>
-            <button className="cross-button" onClick={() => removeFile(i)}>
+            {/* <button className="cross-button" onClick={() => removeFile(i)}>
               X
-            </button>
+            </button> */}
           </div>
         );
       }
@@ -255,17 +232,19 @@ const UploadSection = (props) => {
       </div>
       <div className="pagination-section">
         {files.length > 10 && (
-          <Paginate
-            previousLabel={"<"}
-            nextLabel={">"}
-            pageCount={pageCount}
-            onPageChange={changePage}
-            containerClassName={"paginationBttns"}
-            previousLinkClassName={"previousBttn"}
-            nextLinkClassName={"nextBttn"}
-            disabledClassName={"paginationDisabled"}
-            activeClassName={"paginationActive"}
-          />
+          <div className="pagination-margin">
+            <Paginate
+              previousLabel={"<"}
+              nextLabel={">"}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
+          </div>
         )}
         <div className="margin-space">{displayFilePreviews}</div>
       </div>
