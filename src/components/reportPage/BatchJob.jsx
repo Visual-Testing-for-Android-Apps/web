@@ -28,7 +28,6 @@ const BatchJob = () => {
 
   return (
     <div className="section_container">
-      <VideoInstructions />
       <h1 style={{ textAlign: "center" }}>
         <b>Batch Job Request</b>
       </h1>
@@ -43,6 +42,7 @@ const BatchJob = () => {
           onChange={handleEmailChange}
         />
       </div>
+      <VideoInstructions />
       <UploadSection
         fileLimit={FILE_LIMIT}
         handleJob={handleBatchJob}

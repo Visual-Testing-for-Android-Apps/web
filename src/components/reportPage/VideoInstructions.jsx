@@ -12,17 +12,10 @@ const VideoInstructions = () => {
   };
 
   return (
-    // <div type="button" className="help-container">
-    //     <div onClick={handlePanelToggle} className="help-header">
-    //     Video Upload Instructions</div>
-    //     {open ? (
-    //     <div className="content">
-    //     <p>Hello</p>
-    //     </div>
-    //     ) : null}
     <div>
       <div className="help-button" onClick={handlePanelToggle}>
-        <img src={helpIcon} width="25" height="25" />
+        <img className="help-icon" src={helpIcon} width="25" height="25" />
+        &nbsp;Video Upload Instructions
       </div>
       {openHelp && (
         <div className="loading-style">

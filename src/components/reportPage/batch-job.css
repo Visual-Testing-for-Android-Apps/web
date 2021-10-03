@@ -105,10 +105,14 @@
 }
 
 .help-button {
-  position: absolute;
-  right: 0.5rem;
-  margin-top: -2.5rem;
-  display: flex;
+  margin: auto;
+  width: 20%;
+  font-size: 1.05rem;
+  padding: 0.3rem;
+  border-radius: 2rem;
+  border: 0.02rem solid;
+  text-align: center;
+  font-weight: 600;
 }
 
 .help-content {
@@ -122,6 +126,10 @@
   padding: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   z-index: 2;
+}
+
+.help-icon {
+  margin-bottom: 0.15rem;
 }
 
 .video-example {
@@ -152,5 +160,9 @@
 
   .video-example {
     width: 90%;
+  }
+
+  .help-button {
+    width: 60%;
   }
 }
