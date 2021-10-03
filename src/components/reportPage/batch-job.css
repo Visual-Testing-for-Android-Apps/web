@@ -82,10 +82,6 @@
   border-color: #ccc transparent;
 }
 
-.section_container {
-  /* position: relative; */
-}
-
 .loading-style {
   position: fixed;
   background: #00000050;
