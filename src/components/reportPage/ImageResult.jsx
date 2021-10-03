@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import mergeImages from "merge-images";
 import { saveAs } from "file-saver";
 
-import { createImageDataUrlFromBase64, encodeFileAsBase64DataUrl } from "../../util/FileUtil";
+import { createImageDataUrlFromBase64 } from "../../util/FileUtil";
 import "./results-page.css";
 import DownloadIcon from "./downloadIcon";
 
@@ -21,10 +21,8 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   // Decode results.
   useEffect(async () => {
-    setOriginalImageDataUrl(await encodeFileAsBase64DataUrl(imageFile));
-    if (imageResult != null) {
-      setResultImageDataUrl(await createImageDataUrlFromBase64(imageResult["res_img"]));
-    }
+    setOriginalImageDataUrl(await createImageDataUrlFromBase64(imageResult["original_img"]));
+    setResultImageDataUrl(await createImageDataUrlFromBase64(imageResult["res_img"]));
   }, []);
 
   const originalImageCanvasRef = useRef(null);
@@ -32,7 +30,6 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   // Draw the original image.
   useEffect(() => {
-    if (originalImageDataUrl == null) return;
     const originalImageCanvas = originalImageCanvasRef.current;
     const originalImageContext = originalImageCanvas.getContext("2d");
 
@@ -53,7 +50,6 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   // Draw the heatmap overlayed on the original image.
   useEffect(() => {
-    if (resultImageDataUrl == null) return;
     const resultImageCanvas = resultImageCanvasRef.current;
     const resultImageCanvasContext = resultImageCanvas.getContext("2d");
 
@@ -129,26 +125,28 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   return (
     <div className="image-result-container">
-      <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
+      {isError ? (
         <div className="result">
-          <canvas ref={originalImageCanvasRef} className="original-image" />
-          <canvas ref={resultImageCanvasRef} className="image-heatmap" />
+          <p>Error analysing image</p>
         </div>
-        <a className="result-filename image-download-btn" onClick={downloadFile}>
-          {imageFile.name} <DownloadIcon />
-        </a>
-      </div>
-      <p className="result-explanation">
-        {imageResult != null ? (
-          imageResult?.["bug_type"]?.length == 0 ? (
-            "No defect found"
-          ) : (
-            imageResult?.["bug_type"]?.join(", ")
-          )
-        ) : (
-          <span style={{ color: "red" }}>Error analysing image</span>
-        )}
-      </p>
+      ) : (
+        <>
+          <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
+            <div className="result">
+              <canvas ref={originalImageCanvasRef} className="original-image" />
+              <canvas ref={resultImageCanvasRef} className="image-heatmap" />
+            </div>
+            <a className="result-filename image-download-btn" onClick={downloadFile}>
+              {imageFile.name} <DownloadIcon />
+            </a>
+          </div>
+          <p className="result-explanation">
+            {imageResult["bug_type"]?.length == 0
+              ? "No defect found"
+              : imageResult?.["bug_type"]?.join(", ")}
+          </p>
+        </>
+      )}
     </div>
   );
 };

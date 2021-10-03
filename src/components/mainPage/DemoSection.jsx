@@ -10,7 +10,7 @@ const DemoSection = (props) => {
   };
 
   return (
-    <div className="section sliding-footer demo-section" id="DemoSection">
+    <div className="section demo-section" id="DemoSection">
       <div className="demo-body-container ">
         <div className="item-a">
           <h1 className="demo-title">VISUAL TESTING PLATFORM</h1>

@@ -3,12 +3,6 @@
   padding: 5rem 0;
 }
 
-.sliding-footer {
-  /* sliding footer */
-  position: relative;
-  z-index: 2;
-}
-
 .section h2 {
   font-family: "Signika", sans-serif;
   font-size: 2.5rem;
@@ -49,7 +43,6 @@
 .main_section__container {
   flex-direction: row;
   justify-content: space-evenly;
-  background: white;
 }
 
 @media only screen and (min-width: 1024px) {

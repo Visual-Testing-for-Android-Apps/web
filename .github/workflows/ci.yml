@@ -89,3 +89,15 @@ jobs:
 
       # - name: Test
       #   run: npm run test --if-present
+#   deploy:
+#     name: Deploy to heroku
+#     needs: build
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Deploy to Heroku
+#       uses: AkhileshNS/heroku-deploy@v3.12.12
+#         with:
+#           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#           heroku_app_name: "YOUR APP's NAME" #Must be unique in Heroku
+#           heroku_email: "YOUR EMAIL"
