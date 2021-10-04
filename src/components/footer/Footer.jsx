@@ -1,14 +1,10 @@
 import React from "react";
 import "./footer.css";
-import PrivacyPolicyPage from "../mainPage/PrivacyPolicyPage";
 
 const Footer = () => {
   return (
     <footer>
       <div className="footer-text">
-        <span>
-          <a href="">Contact us</a>
-        </span>
         <span>
           <a href="/privacypolicypage">Privacy Policy</a>
         </span>

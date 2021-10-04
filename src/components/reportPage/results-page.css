@@ -36,12 +36,6 @@
   margin: 0.5rem;
 }
 
-.sliding-footer {
-  /* sliding footer */
-  position: relative;
-  z-index: 2;
-}
-
 .original-image {
   /* 16:9 ratio */
   height: var(--result-height);
