@@ -18,12 +18,12 @@ footer {
   justify-content: space-evenly;
 }
 
-a {
+footer a {
   color: inherit;
   color: rgb(227, 225, 221);
   text-decoration: none;
 }
 
-a:hover {
+footer a:hover {
   color: white;
 }
