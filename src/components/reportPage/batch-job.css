@@ -98,6 +98,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
 }
 
 .help-button {
@@ -109,6 +110,7 @@
   border: 0.02rem solid;
   text-align: center;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .help-content {
