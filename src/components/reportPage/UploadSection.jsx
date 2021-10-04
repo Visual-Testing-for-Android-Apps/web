@@ -120,7 +120,7 @@ const UploadSection = (props) => {
   };
 
   return (
-    <div style={containerStyle} className="sliding-footer">
+    <div style={containerStyle}>
       <form style={formStyle} onSubmit={handleSubmit} id={formId}>
         <Captcha />
         <UploadBox

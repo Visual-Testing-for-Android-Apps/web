@@ -2,10 +2,6 @@
   background-color: #0476d9;
   padding-top: 5rem;
   padding-bottom: 8rem;
-
-  /* sliding footer */
-  position: relative;
-  z-index: 2;
 }
 
 .selection-heading {
