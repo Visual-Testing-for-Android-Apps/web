@@ -1,7 +1,4 @@
 footer {
-  position: sticky;
-  bottom: 0;
-  left: 0;
   width: 100%;
   background: #045198;
   display: flex;
@@ -9,7 +6,6 @@ footer {
   justify-content: space-evenly;
   place-items: center;
   padding: 1rem 0 1rem 0;
-  z-index: 1;
 }
 
 .footer-text {
@@ -18,12 +14,12 @@ footer {
   justify-content: space-evenly;
 }
 
-a {
+footer a {
   color: inherit;
   color: rgb(227, 225, 221);
   text-decoration: none;
 }
 
-a:hover {
+footer a:hover {
   color: white;
 }
