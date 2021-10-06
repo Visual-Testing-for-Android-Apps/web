@@ -6,7 +6,7 @@ import ReportExampleVideoWebm from "../images/report-example.webm";
 
 const ReportExampleSection = () => {
   return (
-    <div className="section  report-example-section" id="exampleReportSection">
+    <div className="section report-example-section" id="exampleReportSection">
       <div className="example-section">
         <div className="report-example-container">
           <video className="report-example-video" autoPlay loop muted>

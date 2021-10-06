@@ -127,7 +127,7 @@ const ReportPage = (props) => {
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
       {imageResults.length > 0 && (
-        <div className="results">
+        <div className="results ">
           <Select
             isMulti
             placeholder="Filter by defect type..."

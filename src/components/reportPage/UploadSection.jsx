@@ -145,6 +145,7 @@ const UploadSection = (props) => {
 const containerStyle = {
   display: "flex",
   justifyContent: "center",
+  background: "white",
 };
 
 const formStyle = {
