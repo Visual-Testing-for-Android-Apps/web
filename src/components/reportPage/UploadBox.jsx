@@ -2,15 +2,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import "./upload.css";
 import CloudIcon from "./cloudIcon";
-import e from "cors";
-// import { file } from "@babel/types";
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 const UploadBox = (props) => {
   const onDrop = (files) => {
     if (files.length) {
       // Restricts files displayed to fileLimit only
       if (files.length + currFiles.length > fileLimit) {
-        let updatedFiles = files.slice(0, fileLimit - currFiles.length);
+        const updatedFiles = files.slice(0, fileLimit - currFiles.length);
         setAlert(MAX_FILE_ALERT); //bug: shows up but I don't know why it disappears later
         props.setFiles((existingFiles) => [...existingFiles, ...updatedFiles]);
       } else {
@@ -39,7 +38,7 @@ const UploadBox = (props) => {
     if (currFiles.length == fileLimit || fileRejections.length > fileLimit) {
       setAlert(MAX_FILE_ALERT);
     } else {
-      let errorList = {
+      const errorList = {
         errorFiles: {
           overMaxSize: [],
           duplicateFiles: [],
@@ -51,10 +50,10 @@ const UploadBox = (props) => {
           invalidType: INVALID_FILETYPE,
         },
       };
-      let errorFiles = errorList.errorFiles;
-      for (let f in fileRejections) {
+      const errorFiles = errorList.errorFiles;
+      for (const f in fileRejections) {
         const { errors, file } = fileRejections[f];
-        let errorType = errors[0].code;
+        const errorType = errors[0].code;
         if (errorType === "file-invalid-type") {
           errorFiles.invalidType = [...errorFiles.invalidType, file.name];
         } else if (errorType === "duplicate-file") {
@@ -64,15 +63,17 @@ const UploadBox = (props) => {
         }
       }
 
-      let msg = createErrorMsg(errorList);
+      const msg = createErrorMsg(errorList);
       setAlert(msg);
     }
   };
 
   // @param: errorObj should object composed of two objs: errorFiles, errorMsgs, both have identical property names
   const createErrorMsg = (errorObj) => {
-    let { errorFiles, errorMsgs } = errorObj;
-    let errorTypes = Object.keys(errorFiles);
+    const { errorFiles, errorMsgs } = errorObj;
+    const errorTypes = Object.keys(errorFiles);
+
+    // loops through error types for file arrays that aren't empty and adds to rejected files
     const errors = errorTypes.map((type) =>
       errorFiles[type].length ? (
         <>
@@ -86,9 +87,18 @@ const UploadBox = (props) => {
         </>
       ) : null
     );
-    const errorStyle = { marginLeft: "1rem", marginRight: "1.5rem", overflowWrap: "break-word" };
-    const errorHeadingStyle = { marginBottom: "0.5rem" };
-    let msg = (
+
+    // CSS for errors and errorHeading
+    const errorStyle = {
+      marginLeft: "1rem",
+      marginRight: "1.5rem",
+      overflowWrap: "break-word",
+      textAlign: "left",
+    };
+    const errorHeadingStyle = { marginBottom: "0.5rem", textAlign: "left" };
+
+    // final message jsx
+    const msg = (
       <>
         <p style={errorHeadingStyle}>
           {" "}
@@ -118,7 +128,7 @@ const UploadBox = (props) => {
 
   const acceptedFileTypes = ["image/jpeg", "image/png", "video/mp4"];
   const maxFiles = fileLimit ? fileLimit : 0; // 0 unlimited files
-  const maxSize = maxFileSize ? maxFileSize * 1024 * 1024 : 0; // 0 is unlimited file size, in bin bytes
+  const maxSize = maxFileSize ? maxFileSize * 1000 * 1000 : Infinity; // 0 is unlimited file size, in bin bytes
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: acceptedFileTypes,
