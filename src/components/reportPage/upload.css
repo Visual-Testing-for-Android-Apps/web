@@ -93,6 +93,7 @@
   justify-content: center;
   flex-wrap: wrap;
   background-color: #efefef;
+  margin-bottom: 5rem;
 }
 
 .button-column {
@@ -147,6 +148,7 @@
 .file-name {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /**************************PAGINATION*****************************/
@@ -316,5 +318,14 @@ a:active {
     border-radius: 3px;
     align-items: center;
     justify-content: center;
+  }
+
+  .cross-button {
+    position: absolute;
+    left: 95px;
+    bottom: 95px;
+    color: white;
+    background: red;
+    border-radius: 0.3rem;
   }
 }
