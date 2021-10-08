@@ -153,9 +153,9 @@ const UploadSection = (props) => {
               )}
             </div>
             <p className="file-name">{file.name}</p>
-            {/* <button className="cross-button" onClick={() => removeFile(i)}>
+          <button className="cross-button" onClick={() => removeFile(i)}>
               X
-            </button> */}
+            </button> 
           </div>
         );
       }
@@ -228,14 +228,32 @@ const UploadSection = (props) => {
             </div>
           )}
           {modal && (
-            <div onClick={toggleModal} className="modalBackgound">
-              <div className="modalContainer">
-                <div className="titleCloseBtn">
-                  <button onClick={toggleModal}>X</button>
-                </div>
-                <div className="modalTitle"></div>
+            <div onClick={toggleModal} className="modalBackground">
+              <div className="modalContent">
                 <h4>{fileSrc.name}</h4>
-                <div className="modalBody">
+                {fileSrc.type == "video/mp4" && (
+                  <video
+                    className="modal-preview"
+                    src={URL.createObjectURL(fileSrc)}
+                    autoplay
+                    controls
+                    loop
+                    muted
+                  />
+                )}
+                {(fileSrc.type == "image/jpeg" || fileSrc.type == "image/png") && (
+                  <img className="modal-preview" src={URL.createObjectURL(fileSrc)}></img>
+                )}
+                <button className="close-modal">x</button>
+              </div>
+            </div>
+          )}
+
+          {/* {modal && (
+            <div onClick={toggleModal} className="modal-background">
+              <div className="modal-wrapper">
+                <h4>{fileSrc.name}</h4>
+                <div className="modal-content">
                   {fileSrc.type == "video/mp4" && (
                     <video
                       className="modal-preview"
@@ -250,9 +268,12 @@ const UploadSection = (props) => {
                     <img className="modal-preview" src={URL.createObjectURL(fileSrc)}></img>
                   )}
                 </div>
+                <button className="modal-closeBtn" onClick={toggleModal}>
+                  X
+                </button>
               </div>
             </div>
-          )}
+          )} */}
           <div className="margin-space">{displayFilePreviews}</div>
         </div>
       </div>
