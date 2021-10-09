@@ -20,9 +20,6 @@ const Navigation = () => {
           <Navbar.Toggle area-aria-controls="responsive-navbar" />
           <Navbar.Collapse id="responsive-navbar">
             <Nav className="justify-content-end">
-              <Nav.Link href="/" style={{ color: "#fff" }}>
-                Home
-              </Nav.Link>
               <Nav.Link href="/#AboutSection" style={{ color: "#fff" }}>
                 About
               </Nav.Link>
