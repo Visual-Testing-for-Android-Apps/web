@@ -53,7 +53,7 @@
 }
 
 .box:hover {
-  border: 0.2rem solid #e4f0fc;
+  border: 0.2rem solid #045198;
   cursor: pointer;
 }
 
@@ -126,6 +126,12 @@
   object-fit: cover;
 }
 
+.image-holder :hover{
+  filter: opacity(0.4);
+  transition: all 250ms ease;
+  cursor: pointer;
+}
+
 .preview-column {
   margin: 1rem;
   width: 9.375rem;
@@ -143,6 +149,11 @@
   color: white;
   background: red;
   border-radius: 0.3rem;
+}
+
+.cross-button:hover{
+  transition: all 250ms ease;
+  background-color: black;
 }
 
 .file-name {
@@ -247,12 +258,17 @@ a:active {
   top: 10px;
   right: 10px;
   padding-bottom: 0.2rem;
-  background-color: black;
+  background-color: red;
   color: white;
   border: none;
   border-radius: 0.2rem;
   font-size: 2rem;
   padding: 0rem 0.7rem 0.5rem 0.7rem;
+}
+
+.close-modal:hover{
+  transition: all 250ms ease;
+  background-color: black;
 }
 /**************************MODAL-END*****************************/
 
@@ -281,19 +297,19 @@ a:active {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 4.688rem;
-    width: 4.688rem;
+    height: 6rem;
+    width: 6rem;
   }
 
   img {
-    height: 4.688rem;
-    width: 4.688rem;
+    height: 6rem;
+    width: 6rem;
     object-fit: cover;
   }
 
   video {
-    height: 4.688rem;
-    width: 4.688rem;
+    height: 6rem;
+    width: 6rem;
     object-fit: cover;
   }
 
@@ -322,10 +338,20 @@ a:active {
 
   .cross-button {
     position: absolute;
-    left: 95px;
-    bottom: 95px;
+    left: 73px;
+    bottom: 115px;
     color: white;
     background: red;
     border-radius: 0.3rem;
+  }
+
+  .preview-column {
+    margin: 1rem;
+    width: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
   }
 }
