@@ -50,6 +50,7 @@
   background-color: #efefef;
   margin-top: 1rem;
   padding: 3rem;
+  z-index: 0;
 }
 
 .box:hover {
