@@ -4,7 +4,9 @@ import Modal from "react-bootstrap/Modal";
 
 import UploadSection from "./UploadSection";
 import Repository from "../../data/Repository";
+import VideoInstructions from "./VideoInstructions";
 import "./batch-job.css";
+
 
 const BatchJob = () => {
   const FILE_LIMIT = 100;
@@ -52,6 +54,7 @@ const BatchJob = () => {
           onChange={handleEmailChange}
         />
       </div>
+      <VideoInstructions />
       <UploadSection
         fileLimit={FILE_LIMIT}
         handleJob={handleBatchJob}
