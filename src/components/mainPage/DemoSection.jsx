@@ -20,9 +20,9 @@ const DemoSection = (props) => {
           </p>
           <button onClick={scrollToJobSelectionSection}>Get Started</button>
         </div>
-        <div className="item-b">
+        {/* <div className="item-b">
           <DemoVideo embedId="Fr4C4O5rD-8" />
-        </div>
+        </div> */}
       </div>
     </div>
   );
