@@ -144,8 +144,8 @@
 
 .cross-button {
   position: absolute;
-  left: 136px;
-  bottom: 170px;
+  left: 8.5rem;
+  bottom: 10.625rem;
   color: white;
   background: red;
   border-radius: 0.3rem;
@@ -181,7 +181,7 @@
 .paginationBttns a {
   padding: 0.625rem;
   margin: 0.5rem;
-  border: 1px solid #c9c9c9;
+  border: 0.063rem solid #c9c9c9;
   background-color: #c9c9c9;
   color: black;
   cursor: pointer;
@@ -190,18 +190,18 @@
 
 .paginationBttns a:hover {
   color: black;
-  border: 1px solid #ebebeb;
+  border: 0.063rem solid #ebebeb;
   background-color: #f4f4f4;
 }
 
 .paginationActive a {
   color: white;
-  border: 1px solid #03a64a;
+  border: 0.063rem solid #03a64a;
   background-color: #03a64a;
 }
 a:active {
   color: white;
-  border: 1px solid #03a64a;
+  border: 0.063rem solid #03a64a;
   background-color: #03a64a;
 }
 
@@ -227,10 +227,10 @@ a:active {
   transform: translate(-50%, -50%);
   line-height: 1.4;
   background: #f1f1f1;
-  padding: 14px 28px;
-  border-radius: 3px;
-  max-width: 600px;
-  min-width: 300px;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.188rem;
+  max-width: 37.5rem;
+  min-width: 18.75rem;
   align-items: center;
   justify-content: center;
   padding-right: 8rem;
@@ -240,23 +240,23 @@ a:active {
 }
 
 .modalContent img{
-  width: 200px;
-  height: 400px;
+  width: 12.5rem;
+  height: 25rem;
   align-items: center;
   justify-content: center;
 }
 
 .modalContent video{
-  width: 200px;
-  height: 400px;
+  width: 12.5rem;
+  height: 25rem;
   align-items: center;
   justify-content: center;
 }
 
 .close-modal {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0.625rem;
+  right: 0.625rem;
   padding-bottom: 0.2rem;
   background-color: red;
   color: white;
@@ -270,7 +270,6 @@ a:active {
   transition: all 250ms ease;
   background-color: black;
 }
-/**************************MODAL-END*****************************/
 
 @media only screen and (max-width: 668px) {
   .file-container {
@@ -320,7 +319,7 @@ a:active {
   .file-name {
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .modalContent {
@@ -330,16 +329,16 @@ a:active {
     transform: translate(-50%, -50%);
     line-height: 1.4;
     background: #f1f1f1;
-    padding: 14px 28px;
-    border-radius: 3px;
+    padding: 0.875rem 1.75rem;
+    border-radius: 0.188rem;
     align-items: center;
     justify-content: center;
   }
 
   .cross-button {
     position: absolute;
-    left: 73px;
-    bottom: 115px;
+    left: 4.563rem;
+    bottom: 7.188rem;
     color: white;
     background: red;
     border-radius: 0.3rem;

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import Paginate from "react-paginate";
 
 import UploadBox from "./UploadBox";
@@ -114,20 +113,6 @@ const UploadSection = (props) => {
       </Alert>
     );
 
-  // Display uploaded files, plus 'Remove' button to delete file
-  /* const displayFiles = files.map((file, i) => (
-    <Container className="file-container" key={file.path}>
-      <Row>
-        <Col className="file-column">{file.name}</Col>
-        <Col className="button-column">
-          <button className="remove-btn" onClick={() => removeFile(i)}>
-            X
-          </button>
-        </Col>
-      </Row>
-    </Container>
-  )); */
-
   const setAlert = (alertMessage) => {
     setShowAlert(true);
     setAlertMessage(alertMessage);
@@ -212,7 +197,7 @@ const UploadSection = (props) => {
       </div>
       <div style={containerStyle}>
         <div className="pagination-section">
-          {files.length > 10 && (
+          {files.length > 20 && (
             <div className="pagination-margin">
               <Paginate
                 previousLabel={"<"}
@@ -249,6 +234,21 @@ const UploadSection = (props) => {
             </div>
           )}
           <div className="margin-space">{displayFilePreviews}</div>
+          {files.length > 20 && (
+            <div className="pagination-margin">
+              <Paginate
+                previousLabel={"<"}
+                nextLabel={">"}
+                pageCount={pageCount}
+                onPageChange={changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
