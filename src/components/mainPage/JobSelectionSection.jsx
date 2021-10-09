@@ -38,13 +38,13 @@ const JobSelectionSection = forwardRef((props, ref) => {
           <JobButton
             icon={LiveIcon}
             jobType="LIVE JOB"
-            description="See results in real time. Up to 10 images and videos"
+            description="Submit up to 10 images and videos and watch the results appear in real time"
             clickHandler={() => handleLiveJob()}
           />
           <JobButton
             icon={BatchIcon}
             jobType="BATCH JOB"
-            description="Submit up to 100 images and videos. Get an email report"
+            description="Submit up to 100 images and videos and receive the results via email"
             clickHandler={() => handleBatchJob()}
           />
         </div>
