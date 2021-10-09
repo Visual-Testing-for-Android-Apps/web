@@ -87,16 +87,16 @@ const ReportPage = (props) => {
   };
 
   const checkImageFilterType = (imageResult) => {
-    const found = selectedImageDefects.some((value) => imageResult["bug_type"].includes(value));
+    const found = selectedImageDefects.some((value) => imageResult?.["bug_type"]?.includes(value));
     return (
       selectedImageDefects.length === 0 ||
-      (selectedImageDefects.includes("No defect") && imageResult["bug_type"].length === 0) ||
+      (selectedImageDefects.includes("No defect") && imageResult?.["bug_type"]?.length === 0) ||
       found
     );
   };
 
   const checkVideoFilterType = (videoResult) => {
-    const found = selectedVideoDefects.includes(videoResult["classification"]);
+    const found = selectedVideoDefects.includes(videoResult?.["classification"]);
     return selectedVideoDefects.length === 0 || found;
   };
 
@@ -127,7 +127,7 @@ const ReportPage = (props) => {
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
       {imageResults.length > 0 && (
-        <div className="results">
+        <div className="results ">
           <Select
             isMulti
             placeholder="Filter by defect type..."
