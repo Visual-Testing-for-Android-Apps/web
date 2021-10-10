@@ -25,6 +25,10 @@
   width: 19.5rem;
 }
 
+.section_container {
+  overflow-x: auto;
+}
+
 .section_container h1 {
   margin-top: 3rem;
   padding-inline: 0.5rem;
