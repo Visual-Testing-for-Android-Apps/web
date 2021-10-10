@@ -218,7 +218,7 @@ a:active {
 }
 
 /**************************  MODAL  *****************************/
-.modalBackground {
+.modal-background {
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -232,7 +232,7 @@ a:active {
   align-items: center;
 }
 
-.modalContent {
+.modal-content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -313,7 +313,7 @@ a:active {
     font-size: 0.875rem;
   }
 
-  .modalContent {
+  .modal-content {
     position: absolute;
     top: 50%;
     left: 50%;

@@ -211,8 +211,8 @@ const UploadSection = (props) => {
             </div>
           )}
           {modal && (
-            <div onClick={toggleModal} className="modalBackground">
-              <div className="modalContent">
+            <div onClick={toggleModal} className="modal-background">
+              <div className="modal-content">
                 <h4>{fileSrc.name}</h4>
                 {fileSrc.type == "video/mp4" && (
                   <video
