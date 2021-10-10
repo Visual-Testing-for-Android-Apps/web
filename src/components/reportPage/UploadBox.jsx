@@ -2,138 +2,44 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import "./upload.css";
 import CloudIcon from "./cloudIcon";
-import { text } from "@fortawesome/fontawesome-svg-core";
-
 const UploadBox = (props) => {
-  const onDrop = (files) => {
-    if (files.length) {
-      // Restricts files displayed to fileLimit only
-      if (files.length + currFiles.length > fileLimit) {
-        const updatedFiles = files.slice(0, fileLimit - currFiles.length);
-        setAlert(MAX_FILE_ALERT); //bug: shows up but I don't know why it disappears later
-        props.setFiles((existingFiles) => [...existingFiles, ...updatedFiles]);
-      } else {
-        props.setFiles((existingFiles) => [...existingFiles, ...files]);
-      }
-    }
-  };
-  // didn't use useCallback because the currFiles.length always returned 0 for some reason
-  // const onDrop = useCallback((files) => {
-  //   if (files.length + currFiles.length > fileLimit) {
-  //     let updatedFiles = files.slice(0,fileLimit-currFiles.length);
-  //     props.setFiles((existingFiles) => [...existingFiles, ...updatedFiles]);
-  //     setAlert(MAX_FILE_ALERT);
-  //   }
-  //   else{
-  //     props.setFiles((existingFiles) => [...existingFiles, ...files]);
-  //   }
+  const onDrop = useCallback((files) => {
+    props.setFiles((existingFiles) => [...existingFiles, ...files]);
+  }, []);
 
-  // }, []);
-
-  const { setAlert, fileLimit, currFiles, maxFileSize } = props;
-  const MAX_FILE_ALERT = `Please upload only up to ${props.fileLimit} valid files.`;
-  const INVALID_FILETYPE = `The following file(s) are not of acceptable formats (jpeg, png, mp4):`;
+  const { setAlert, fileLimit, currFiles } = props;
+  const MAX_FILE_ALERT = `Please upload only up to ${fileLimit} valid files.`;
+  const INVALID_FILETYPE = "You are trying to upload invalid file types.";
 
   const onDropRejected = (fileRejections) => {
-    if (currFiles.length == fileLimit || fileRejections.length > fileLimit) {
-      setAlert(MAX_FILE_ALERT);
-    } else {
-      const errorList = {
-        errorFiles: {
-          overMaxSize: [],
-          duplicateFiles: [],
-          invalidType: [],
-        },
-        errorMsgs: {
-          overMaxSize: `The following file(s) are larger than ${maxFileSize} MB: `,
-          duplicateFiles: "The following file(s) have already been uploaded:",
-          invalidType: INVALID_FILETYPE,
-        },
-      };
-      const errorFiles = errorList.errorFiles;
-      for (const f in fileRejections) {
-        const { errors, file } = fileRejections[f];
-        const errorType = errors[0].code;
-        if (errorType === "file-invalid-type") {
-          errorFiles.invalidType = [...errorFiles.invalidType, file.name];
-        } else if (errorType === "duplicate-file") {
-          errorFiles.duplicateFiles = [...errorFiles.duplicateFiles, file.name];
-        } else if (errorType === "file-too-large") {
-          errorFiles.overMaxSize = [...errorFiles.overMaxSize, file.name];
-        }
+    const rejectFiles = fileRejections.length;
+    if (rejectFiles) {
+      if (rejectFiles > fileLimit) {
+        setAlert(MAX_FILE_ALERT);
+      } else if (rejectFiles < fileLimit) {
+        // To display the duplicate files uploaded
+        const duplicateFileAlert = fileRejections.map((f) => " " + f.file.name);
+        setAlert("You have already uploaded:" + duplicateFileAlert);
+      } else {
+        setAlert(INVALID_FILETYPE);
       }
-
-      const msg = createErrorMsg(errorList);
-      setAlert(msg);
     }
   };
 
-  // @param: errorObj should object composed of two objs: errorFiles, errorMsgs, both have identical property names
-  const createErrorMsg = (errorObj) => {
-    const { errorFiles, errorMsgs } = errorObj;
-    const errorTypes = Object.keys(errorFiles);
-
-    // loops through error types for file arrays that aren't empty and adds to rejected files
-    const errors = errorTypes.map((type) =>
-      errorFiles[type].length ? (
-        <>
-          <p style={{ marginBottom: "0.2rem" }}>{errorMsgs[type]}</p>{" "}
-          <ul>
-            {" "}
-            {errorFiles[type].map((file) => (
-              <li key={file}>{file}</li>
-            ))}
-          </ul>{" "}
-        </>
-      ) : null
-    );
-
-    // CSS for errors and errorHeading
-    const errorStyle = {
-      marginLeft: "1rem",
-      marginRight: "1.5rem",
-      overflowWrap: "break-word",
-      textAlign: "left",
-    };
-    const errorHeadingStyle = { marginBottom: "0.5rem", textAlign: "left" };
-
-    // final message jsx
-    const msg = (
-      <>
-        <p style={errorHeadingStyle}>
-          {" "}
-          <b> Rejected Files: </b>{" "}
-        </p>
-        <div style={errorStyle}>{errors}</div>
-      </>
-    );
-    return msg;
-  };
-
-  // Customer file validation function
+  // Cusomter file validation function
   const validateFiles = (file) => {
-    // Tests if can accept more files
-    if (currFiles.length == fileLimit) {
-      return { code: "over-max-filelimit" };
+    if (!props.currFiles.every((currFile) => currFile.name != file.name)) {
+      return {};
     }
-
-    // Tests duplicate files
-    else if (!props.currFiles.every((currFile) => currFile.name != file.name)) {
-      return { code: "duplicate-file" };
-    }
-
     // Returns null if files should be accepeted
     return null;
   };
-
   const acceptedFileTypes = ["image/jpeg", "image/png", "video/mp4"];
-  const maxFiles = fileLimit ? fileLimit : 0; // 0 unlimited files
-  const maxSize = maxFileSize ? maxFileSize * 1000 * 1000 : Infinity; // 0 is unlimited file size, in bin bytes
+  const maxFiles = props.fileLimit == Infinity ? 0 : props.fileLimit;
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: acceptedFileTypes,
     maxFiles,
-    maxSize,
     onDropRejected,
     validator: validateFiles,
   });
@@ -154,7 +60,7 @@ const UploadBox = (props) => {
             {maxFiles != 0 ? <em> (Maximum number of files: {maxFiles}) </em> : null}
           </p>
           <sub className="accepted-file-formats-text">
-            {maxFileSize && `Max file size: ${maxFileSize} MB |`} Accepted file formats:{" "}
+            Accepted file formats:{" "}
             {acceptedFileTypes.map((format) => format.split("/")[1]).join(", ")}
           </sub>
         </>

@@ -16,7 +16,7 @@ const DemoSection = (props) => {
           <h1 className="demo-title">VISUAL TESTING PLATFORM</h1>
           <p>
             Improve your user experience today! With the VISION reliable testing platform we'll
-            curate accurate design decisions for your Android application.
+            curate accurate design decisions for your application.
           </p>
           <button onClick={scrollToJobSelectionSection}>Get Started</button>
         </div>
