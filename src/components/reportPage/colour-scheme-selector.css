@@ -29,7 +29,7 @@
 
 .colour-scheme-selector-container {
   position: sticky;
-  z-index: 2;
+  z-index: 3;
   top: -1px; /* ➜ the trick */
   display: flex;
 

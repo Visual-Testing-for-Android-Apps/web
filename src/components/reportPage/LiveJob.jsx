@@ -1,6 +1,7 @@
 import React from "react";
 import UploadSection from "./UploadSection";
 import { useHistory } from "react-router-dom";
+import VideoInstructions from "./VideoInstructions";
 
 const LiveJob = () => {
   const FILE_LIMIT = 10;
@@ -15,6 +16,7 @@ const LiveJob = () => {
       <h1 style={{ textAlign: "center" }}>
         <b>Live Job Request</b>
       </h1>
+      <VideoInstructions />
       <UploadSection fileLimit={FILE_LIMIT} handleJob={handleJob} maxFileSize={MAX_FILE_SIZE_MB} />
     </div>
   );
