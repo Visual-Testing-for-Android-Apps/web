@@ -198,18 +198,15 @@ const UploadSection = (props) => {
       </div>
       <div style={containerStyle}>
         <div className="pagination-section">
-          {files.length > 20 && (
+          {files.length > 23 && (
             <div className="pagination-margin">
               <Paginate
                 previousLabel={"<"}
                 nextLabel={">"}
                 pageCount={pageCount}
                 onPageChange={changePage}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationActive"}
+                containerClassName={"pagination-bttns"}
+                activeClassName={"pagination-active"}
               />
             </div>
           )}
@@ -218,12 +215,18 @@ const UploadSection = (props) => {
               <div className="modalContent">
                 <h4>{fileSrc.name}</h4>
                 {fileSrc.type == "video/mp4" && (
-                  <video className="modal-preview" src={URL.createObjectURL(fileSrc)} autoplay controls loop muted />
+                  <video
+                    className="modal-preview"
+                    src={URL.createObjectURL(fileSrc)}
+                    autoplay
+                    controls
+                    loop
+                    muted
+                  />
                 )}
                 {(fileSrc.type == "image/jpeg" || fileSrc.type == "image/png") && (
                   <img className="modal-preview" src={URL.createObjectURL(fileSrc)}></img>
                 )}
-                {/* <button className="close-modal">x</button> */}
                 <div className="close-modal">
                   <img src={closeIcon} width="25" height="25" />
                 </div>
