@@ -6,6 +6,7 @@ import Captcha from "./Captcha";
 import "../mainPage/mainpage.css";
 import "./upload.css";
 import Alert from "react-bootstrap/Alert";
+import closeIcon from "../images/closeIcon.png";
 
 const UploadSection = (props) => {
   const [files, setFiles] = useState([]);
@@ -217,38 +218,19 @@ const UploadSection = (props) => {
               <div className="modalContent">
                 <h4>{fileSrc.name}</h4>
                 {fileSrc.type == "video/mp4" && (
-                  <video
-                    className="modal-preview"
-                    src={URL.createObjectURL(fileSrc)}
-                    autoplay
-                    controls
-                    loop
-                    muted
-                  />
+                  <video className="modal-preview" src={URL.createObjectURL(fileSrc)} autoplay controls loop muted />
                 )}
                 {(fileSrc.type == "image/jpeg" || fileSrc.type == "image/png") && (
                   <img className="modal-preview" src={URL.createObjectURL(fileSrc)}></img>
                 )}
-                <button className="close-modal">x</button>
+                {/* <button className="close-modal">x</button> */}
+                <div className="close-modal">
+                  <img src={closeIcon} width="25" height="25" />
+                </div>
               </div>
             </div>
           )}
           <div className="margin-space">{displayFilePreviews}</div>
-          {files.length > 20 && (
-            <div className="pagination-margin">
-              <Paginate
-                previousLabel={"<"}
-                nextLabel={">"}
-                pageCount={pageCount}
-                onPageChange={changePage}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationActive"}
-              />
-            </div>
-          )}
         </div>
       </div>
     </div>

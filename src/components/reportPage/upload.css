@@ -127,7 +127,7 @@
   object-fit: cover;
 }
 
-.image-holder :hover{
+.image-holder :hover {
   filter: opacity(0.4);
   transition: all 250ms ease;
   cursor: pointer;
@@ -152,7 +152,7 @@
   border-radius: 0.3rem;
 }
 
-.cross-button:hover{
+.cross-button:hover {
   transition: all 250ms ease;
   background-color: black;
 }
@@ -169,7 +169,13 @@
 }
 
 .pagination-margin {
-  margin-right: 2rem;
+  margin-top: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+  padding-right: 1rem;
+  box-shadow: black;
 }
 
 .paginationBttns {
@@ -238,16 +244,24 @@ a:active {
   padding-left: 8rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  z-index: 100;
 }
 
-.modalContent img{
+/* .modalContent img {
   width: 12.5rem;
   height: 25rem;
   align-items: center;
   justify-content: center;
 }
 
-.modalContent video{
+.modalContent video {
+  width: 12.5rem;
+  height: 25rem;
+  align-items: center;
+  justify-content: center;
+} */
+
+.modal-preview{
   width: 12.5rem;
   height: 25rem;
   align-items: center;
@@ -259,17 +273,7 @@ a:active {
   top: 0.625rem;
   right: 0.625rem;
   padding-bottom: 0.2rem;
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 0.2rem;
-  font-size: 2rem;
-  padding: 0rem 0.7rem 0.5rem 0.7rem;
-}
-
-.close-modal:hover{
-  transition: all 250ms ease;
-  background-color: black;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 668px) {
