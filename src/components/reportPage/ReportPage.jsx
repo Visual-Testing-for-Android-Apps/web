@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
-import { useHistory } from "react-router";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
