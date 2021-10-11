@@ -11,7 +11,7 @@ import DownloadIcon from "./downloadIcon";
  * @param {{ original_img: String, res_img: String, bug_type: Array<String> }} imageResult
  * @returns
  */
-const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
+const ImageResult = ({ imageFile, imageResult, colourScheme, hideHeatmap }) => {
   const HEATMAP_ALPHA = 130;
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
@@ -127,12 +127,16 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
     image.src = resultImageCanvasRef.current.toDataURL();
   };
 
+  const imageHeatmapStyle = {
+    opacity: hideHeatmap ? "0" : "100",
+  };
+
   return (
     <div className="image-result-container">
       <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
         <div className="result">
           <canvas ref={originalImageCanvasRef} className="original-image" />
-          <canvas ref={resultImageCanvasRef} className="image-heatmap" />
+          <canvas ref={resultImageCanvasRef} className="image-heatmap" style={imageHeatmapStyle} />
         </div>
         <a className="result-filename image-download-btn" onClick={downloadFile}>
           {imageFile.name} <DownloadIcon />

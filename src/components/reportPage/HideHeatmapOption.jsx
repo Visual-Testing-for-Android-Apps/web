@@ -1,15 +1,13 @@
 import React from "react";
 import "./hide-heatmap-option.css";
-const HideHeatmapOption = (props) => {
-  const { handleToggle } = props;
-
-  // copied from //src https://www.w3schools.com/howto/howto_css_switch.asp
+const HideHeatmapOption = ({ handleToggle }) => {
+  // copied from https://www.w3schools.com/howto/howto_css_switch.asp
   return (
     <div className="hide-heatmap-ctn">
       <label>Hide heatmaps</label>
-      <label class="switch">
+      <label className="switch">
         <input type="checkbox" onClick={handleToggle} />
-        <span class="slider round"></span>
+        <span className="slider round"></span>
       </label>
     </div>
   );

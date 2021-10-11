@@ -1,11 +1,11 @@
-/* from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch */
+/* modifed and copied from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch */
 
 :root {
-  --switch-width: 35px;
-  --switch-height: 17px;
-  --transform-x: 17px;
-  --slider-radius: 13px;
-  --slider-pos: 2px;
+  --switch-width: 2.188rem; /* 35px */
+  --switch-height: 1.063rem; /* 17px */
+  --transform-x: 1.063rem;
+  --slider-radius: 0.813rem; /* 13px */
+  --slider-pos: 0.125rem; /* 2px */
 }
 
 .hide-heatmap-ctn {
@@ -13,12 +13,11 @@
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .switch {
-  --switch-width: 35px;
-  --switch-height: 17px;
-
   position: relative;
   display: inline-block;
   width: var(--switch-width);
@@ -44,9 +43,6 @@
 }
 
 .slider::before {
-  --slider-radius: 13px;
-  --slider-pos: 2px;
-
   position: absolute;
   content: "";
   height: var(--slider-radius);
@@ -67,8 +63,6 @@ input:focus + .slider {
 }
 
 input:checked + .slider::before {
-  --transform-x: 17px;
-
   -webkit-transform: translateX(var(--transform-x));
   -ms-transform: translateX(var(--transform-x));
   transform: translateX(var(--transform-x));
@@ -76,7 +70,7 @@ input:checked + .slider::before {
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 2.125rem; /* 34px */
 }
 
 .slider.round::before {

@@ -53,10 +53,6 @@
   bottom: calc(var(--result-height) + 0.35rem);
 }
 
-.image-heatmap:hover {
-  opacity: 0;
-}
-
 .result-explanation {
   text-align: center;
   margin-left: var(--result-margin);

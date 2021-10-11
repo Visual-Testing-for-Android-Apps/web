@@ -11,9 +11,10 @@ import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
 import { inferno256 } from "./gradients256";
 import ColourSchemeSelector from "./ColourSchemeSelector";
+import HideHeatmapOption from "./HideHeatmapOption";
 
-const ReportPage = (props) => {
-  const { files, email } = useLocation().state ?? {};
+const ReportPage = () => {
+  const { files } = useLocation().state ?? {};
 
   const videos = files?.filter((file) => file.type === "video/mp4");
   const images = files?.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
@@ -26,6 +27,7 @@ const ReportPage = (props) => {
   const [colourScheme, setColourScheme] = useState(inferno256);
   const [searchTerm, setSearchString] = useState("");
 
+  const [hideHeatmap, setHideHeatmap] = useState(false);
   const [selectedImageDefects, setImageDefects] = useState([]);
   const [selectedVideoDefects, setVideoDefects] = useState([]);
   const animatedComponents = makeAnimated();
@@ -51,7 +53,6 @@ const ReportPage = (props) => {
     { value: "No defect", label: "No defect" },
   ];
 
-  const history = useHistory();
   useEffect(() => {
     const fetch = async () => {
       const repository = new Repository();
@@ -100,6 +101,10 @@ const ReportPage = (props) => {
     return selectedVideoDefects.length === 0 || found;
   };
 
+  const handleHideHeatmap = () => {
+    setHideHeatmap(!hideHeatmap);
+  };
+
   return (
     <>
       <div className="results">
@@ -126,6 +131,7 @@ const ReportPage = (props) => {
       </div>
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
+      {imageResults.length > 0 && <HideHeatmapOption handleToggle={handleHideHeatmap} />}
       {imageResults.length > 0 && (
         <div className="results ">
           <Select
@@ -154,6 +160,7 @@ const ReportPage = (props) => {
                   imageFile={images[index]}
                   imageResult={currentResult}
                   colourScheme={colourScheme}
+                  hideHeatmap={hideHeatmap}
                 />,
               ];
             } else {
