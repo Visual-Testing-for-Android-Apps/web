@@ -6,7 +6,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
 import "./results-page.css";
-import Repository from "../../data/Repository";
+import BatchJobRepository from "../../data/BatchJobRepository";
 import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
 import { inferno256 } from "./gradients256";
@@ -17,7 +17,6 @@ const ReportPage = (props) => {
   // const url = useLocation().pathname;
   // const jobID = url.split("/").slice(3,4);
   // const JobEndpoint = JobEndpointBase.concat(jobID)
-  const JobEndpoint = "https://develop-srcbucket-1uiwrmfelfgyd.s3.ap-southeast-2.amazonaws.com/";
   const files = [];
 
   // const videos = files?.filter((file) => file.type === "video/mp4");
@@ -56,31 +55,34 @@ const ReportPage = (props) => {
     { value: "No defect", label: "No defect" },
   ];
 
-  const history = useHistory();
+  const location = useLocation();
   useEffect(() => {
     const fetch = async () => {
-      const repository = new Repository();
+      const repository = new BatchJobRepository();
 
-      const content = await repository.requestBatchJob(JobEndpoint.concat("1/report.json"));
+      const publicKey = location.pathname.split("/").at(-1);
+      const password = location.search.split("=").at(-1);
+
+      const content = await repository.getBatchJobReportData(publicKey, password);
       console.log(content);
 
       content.images.forEach(async (image) => {
-        image.name = image.orig_image.toString().split("/")[1];
-        // .subString(0,-1) is temporary, becuase the json response is wrong
-        console.log(image.orig_image.substring(0, image.orig_image.length - 1));
-        image.orig_image = await repository.getFile(
-          JobEndpoint.concat(image.orig_image.substring(0, image.orig_image.length - 1))
-        );
-        image.heatmap_image = await repository.getFile(JobEndpoint.concat(image.heatmap_image));
-        // console.log(imageResult)
+        // image.name = image.orig_image.toString().split("/")[1];
+        // // .subString(0,-1) is temporary, becuase the json response is wrong
+        // console.log(image.orig_image.substring(0, image.orig_image.length - 1));
+        // image.orig_image = await repository.getFile(
+        //   JobEndpoint.concat(image.orig_image.substring(0, image.orig_image.length - 1))
+        // );
+        // image.heatmap_image = await repository.getFile(JobEndpoint.concat(image.heatmap_image));
+        // // console.log(imageResult)
         setImageResults((oldResults) => [...oldResults, image]);
         setProgressValue((oldValue) => oldValue + 1);
       });
 
       content.videos.forEach(async (video) => {
-        video.name = video.video.toString().split("/")[1];
-        video.video = await repository.getFile(JobEndpoint.concat(video.video));
-        video.classification = video.desc;
+        // video.name = video.video.toString().split("/")[1];
+        // video.video = await repository.getFile(JobEndpoint.concat(video.video));
+        // video.classification = video.desc;
         setVideoResults((oldResults) => [...oldResults, video]);
         setProgressValue((oldValue) => oldValue + 1);
       });

@@ -6,7 +6,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
 import "./results-page.css";
-import Repository from "../../data/Repository";
+import LiveJobRepository from "../../data/LiveJobRepository";
 import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
 import { inferno256 } from "./gradients256";
@@ -54,7 +54,7 @@ const ReportPage = (props) => {
   const history = useHistory();
   useEffect(() => {
     const fetch = async () => {
-      const repository = new Repository();
+      const repository = new LiveJobRepository();
 
       const heatmaps = repository.uploadImages(images);
 
