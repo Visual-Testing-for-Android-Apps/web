@@ -16,6 +16,10 @@ const LiveJob = () => {
       <h1 style={{ textAlign: "center" }}>
         <b>Live Job Request</b>
       </h1>
+      <p style={{ textAlign: "center" }}>
+        Submit up to 10 images and videos and view the results in real time.
+      </p>
+      <br />
       <VideoInstructions />
       <UploadSection fileLimit={FILE_LIMIT} handleJob={handleJob} maxFileSize={MAX_FILE_SIZE_MB} />
     </div>
