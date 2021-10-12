@@ -20,6 +20,14 @@ npm start
 
 Then navigate to `localhost:3000` in a browser
 
+## Run using docker
+
+```
+docker run -p 3000:3000 --rm --init mtempty/vision:latest
+```
+
+Then navigate to `localhost:3000` in a browser
+
 ## Environment Variables
 
 Environments variables are variables that are defined in build time. These variables can be accessed with
