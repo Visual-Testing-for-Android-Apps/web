@@ -163,7 +163,7 @@
   white-space: nowrap;
 }
 
-/**************************PAGINATION*****************************/
+/**************************  PAGINATION  *****************************/
 .pagination-section {
   padding: 1rem 10rem 1rem 10rem;
 }
@@ -178,14 +178,14 @@
   box-shadow: black;
 }
 
-.paginationBttns {
+.pagination-bttns {
   height: 2.5rem;
   list-style: none;
   display: flex;
   justify-content: center;
 }
 
-.paginationBttns a {
+.pagination-bttns a {
   padding: 0.625rem;
   margin: 0.5rem;
   border: 0.063rem solid #c9c9c9;
@@ -195,25 +195,26 @@
   text-decoration: none;
 }
 
-.paginationBttns a:hover {
-  color: black;
-  border: 0.063rem solid #ebebeb;
-  background-color: #f4f4f4;
-}
-
-.paginationActive a {
+.pagination-active a {
   color: white;
   border: 0.063rem solid #03a64a;
   background-color: #03a64a;
 }
+
 a:active {
   color: white;
   border: 0.063rem solid #03a64a;
   background-color: #03a64a;
 }
 
-/**************************MODAL*****************************/
-.modalBackground {
+.pagination-bttns a:hover {
+  color: black;
+  border: 0.063rem solid #ebebeb;
+  background-color: #f4f4f4;
+}
+
+/**************************  MODAL  *****************************/
+.modal-background {
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -227,7 +228,7 @@ a:active {
   align-items: center;
 }
 
-.modalContent {
+.modal-content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -247,21 +248,7 @@ a:active {
   z-index: 100;
 }
 
-/* .modalContent img {
-  width: 12.5rem;
-  height: 25rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.modalContent video {
-  width: 12.5rem;
-  height: 25rem;
-  align-items: center;
-  justify-content: center;
-} */
-
-.modal-preview{
+.modal-preview {
   width: 12.5rem;
   height: 25rem;
   align-items: center;
@@ -305,18 +292,6 @@ a:active {
     width: 6rem;
   }
 
-  img {
-    height: 6rem;
-    width: 6rem;
-    object-fit: cover;
-  }
-
-  video {
-    height: 6rem;
-    width: 6rem;
-    object-fit: cover;
-  }
-
   .pagination-section {
     padding: 0%;
   }
@@ -327,7 +302,7 @@ a:active {
     font-size: 0.875rem;
   }
 
-  .modalContent {
+  .modal-content {
     position: absolute;
     top: 50%;
     left: 50%;

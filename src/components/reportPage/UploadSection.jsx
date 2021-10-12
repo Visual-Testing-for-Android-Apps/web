@@ -205,17 +205,14 @@ const UploadSection = (props) => {
                 nextLabel={">"}
                 pageCount={pageCount}
                 onPageChange={changePage}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationActive"}
+                containerClassName={"pagination-bttns"}
+                activeClassName={"pagination-active"}
               />
             </div>
           )}
           {modal && (
-            <div onClick={toggleModal} className="modalBackground">
-              <div className="modalContent">
+            <div onClick={toggleModal} className="modal-background">
+              <div className="modal-content">
                 <h4>{fileSrc.name}</h4>
                 {fileSrc.type == "video/mp4" && (
                   <video className="modal-preview" src={URL.createObjectURL(fileSrc)} autoplay controls loop muted />
@@ -223,7 +220,6 @@ const UploadSection = (props) => {
                 {(fileSrc.type == "image/jpeg" || fileSrc.type == "image/png") && (
                   <img className="modal-preview" src={URL.createObjectURL(fileSrc)}></img>
                 )}
-                {/* <button className="close-modal">x</button> */}
                 <div className="close-modal">
                   <img src={closeIcon} width="25" height="25" />
                 </div>
