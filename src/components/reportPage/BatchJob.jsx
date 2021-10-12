@@ -46,7 +46,7 @@ const BatchJob = () => {
         Submit up to 100 images and videos and receive the results via email.
       </p>
       <div className="form-container">
-        <label>Email: </label>
+        <span>Email: </span>
         <input
           type="email"
           id="email"
