@@ -88,7 +88,7 @@ class BatchJobRepository {
         pwd: password,
       }),
     });
-    if (uploadResponse.status != 200) throw "Failed to fetch job data folder url";
+    if (dataFolderResponse.status != 200) throw "Failed to fetch job data folder url";
     const dataFolderUrl = await dataFolderResponse.json().url;
     console.log(dataFolderUrl);
 
@@ -99,14 +99,31 @@ class BatchJobRepository {
     console.log(resultReferences);
 
     return resultReferences.map(async (resultRef) => {
-      resultRef.images = resultRef.images.map(async (imageResult) => {
-        // TODO: imageResult.fileName = ...
-        imageResult.orig_image = await fetch(`${dataFolderUrl}/${imageResult.orig_image}`);
-        imageResult.heatmap_image = await fetch(`${dataFolderUrl}/${imageResult.heatmap_image}`);
-      });
+      resultRef.images = resultRef.images
+        .map(async (imageResult) => {
+          // TODO: imageResult.fileName = ...
+          imageResult.orig_image = await fetch(`${dataFolderUrl}/job/file$`, {
+            method: "Post",
+            body: JSON.stringify({
+              filePath: imageResult.orig_image,
+            }),
+          }).then((image) => fetch(image.url));
+          imageResult.heatmap_image = await fetch(`${dataFolderUrl}/job/file$`, {
+            method: "Post",
+            body: JSON.stringify({
+              filePath: imageResult.heatmap_image,
+            }),
+          });
+        })
+        .then((image) => fetch(image.url));
       resultRef.videos = resultRef.videos.map(async (videoResult) => {
         // TODO: videoResult.fileName = ...
-        videoResult.video = await fetch(`${dataFolderUrl}/${videoResult.video}`);
+        videoResult.video = await fetch(`${dataFolderUrl}/job/file$`, {
+          method: "Post",
+          body: JSON.stringify({
+            filePath: videoResult.video,
+          }),
+        }).then((video) => fetch(video.url));
       });
     });
   }
