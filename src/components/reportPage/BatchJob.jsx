@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 
 import UploadSection from "./UploadSection";
 import Repository from "../../data/Repository";
+import VideoInstructions from "./VideoInstructions";
 import "./batch-job.css";
 
 const BatchJob = () => {
@@ -41,6 +42,9 @@ const BatchJob = () => {
       <h1 style={{ textAlign: "center" }}>
         <b>Batch Job Request</b>
       </h1>
+      <p style={{ textAlign: "center" }}>
+        Submit up to 100 images and videos and receive the results via email.
+      </p>
       <div className="form-container">
         <label>Email: </label>
         <input
@@ -52,6 +56,7 @@ const BatchJob = () => {
           onChange={handleEmailChange}
         />
       </div>
+      <VideoInstructions />
       <UploadSection
         fileLimit={FILE_LIMIT}
         handleJob={handleBatchJob}

@@ -25,7 +25,7 @@ const UploadSection = (props) => {
   // Use this ref to access files in a callback. Otherewise files may not be up to date.
   const filesRef = useRef();
   filesRef.current = files;
-  const { fileLimit, formId, btnLabel, handleJob, emailRef } = props;
+  const { fileLimit, formId, btnLabel, handleJob, maxFileSize } = props;
 
   const removeFile = (file) => {
     const newFile = [...files];
@@ -127,7 +127,8 @@ const UploadSection = (props) => {
           setFiles={setFiles}
           fileLimit={fileLimit}
           setAlert={setAlert}
-          currFiles={files}
+          currFiles={filesRef.current}
+          maxFileSize={maxFileSize}
         />
         <input
           className="upload-btn"

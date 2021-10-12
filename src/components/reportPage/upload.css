@@ -5,6 +5,10 @@
   font-stretch: 25% 151%;
 }
 
+.section__container {
+  overflow-x: auto;
+}
+
 .section__container h1 {
   margin-top: 2.8rem;
   padding-inline: 0.5rem;
@@ -44,6 +48,7 @@
   background-color: #efefef;
   margin-top: 1rem;
   padding: 3rem;
+  z-index: 0;
 }
 
 .box:hover {
