@@ -1,0 +1,114 @@
+.demo-section {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-inline: 10%;
+}
+
+.demo-section h1 {
+  font-family: "Signika", sans-serif;
+  font-size: 2.25rem;
+  color: #045198;
+}
+
+.demo-section button {
+  background-color: #03a64a;
+  border: none;
+  display: inline-block;
+  color: white;
+  padding: 0.7rem 0.8rem;
+}
+
+.demo-section button:hover {
+  background-color: #0a8640;
+}
+
+.demo-section button:active {
+  transform: translateY(0.1rem);
+  transition-duration: 0.1s;
+  background-color: #03a64a;
+}
+
+.demo-body-container {
+  width: auto;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  align-content: center;
+  box-sizing: border-box;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.item-a {
+  display: inline-block;
+}
+
+.item-a p {
+  margin-bottom: 1rem;
+}
+
+.item-b {
+  width: 100%;
+  max-width: 31.25rem;
+  max-height: 17.5rem;
+}
+
+.video-responsive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+.demo-vid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  max-width: 31.25rem;
+  max-height: 17.5rem;
+}
+
+@media only screen and (min-width: 400px) {
+  .demo-section h1 {
+    font-size: 3.125rem;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .demo-section h1 {
+    font-size: 3.75rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .demo-section h1 {
+    font-size: 3.75rem;
+  }
+
+  .demo-body-container {
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: space-between;
+    max-width: 80.625rem; /* 1290px */
+  }
+
+  .item-a {
+    max-width: 31.25rem;
+  }
+
+  .item-b {
+    margin-block: unset;
+    display: block;
+  }
+}

@@ -1,12 +1,17 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+require("dotenv").config();
 
 module.exports = {
   entry: "./src/index.js",
   mode: "development",
   module: {
     rules: [
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
@@ -30,7 +35,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(mp4|webm|png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
       },
     ],
@@ -52,8 +57,10 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({ template: path.join(__dirname, "src", "public", "index.html") }),
     new webpack.DefinePlugin({
-      __API__: `'${process.env.UPLOAD_SERVICE_HOST || "http://localhost:3001"}'`,
       __SERVER__: `'${process.env.SERVER_HOSTNAME || "http://localhost:3000"}'`,
+      __OWLEYES_ENDPOINT__: `'${process.env.OWLEYES_ENDPOINT}'`,
+      __SEENOMALY_ENDPOINT__: `'${process.env.SEENOMALY_ENDPOINT}'`,
+      __BATCH_JOB_ENDPOINT__: `'${process.env.BATCH_JOB_ENDPOINT}'`,
     }),
   ],
 };

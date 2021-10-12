@@ -1,0 +1,127 @@
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), url(../../fonts/Inter/Inter-VariableFont_slnt_wght.ttf) format("truetype");
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+}
+
+.section__container {
+  overflow-x: auto;
+}
+
+.section__container h1 {
+  margin-top: 2.8rem;
+  padding-inline: 0.5rem;
+}
+
+.upload-btn {
+  margin: auto;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  width: 10rem;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border-radius: 2rem;
+  border: 0.2rem solid;
+  background-color: green;
+  color: white;
+  text-align: center;
+}
+
+.remove-btn {
+  position: absolute;
+  padding: 0.1rem 0.5rem 0.2rem;
+  top: 0.125rem;
+  right: 0.1rem;
+  background-color: rgb(194, 10, 47);
+  border-color: rgb(194, 10, 47);
+  color: white;
+  cursor: pointer;
+  font-size: small;
+}
+
+.box {
+  position: relative;
+  border: 0.1rem dashed #045198;
+  border-radius: 0.6rem;
+  text-align: center;
+  background-color: #efefef;
+  margin-top: 1rem;
+  padding: 3rem;
+  z-index: 0;
+}
+
+.box:hover {
+  border: 0.1rem solid #045198;
+  cursor: pointer;
+}
+
+.upload-alert {
+  text-align: center;
+}
+
+.file-container {
+  position: relative;
+  margin-top: 1rem;
+  background-color: #efefef;
+  border: 0.1rem solid black;
+  border-radius: 0.1rem;
+  padding: 1rem 1rem;
+  font-size: 1rem;
+  font-weight: 550;
+  max-width: 40rem;
+}
+
+.file-container:hover {
+  background-color: rgb(204, 233, 247);
+}
+
+.file-column {
+  position: relative;
+  transform: translateY(-13%);
+  max-width: 25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.margin-space {
+  margin-bottom: 5rem;
+}
+
+.button-column {
+  max-width: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accepted-file-formats-text {
+  position: absolute;
+  user-select: none;
+  right: 0.5rem;
+  bottom: 0.8rem;
+  color: grey;
+}
+
+@media only screen and (max-width: 668px) {
+  .file-container {
+    text-indent: 0;
+  }
+
+  .file-column {
+    position: relative;
+    transform: translateY(-13%);
+    max-width: 15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .button-column {
+    max-width: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

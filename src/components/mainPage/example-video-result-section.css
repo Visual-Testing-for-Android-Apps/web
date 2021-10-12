@@ -1,0 +1,83 @@
+.example-video-section {
+  padding-bottom: 0;
+}
+
+.video-explanation-container > .video-result-explanation {
+  margin: 0 0;
+  width: (576 / 2) * 1.2;
+  border: none;
+}
+
+.video-explanation-container h2 {
+  font-size: 2rem;
+  color: black;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    sans-serif;
+}
+
+.video-explanation-container p {
+  margin-bottom: 1rem;
+}
+
+.video-example-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.video-defects-list-container {
+  background-color: #f4f4f4;
+  padding: 6rem 6rem;
+  line-height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100% - 32rem);
+}
+
+.video-defects-list-container > p {
+  margin-bottom: 2rem;
+}
+
+.video-result-example-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.2);
+}
+
+.video-result-example-container > img {
+  max-width: 30rem;
+}
+
+.video-defects-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checkmark {
+  font-family: "Signika", sans-serif;
+}
+
+@media only screen and (max-width: 1024px) {
+  .video-result-example-container > img {
+    max-width: 100%;
+  }
+
+  .video-defects-list-container {
+    width: 100%;
+    padding: 5rem 1rem;
+  }
+}
