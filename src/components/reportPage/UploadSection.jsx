@@ -42,8 +42,12 @@ const UploadSection = (props) => {
   const [fileSrc, setFileSrc] = useState();
 
   const removeFile = (file) => {
+    var file_index = file;
+    if (pageNumber > 0) {
+      file_index = pageNumber * FILES_PER_PAGE + file;
+    }
     const newFile = [...files];
-    newFile.splice(file, 1);
+    newFile.splice(file_index, 1);
     setFiles(newFile);
   };
 
@@ -216,7 +220,14 @@ const UploadSection = (props) => {
               <div className="modal-content">
                 <h4>{fileSrc.name}</h4>
                 {fileSrc.type == "video/mp4" && (
-                  <video className="modal-preview" src={URL.createObjectURL(fileSrc)} autoplay controls loop muted />
+                  <video
+                    className="modal-preview"
+                    src={URL.createObjectURL(fileSrc)}
+                    autoplay
+                    controls
+                    loop
+                    muted
+                  />
                 )}
                 {(fileSrc.type == "image/jpeg" || fileSrc.type == "image/png") && (
                   <img className="modal-preview" src={URL.createObjectURL(fileSrc)}></img>
