@@ -165,6 +165,7 @@ const UploadSection = (props) => {
             fileLimit={fileLimit}
             setAlert={setAlert}
             currFiles={files}
+            maxFileSize={maxFileSize}
           />
           <input
             className="upload-btn"
