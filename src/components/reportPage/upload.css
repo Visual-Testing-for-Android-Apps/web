@@ -42,8 +42,8 @@
 
 .box {
   position: relative;
-  border: 0.2rem dashed #045198;
-  border-radius: 1rem;
+  border: 0.1rem dashed #045198;
+  border-radius: 0.6rem;
   text-align: center;
   background-color: #efefef;
   margin-top: 1rem;
@@ -52,7 +52,7 @@
 }
 
 .box:hover {
-  border: 0.2rem solid #045198;
+  border: 0.1rem solid #045198;
   cursor: pointer;
 }
 
