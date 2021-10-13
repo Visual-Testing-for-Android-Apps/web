@@ -67,22 +67,12 @@ const ReportPage = (props) => {
       console.log(content);
 
       content.images.forEach(async (image) => {
-        // image.name = image.orig_image.toString().split("/")[1];
-        // // .subString(0,-1) is temporary, becuase the json response is wrong
-        // console.log(image.orig_image.substring(0, image.orig_image.length - 1));
-        // image.orig_image = await repository.getFile(
-        //   JobEndpoint.concat(image.orig_image.substring(0, image.orig_image.length - 1))
-        // );
-        // image.heatmap_image = await repository.getFile(JobEndpoint.concat(image.heatmap_image));
-        // // console.log(imageResult)
         setImageResults((oldResults) => [...oldResults, image]);
         setProgressValue((oldValue) => oldValue + 1);
       });
 
       content.videos.forEach(async (video) => {
-        // video.name = video.video.toString().split("/")[1];
-        // video.video = await repository.getFile(JobEndpoint.concat(video.video));
-        // video.classification = video.desc;
+        video.classification = video.desc;
         setVideoResults((oldResults) => [...oldResults, video]);
         setProgressValue((oldValue) => oldValue + 1);
       });
@@ -103,10 +93,10 @@ const ReportPage = (props) => {
   };
 
   const checkImageFilterType = (imageResult) => {
-    const found = selectedImageDefects.some((value) => imageResult["bug_type"].includes(value));
+    const found = selectedImageDefects.some((value) => imageResult?.["bug_type"].includes(value));
     return (
       selectedImageDefects.length === 0 ||
-      (selectedImageDefects.includes("No defect") && imageResult["bug_type"].length === 0) ||
+      (selectedImageDefects.includes("No defect") && imageResult?.["bug_type"]?.length === 0) ||
       found
     );
   };
@@ -143,7 +133,7 @@ const ReportPage = (props) => {
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
       {imageResults.length > 0 && (
-        <div className="results">
+        <div className="results ">
           <Select
             isMulti
             placeholder="Filter by defect type..."
