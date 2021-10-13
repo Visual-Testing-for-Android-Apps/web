@@ -1,2 +1,12 @@
 node_modules
 npm-debug.log
+.git
+.github
+.husky
+.DS_Store
+.gitignore
+.vscode
+.dockerignore
+Dockerfile
+*.md
+.env*
