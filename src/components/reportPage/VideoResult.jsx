@@ -11,15 +11,10 @@ import VideoResultExplanation from "../common/VideoResultExplanation";
  */
 const VideoResult = ({ videoFile, videoResult }) => {
   const [dataUrl, setDataUrl] = useState(null);
-  const [videoName, setVideoName] = useState(videoFile.name);
+  const [videoName, setVideoName] = useState(videoFile.name ?? videoResult.name);
+
   useEffect(async () => {
-    // skip encoding if the file is not blob
-    if (typeof videoFile !== "string") {
-      videoFile = await encodeFileAsBase64DataUrl(videoFile);
-    } else {
-      setVideoName(videoResult.name);
-    }
-    setDataUrl(videoFile);
+    setDataUrl(await encodeFileAsBase64DataUrl(videoFile));
   }, []);
 
   return (

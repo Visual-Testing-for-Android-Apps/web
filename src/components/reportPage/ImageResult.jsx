@@ -16,7 +16,7 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
   const [resultImageDataUrl, setResultImageDataUrl] = useState(null);
-  const [imageName, setImageName] = useState(imageFile.name);
+  const [imageName, setImageName] = useState(imageFile.name ?? imageResult.name);
 
   const isError = imageResult == null;
 
@@ -24,7 +24,11 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
   useEffect(async () => {
     setOriginalImageDataUrl(await encodeFileAsBase64DataUrl(imageFile));
     if (imageResult != null) {
-      setResultImageDataUrl(await createImageDataUrlFromBase64(imageResult["res_img"]));
+      if (imageResult["heatmap_image"] != null) {
+        setResultImageDataUrl(await encodeFileAsBase64DataUrl(imageResult["heatmap_image"]));
+      } else if (imageResult["res_img"]) {
+        setResultImageDataUrl(createImageDataUrlFromBase64(imageResult["res_img"]));
+      }
     }
   }, []);
 
@@ -136,7 +140,7 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
           <canvas ref={resultImageCanvasRef} className="image-heatmap" />
         </div>
         <a className="result-filename image-download-btn" onClick={downloadFile}>
-          {imageFile.name} <DownloadIcon />
+          {imageName} <DownloadIcon />
         </a>
       </div>
       <p className="result-explanation">

@@ -13,15 +13,7 @@ import { inferno256 } from "./gradients256";
 import ColourSchemeSelector from "./ColourSchemeSelector";
 
 const ReportPage = (props) => {
-  // const JobEndpointBase = "https://develop-srcbucket-1uiwrmfelfgyd.s3.ap-southeast-2.amazonaws.com/";
-  // const url = useLocation().pathname;
-  // const jobID = url.split("/").slice(3,4);
-  // const JobEndpoint = JobEndpointBase.concat(jobID)
-  const files = [];
-
-  // const videos = files?.filter((file) => file.type === "video/mp4");
-  // const images = files?.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
-
+  const [fileCount, setFileCount] = useState(0);
   const [progressValue, setProgressValue] = useState(0);
 
   const [videoResults, setVideoResults] = useState([]);
@@ -64,20 +56,22 @@ const ReportPage = (props) => {
       const password = location.search.split("=").at(-1);
 
       const content = await repository.getBatchJobReportData(publicKey, password);
-      console.log(content);
+      setFileCount((oldValue) => oldValue + content.images.length + content.videos.length);
 
-      content.images.forEach(async (image) => {
-        setImageResults((oldResults) => [...oldResults, image]);
+      content.images.forEach(async (imagePromise) => {
+        const imageResult = await imagePromise;
+        setImageResults((oldResults) => [...oldResults, imageResult]);
         setProgressValue((oldValue) => oldValue + 1);
       });
 
-      content.videos.forEach(async (video) => {
-        video.classification = video.desc;
-        setVideoResults((oldResults) => [...oldResults, video]);
+      content.videos.forEach(async (videoPromise) => {
+        const videoResult = await videoPromise;
+
+        setVideoResults((oldResults) => [...oldResults, videoResult]);
         setProgressValue((oldValue) => oldValue + 1);
       });
     };
-    if (files) fetch();
+    fetch();
   }, []);
 
   const handleSearching = (e) => {
@@ -111,12 +105,12 @@ const ReportPage = (props) => {
       <div className="results">
         <div className="progress-indicator-container">
           <p>
-            {progressValue} / {files?.length ?? 0} files processed
+            {progressValue} / {fileCount} files processed
           </p>
           <ProgressBar
-            animated={progressValue != files?.length}
+            animated={progressValue != fileCount}
             className="progress"
-            now={files ? (progressValue / files.length) * 100 + 1 : 0}
+            now={fileCount ? (progressValue / fileCount) * 100 + 1 : 0}
           />
         </div>
         <div className="search-area">
