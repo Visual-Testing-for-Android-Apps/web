@@ -53,10 +53,6 @@
   bottom: calc(var(--result-height) + 0.35rem);
 }
 
-.image-heatmap:hover {
-  opacity: 0;
-}
-
 .result-explanation {
   text-align: center;
   margin-left: var(--result-margin);
@@ -161,7 +157,13 @@
   cursor: pointer;
 }
 
-/* } */
+.hide-heatmap-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 
 @media only screen and (min-width: 900px) {
   .results-container {
