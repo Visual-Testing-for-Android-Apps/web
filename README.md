@@ -29,11 +29,11 @@ Then navigate to [localhost:3000](localhost:3000) in a browser
 Environments variables are variables that are defined in build time. these are store in `.env` file, which looks like this:
 
 ```
+BATCH_JOB_ENDPOINT=
+BATCH_JOB_REPORT_ENDPOINT=
 CAPTCHA_SECRET_KEY=
 OWLEYES_ENDPOINT=
 SEENOMALY_ENDPOINT=
-BATCH_JOB_ENDPOINT=
-BATCH_JOB_REPORT_ENDPOINT=
 ```
 
 In the source code, they can be accessed with
