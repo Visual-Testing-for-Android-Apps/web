@@ -96,55 +96,44 @@ class BatchJobRepository {
 
     const resultReferences = await resultReferencesResponse.json();
 
-    // TODO: error handling
-
     resultReferences.images = resultReferences.images.map(async (imageResult) => {
-      imageResult.name = imageResult.orig_image.split("/")[1];
+      imageResult.name = imageResult.orginalName;
       imageResult.bug_type = imageResult.titles;
       imageResult.orig_image = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
         method: "POST",
         body: JSON.stringify({
           filePath: imageResult.orig_image,
         }),
-      });
-      // .then((imageURL) => fetch(imageURL.json().url))
-      // .catch((err) => {
-      //   throw err;
-      // });
-      // imageResult.orig_image = await imageResult.orig_image.json();
-      // console.log(imageResult.orig_image);
-      imageResult.orig_image = await (
-        await fetch((await imageResult.orig_image.json()).url)
-      ).blob();
+      })
+        .then(async (imageURL) => await (await fetch((await imageURL.json()).url)).blob())
+        .catch((err) => {
+          throw err;
+        });
 
       imageResult.heatmap_image = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
         method: "POST",
         body: JSON.stringify({
           filePath: imageResult.heatmap_image,
         }),
-      });
-      // .then(async (imageURL) => await fetch(imageURL.json().url))
-      // .catch((err) => {
-      //   throw err;
-      // });
-      imageResult.heatmap_image = await imageResult.heatmap_image.json();
-      imageResult.heatmap_image = await (await fetch(imageResult.heatmap_image.url)).blob();
+      })
+        .then(async (imageURL) => await (await fetch((await imageURL.json()).url)).blob())
+        .catch((err) => {
+          throw err;
+        });
       return imageResult;
     });
     resultReferences.videos = resultReferences.videos.map(async (videoResult) => {
-      videoResult.name = videoResult.video.split("/")[1];
+      videoResult.name = videoResult.orginalName;
       videoResult.video = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
         method: "POST",
         body: JSON.stringify({
           filePath: videoResult.video,
         }),
-      });
-      // .then(async (videoURL) => await fetch(videoURL.json().url))
-      // .catch((err) => {
-      //   throw err;
-      // });
-      videoResult.video = await videoResult.video.json();
-      videoResult.video = await (await fetch(videoResult.video.url)).blob();
+      })
+        .then(async (videoURL) => await (await fetch((await videoURL.json()).url)).blob())
+        .catch((err) => {
+          throw err;
+        });
       return videoResult;
     });
 
