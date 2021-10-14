@@ -10,7 +10,6 @@ import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
 import { inferno256 } from "./gradients256";
 import ColourSchemeSelector from "./ColourSchemeSelector";
-import HideHeatmapOption from "./HideHeatmapOption";
 
 const ReportPage = () => {
   const { files } = useLocation().state ?? {};
@@ -26,7 +25,6 @@ const ReportPage = () => {
   const [colourScheme, setColourScheme] = useState(inferno256);
   const [searchTerm, setSearchString] = useState("");
 
-  const [hideHeatmap, setHideHeatmap] = useState(true);
   const [selectedImageDefects, setImageDefects] = useState([]);
   const [selectedVideoDefects, setVideoDefects] = useState([]);
   const animatedComponents = makeAnimated();
@@ -100,8 +98,12 @@ const ReportPage = () => {
     return selectedVideoDefects.length === 0 || found;
   };
 
-  const handleHideHeatmap = () => {
-    setHideHeatmap(!hideHeatmap);
+  const HideHeatmapTip = () => {
+    return (
+      <div className="hide-heatmap-ctn results">
+        <label> Click on image to toggle heatmap</label>
+      </div>
+    );
   };
 
   return (
@@ -143,7 +145,7 @@ const ReportPage = () => {
           ></Select>
         </div>
       )}
-      {imageResults.length > 0 && <HideHeatmapOption handleToggle={handleHideHeatmap} />}
+      {imageResults.length > 0 && <HideHeatmapTip />}
       <div className="results">
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {
@@ -159,7 +161,6 @@ const ReportPage = () => {
                   imageFile={images[index]}
                   imageResult={currentResult}
                   colourScheme={colourScheme}
-                  hideHeatmap={hideHeatmap}
                 />,
               ];
             } else {

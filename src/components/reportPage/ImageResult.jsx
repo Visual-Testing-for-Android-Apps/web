@@ -11,7 +11,7 @@ import DownloadIcon from "./downloadIcon";
  * @param {{ original_img: String, res_img: String, bug_type: Array<String> }} imageResult
  * @returns
  */
-const ImageResult = ({ imageFile, imageResult, colourScheme, hideHeatmap }) => {
+const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
   const HEATMAP_ALPHA = 130;
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
@@ -128,14 +128,13 @@ const ImageResult = ({ imageFile, imageResult, colourScheme, hideHeatmap }) => {
   };
 
   const [heatmapOpacity, setHeatmapOpacity] = useState("100");
+
   const handleHideHeatmap = () => {
-    if (hideHeatmap) {
-      heatmapOpacity === "0" ? setHeatmapOpacity("100") : setHeatmapOpacity("0");
-    }
+    heatmapOpacity === "0" ? setHeatmapOpacity("100") : setHeatmapOpacity("0");
   };
 
   const imageHeatmapStyle = {
-    opacity: hideHeatmap ? heatmapOpacity : "100",
+    opacity: heatmapOpacity,
   };
 
   return (
