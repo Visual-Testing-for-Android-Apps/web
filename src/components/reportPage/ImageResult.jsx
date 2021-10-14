@@ -132,12 +132,27 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
     image.src = resultImageCanvasRef.current.toDataURL();
   };
 
+  const [heatmapOpacity, setHeatmapOpacity] = useState("100");
+
+  const handleHideHeatmap = () => {
+    heatmapOpacity === "0" ? setHeatmapOpacity("100") : setHeatmapOpacity("0");
+  };
+
+  const imageHeatmapStyle = {
+    opacity: heatmapOpacity,
+  };
+
   return (
     <div className="image-result-container">
       <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
         <div className="result">
           <canvas ref={originalImageCanvasRef} className="original-image" />
-          <canvas ref={resultImageCanvasRef} className="image-heatmap" />
+          <canvas
+            ref={resultImageCanvasRef}
+            className="image-heatmap"
+            style={imageHeatmapStyle}
+            onClick={handleHideHeatmap}
+          />
         </div>
         <a className="result-filename image-download-btn" onClick={downloadFile}>
           {imageName} <DownloadIcon />

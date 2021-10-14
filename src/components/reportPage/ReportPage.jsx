@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { useLocation } from "react-router";
-import { useHistory } from "react-router";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
@@ -12,8 +11,8 @@ import ImageResult from "./ImageResult";
 import { inferno256 } from "./gradients256";
 import ColourSchemeSelector from "./ColourSchemeSelector";
 
-const ReportPage = (props) => {
-  const { files, email } = useLocation().state ?? {};
+const ReportPage = () => {
+  const { files } = useLocation().state ?? {};
 
   const videos = files?.filter((file) => file.type === "video/mp4");
   const images = files?.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
@@ -51,7 +50,6 @@ const ReportPage = (props) => {
     { value: "No defect", label: "No defect" },
   ];
 
-  const history = useHistory();
   useEffect(() => {
     const fetch = async () => {
       const repository = new LiveJobRepository();
@@ -100,6 +98,14 @@ const ReportPage = (props) => {
     return selectedVideoDefects.length === 0 || found;
   };
 
+  const HideHeatmapTip = () => {
+    return (
+      <div className="hide-heatmap-ctn results">
+        <label> Click on image to toggle heatmap</label>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="results">
@@ -126,6 +132,7 @@ const ReportPage = (props) => {
       </div>
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
+
       {imageResults.length > 0 && (
         <div className="results ">
           <Select
@@ -138,7 +145,7 @@ const ReportPage = (props) => {
           ></Select>
         </div>
       )}
-
+      {imageResults.length > 0 && <HideHeatmapTip />}
       <div className="results">
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {

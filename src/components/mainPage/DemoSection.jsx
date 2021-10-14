@@ -16,13 +16,13 @@ const DemoSection = (props) => {
           <h1 className="demo-title">VISUAL TESTING PLATFORM</h1>
           <p>
             Improve your user experience today! With the VISION reliable testing platform we'll
-            curate accurate design decisions for your application.
+            curate accurate design decisions for your Android application.
           </p>
           <button onClick={scrollToJobSelectionSection}>Get Started</button>
         </div>
-        <div className="item-b">
+        {/* <div className="item-b">
           <DemoVideo embedId="Fr4C4O5rD-8" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

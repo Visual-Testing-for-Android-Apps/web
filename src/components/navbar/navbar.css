@@ -2,10 +2,14 @@
   background-color: #0476d9;
 }
 
+.navbar h1 {
+  font-family: "Signika", sans-serif;
+}
+
 .justify-content-end {
   background-color: #0476d9;
   width: 100%;
-  font-size: larger;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
 }
 
