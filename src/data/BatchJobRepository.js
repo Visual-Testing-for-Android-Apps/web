@@ -58,28 +58,7 @@ class BatchJobRepository {
     if (doneResponse.status != 200) throw "Failed to submit";
   }
 
-  async requestBatchJob(url) {
-    try {
-      const response = await fetch(url, {
-        method: "GET",
-      });
-      return await response.json();
-    } catch (error) {
-      return console.log(error);
-    }
-  }
-
-  async getFileFromUrl(url) {
-    try {
-      const response = await fetch(url, {
-        method: "GET",
-      });
-      return response.url;
-    } catch (error) {
-      return console.log(error);
-    }
-  }
-
+  // TODO: refactoring
   async getBatchJobReportData(publicKey, password) {
     const dataFolderResponse = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/jobdata`, {
       method: "POST",
@@ -99,41 +78,55 @@ class BatchJobRepository {
     resultReferences.images = resultReferences.images.map(async (imageResult) => {
       imageResult.name = imageResult.orginalName;
       imageResult.bug_type = imageResult.titles;
+
       imageResult.orig_image = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
         method: "POST",
         body: JSON.stringify({
           filePath: imageResult.orig_image,
         }),
-      })
-        .then(async (imageURL) => await (await fetch((await imageURL.json()).url)).blob())
-        .catch((err) => {
-          throw err;
-        });
+      });
+      try {
+        imageResult.orig_image = await (
+          await fetch((await imageResult.orig_image.json()).url)
+        ).blob();
+      } catch (error) {
+        throw error;
+      }
 
       imageResult.heatmap_image = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
         method: "POST",
         body: JSON.stringify({
           filePath: imageResult.heatmap_image,
         }),
-      })
-        .then(async (imageURL) => await (await fetch((await imageURL.json()).url)).blob())
-        .catch((err) => {
-          throw err;
-        });
+      });
+
+      try {
+        imageResult.heatmap_image = await imageResult.heatmap_image.json();
+        imageResult.heatmap_image = await (await fetch(imageResult.heatmap_image.url)).blob();
+      } catch (error) {
+        throw error;
+      }
+
       return imageResult;
     });
+
     resultReferences.videos = resultReferences.videos.map(async (videoResult) => {
       videoResult.name = videoResult.orginalName;
+
       videoResult.video = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
         method: "POST",
         body: JSON.stringify({
           filePath: videoResult.video,
         }),
-      })
-        .then(async (videoURL) => await (await fetch((await videoURL.json()).url)).blob())
-        .catch((err) => {
-          throw err;
-        });
+      });
+
+      try {
+        videoResult.video = await videoResult.video.json();
+        videoResult.video = await (await fetch(videoResult.video.url)).blob();
+      } catch (error) {
+        throw error;
+      }
+
       return videoResult;
     });
 
