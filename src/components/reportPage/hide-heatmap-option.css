@@ -11,10 +11,16 @@
 .hide-heatmap-ctn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: right;
   gap: 0.55rem;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+
+  /* margin-top: 1rem; */
+
+  /* margin-bottom: 0.5rem; */
+
+  /* margin-right: 3rem; */
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .switch {

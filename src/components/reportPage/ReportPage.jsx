@@ -26,7 +26,7 @@ const ReportPage = () => {
   const [colourScheme, setColourScheme] = useState(inferno256);
   const [searchTerm, setSearchString] = useState("");
 
-  const [hideHeatmap, setHideHeatmap] = useState(false);
+  const [hideHeatmap, setHideHeatmap] = useState(true);
   const [selectedImageDefects, setImageDefects] = useState([]);
   const [selectedVideoDefects, setVideoDefects] = useState([]);
   const animatedComponents = makeAnimated();
@@ -130,7 +130,7 @@ const ReportPage = () => {
       </div>
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
-      {imageResults.length > 0 && <HideHeatmapOption handleToggle={handleHideHeatmap} />}
+
       {imageResults.length > 0 && (
         <div className="results ">
           <Select
@@ -143,7 +143,7 @@ const ReportPage = () => {
           ></Select>
         </div>
       )}
-
+      {imageResults.length > 0 && <HideHeatmapOption handleToggle={handleHideHeatmap} />}
       <div className="results">
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {
