@@ -42,12 +42,12 @@ const UploadSection = (props) => {
   const [fileSrc, setFileSrc] = useState();
 
   const removeFile = (file) => {
-    var file_index = file;
+    let fileIndex = file;
     if (pageNumber > 0) {
-      file_index = pageNumber * FILES_PER_PAGE + file;
+      fileIndex = pageNumber * FILES_PER_PAGE + file;
     }
     const newFile = [...files];
-    newFile.splice(file_index, 1);
+    newFile.splice(fileIndex, 1);
     setFiles(newFile);
   };
 
