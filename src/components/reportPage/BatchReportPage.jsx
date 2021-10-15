@@ -5,18 +5,14 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
 import "./results-page.css";
-import LiveJobRepository from "../../data/LiveJobRepository";
+import BatchJobRepository from "../../data/BatchJobRepository";
 import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
 import { inferno256 } from "./gradients256";
 import ColourSchemeSelector from "./ColourSchemeSelector";
 
-const ReportPage = () => {
-  const { files } = useLocation().state ?? {};
-
-  const videos = files?.filter((file) => file.type === "video/mp4");
-  const images = files?.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
-
+const ReportPage = (props) => {
+  const [fileCount, setFileCount] = useState(0);
   const [progressValue, setProgressValue] = useState(0);
 
   const [videoResults, setVideoResults] = useState([]);
@@ -50,26 +46,31 @@ const ReportPage = () => {
     { value: "No defect", label: "No defect" },
   ];
 
+  const location = useLocation();
   useEffect(() => {
     const fetch = async () => {
-      const repository = new LiveJobRepository();
+      const repository = new BatchJobRepository();
 
-      const heatmaps = repository.uploadImages(images);
+      const publicKey = location.pathname.split("/").at(-1);
+      const password = location.search.split("=").at(-1);
 
-      heatmaps.forEach(async (imagePromise) => {
+      const content = await repository.getBatchJobReportData(publicKey, password);
+      setFileCount((oldValue) => oldValue + content.images.length + content.videos.length);
+
+      content.images.forEach(async (imagePromise) => {
         const imageResult = await imagePromise;
         setImageResults((oldResults) => [...oldResults, imageResult]);
         setProgressValue((oldValue) => oldValue + 1);
       });
 
-      const videoResults = repository.uploadVideos(videos);
-      videoResults.forEach(async (videoResultPromise, index) => {
-        const videoResult = await videoResultPromise;
+      content.videos.forEach(async (videoPromise) => {
+        const videoResult = await videoPromise;
+
         setVideoResults((oldResults) => [...oldResults, videoResult]);
         setProgressValue((oldValue) => oldValue + 1);
       });
     };
-    if (files) fetch();
+    fetch();
   }, []);
 
   const handleSearching = (e) => {
@@ -85,7 +86,7 @@ const ReportPage = () => {
   };
 
   const checkImageFilterType = (imageResult) => {
-    const found = selectedImageDefects.some((value) => imageResult?.["bug_type"]?.includes(value));
+    const found = selectedImageDefects.some((value) => imageResult?.["bug_type"].includes(value));
     return (
       selectedImageDefects.length === 0 ||
       (selectedImageDefects.includes("No defect") && imageResult?.["bug_type"]?.length === 0) ||
@@ -94,16 +95,8 @@ const ReportPage = () => {
   };
 
   const checkVideoFilterType = (videoResult) => {
-    const found = selectedVideoDefects.includes(videoResult?.["classification"]);
+    const found = selectedVideoDefects.includes(videoResult["classification"]);
     return selectedVideoDefects.length === 0 || found;
-  };
-
-  const HideHeatmapTip = () => {
-    return (
-      <div className="hide-heatmap-ctn results">
-        <label> Click on image to toggle heatmap</label>
-      </div>
-    );
   };
 
   return (
@@ -111,12 +104,12 @@ const ReportPage = () => {
       <div className="results">
         <div className="progress-indicator-container">
           <p>
-            {progressValue} / {files?.length ?? 0} files processed
+            {progressValue} / {fileCount} files loaded
           </p>
           <ProgressBar
-            animated={progressValue != files?.length}
+            animated={progressValue != fileCount}
             className="progress"
-            now={files ? (progressValue / files.length) * 100 + 1 : 0}
+            now={fileCount ? (progressValue / fileCount) * 100 + 1 : 0}
           />
         </div>
         <div className="search-area">
@@ -132,7 +125,6 @@ const ReportPage = () => {
       </div>
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
-
       {imageResults.length > 0 && (
         <div className="results ">
           <Select
@@ -145,20 +137,20 @@ const ReportPage = () => {
           ></Select>
         </div>
       )}
-      {imageResults.length > 0 && <HideHeatmapTip />}
+
       <div className="results">
         <div className="results-container">
           {imageResults.reduce((previousResult, currentResult, index) => {
             if (
               (searchTerm.length === 0 ||
-                images[index].name.toLowerCase().includes(searchTerm.toLowerCase())) &&
+                imageResults[index].name.toLowerCase().includes(searchTerm.toLowerCase())) &&
               checkImageFilterType(currentResult) === true
             ) {
               return [
                 ...previousResult,
                 <ImageResult
                   key={`image-${index}`}
-                  imageFile={images[index]}
+                  imageFile={currentResult.orig_image}
                   imageResult={currentResult}
                   colourScheme={colourScheme}
                 />,
@@ -186,16 +178,17 @@ const ReportPage = () => {
           {videoResults.reduce((previousResult, currentResult, index) => {
             if (
               (searchTerm.length === 0 ||
-                videos[index].name.toLowerCase().includes(searchTerm.toLowerCase())) &&
+                videoResults[index].name.toLowerCase().includes(searchTerm.toLowerCase())) &&
               checkVideoFilterType(currentResult) === true
             ) {
               return [
                 ...previousResult,
                 <VideoResult
                   key={`video-${index}`}
-                  videoFile={videos[index]}
+                  videoFile={currentResult.video}
                   videoResult={currentResult}
                 />,
+                ,
               ];
             } else {
               return [...previousResult];
