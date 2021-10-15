@@ -7,7 +7,7 @@ import "./results-page.css";
 import DownloadIcon from "./downloadIcon";
 
 /**
- * An image result consists of the orignal image, a heatmap, and a description of the bug type. There may be no bug type.
+ * An image result consists of the original image, a heatmap, and a description of the bug type. There may be no bug type.
  * @param {{ original_img: String, res_img: String, bug_type: Array<String> }} imageResult
  * @returns
  */
@@ -16,9 +16,7 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
   const [resultImageDataUrl, setResultImageDataUrl] = useState(null);
-  const [imageName, setImageName] = useState(imageFile.name ?? imageResult.name);
-
-  const isError = imageResult == null;
+  const imageName = imageFile.name ?? imageResult.name;
 
   // Decode results.
   useEffect(async () => {

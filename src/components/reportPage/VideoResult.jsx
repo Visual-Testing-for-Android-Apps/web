@@ -11,7 +11,7 @@ import VideoResultExplanation from "../common/VideoResultExplanation";
  */
 const VideoResult = ({ videoFile, videoResult }) => {
   const [dataUrl, setDataUrl] = useState(null);
-  const [videoName, setVideoName] = useState(videoFile.name ?? videoResult.name);
+  const videoName = videoFile.name ?? videoResult.name;
 
   useEffect(async () => {
     setDataUrl(await encodeFileAsBase64DataUrl(videoFile));

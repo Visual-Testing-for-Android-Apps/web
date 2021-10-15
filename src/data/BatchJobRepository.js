@@ -79,32 +79,28 @@ class BatchJobRepository {
       imageResult.name = imageResult.orginalName;
       imageResult.bug_type = imageResult.titles;
 
-      imageResult.orig_image = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
-        method: "POST",
-        body: JSON.stringify({
-          filePath: imageResult.orig_image,
-        }),
-      });
       try {
+        imageResult.orig_image = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
+          method: "POST",
+          body: JSON.stringify({
+            filePath: imageResult.orig_image,
+          }),
+        });
         imageResult.orig_image = await (
           await fetch((await imageResult.orig_image.json()).url)
         ).blob();
-      } catch (error) {
-        throw error;
-      }
 
-      imageResult.heatmap_image = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
-        method: "POST",
-        body: JSON.stringify({
-          filePath: imageResult.heatmap_image,
-        }),
-      });
+        imageResult.heatmap_image = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
+          method: "POST",
+          body: JSON.stringify({
+            filePath: imageResult.heatmap_image,
+          }),
+        });
 
-      try {
         imageResult.heatmap_image = await imageResult.heatmap_image.json();
         imageResult.heatmap_image = await (await fetch(imageResult.heatmap_image.url)).blob();
       } catch (error) {
-        throw error;
+        console.error(error);
       }
 
       return imageResult;
@@ -113,18 +109,18 @@ class BatchJobRepository {
     resultReferences.videos = resultReferences.videos.map(async (videoResult) => {
       videoResult.name = videoResult.orginalName;
 
-      videoResult.video = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
-        method: "POST",
-        body: JSON.stringify({
-          filePath: videoResult.video,
-        }),
-      });
-
       try {
+        videoResult.video = await fetch(`${__BATCH_JOB_REPORT_ENDPOINT__}/job/file`, {
+          method: "POST",
+          body: JSON.stringify({
+            filePath: videoResult.video,
+          }),
+        });
+
         videoResult.video = await videoResult.video.json();
         videoResult.video = await (await fetch(videoResult.video.url)).blob();
       } catch (error) {
-        throw error;
+        console.error(error);
       }
 
       return videoResult;
