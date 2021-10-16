@@ -4,7 +4,7 @@
   --result-margin: 1rem;
 }
 
-.image-filter-menu{
+.image-filter-menu {
   position: relative;
   margin: 0 10rem 0 10rem;
 }
@@ -222,7 +222,7 @@
     margin-left: 6rem;
   }
 
-  .image-filter-menu{
+  .image-filter-menu {
     position: relative;
     margin: 0 2rem 0 2rem;
   }
