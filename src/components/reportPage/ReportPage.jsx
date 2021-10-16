@@ -7,7 +7,6 @@ import makeAnimated from "react-select/animated";
 import "./results-page.css";
 import ImageResultsInfoGuide from "./ImageResultsInfoGuide";
 
-import Repository from "../../data/Repository";
 import LiveJobRepository from "../../data/LiveJobRepository";
 import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";

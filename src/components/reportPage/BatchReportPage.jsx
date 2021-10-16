@@ -10,6 +10,8 @@ import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
 import { inferno256 } from "./gradients256";
 import ColourSchemeSelector from "./ColourSchemeSelector";
+import ImageResultsInfoGuide from "./ImageResultsInfoGuide";
+import HideHeatmapTip from "./ReportPage";
 
 const ReportPage = (props) => {
   const [fileCount, setFileCount] = useState(0);
@@ -99,6 +101,14 @@ const ReportPage = (props) => {
     return selectedVideoDefects.length === 0 || found;
   };
 
+  const HideHeatmapTip = () => {
+    return (
+      <div className="hide-heatmap-ctn results">
+        <label> Click on image to toggle heatmap</label>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="results">
@@ -137,6 +147,8 @@ const ReportPage = (props) => {
           ></Select>
         </div>
       )}
+      {imageResults.length > 0 && <ImageResultsInfoGuide />}
+      {imageResults.length > 0 && <HideHeatmapTip />}
 
       <div className="results">
         <div className="results-container">
