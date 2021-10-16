@@ -13,7 +13,6 @@
   margin-top: 0.5rem;
   border: none;
   background-size: contain;
-  width: 8rem;
   min-width: 4.5rem;
   transition-duration: 0.2s;
   padding: 0.2rem;
@@ -29,7 +28,7 @@
 
 .colour-scheme-selector-container {
   position: sticky;
-  z-index: 3;
+  z-index: 1;
   top: -1px; /* ➜ the trick */
   display: flex;
 

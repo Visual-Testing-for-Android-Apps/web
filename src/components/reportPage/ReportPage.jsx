@@ -132,17 +132,18 @@ const ReportPage = () => {
       </div>
       {imageResults.length > 0 && <h1 className="results-title">Image Results</h1>}
       {imageResults.length > 0 && <ColourSchemeSelector setColourScheme={setColourScheme} />}
-
       {imageResults.length > 0 && (
         <div className="results ">
-          <Select
-            isMulti
-            placeholder="Filter by defect type..."
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            options={imageOptions}
-            onChange={handleImageFilterChange}
-          ></Select>
+          <div className="image-filter-menu">
+            <Select
+              isMulti
+              placeholder="Filter by defect type..."
+              closeMenuOnSelect={false}
+              components={animatedComponents}
+              options={imageOptions}
+              onChange={handleImageFilterChange}
+            ></Select>
+          </div>
         </div>
       )}
       {imageResults.length > 0 && <HideHeatmapTip />}
