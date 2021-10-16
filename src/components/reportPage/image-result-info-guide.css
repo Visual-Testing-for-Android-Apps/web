@@ -9,9 +9,12 @@
   padding-bottom: 0 !important;
 }
 
+.btn-img-res-info img {
+  margin-right: 0.4rem;
+}
+
 .btn-img-res-info {
   display: inline-flex;
-  gap: 0.4rem;
   align-items: center;
   text-decoration: underline;
   color: var(--dark-blue);
@@ -44,7 +47,7 @@
 }
 
 .info-content {
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 2rem;
   max-height: 95%;
 }
