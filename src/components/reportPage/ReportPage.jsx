@@ -5,6 +5,8 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
 import "./results-page.css";
+import ImageResultsInfoGuide from "./ImageResultsInfoGuide";
+
 import LiveJobRepository from "../../data/LiveJobRepository";
 import VideoResult from "./VideoResult";
 import ImageResult from "./ImageResult";
@@ -146,6 +148,7 @@ const ReportPage = () => {
           </div>
         </div>
       )}
+      {imageResults.length > 0 && <ImageResultsInfoGuide />}
       {imageResults.length > 0 && <HideHeatmapTip />}
       <div className="results">
         <div className="results-container">
