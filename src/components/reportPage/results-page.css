@@ -122,6 +122,19 @@
   width: 100%;
 }
 
+.search-area input {
+  box-sizing: border-box;
+  align-items: center;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 0.063rem;
+  justify-content: space-between;
+  min-height: 2.375rem;
+  padding: 0 0 0 0.563rem;
+}
+
 .custom-select {
   padding: 0.15rem;
 }
