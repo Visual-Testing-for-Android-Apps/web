@@ -9,6 +9,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
@@ -31,7 +35,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(mp4|webm|png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
       },
     ],
@@ -57,6 +61,7 @@ module.exports = {
       __OWLEYES_ENDPOINT__: `'${process.env.OWLEYES_ENDPOINT}'`,
       __SEENOMALY_ENDPOINT__: `'${process.env.SEENOMALY_ENDPOINT}'`,
       __BATCH_JOB_ENDPOINT__: `'${process.env.BATCH_JOB_ENDPOINT}'`,
+      __BATCH_JOB_REPORT_ENDPOINT__: `'${process.env.BATCH_JOB_REPORT_ENDPOINT}'`,
     }),
   ],
 };

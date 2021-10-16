@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap");
+
+.privacy-policy-container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  font-family: "Montserrat", sans-serif;
+  background-color: white;
+  position: relative;
+  z-index: 2;
+  overflow-x: auto;
+}
+
+@media only screen and (min-width: 900px) {
+  .privacy-policy {
+    max-width: 1270px;
+    margin-left: 0;
+    margin-right: auto;
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .privacy-policy {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.c0,
+.c1,
+.c5,
+.c6,
+.c11 {
+  line-height: 1.15;
+  orphans: 2;
+  widows: 2;
+  text-align: left;
+}
+
+.c0 {
+  margin-left: 36pt;
+  padding-left: 2pt;
+  padding-bottom: 2pt;
+  color: #000;
+  font-size: 15pt;
+}
+
+.c1 {
+  padding-top: 14pt;
+  padding-bottom: 2pt;
+  color: #434343;
+  font-size: 18pt;
+  page-break-after: avoid;
+}
+
+.c2 {
+  color: #000;
+  font-weight: 400;
+  text-decoration: none;
+  vertical-align: baseline;
+  font-size: 11pt;
+  font-style: normal;
+}
+
+.c3 {
+  padding: 0;
+  margin: 0;
+}
+
+.c4 {
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  vertical-align: baseline;
+  font-size: 11pt;
+  font-style: normal;
+}
+
+.c5 {
+  padding-top: 12pt;
+  padding-bottom: 12pt;
+  margin: 0;
+  color: #000;
+  font-size: 11pt;
+}
+
+.c6 {
+  padding-top: 12pt;
+  padding-bottom: 2pt;
+  color: #666;
+  font-size: 12pt;
+  page-break-after: avoid;
+}
+
+.c7 {
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  vertical-align: baseline;
+  font-size: 17pt;
+  font-style: normal;
+}
+
+.c8 {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.c9 {
+  text-decoration-skip-ink: none;
+  -webkit-text-decoration-skip: none;
+  color: #15c;
+  text-decoration: underline;
+}
+
+.c10 {
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  vertical-align: baseline;
+  font-size: 13pt;
+  font-style: normal;
+}
+
+.c11 {
+  padding-top: 20pt;
+  padding-bottom: 4pt;
+  color: #000;
+  font-size: 20pt;
+  page-break-after: avoid;
+}
+
+.c12 {
+  background-color: #fff;
+  max-width: 451.4pt;
+  padding: 72pt 72pt 72pt 72pt;
+}

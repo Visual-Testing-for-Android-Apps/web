@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import mergeImages from "merge-images";
+import { saveAs } from "file-saver";
 
-import { createImageDataUrlFromBase64 } from "../../util/FileUtil";
+import { createImageDataUrlFromBase64, encodeFileAsBase64DataUrl } from "../../util/FileUtil";
 import "./results-page.css";
+import DownloadIcon from "./downloadIcon";
 
 /**
- * An image result consists of the orignal image, a heatmap, and a description of the bug type. There may be no bug type.
+ * An image result consists of the original image, a heatmap, and a description of the bug type. There may be no bug type.
  * @param {{ original_img: String, res_img: String, bug_type: Array<String> }} imageResult
  * @returns
  */
@@ -14,13 +16,20 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
   const [resultImageDataUrl, setResultImageDataUrl] = useState(null);
+  const [heatmapOpacity, setHeatmapOpacity] = useState("100");
 
-  const isError = imageResult == null;
+  const imageName = imageFile.name ?? imageResult.name;
 
   // Decode results.
   useEffect(async () => {
-    setOriginalImageDataUrl(await createImageDataUrlFromBase64(imageResult["original_img"]));
-    setResultImageDataUrl(await createImageDataUrlFromBase64(imageResult["res_img"]));
+    setOriginalImageDataUrl(await encodeFileAsBase64DataUrl(imageFile));
+    if (imageResult != null) {
+      if (imageResult["heatmap_image"] != null) {
+        setResultImageDataUrl(await encodeFileAsBase64DataUrl(imageResult["heatmap_image"]));
+      } else if (imageResult["res_img"]) {
+        setResultImageDataUrl(createImageDataUrlFromBase64(imageResult["res_img"]));
+      }
+    }
   }, []);
 
   const originalImageCanvasRef = useRef(null);
@@ -28,6 +37,7 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   // Draw the original image.
   useEffect(() => {
+    if (originalImageDataUrl == null) return;
     const originalImageCanvas = originalImageCanvasRef.current;
     const originalImageContext = originalImageCanvas.getContext("2d");
 
@@ -48,6 +58,7 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   // Draw the heatmap overlayed on the original image.
   useEffect(() => {
+    if (resultImageDataUrl == null) return;
     const resultImageCanvas = resultImageCanvasRef.current;
     const resultImageCanvasContext = resultImageCanvas.getContext("2d");
 
@@ -85,28 +96,77 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
     resultImage.src = resultImageDataUrl;
   }, [resultImageDataUrl, colourScheme]);
 
+  const downloadFile = () => {
+    const height = originalImageCanvasRef.current.height;
+    const width = originalImageCanvasRef.current.width;
+    const tempCanvas = document.createElement("canvas");
+    const ctx = tempCanvas.getContext("2d");
+    tempCanvas.width = width;
+    tempCanvas.height = height;
+
+    // Draw heatmap to new canvas with dimensions matching the original image. Then merge and save.
+    const image = new Image();
+    image.onload = function () {
+      ctx.drawImage(image, 0, 0, width, height);
+
+      mergeImages(
+        [
+          { src: originalImageCanvasRef.current.toDataURL() },
+          { src: tempCanvas.toDataURL(), opacity: 1.0 },
+        ],
+        {
+          height: height,
+          width: width,
+        }
+      ).then((heatmapedImageDataUrl) =>
+        saveAs(
+          heatmapedImageDataUrl,
+          `heatmap_${
+            imageResult?.["bug_type"]?.length > 0
+              ? imageResult?.["bug_type"]?.join("-")?.replace(" ", "")
+              : "no-defect"
+          }_${imageName}`
+        )
+      );
+    };
+    image.src = resultImageCanvasRef.current.toDataURL();
+  };
+
+  const handleHideHeatmap = () => {
+    heatmapOpacity === "0" ? setHeatmapOpacity("100") : setHeatmapOpacity("0");
+  };
+
+  const imageHeatmapStyle = {
+    opacity: heatmapOpacity,
+  };
+
   return (
     <div className="image-result-container">
-      {isError ? (
+      <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
         <div className="result">
-          <p>Error analysing image</p>
+          <canvas ref={originalImageCanvasRef} className="original-image" />
+          <canvas
+            ref={resultImageCanvasRef}
+            className="image-heatmap"
+            style={imageHeatmapStyle}
+            onClick={handleHideHeatmap}
+          />
         </div>
-      ) : (
-        <>
-          <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
-            <div className="result">
-              <canvas ref={originalImageCanvasRef} className="original-image" />
-              <canvas ref={resultImageCanvasRef} className="image-heatmap" />
-            </div>
-            <p className="result-filename">{imageFile.name}</p>
-          </div>
-          <p className="result-explanation">
-            {imageResult["bug_type"]?.length == 0
-              ? "No defect found"
-              : imageResult?.["bug_type"]?.join(", ")}
-          </p>
-        </>
-      )}
+        <a className="result-filename image-download-btn" onClick={downloadFile}>
+          {imageName} <DownloadIcon />
+        </a>
+      </div>
+      <p className="result-explanation">
+        {imageResult != null ? (
+          imageResult?.["bug_type"]?.length == 0 ? (
+            "No defect found"
+          ) : (
+            imageResult?.["bug_type"]?.join(", ")
+          )
+        ) : (
+          <span style={{ color: "red" }}>Error analysing image</span>
+        )}
+      </p>
     </div>
   );
 };

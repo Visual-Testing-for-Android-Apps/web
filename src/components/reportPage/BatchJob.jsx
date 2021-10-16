@@ -1,14 +1,17 @@
 import React, { useState, useRef } from "react";
-import UploadSection from "./UploadSection";
-import "./batch-job.css";
 import { useHistory } from "react-router-dom";
-import Repository from "../../data/Repository";
-import Spinner from "react-bootstrap/Spinner";
+import Modal from "react-bootstrap/Modal";
+
+import UploadSection from "./UploadSection";
+import BatchJobRepository from "../../data/BatchJobRepository";
+import VideoInstructions from "./VideoInstructions";
+import "./batch-job.css";
 
 const BatchJob = () => {
   const FILE_LIMIT = 100;
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const formId = "batchForm";
   const history = useHistory();
 
@@ -21,9 +24,17 @@ const BatchJob = () => {
 
   const handleBatchJob = async (files) => {
     setIsLoading(true);
-    await new Repository().uploadBatchJob(emailRef.current, files);
-    setIsLoading(false);
-    history.push("/batchsubmitpage", { email: emailRef.current });
+    try {
+      await new BatchJobRepository().uploadBatchJob(emailRef.current, files);
+      history.push("/batchsubmitpage", { email: emailRef.current });
+    } catch (error) {
+      console.error(error);
+      setError(error);
+      // Reset captcha so the user can submit again.
+      grecaptcha.reset();
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -31,8 +42,11 @@ const BatchJob = () => {
       <h1 style={{ textAlign: "center" }}>
         <b>Batch Job Request</b>
       </h1>
+      <p style={{ textAlign: "center" }}>
+        Submit up to 100 images and videos and receive the results via email.
+      </p>
       <div className="form-container">
-        <label>Email: </label>
+        <span>Email: </span>
         <input
           type="email"
           id="email"
@@ -42,6 +56,7 @@ const BatchJob = () => {
           onChange={handleEmailChange}
         />
       </div>
+      <VideoInstructions />
       <UploadSection
         fileLimit={FILE_LIMIT}
         handleJob={handleBatchJob}
@@ -51,11 +66,17 @@ const BatchJob = () => {
       />
 
       {isLoading && (
-        <div className="scrim">
+        <div className="loading style">
+          <div className="loading-wheel"></div>
           <h2>Uploading files...</h2>
-          <Spinner animation="border" role="status" variant="primary" />
         </div>
       )}
+      <Modal show={error !== null} centered onHide={() => setError(null)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Something went wrong, please try again</Modal.Body>
+      </Modal>
     </div>
   );
 };

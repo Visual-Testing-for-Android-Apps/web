@@ -4,6 +4,11 @@
   --result-margin: 1rem;
 }
 
+.image-filter-menu {
+  position: relative;
+  margin: 0 10rem 0 10rem;
+}
+
 .results-title {
   font-family: "Signika", sans-serif;
   font-size: xx-large;
@@ -25,6 +30,10 @@
   /* 16:9 ratio */
   height: var(--result-height);
   width: var(--result-width);
+}
+
+.results {
+  background: white;
 }
 
 .result-container {
@@ -49,10 +58,6 @@
   bottom: calc(var(--result-height) + 0.35rem);
 }
 
-.image-heatmap:hover {
-  opacity: 0;
-}
-
 .result-explanation {
   text-align: center;
   margin-left: var(--result-margin);
@@ -72,6 +77,14 @@
 
 .progress {
   width: 100%;
+}
+
+.image-filter {
+  padding-top: 0.5rem;
+  margin-left: 20rem;
+  display: auto;
+  justify-content: center;
+  width: 50%;
 }
 
 .image-result-container {
@@ -97,6 +110,11 @@
   margin-bottom: 1rem;
 }
 
+.video-filter {
+  align-items: center;
+  text-align: center;
+}
+
 .filename {
   text-align: center;
   margin-left: var(--result-margin);
@@ -107,6 +125,23 @@
 
 .file-search {
   width: 100%;
+}
+
+.search-area input {
+  box-sizing: border-box;
+  align-items: center;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 0.063rem;
+  justify-content: space-between;
+  min-height: 2.375rem;
+  padding: 0 0 0 0.563rem;
+}
+
+.custom-select {
+  padding: 0.15rem;
 }
 
 .download-btn {
@@ -136,7 +171,18 @@
   text-align: right;
 }
 
-/* } */
+.image-download-btn {
+  cursor: pointer;
+}
+
+.hide-heatmap-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* padding-top: 0 !important; */
+  padding-bottom: 0 !important;
+}
 
 @media only screen and (min-width: 900px) {
   .results-container {
@@ -153,7 +199,7 @@
     This prevents the link from being overlapped by the image result heatmap and not being clickable
     see https://github.com/Visual-Testing-for-Android-Apps/web/pull/45
     **/
-    z-index: 1;
+    z-index: 0;
   }
 
   .video-result-explanation {
@@ -171,5 +217,14 @@
 @media only screen and (max-width: 900px) {
   .results {
     padding: 1rem 2rem 1rem 2rem;
+  }
+
+  .image-filter {
+    margin-left: 6rem;
+  }
+
+  .image-filter-menu {
+    position: relative;
+    margin: 0 2rem 0 2rem;
   }
 }

@@ -1,0 +1,70 @@
+:root {
+  --navbar-blue: #0476d9;
+  --dark-blue: #045198;
+}
+
+.image-res-guide {
+  text-align: right;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.btn-img-res-info img {
+  margin-right: 0.4rem;
+}
+
+.btn-img-res-info {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: underline;
+  color: var(--dark-blue);
+  border: none;
+  padding: 2px 2px;
+  font-size: 16px;
+  cursor: pointer;
+  background: inherit;
+}
+
+.btn-img-res-info:hover {
+  color: var(--navbar-blue);
+  text-decoration: underline;
+}
+
+.info-content h4 {
+  margin-top: 1.6rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.info-content h5 {
+  margin-bottom: 0.1rem;
+  margin-top: 1.6rem;
+}
+
+.info-content p {
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 0.5rem;
+}
+
+.info-content {
+  overflow-y: auto;
+  padding: 2rem;
+  max-height: 95%;
+}
+
+@media only screen and (max-width: 600px) {
+  .info-content {
+    padding: 1.5rem;
+    max-height: 98%;
+  }
+
+  .info-content h4 {
+    font-size: 1.35rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .info-content {
+    padding: 2rem 4rem;
+  }
+}

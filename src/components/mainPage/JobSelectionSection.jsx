@@ -30,23 +30,24 @@ const JobSelectionSection = forwardRef((props, ref) => {
 
   return (
     <div className="mainSection" ref={ref}>
-      <div className="selection-heading">
-        <h1 className="title">What do you want to do?</h1>
-      </div>
-      <div className="btnContainer">
-        <JobButton
-          icon={LiveIcon}
-          jobType="LIVE JOB"
-          description="See results in real time. Up to 10 images and videos"
-          clickHandler={() => handleLiveJob()}
-        />
-        {/* <span className="btn-space"></span> */}
-        <JobButton
-          icon={BatchIcon}
-          jobType="BATCH JOB"
-          description="Submit up to 100 images and videos. Get an email report"
-          clickHandler={() => handleBatchJob()}
-        />
+      <div className="example-section">
+        <div className="selection-heading">
+          <h1 className="title">What do you want to do?</h1>
+        </div>
+        <div className="btnContainer">
+          <JobButton
+            icon={LiveIcon}
+            jobType="LIVE JOB"
+            description="Submit up to 10 images and videos and view the results in real time"
+            clickHandler={() => handleLiveJob()}
+          />
+          <JobButton
+            icon={BatchIcon}
+            jobType="BATCH JOB"
+            description="Submit up to 100 images and videos and receive the results via email"
+            clickHandler={() => handleBatchJob()}
+          />
+        </div>
       </div>
     </div>
   );
