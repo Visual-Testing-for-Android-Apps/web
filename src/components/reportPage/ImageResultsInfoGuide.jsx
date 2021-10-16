@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./image-result-info-guide.css";
 import closeIcon from "../images/closeIcon.png";
-// import infoIcon from "../images/blue-info-icon.png";
-import infoIcon from "../images/blue-info-icon.svg";
 
 const ImageResultsInfoGuide = () => {
   const [openInfoGuide, setOpenInfoGuide] = useState(false);
