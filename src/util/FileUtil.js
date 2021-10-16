@@ -25,4 +25,13 @@ const createImageDataUrlFromBase64 = (imageAsBase64String) => {
   return `data:image/png;base64,${imageAsBase64String}`;
 };
 
-export { encodeFileAsBase64DataUrl, createImageDataUrlFromBase64 };
+/**
+ * Extracts the base64 portion of a data url.
+ * @param {String} dataUrl
+ * @returns {String} The base64 portion of the data url
+ */
+const getBase64FromDataUrl = (dataUrl) => {
+  return dataUrl.split(",")[1];
+};
+
+export { encodeFileAsBase64DataUrl, createImageDataUrlFromBase64, getBase64FromDataUrl };
