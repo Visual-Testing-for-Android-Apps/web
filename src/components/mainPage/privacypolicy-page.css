@@ -11,6 +11,7 @@
   background-color: white;
   position: relative;
   z-index: 2;
+  overflow-x: auto;
 }
 
 @media only screen and (min-width: 900px) {
