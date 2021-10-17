@@ -42,7 +42,7 @@ const BatchJob = () => {
       <h1 style={{ textAlign: "center" }}>
         <b>Batch Job Request</b>
       </h1>
-      <p style={{ textAlign: "center" }}>
+      <p style={{ textAlign: "center", margin: "0 2rem 0 2rem" }}>
         Submit up to 100 images and videos and receive the results via email.
       </p>
       <div className="form-container">
