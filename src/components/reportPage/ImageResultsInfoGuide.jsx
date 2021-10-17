@@ -1,10 +1,26 @@
 import React, { useState } from "react";
 import "./image-result-info-guide.css";
 import closeIcon from "../images/closeIcon.png";
-import infoIcon from "../images/blue-info-icon.png";
 
 const ImageResultsInfoGuide = () => {
   const [openInfoGuide, setOpenInfoGuide] = useState(false);
+
+  const InfoIcon = () => {
+    return (
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM11 15H9V9H11V15ZM11 7H9V5H11V7Z"
+          fill="#045198"
+        />
+      </svg>
+    );
+  };
 
   const handleOpenResultGuide = () => {
     setOpenInfoGuide(true);
@@ -51,7 +67,7 @@ const ImageResultsInfoGuide = () => {
     return (
       <div className="image-res-guide results">
         <button className="btn-img-res-info" onClick={handleOpenResultGuide}>
-          <img src={infoIcon} width="20" height="20" />
+          <InfoIcon />
           How to interpret results
         </button>
       </div>
