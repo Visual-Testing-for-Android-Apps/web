@@ -16,6 +16,8 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
   const [resultImageDataUrl, setResultImageDataUrl] = useState(null);
+  const [heatmapOpacity, setHeatmapOpacity] = useState("100");
+
   const imageName = imageFile.name ?? imageResult.name;
 
   // Decode results.
@@ -129,8 +131,6 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
     };
     image.src = resultImageCanvasRef.current.toDataURL();
   };
-
-  const [heatmapOpacity, setHeatmapOpacity] = useState("100");
 
   const handleHideHeatmap = () => {
     heatmapOpacity === "0" ? setHeatmapOpacity("100") : setHeatmapOpacity("0");

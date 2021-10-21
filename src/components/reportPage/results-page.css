@@ -4,6 +4,11 @@
   --result-margin: 1rem;
 }
 
+.image-filter-menu {
+  position: relative;
+  margin: 0 10rem 0 10rem;
+}
+
 .results-title {
   font-family: "Signika", sans-serif;
   font-size: xx-large;
@@ -122,6 +127,19 @@
   width: 100%;
 }
 
+.search-area input {
+  box-sizing: border-box;
+  align-items: center;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 0.063rem;
+  justify-content: space-between;
+  min-height: 2.375rem;
+  padding: 0 0 0 0.563rem;
+}
+
 .custom-select {
   padding: 0.15rem;
 }
@@ -161,7 +179,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 0 !important;
+
+  /* padding-top: 0 !important; */
   padding-bottom: 0 !important;
 }
 
@@ -202,5 +221,10 @@
 
   .image-filter {
     margin-left: 6rem;
+  }
+
+  .image-filter-menu {
+    position: relative;
+    margin: 0 2rem 0 2rem;
   }
 }
