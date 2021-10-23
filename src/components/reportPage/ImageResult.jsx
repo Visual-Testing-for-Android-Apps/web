@@ -7,7 +7,7 @@ import "./results-page.css";
 import DownloadIcon from "./downloadIcon";
 
 /**
- * An image result consists of the orignal image, a heatmap, and a description of the bug type. There may be no bug type.
+ * An image result consists of the original image, a heatmap, and a description of the bug type. There may be no bug type.
  * @param {{ original_img: String, res_img: String, bug_type: Array<String> }} imageResult
  * @returns
  */
@@ -16,14 +16,19 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
 
   const [originalImageDataUrl, setOriginalImageDataUrl] = useState(null);
   const [resultImageDataUrl, setResultImageDataUrl] = useState(null);
+  const [heatmapOpacity, setHeatmapOpacity] = useState("100");
 
-  const isError = imageResult == null;
+  const imageName = imageFile.name ?? imageResult.name;
 
   // Decode results.
   useEffect(async () => {
     setOriginalImageDataUrl(await encodeFileAsBase64DataUrl(imageFile));
     if (imageResult != null) {
-      setResultImageDataUrl(await createImageDataUrlFromBase64(imageResult["res_img"]));
+      if (imageResult["heatmap_image"] != null) {
+        setResultImageDataUrl(await encodeFileAsBase64DataUrl(imageResult["heatmap_image"]));
+      } else if (imageResult["res_img"]) {
+        setResultImageDataUrl(createImageDataUrlFromBase64(imageResult["res_img"]));
+      }
     }
   }, []);
 
@@ -120,14 +125,12 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
             imageResult?.["bug_type"]?.length > 0
               ? imageResult?.["bug_type"]?.join("-")?.replace(" ", "")
               : "no-defect"
-          }_${imageFile.name}`
+          }_${imageName}`
         )
       );
     };
     image.src = resultImageCanvasRef.current.toDataURL();
   };
-
-  const [heatmapOpacity, setHeatmapOpacity] = useState("100");
 
   const handleHideHeatmap = () => {
     heatmapOpacity === "0" ? setHeatmapOpacity("100") : setHeatmapOpacity("0");
@@ -150,7 +153,7 @@ const ImageResult = ({ imageFile, imageResult, colourScheme }) => {
           />
         </div>
         <a className="result-filename image-download-btn" onClick={downloadFile}>
-          {imageFile.name} <DownloadIcon />
+          {imageName} <DownloadIcon />
         </a>
       </div>
       <p className="result-explanation">

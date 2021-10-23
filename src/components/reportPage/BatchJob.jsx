@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 
 import UploadSection from "./UploadSection";
-import Repository from "../../data/Repository";
+import BatchJobRepository from "../../data/BatchJobRepository";
 import VideoInstructions from "./VideoInstructions";
 import "./batch-job.css";
 
@@ -25,7 +25,7 @@ const BatchJob = () => {
   const handleBatchJob = async (files) => {
     setIsLoading(true);
     try {
-      await new Repository().uploadBatchJob(emailRef.current, files);
+      await new BatchJobRepository().uploadBatchJob(emailRef.current, files);
       history.push("/batchsubmitpage", { email: emailRef.current });
     } catch (error) {
       console.error(error);
@@ -42,7 +42,7 @@ const BatchJob = () => {
       <h1 style={{ textAlign: "center" }}>
         <b>Batch Job Request</b>
       </h1>
-      <p style={{ textAlign: "center" }}>
+      <p style={{ textAlign: "center", margin: "0 2rem 0 2rem" }}>
         Submit up to 100 images and videos and receive the results via email.
       </p>
       <div className="form-container">
