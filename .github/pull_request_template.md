@@ -19,9 +19,8 @@ _Put an `x` in the boxes that apply. You can also fill these out after creating 
 
 - [ ] I have read the [project guidelines](https://github.com/Visual-Testing-for-Android-Apps/Project-guidelines) doc
 - [ ] I locally linted my code
-- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] I have added tests that prove my fix is effective or that my feature works (if appropriate)
 - [ ] I have added necessary documentation (if appropriate)
-- [ ] Any dependent changes have been merged and published in downstream modules
 
 ## Further comments
 
