@@ -104,4 +104,5 @@ Before opening a PR:
 - Make sure that there isn't an active PR already open which makes the same changes
 - Make sure to check if there are issues related to your PR
 - Follow our [project wide guidlines](https://github.com/Visual-Testing-for-Android-Apps/Project-guidelines)
+- Make sure that your branch name follows `{type}/{name}/{description}`
 - Follow the PR template
