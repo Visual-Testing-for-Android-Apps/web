@@ -26,24 +26,24 @@
 }
 
 .title-text {
-  padding-top: 20pt;
-  padding-bottom: 4pt;
+  padding-top: 1.67rem;
+  padding-bottom: 0.33rem;
   color: #000;
-  font-size: 20pt;
+  font-size: 1.67rem;
 }
 
 .text-p {
-  padding-top: 12pt;
-  padding-bottom: 12pt;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   margin: 0;
   color: #000;
-  font-size: 11pt;
+  font-size: 0.92rem;
 }
 
 .team-name {
-  padding-top: 12pt;
-  padding-bottom: 2pt;
-  font-size: 12pt;
+  padding-top: 1rem;
+  padding-bottom: 0.17rem;
+  font-size: 1rem;
   color: #000;
   font-weight: 700;
 }
@@ -69,3 +69,4 @@ ul.no-points {
   margin: 0;
   padding: 0;
 }
+
