@@ -2,7 +2,7 @@
 
 VISION is an application which allows users to upload screenshots and short videos of an Android application to be scanned for visual defects.
 
-VISION integrates two computer vision ML models [Seenomaly](https://github.com/DehaiZhao/Seenomaly) and [Owleyes](https://github.com/franklinbill/OwlEye).
+VISION integrates two computer vision ML models [Seenomaly](https://github.com/DehaiZhao/Seenomaly) and [OwlEyes](https://github.com/franklinbill/OwlEye).
 
 Built using [React](https://reactjs.org/) and [Node.JS](https://nodejs.org).
 
@@ -41,7 +41,7 @@ Then navigate to [localhost:3000](localhost:3000) in your browser.
 Environments variables are stored in `.env` file, which has the following variables:
 
 ```
-BATCH_JOB_ENDPOINT - enpoint for submitting a batch job
+BATCH_JOB_ENDPOINT - endpoint for submitting a batch job
 BATCH_JOB_REPORT_ENDPOINT - endpoint for retreiving batch job results
 CAPTCHA_SECRET_KEY - ReCaptch v2 secret
 OWLEYES_ENDPOINT- Endpoint for OwlEyes model (Live job)
@@ -85,6 +85,8 @@ Then navigate to [localhost:3000](localhost:3000) in your browser.
 ## Versioning strategy
 
 Versioning will follow the semantic version strategy documented [here](https://semver.org/).
+Since the definition of MAJOR changes described aren't directly compatible with a user facing application, we use the definition described [here](https://uglow.medium.com/making-sense-of-semantic-versioning-for-end-user-software-applications-a3049d97478b)
+The current version number can be found in `package.json`
 
 ## Future work
 
