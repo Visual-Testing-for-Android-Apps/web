@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap");
+
+.aboutUs-container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  font-family: "Montserrat", sans-serif;
+  background-color: white;
+  position: relative;
+  z-index: 2;
+}
+
+@media only screen and (max-width: 600px) {
+  .team-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: top;
+    gap: 2rem;
+    padding: 1rem 0;
+    margin: auto;
+  }
+}
+
+.title-text {
+  padding-top: 1.67rem;
+  padding-bottom: 0.33rem;
+  color: #000;
+  font-size: 1.67rem;
+}
+
+.team-name {
+  padding-top: 1rem;
+  padding-bottom: 0.17rem;
+  font-size: 1rem;
+  color: #000;
+  font-weight: 700;
+}
+
+.team-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: top;
+  gap: 2rem;
+  padding: 1rem 0;
+  width: 80%;
+  margin: auto;
+}
+
+.team-list {
+  display: flex;
+  flex-direction: column;
+}
+
+ul.no-points {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
