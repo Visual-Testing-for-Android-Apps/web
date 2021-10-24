@@ -11,6 +11,7 @@ import VideoResultExplanation from "../common/VideoResultExplanation";
  */
 const VideoResult = ({ videoFile, videoResult }) => {
   const [dataUrl, setDataUrl] = useState(null);
+  const videoName = videoFile.name ?? videoResult.name;
 
   useEffect(async () => {
     setDataUrl(await encodeFileAsBase64DataUrl(videoFile));
@@ -20,7 +21,7 @@ const VideoResult = ({ videoFile, videoResult }) => {
     <div className="video-result-container">
       <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
         <video className="result" src={dataUrl} autoPlay loop controls muted />
-        <p className="result-filename">{videoFile.name}</p>
+        <p className="result-filename">{videoName}</p>
       </div>
       <VideoResultExplanation issueClassification={videoResult?.classification} />
     </div>
