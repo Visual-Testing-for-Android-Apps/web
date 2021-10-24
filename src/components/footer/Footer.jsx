@@ -8,6 +8,9 @@ const Footer = () => {
         <span>
           <a href="/privacypolicypage">Privacy Policy</a>
         </span>
+        <span>
+          <a href="/aboutus">About Us</a>
+        </span>
       </div>
       <svg x="0px" y="0px" width="100" height="100" viewBox="0 0 511.38 511.38">
         <g>

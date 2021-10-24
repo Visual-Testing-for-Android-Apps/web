@@ -9,6 +9,7 @@ import BatchSubmitPage from "./reportPage/BatchSubmitPage";
 import BatchReportPage from "./reportPage/BatchReportPage";
 import PrivacyPolicyPage from "./mainPage/PrivacyPolicyPage";
 import Footer from "./footer/Footer";
+import AboutUsPage from "./mainPage/AboutUsPage";
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
         </Route>
         <Route path="/privacypolicypage">
           <PrivacyPolicyPage />
+        </Route>
+        <Route path="/aboutus">
+          <AboutUsPage />
         </Route>
       </Switch>
       <Footer />
