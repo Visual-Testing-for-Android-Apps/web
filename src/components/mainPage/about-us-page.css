@@ -32,14 +32,6 @@
   font-size: 1.67rem;
 }
 
-.text-p {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin: 0;
-  color: #000;
-  font-size: 0.92rem;
-}
-
 .team-name {
   padding-top: 1rem;
   padding-bottom: 0.17rem;
@@ -69,4 +61,3 @@ ul.no-points {
   margin: 0;
   padding: 0;
 }
-
