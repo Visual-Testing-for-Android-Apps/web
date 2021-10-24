@@ -3,9 +3,10 @@ import "./navbar.css";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
 const Navigation = () => {
+  const mobileNavbar = window.innerWidth < 1200 ? "navbar sticky-top" : "navbar";
   return (
     <>
-      <Navbar className="navbar" expand="sm">
+      <Navbar className={mobileNavbar} expand="sm">
         <Container>
           <Navbar.Brand
             href="/"
